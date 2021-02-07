@@ -1,9 +1,48 @@
 /* Reset */
+@font-face {
+  font-family: 'Shapiro 85 Super Heavy Wide';
+  src: url('../fonts/shapiro85.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Shapiro 55 Middle Extd';
+  src: url('../fonts/shapiro55.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   margin: 0;
 }
 
+body::-webkit-scrollbar {
+  width: 11px;
+}
+
+body {
+  scrollbar-width: thin;
+  scrollbar-color: #0F245B transparent;
+}
+
+body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #0F245B;
+  border: none;
+}
+
+h1,
+p,
 blockquote,
 pre,
 ol,
@@ -42,22 +81,16 @@ nav {
 body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
-  color: #222;
-  background-color: #fafafa;
-  font: 400 14px/1.625 -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
-    Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji,
-    Segoe UI Symbol;
-  font-size: calc(14px + (20 - 14) * (100vw - 320px) / (750 - 320));
-}
-
-@media (min-width: 750px) {
-  body {
-    font-size: 20px;
-  }
+  background-color: #C92A42;
+  color: #0F245B;
+  font-family: "Shapiro 55 Middle Extd";
+  font-size: 100%;
 }
 
 a {
-  color: #2ab591;
+  text-decoration: none;
+  font-family: "Shapiro 85 Super Heavy Wide";
+  color: #0F245B;
 }
 
 code {
@@ -66,31 +99,68 @@ code {
 
 /* Grid */
 
-.wrapper {
-  max-width: 800px;
-  padding: 20px;
+main {
+  width: 90%;
+  max-width: 1420px;
   margin: 0 auto;
+}
+
+.introduction {
+  font-family: "Shapiro 85 Super Heavy Wide";
+  line-height: 1.3;
+  font-size: 3.6rem;
+  width: min(100%, 1100px);
 }
 
 /* Header */
 
-[role='banner'] {
-  background: #fff;
+header {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background-color: #C92A42;
 }
 
-[role='banner'] a + a {
-  margin-left: 0.5em;
-}
-
-/* Footer */
-
-[role='contentinfo'] .wrapper {
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+.header-content {
+  height: 80px;
+  position: relative;
   display: flex;
-  justify-content: space-between;
   align-items: center;
 }
 
-[role='contentinfo'] .deploy {
-  max-width: 40%;
+.menu-button {
+  height: 40px;
+  width: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.landing {
+  height: 86vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.bar1,
+.bar2 {
+  width: 100%;
+  height: 2px;
+  background-color: #0F245B;
+  margin: 0.4rem 0;
+  transition: 0.4s;
+}
+
+/* Rotate first bar */
+.change .bar1 {
+  -webkit-transform: rotate(45deg) translateY(10px);
+  transform: rotate(45deg) translateY(10px);
+}
+
+/* Rotate last bar */
+.change .bar2 {
+  -webkit-transform: rotate(-45deg) translateY(-10px);
+  transform: rotate(-45deg) translateY(-10px);
 }
