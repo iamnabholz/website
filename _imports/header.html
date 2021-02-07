@@ -1,20 +1,3 @@
-<section id="menu" class="menu">
-  <main class="container">
-    <nav class="wrapper">
-      <a href="/">Home</a>
-      <a href="/">Contact</a>
-      <a onclick="openMenu()" href="/#works">Works</a>
-      <a onclick="openMenu()" href="/#works">side</a>
-    </nav>
-
-    <div class="wrapper">
-      <a href="/">Behance</a>
-      <a href="/">dribbble</a>
-      <a href="/#works">github</a>
-    </div>
-  </main>
-</section>
-
 <header>
   <main class="header-content">
     <div id="menu-button" class="menu-button" onclick="openMenu()">
@@ -24,6 +7,28 @@
     <a style="margin-left: 2rem;" href="/">LUKAS NABHOLZ</a>
   </main>
 </header>
+
+<section id="menu" class="menu">
+  <main class="container">
+    <nav class="wrapper">
+      <a href="/">Home</a>
+      <a onclick="openMenu()" href="/#works">My Work</a>
+      <a onclick="openMenu()" href="/#works">experiments</a>
+    </nav>
+
+    <p style="color: #C92A42; margin-top: 1rem;">shoot me an email -
+      <span style="color: white;">hello@nabholz.work</span>
+    </p>
+
+    <p style="color: #C92A42; margin-top: 1rem;">my links -
+      <a href="/">behance</a>
+      <a href="/">dribbble</a>
+      <a href="/#works">github</a>
+      <a href="/#works">itch.io</a>
+      <a href="/#works">instagram</a>
+    </p>
+  </main>
+</section>
 
 <style>
   .menu {
@@ -35,14 +40,13 @@
     height: 100%;
     background-color: #0F245B;
     color: white;
-    z-index: 5;
+    z-index: 3;
   }
 
   .container {
-    display: grid;
-    grid-template-columns: 50% 50%;
     height: 100%;
-    align-items: center;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
   }
 
@@ -59,6 +63,7 @@
     font-size: 3.7rem;
     text-transform: uppercase;
     margin: 0.6rem 0;
+    font-family: 'Shapiro 95 Super Extd';
   }
 </style>
 

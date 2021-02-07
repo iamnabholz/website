@@ -1,4 +1,4 @@
-/* Reset */
+/* Fonts */
 @font-face {
   font-family: 'Shapiro 85 Super Heavy Wide';
   src: url('../fonts/shapiro85.woff2') format('woff2');
@@ -10,6 +10,14 @@
 @font-face {
   font-family: 'Shapiro 55 Middle Extd';
   src: url('../fonts/shapiro55.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Shapiro 95 Super Extd';
+  src: url('../fonts/shapiro95.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -112,13 +120,36 @@ main {
   width: min(100%, 1100px);
 }
 
+@media only screen and (max-width: 980px) {
+  .introduction {
+    font-size: 3rem;
+  }
+}
+
+@media only screen and (max-width: 720px) {
+  .introduction {
+    font-size: 2.6rem;
+  }
+}
+
+@media only screen and (max-width: 460px) {
+  .introduction {
+    font-size: 1.8rem;
+  }
+
+  main nav>a {
+    font-size: 2rem;
+  }
+}
+
+
 /* Header */
 
 header {
   position: sticky;
   top: 0;
-  z-index: 5;
   background-color: #C92A42;
+  z-index: 5;
 }
 
 .header-content {
@@ -138,7 +169,8 @@ header {
 }
 
 .landing {
-  height: 86vh;
+  padding: 4rem 0;
+  height: 94vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -163,4 +195,23 @@ header {
 .change .bar2 {
   -webkit-transform: rotate(-45deg) translateY(-10px);
   transform: rotate(-45deg) translateY(-10px);
+}
+
+.project {
+  position: relative;
+  height: 90vh;
+  width: 100%;
+  background-color: black;
+  margin: 2rem 0;
+  overflow: hidden;
+}
+
+.project p {
+  position: absolute;
+  left: 5%;
+  top: 45%;
+  text-transform: uppercase;
+  font-size: 4em;
+  color: white;
+  font-family: "Shapiro 95 Super Extd";
 }
