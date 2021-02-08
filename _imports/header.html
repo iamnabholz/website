@@ -4,7 +4,7 @@
       <div class="bar1"></div>
       <div class="bar2"></div>
     </div>
-    <a style="margin-left: 2rem;" href="/">LUKAS NABHOLZ</a>
+    <a id="header-title" class="header-title" href="/">LUKAS NABHOLZ</a>
   </main>
 </header>
 
@@ -13,41 +13,52 @@
     <nav class="wrapper">
       <a href="/">Home</a>
       <a onclick="openMenu()" href="/#works">My Work</a>
-      <a onclick="openMenu()" href="/#works">experiments</a>
+      <a onclick="openMenu()" href="/#experiments">experiments</a>
     </nav>
 
-    <p style="color: #C92A42; margin-top: 1rem;">shoot me an email -
-      <span style="color: white;">hello@nabholz.work</span>
-    </p>
+    <div class="other-links">
+      <p style="color: #C92A42;">shoot me an email</p>
+      <div style="background-color: #C92A42;" class="h-separator"></div>
+      <p title="Click to copy my email" onclick="copyEmail()" class="email">hello@nabholz.work</p>
+    </div>
 
-    <p style="color: #C92A42; margin-top: 1rem;">my links -
-      <a href="/">behance</a>
-      <a href="/">dribbble</a>
-      <a href="/#works">github</a>
-      <a href="/#works">itch.io</a>
-      <a href="/#works">instagram</a>
-    </p>
+
+    <div class="other-links">
+      <p style="color: #C92A42;">my links</p>
+      <div style="background-color: #C92A42;" class="h-separator"></div>
+      <a target="_blank" href="https://www.behance.net/nabholz">behance</a>
+      <a target="_blank" href="https://dribbble.com/nabholz">dribbble</a>
+      <a target="_blank" href="https://github.com/iamnabholz">github</a>
+      <a target="_blank" href="https://iamnabholz.itch.io/">itch.io</a>
+    </div>
   </main>
 </section>
 
+<div class="header-background"></div>
+
 <style>
   .menu {
-    display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 0%;
     background-color: #0F245B;
     color: white;
-    z-index: 3;
+    z-index: 6;
+    overflow: hidden;
+    transition: 0.3s ease-out;
+  }
+
+  .menu-open {
+    height: 100%;
   }
 
   .container {
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    margin-top: 8rem;
   }
 
   .wrapper {
@@ -60,10 +71,21 @@
   }
 
   main nav>a {
-    font-size: clamp(1.5rem, 0.8rem + 4vw, 3.7rem);
+    font-size: clamp(1.5rem, 1rem + 4vw, 3.7rem);
     text-transform: uppercase;
     margin: 0.6rem 0;
     font-family: 'Shapiro 95 Super Extd';
+  }
+
+  .other-links {
+    display: flex;
+    align-items: center;
+    margin-top: 2rem;
+  }
+
+  .other-links a {
+    font-family: "Shapiro 55 Middle Extd";
+    margin-right: 1rem;
   }
 </style>
 

@@ -1,5 +1,5 @@
 :root {
-  --viewport-height: 90vh;
+  --header-color: #0F245B;
 }
 
 /* Fonts */
@@ -122,8 +122,17 @@ main {
 header {
   position: sticky;
   top: 0;
+  z-index: 10;
+}
+
+
+.header-background {
+  position: fixed;
+  top: 0;
+  height: 80px;
+  width: 100%;
   background-color: #C92A42;
-  z-index: 5;
+  z-index: 3;
 }
 
 .header-content {
@@ -133,6 +142,11 @@ header {
   align-items: center;
 }
 
+.header-title {
+  margin-left: 2rem;
+  transition: 0.4s;
+}
+
 .menu-button {
   height: 40px;
   width: 60px;
@@ -140,6 +154,17 @@ header {
   flex-direction: column;
   justify-content: center;
   cursor: pointer;
+}
+
+.email {
+  color: white;
+  cursor: pointer;
+  transition: 0.15s;
+}
+
+.email:active {
+  color: black;
+  transform: translateY(2px);
 }
 
 
@@ -152,8 +177,9 @@ header {
 }
 
 .introduction-container {
-  padding: clamp(1rem, 1rem + 4vw, 4rem) 0;
-  height: var(--viewport-height);
+  padding: clamp(0.4rem, 0.1rem + 4vh, 4rem) 0;
+  height: 90vh;
+  min-height: 70vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -168,7 +194,7 @@ header {
 }
 
 .cta img {
-  margin-right: 1rem;
+  margin: 0 1rem;
 }
 
 .hide {
@@ -188,24 +214,63 @@ header {
 .change .bar1 {
   -webkit-transform: rotate(45deg) translateY(10px);
   transform: rotate(45deg) translateY(10px);
+  background-color: white;
 }
 
 /* Rotate last bar */
 .change .bar2 {
   -webkit-transform: rotate(-45deg) translateY(-10px);
   transform: rotate(-45deg) translateY(-10px);
+  background-color: white;
 }
 
-.project {
+.h-separator {
+  width: 60px;
+  height: 2px;
+  margin: auto 1rem;
+  background-color: #0F245B
+}
+
+.section-title {
+  font-family: "Shapiro 85 Super Heavy Wide";
+  font-size: 1.4rem;
+  margin: 1rem 0;
+  letter-spacing: 1px;
+}
+
+.work-block {
   position: relative;
-  height: var(--viewport-height);
+  height: 86vh;
   width: 100%;
   background-color: black;
   margin: 2rem 0;
   overflow: hidden;
 }
 
-.project p {
+.projects-container {
+  margin: 2rem 0;
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  grid-template-rows: auto;
+  grid-gap: 2rem;
+}
+
+@media only screen and (max-width: 1200px) {
+  .projects-container {
+    grid-template-columns: 100%;
+    grid-template-rows: auto;
+  }
+}
+
+.project-block {
+  position: relative;
+  height: 520px;
+  width: 100%;
+  background-color: black;
+  overflow: hidden;
+}
+
+.block-title {
   position: absolute;
   left: clamp(2%, 4vw, 6%);
   top: 45%;

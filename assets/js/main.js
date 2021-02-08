@@ -2,23 +2,28 @@ let opened = false;
 
 function openMenu() {
     document.getElementById("menu-button").classList.toggle("change");
+    document.getElementById("menu").classList.toggle("menu-open");
+
     if (opened) {
         opened = false;
-        document.getElementById("menu").style.display = "none";
+        document.getElementById("header-title").style.color = "#0F245B";
     } else {
         opened = true;
-        document.getElementById("menu").style.display = "block";
+        document.getElementById("header-title").style.color = "white";
     }
 }
 
+function copyEmail() {
+    navigator.clipboard.writeText("hello@nabholz.work")
+}
+
 window.addEventListener('DOMContentLoaded', () => {
-    let root = document.documentElement;
-    let height = (window.innerHeight - 80) + "px";
-    root.style.setProperty('--viewport-height', height);
+    let height = "height: " + (window.innerHeight - 80) + "px;";
+    document.getElementById("hero").setAttribute("style", height);
 });
 
 window.addEventListener('scroll', () => {
-    if (window.scrollY > 25) {
+    if (window.scrollY > 15) {
         document.getElementById('works').classList.add("hide");
     } else {
         document.getElementById('works').classList.remove("hide");
