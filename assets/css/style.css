@@ -3,13 +3,6 @@
 }
 
 /* Fonts */
-@font-face {
-  font-family: 'Shapiro 85 Super Heavy Wide';
-  src: url('../fonts/shapiro85.woff2') format('woff2');
-  font-weight: 300;
-  font-style: normal;
-  font-display: swap;
-}
 
 @font-face {
   font-family: 'Shapiro 55 Middle Extd';
@@ -20,9 +13,9 @@
 }
 
 @font-face {
-  font-family: 'Shapiro 95 Super Extd';
-  src: url('../fonts/shapiro95.woff2') format('woff2');
-  font-weight: normal;
+  font-family: 'Shapiro 85 Super Heavy Wide';
+  src: url('../fonts/shapiro85.woff2') format('woff2');
+  font-weight: 300;
   font-style: normal;
   font-display: swap;
 }
@@ -125,7 +118,6 @@ header {
   z-index: 10;
 }
 
-
 .header-background {
   position: fixed;
   top: 0;
@@ -159,11 +151,71 @@ header {
   cursor: pointer;
 }
 
+.menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0%;
+  background-color: #0F245B;
+  color: white;
+  z-index: 6;
+  overflow: hidden;
+  transition: 0.3s ease-out;
+}
+
+.menu-open {
+  height: 100%;
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 8rem;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.menu a {
+  color: white;
+}
+
+@font-face {
+  font-family: 'Shapiro 95 Super Extd';
+  src: url('../fonts/shapiro95.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+main nav>a {
+  font-size: clamp(1.5rem, 1rem + 4vw, 3.7rem);
+  text-transform: uppercase;
+  margin: 0.4rem 0;
+  font-family: 'Shapiro 95 Super Extd';
+}
+
+.other-links {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+}
+
+.other-links a {
+  font-family: "Shapiro 55 Middle Extd";
+  margin-right: 1.4rem;
+}
+
 .email {
   color: white;
   cursor: pointer;
   transition: 0.15s;
-  margin: 1rem 1.4rem 1rem 0;
+  margin-right: 1rem;
 }
 
 .email:active {
@@ -198,7 +250,7 @@ header {
 }
 
 .cta img {
-  margin: 0 1rem;
+  margin: 0 2rem;
 }
 
 .hide {
@@ -254,9 +306,9 @@ header {
 .projects-container {
   margin: 2rem 0;
   display: grid;
-  grid-template-columns: repeat(2, auto);
+  grid-template-columns: repeat(2, 49%);
   grid-template-rows: auto;
-  grid-gap: 2rem;
+  grid-gap: 2%;
 }
 
 @media only screen and (max-width: 1200px) {
@@ -274,12 +326,32 @@ header {
   overflow: hidden;
 }
 
+.project-block::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0.4;
+}
+
+.project-block img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
 .block-title {
   position: absolute;
-  left: clamp(2%, 4vw, 6%);
-  top: 45%;
+  left: clamp(2%, 4vw, 4%);
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
   text-transform: uppercase;
   font-size: clamp(1.6rem, 1rem + 3vw, 4rem);
   color: white;
   font-family: "Shapiro 95 Super Extd";
+  text-shadow: 8px 8px 10px black;
 }

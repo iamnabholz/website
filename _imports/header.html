@@ -13,81 +13,25 @@
     <nav class="wrapper">
       <a href="/">Home</a>
       <a onclick="openMenu()" href="/#works">My Work</a>
-      <a onclick="openMenu()" href="/#experiments">experiments</a>
+      <a href="/experiments">experiments</a>
     </nav>
 
     <div class="other-links">
-      <p style="color: #C92A42;">shoot me an email</p>
+      <p style="color: #C92A42; margin: 1rem 0;">shoot me an email</p>
       <div style="background-color: #C92A42;" class="h-separator"></div>
       <p title="Click to copy my email" onclick="copyEmail()" class="email">lukas@nabholz.work</p>
     </div>
 
 
     <div class="other-links">
-      <p style="color: #C92A42;">my links</p>
+      <p style="color: #C92A42; margin: 1rem 0;">my links</p>
       <div style="background-color: #C92A42;" class="h-separator"></div>
-      <a target="_blank" href="https://www.behance.net/nabholz">behance</a>
-      <a target="_blank" href="https://dribbble.com/nabholz">dribbble</a>
-      <a target="_blank" href="https://github.com/iamnabholz">github</a>
-      <a target="_blank" href="https://iamnabholz.itch.io/">itch.io</a>
+      <a rel="noreferrer" target="_blank" href="https://www.behance.net/nabholz">behance</a>
+      <a rel="noreferrer" target="_blank" href="https://dribbble.com/nabholz">dribbble</a>
+      <a rel="noreferrer" target="_blank" href="https://github.com/iamnabholz">github</a>
+      <a rel="noreferrer" target="_blank" href="https://iamnabholz.itch.io/">itch.io</a>
     </div>
   </main>
 </section>
 
 <div class="header-background"></div>
-
-<style>
-  .menu {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 0%;
-    background-color: #0F245B;
-    color: white;
-    z-index: 6;
-    overflow: hidden;
-    transition: 0.3s ease-out;
-  }
-
-  .menu-open {
-    height: 100%;
-  }
-
-  .container {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    margin-top: 8rem;
-  }
-
-  .wrapper {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .menu a {
-    color: white;
-  }
-
-  main nav>a {
-    font-size: clamp(1.5rem, 1rem + 4vw, 3.7rem);
-    text-transform: uppercase;
-    margin: 0.6rem 0;
-    font-family: 'Shapiro 95 Super Extd';
-  }
-
-  .other-links {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    margin-top: 2rem;
-  }
-
-  .other-links a {
-    font-family: "Shapiro 55 Middle Extd";
-    margin: 1rem 1.4rem 1rem 0;
-  }
-</style>
-
-<script src="../assets/js/main.js"></script>
