@@ -294,31 +294,21 @@ main nav>a {
   letter-spacing: 1px;
 }
 
-.work-block {
-  position: relative;
-  height: 720px;
-  width: 100%;
-  background-color: black;
-  margin: 2rem 0;
-  overflow: hidden;
-}
-
 .projects-container {
   margin: 2rem 0;
   display: grid;
-  grid-template-columns: repeat(2, 49%);
+  grid-template-columns: repeat(2, 1fr);
   grid-template-rows: auto;
-  grid-gap: 2%;
+  grid-gap: 2rem;
 }
 
 @media only screen and (max-width: 1200px) {
   .projects-container {
     grid-template-columns: 100%;
-    grid-template-rows: auto;
   }
 }
 
-.project-block {
+.showcase-block {
   position: relative;
   height: 520px;
   width: 100%;
@@ -326,7 +316,12 @@ main nav>a {
   overflow: hidden;
 }
 
-.project-block::before {
+.work-block {
+  height: 720px;
+  margin: 2rem 0;
+}
+
+.showcase-block::before {
   content: "";
   position: absolute;
   top: 0;
@@ -337,21 +332,38 @@ main nav>a {
   opacity: 0.4;
 }
 
-.project-block img {
+.showcase-block img {
   height: 100%;
   width: 100%;
   object-fit: cover;
 }
 
-.block-title {
+.block-information {
   position: absolute;
   left: clamp(2%, 4vw, 4%);
   top: 50%;
+  right: clamp(2%, 4vw, 4%);
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: white;
+  text-shadow: 8px 8px 10px black;
+}
+
+.block-information p {
+  font-size: clamp(0.8rem, 0.6rem + 3vw, 1.4rem);
+}
+
+.block-title {
   text-transform: uppercase;
   font-size: clamp(1.6rem, 1rem + 3vw, 4rem);
   color: white;
   font-family: "Shapiro 95 Super Extd";
-  text-shadow: 8px 8px 10px black;
+  margin-bottom: 0.4rem;
+}
+
+.projects-container a {
+  font-size: clamp(1.6rem, 1rem + 3vw, 3.4rem);
 }
