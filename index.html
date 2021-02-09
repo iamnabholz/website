@@ -13,7 +13,7 @@
       <div style="display: flex; align-items: center; flex-wrap: wrap;">
         <p style="margin: 1rem 0;">have a project?</p>
         <div class="h-separator"></div>
-        <p title="Click to copy my email" onclick="copyEmail()" class="email">lukas@nabholz.work</p>
+        <p title="Click to copy my email" onclick="copyEmail(this)" class="email">lukas@nabholz.work</p>
       </div>
 
       <p id="works" class="cta">scroll to see my work <img alt="Scroll action icon" src="/assets/img/scroll-cta.svg" />
@@ -34,11 +34,13 @@
         <img alt="Panorama Tab Website Screenshot" src="/assets/img/panoramatab-screenshot.png" />
 
         <div class="block-information">
-          <a href="/" class="block-title">apps</a>
+          <a href="/apps/" class="block-title">apps</a>
           <p>mobile app designs i've made</p>
         </div>
       </div>
     </div>
+
+    <sergey-import src="footer" />
   </main>
 </body>
 

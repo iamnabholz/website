@@ -8,7 +8,7 @@
   </div>
 </header>
 
-<section id="menu" class="menu">
+<div id="menu" class="menu">
   <main class="container">
     <nav class="wrapper">
       <a href="/">Home</a>
@@ -19,7 +19,8 @@
     <div class="other-links">
       <p style="color: #C92A42; margin: 1rem 0;">shoot me an email</p>
       <div style="background-color: #C92A42;" class="h-separator"></div>
-      <p title="Click to copy my email" onclick="copyEmail()" class="email">lukas@nabholz.work</p>
+      <p title="Click to copy my email" onclick="copyEmail(this)" class="email">lukas@nabholz.work
+      </p>
     </div>
 
 
@@ -33,6 +34,10 @@
       <a style="margin: 1rem 0;" rel="noreferrer" target="_blank" href="https://github.com/iamnabholz">github</a>
     </div>
   </main>
-</section>
+</div>
 
 <div class="header-background"></div>
+
+<div id="noti" class="copy-notification">
+  <p style="font-size: 0.8rem; color: white;">email copied!</p>
+</div>

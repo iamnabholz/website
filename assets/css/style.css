@@ -102,6 +102,21 @@ code {
   font-size: 0.9em;
 }
 
+footer {
+  margin: 4rem 0 2rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+footer a {
+  display: inline-block;
+  font-family: "Shapiro 55 Middle Extd";
+  color: white;
+  margin: 1rem 1rem 0 0;
+}
+
 /* Grid */
 
 main {
@@ -366,4 +381,59 @@ main nav>a {
 
 .projects-container a {
   font-size: clamp(1.6rem, 1rem + 3vw, 3.4rem);
+}
+
+.works-gallery {
+  margin: 2rem 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(auto, 1fr);
+  grid-gap: 1rem;
+}
+
+@media only screen and (max-width: 1200px) {
+  .works-gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .works-gallery {
+    grid-template-columns: 100%;
+  }
+}
+
+.gallery-element {
+  width: 100%;
+  height: 380px;
+}
+
+.gallery-element img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.copy-notification {
+  display: none;
+  z-index: 10;
+  cursor: default;
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation: example 1.2s;
+}
+
+@keyframes example {
+  0% {
+    opacity: 1;
+  }
+
+  60% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
 }
