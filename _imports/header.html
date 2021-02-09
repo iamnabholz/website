@@ -1,11 +1,11 @@
 <header>
-  <main class="header-content">
+  <div class="header-content">
     <div id="menu-button" class="menu-button" onclick="openMenu()">
       <div class="bar1"></div>
       <div class="bar2"></div>
     </div>
     <a id="header-title" class="header-title" href="/">LUKAS NABHOLZ</a>
-  </main>
+  </div>
 </header>
 
 <section id="menu" class="menu">
@@ -19,7 +19,7 @@
     <div class="other-links">
       <p style="color: #C92A42;">shoot me an email</p>
       <div style="background-color: #C92A42;" class="h-separator"></div>
-      <p title="Click to copy my email" onclick="copyEmail()" class="email">hello@nabholz.work</p>
+      <p title="Click to copy my email" onclick="copyEmail()" class="email">lukas@nabholz.work</p>
     </div>
 
 
@@ -80,12 +80,13 @@
   .other-links {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     margin-top: 2rem;
   }
 
   .other-links a {
     font-family: "Shapiro 55 Middle Extd";
-    margin-right: 1rem;
+    margin: 1rem 1.4rem 1rem 0;
   }
 </style>
 

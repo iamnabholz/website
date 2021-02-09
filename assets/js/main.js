@@ -14,11 +14,15 @@ function openMenu() {
 }
 
 function copyEmail() {
-    navigator.clipboard.writeText("hello@nabholz.work")
+    navigator.clipboard.writeText("lukas@nabholz.work")
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-    let height = "height: " + (window.innerHeight - 80) + "px;";
+    let rawHeight = window.innerHeight - 80;
+    if (rawHeight < 500) {
+        rawHeight = 500;
+    }
+    let height = "height: " + rawHeight + "px;";
     document.getElementById("hero").setAttribute("style", height);
 });
 

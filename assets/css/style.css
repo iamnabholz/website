@@ -136,6 +136,9 @@ header {
 }
 
 .header-content {
+  width: 90%;
+  max-width: 1420px;
+  margin: 0 auto;
   height: 80px;
   position: relative;
   display: flex;
@@ -160,6 +163,7 @@ header {
   color: white;
   cursor: pointer;
   transition: 0.15s;
+  margin: 1rem 1.4rem 1rem 0;
 }
 
 .email:active {
@@ -240,7 +244,7 @@ header {
 
 .work-block {
   position: relative;
-  height: 86vh;
+  height: 720px;
   width: 100%;
   background-color: black;
   margin: 2rem 0;
