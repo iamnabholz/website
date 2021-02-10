@@ -103,7 +103,7 @@ code {
 }
 
 footer {
-  margin: 4rem 0 2rem 0;
+  margin: 2rem 0 1rem 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -364,10 +364,10 @@ main nav>a {
   flex-direction: column;
   align-items: flex-start;
   color: white;
-  text-shadow: 8px 8px 10px black;
 }
 
 .block-information p {
+  text-shadow: 0 3px 8px black;
   font-size: clamp(0.8rem, 0.6rem + 3vw, 1.4rem);
 }
 
@@ -377,10 +377,15 @@ main nav>a {
   color: white;
   font-family: "Shapiro 95 Super Extd";
   margin-bottom: 0.4rem;
+  text-shadow: -2px 2px #C92A42,
+    -4px 4px #C92A42,
+    -6px 6px #C92A42;
 }
 
 .projects-container a {
   font-size: clamp(1.6rem, 1rem + 3vw, 3.4rem);
+  text-shadow: -2px 2px #C92A42,
+    -5px 5px #C92A42;
 }
 
 .works-gallery {
