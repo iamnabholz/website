@@ -214,6 +214,10 @@ main nav>a {
   font-family: 'Shapiro 95 Super Extd';
 }
 
+.header-small-link {
+  font-size: 1.3rem;
+}
+
 .other-links {
   display: flex;
   align-items: center;
@@ -411,12 +415,19 @@ main nav>a {
 .gallery-element {
   width: 100%;
   height: 380px;
+  overflow: hidden;
 }
 
 .gallery-element img {
   height: 100%;
   width: 100%;
   object-fit: cover;
+  transition: 0.6s ease-in-out;
+}
+
+.gallery-element:hover img {
+  height: 110%;
+  width: 110%;
 }
 
 .copy-notification {
