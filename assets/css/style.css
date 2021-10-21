@@ -87,7 +87,7 @@ a {
   cursor: pointer;
   text-decoration: none;
   text-transform: capitalize;
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'EB Garamond', serif;
   color: var(--text-color);
   transition: ease-in-out 0.4s;
 }
@@ -134,7 +134,7 @@ main {
 }
 
 .introduction-container {
-  padding: clamp(0.4rem, 0.1rem + 16vh, 6rem) 0;
+  padding: clamp(0.4rem, 0.1rem + 16vw, 6rem) 0;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -161,7 +161,7 @@ main {
 .special-font {
   font-size: 120%;
   display: inline;
-  font-family: 'Cormorant Garamond', serif;
+  font-family: 'EB Garamond', serif;
 }
 
 #symbol {
@@ -176,58 +176,58 @@ main {
   padding-top: 10px;
 }
 
-.block-information {
-  padding-top: 2vh;
+.scattered-works {
+  margin: 4rem 0;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-}
-
-.scattered-works {
-  overflow: hidden;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .work-link-container {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  height: 12rem;
+  position: relative;
+  margin: 4rem 1rem;
+  max-width: 600px;
+  font-size: 2.6rem;
 }
 
-.work-link-container img {
-  width: 40%;
-  height: auto;
-  position: absolute;
-  transform: translateX(-17%);
-  z-index: -5;
-  opacity: 0;
-  transition: ease-out 0.4s;
+.work-link-container a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.work-link-container img{
+  width: auto;
+  max-height: 600px;
 }
 
 .work-link-container a:hover ~ img {
-  opacity: 0.4;
+  transform: translate(4px, -4px);
 }
 
-.work-link-container:nth-child(1) {
-  margin-left: 20%;
-}
-
-.work-link-container:nth-child(2) {
-  margin-left: 50%;
-}
-
-.work-link-container:nth-child(3) {
-  margin-left: 14%;
+.side-project {
+  width: 100%;
+  margin: 4rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .side-project-link {
   max-width: 640px;
-  margin: 4rem 0;
 }
 
-.side-project-link a, 
-.work-link-container a {
+.side-project-link a {
   display: inline-block;
   margin-bottom: 2px;
   font-size: 2.6rem;
+}
+
+.footer {
+  font-size: 1.6rem;
+}
+
+.footer * {
+  margin-bottom: 1rem;
 }
