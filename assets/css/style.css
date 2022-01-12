@@ -3,7 +3,8 @@
   --text-color: #080808;
 }
 
-::-moz-selection { /* Code for Firefox */
+::-moz-selection {
+  /* Code for Firefox */
   background: lightcoral;
 }
 
@@ -59,7 +60,6 @@ figure {
 
 img {
   max-width: 100%;
-  display: block;
   height: auto;
   border: none;
 }
@@ -84,6 +84,7 @@ nav {
 /* Typography */
 
 a {
+  display: inline-block;
   cursor: pointer;
   text-decoration: none;
   text-transform: capitalize;
@@ -159,15 +160,67 @@ main {
 }
 
 .special-font {
-  font-size: 120%;
-  display: inline;
-  font-family: 'EB Garamond', serif;
+  font-weight: 900;
 }
 
 #symbol {
-  display: inline;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   width: 50px;
-  margin-bottom: 8px;
+  height: 50px;
+  margin: auto 0;
+}
+
+#symbol img {
+  position: absolute;
+}
+
+#ellipse-small {
+  width: 86%;
+
+  animation: rotate-small 14s ease infinite;
+}
+
+#ellipse-big {
+  width: 100%;
+
+  animation: rotate-big 10s ease infinite;
+}
+
+@keyframes rotate-small {
+  0% {
+    transform: rotateZ(60deg);
+  }
+
+  20% {
+    transform: rotateZ(-20deg);
+  }
+  80% {
+    transform: rotateZ(180deg);
+  }
+
+  100% {
+    transform: rotateZ(61deg);
+  }
+}
+
+@keyframes rotate-big {
+  0% {
+    transform: rotateZ(20deg);
+  }
+
+  40% {
+    transform: rotateZ(120deg);
+  }
+  58% {
+    transform: rotateZ(80deg);
+  }
+
+  100% {
+    transform: rotateZ(19deg);
+  }
 }
 
 .section-container {
@@ -176,37 +229,23 @@ main {
   padding-top: 10px;
 }
 
-.scattered-works {
-  margin: 4rem 0;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-around;
+.image-slider {
+  width: 100%;
+  height: 500px;
+  padding: 1.4rem 0;
+  overflow-x: auto;
+  overflow-y: clip;
+  white-space: nowrap;
 }
 
-.work-link-container {
-  position: relative;
-  margin: 4rem 1rem;
-  max-width: 600px;
-  font-size: 2.6rem;
-}
-
-.work-link-container a {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.work-link-container img{
+.image-slider img {
+  display: inline-block;
   width: auto;
-  max-height: 600px;
+  max-height: 100%;
+  margin-right: 8px;
 }
 
-.work-link-container a:hover ~ img {
-  transform: translate(4px, -4px);
-}
-
-.side-project {
+.project {
   width: 100%;
   margin: 4rem 0;
   display: flex;
@@ -214,12 +253,11 @@ main {
   justify-content: space-between;
 }
 
-.side-project-link {
+.project-link {
   max-width: 640px;
 }
 
-.side-project-link a {
-  display: inline-block;
+.project-link a {
   margin-bottom: 2px;
   font-size: 2.6rem;
 }
