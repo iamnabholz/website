@@ -1,30 +1,31 @@
 :root {
   --background-color: #D8D8D8;
   --text-color: #080808;
+  --highlight-color: rgb(231, 108, 108);
 }
 
 ::-moz-selection {
   /* Code for Firefox */
-  background: lightcoral;
+  background: var(--highlight-color);
 }
 
 ::selection {
-  background: lightcoral;
+  background: var(--highlight-color);
 }
 
 /* Fonts */
 
 @font-face {
-  font-family: 'Bifocals';
-  src: url('../fonts/Bifocals.woff2') format('woff2');
+  font-family: 'Trap';
+  src: url('../fonts/TrapMedium.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Bifocals';
-  src: url('../fonts/BifocalsBlack.woff2') format('woff2');
+  font-family: 'Trap';
+  src: url('../fonts/TrapBold.woff2') format('woff2');
   font-weight: 900;
   font-style: normal;
   font-display: swap;
@@ -43,7 +44,7 @@ body {
   -webkit-font-smoothing: antialiased;
   background-color: var(--background-color);
   color: var(--text-color);
-  font-family: "Bifocals", sans-serif;
+  font-family: "Trap", sans-serif;
   font-size: 100%;
 }
 
@@ -81,6 +82,10 @@ nav {
   box-sizing: border-box;
 }
 
+hr {
+  color: #080808;
+}
+
 /* Typography */
 
 a {
@@ -106,57 +111,48 @@ code {
   font-size: 0.9em;
 }
 
+p {
+  font-size: 1.5rem;
+}
+
 /* Header */
 
 header {
   position: sticky;
   top: 0;
   z-index: 10;
-  background-color: var(--background-color);
-}
-
-header p {
-  cursor: pointer;
-}
-
-header main {
+  padding-top: 20px;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   height: 68px;
-  border-bottom: 2px solid var(--text-color);
-}
-
-/* Grid */
-
-main {
-  width: 90%;
-  max-width: 1420px;
-  margin: 0 auto;
 }
 
 .introduction-container {
-  padding: clamp(0.4rem, 0.1rem + 16vw, 6rem) 0;
+  padding: clamp(8rem, 0.1rem + 16vw, 14rem) 0;
+  /*height: calc(100vh - 88px);*/
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  align-items: flex-end;
+  justify-content: flex-start;
 }
 
 .introduction {
-  font-size: clamp(2.4rem, 0.6rem + 4vw, 3.2rem);
-  max-width: 1120px;
+  /*font-size: clamp(2.4rem, 0.6rem + 4vw, 3.2rem);*/
+  max-width: 1020px;
   cursor: default;
 }
 
-.introduction-details {
+.details {
+  padding: 30px 0 30px 0;
+  /*width: 35%;
+  justify-content: space-between;*/
   display: flex;
   flex-wrap: wrap;
 }
 
-.introduction-details p {
-  font-size: 24px;
-  width: 420px;
-  margin-top: 4rem;
-  margin-right: 4rem;
+.introduction h1 {
+  font-weight: normal;
+  font-size: clamp(2rem, -3.5rem + 20vw, 3rem);
 }
 
 .special-font {
@@ -168,8 +164,8 @@ main {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 50px;
-  height: 50px;
+  width: 68px;
+  height: 68px;
   margin: auto 0;
 }
 
@@ -180,13 +176,13 @@ main {
 #ellipse-small {
   width: 86%;
 
-  animation: rotate-small 14s ease infinite;
+  animation: rotate-small 24s ease infinite;
 }
 
 #ellipse-big {
   width: 100%;
 
-  animation: rotate-big 10s ease infinite;
+  animation: rotate-big 18s ease infinite;
 }
 
 @keyframes rotate-small {
@@ -194,10 +190,15 @@ main {
     transform: rotateZ(60deg);
   }
 
-  20% {
+  19% {
     transform: rotateZ(-20deg);
   }
-  80% {
+
+  41% {
+    transform: rotateZ(-130deg);
+  }
+
+  74% {
     transform: rotateZ(180deg);
   }
 
@@ -208,41 +209,35 @@ main {
 
 @keyframes rotate-big {
   0% {
-    transform: rotateZ(20deg);
+    transform: rotateZ(41deg);
   }
 
-  40% {
+  46% {
     transform: rotateZ(120deg);
   }
-  58% {
-    transform: rotateZ(80deg);
+
+  67% {
+    transform: rotateZ(81deg);
+  }
+
+  88% {
+    transform: rotateZ(-20deg);
   }
 
   100% {
-    transform: rotateZ(19deg);
+    transform: rotateZ(42deg);
   }
 }
 
 .section-container {
-  margin: 6rem 0 2rem 0;
-  border-top: 2px solid var(--text-color);
-  padding-top: 10px;
+  width: 90%;
+  max-width: 1420px;
+  margin: 0 auto;
 }
 
-.image-slider {
+.work-container img {
   width: 100%;
-  height: 500px;
-  padding: 1.4rem 0;
-  overflow-x: auto;
-  overflow-y: clip;
-  white-space: nowrap;
-}
-
-.image-slider img {
-  display: inline-block;
-  width: auto;
-  max-height: 100%;
-  margin-right: 8px;
+  max-height: auto;
 }
 
 .project {
@@ -251,6 +246,7 @@ main {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  font-size: 2.6rem;
 }
 
 .project-link {

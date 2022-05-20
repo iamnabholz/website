@@ -5,56 +5,45 @@
 <body>
   <sergey-import src="header" />
 
-  <main class="landing">
+  <main>
 
-    <div class="introduction-container">
+    <div class="introduction-container section-container">
       <div class="introduction">
-        Hello, my name is <span class="special-font">Lukas</span>.
-        <div id="symbol">
-          <img id="ellipse-small" src="/assets/img/ellipse symbol.png">
-          <img id="ellipse-big" src="/assets/img/ellipse symbol.png">
+        <h1><b>Lukas Nabholz</b> — Freelance digital designer and coder focusing on interactive solutions and user
+          experiences.
+        </h1>
+        <div class="details">
+          <p>Santa Cruz, BO</p>
+          <p id="current-time" style="padding-left: 35px;">7:06 PM</p>
         </div>
-        </br>
-        I'm a visual designer focusing on interactive experiences, websites & mobile apps.
       </div>
-
-      <div class="introduction-details">
-        <p>Aliquam orci, lorem tortor morbi. Ultrices suspese lectus tellus nunc in sem. </br>
-          Mi, consectetur fringilla donec odio est lacus sapin dignissim. Egestas lectus sit nibh eget aenean.</p>
-
-        <p>For work or general inquires feel free to drop me an <a href="mailto:lukas@nabholz.work">Email.</a>
-
-      </div>
+      <!-- <div class="arrow" style="width: 100px;">
+        <img style="padding-bottom: 30px;" src="/assets/img/Arrow 1.png">
+      </div> -->
     </div>
 
-    <div class="section-container">
-      <p><b>SELECTED WORKS</b></p>
+    <div class="work-container">
+      <img src="https://cdn.dribbble.com/users/1918813/screenshots/15641079/media/987b1adb07a2ebb5fa7d1dd4a9d7feed.png">
 
-      <p style="margin: 2rem 0;" class="introduction">
-        Currently building some case studies to present here,
-        meanwhile you can check some quick projects below:</p>
+      <img src="/assets/img/monofactura 1.png">
 
-      <div class="image-slider">
-        <img
-          src="https://cdn.dribbble.com/users/1918813/screenshots/15641079/media/987b1adb07a2ebb5fa7d1dd4a9d7feed.png">
+      <img src="/assets/img/Adat landing page presentation.png">
 
-        <img src="/assets/img/monofactura 1.png">
-
-        <img src="/assets/img/Adat landing page presentation.png">
-
-        <img src="/assets/img/monofactura 2.png">
-
-      </div>
-
-      <div style="margin-top: 2rem;" class="project">
-        <div class="project-link">
-          <a rel="noreferrer" target="_blank" href="https://dribbble.com/nabholz">Dribbble &#8599;</a>
-        </div>
-      </div>
+      <img src="/assets/img/monofactura 2.png">
 
     </div>
 
     <div class="section-container">
+      <div class="project">
+        <a rel="noreferrer" target="_blank" href="https://dribbble.com/nabholz">Dribbble &#8599;</a>
+      </div>
+      <div class="project">
+        <a rel="noreferrer" target="_blank" href="https://dribbble.com/nabholz">Behance &#8599;</a>
+      </div>
+      <div class="project">
+        <a rel="noreferrer" target="_blank" href="https://dribbble.com/nabholz">GitHub &#8599;</a>
+      </div>
+
       <p><b>SIDE PROJECTS</b></p>
 
       <div class="project">
@@ -89,8 +78,9 @@
     </div>
 
     <div class="section-container footer">
-      <p>lukas@nabholz.work</p>
-      <p style="font-size: 12px;">© 2021 LUKAS NABHOLZ</p>
+      <p style="cursor: pointer;" onclick="navigator.clipboard.writeText('lukas@nabholz.work');">
+        lukas@nabholz.work</p>
+      <p style="font-size: 12px;">© 2022 LUKAS NABHOLZ</p>
     </div>
 
     </div>
@@ -98,6 +88,9 @@
 
   <script data-host="https://microanalytics.io" data-dnt="false" src="https://microanalytics.io/js/script.js"
     id="ZwSg9rf6GA" async defer></script>
+
+  <script src="../assets/js/main.js"></script>
+
 </body>
 
 </html>
