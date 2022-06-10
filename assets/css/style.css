@@ -112,7 +112,7 @@ code {
 }
 
 p {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
 }
 
 /* Header */
@@ -125,11 +125,10 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 68px;
 }
 
 .introduction-container {
-  padding: clamp(8rem, 0.1rem + 16vw, 14rem) 0;
+  padding: clamp(6rem, 0.1rem + 16vw, 10rem) 0;
   /*height: calc(100vh - 88px);*/
   display: flex;
   align-items: flex-end;
@@ -143,7 +142,7 @@ header {
 }
 
 .details {
-  padding: 30px 0 30px 0;
+  padding-bottom: 30px;
   /*width: 35%;
   justify-content: space-between;*/
   display: flex;
@@ -153,6 +152,13 @@ header {
 .introduction h1 {
   font-weight: normal;
   font-size: clamp(2rem, -3.5rem + 20vw, 3rem);
+}
+
+.description {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 26px;
+  padding-top: 30px;
 }
 
 .special-font {
@@ -235,9 +241,16 @@ header {
   margin: 0 auto;
 }
 
+.work-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+}
+
 .work-container img {
   width: 100%;
-  max-height: auto;
+  height: 100%;
+  object-fit: cover;
 }
 
 .project {
@@ -264,4 +277,17 @@ header {
 
 .footer * {
   margin-bottom: 1rem;
+}
+
+@media screen and (max-width: 800px) {
+  .description {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .work-container {
+    grid-template-columns: 1fr;
+  }
 }
