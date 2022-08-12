@@ -31,6 +31,22 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'PP Monument Extended';
+  src: url('../fonts/PPMonumentExtended-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'PP Monument Extended';
+  src: url('../fonts/PPMonumentExtended-Black.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 @media screen and (prefers-reduced-motion: no-preference) {
   html {
     scroll-behavior: smooth;
@@ -86,57 +102,43 @@ hr {
   color: #080808;
 }
 
-/* Typography */
+/* Anchor */
 
 a {
   display: inline-block;
+  position: inherit;
   cursor: pointer;
   text-decoration: none;
   color: var(--text-color);
   transition: ease-in-out 0.4s;
+  padding: 0 2px;
   font-size: 1.4rem;
-}
-
-header a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-header a:hover {
-  transform: scale(1.1);
-}
-
-main a::before {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 2px;
-  background-color: var(--text-color);
-  transition: ease 0.4s;
-  width: 0;
-}
-
-main a:hover {
-  /*color: var(--highlight-color);*/
-  transform: translate(3px, -3px);
-}
-
-main a:hover::before {
-  width: 100%;
+  font-weight: 900;
 }
 
 a:visited  {
   color: var(--text-color);
 }
 
-code {
-  font-size: 0.9em;
+a:hover {
+  color: var(--background-color);
 }
 
-p {
-  font-size: 1.4rem;
+a::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: var(--text-color);
+  transform: scaleY(0);
+  transition: ease 0.4s;
+  z-index: -1;
+}
+
+a:hover::before {
+  transform: scaleY(1);
 }
 
 /* Header */
@@ -145,21 +147,25 @@ header {
   position: sticky;
   top: 0;
   z-index: 10;
-  padding-top: 20px;
+  height: 68px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.social-icons {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 18px;
+header a {
+  position: inherit;
+  font-family: 'PP Monument Extended';
+  font-weight: 900;
+  font-size: clamp(0.8rem, 2vw, 1.4rem);
 }
 
-.social-icons img {
-  height: 22px;
-  margin: auto 0;
+code {
+  font-size: 0.9em;
+}
+
+p {
+  font-size: 1.4rem;
 }
 
 .introduction-container {
@@ -172,8 +178,14 @@ header {
 
 .introduction {
   /*font-size: clamp(2.4rem, 0.6rem + 4vw, 3.2rem);*/
-  max-width: 1020px;
+  max-width: 1000px;
   cursor: default;
+}
+
+.introduction h1 {
+  font-family: 'PP Monument Extended';
+  font-weight: normal;
+  font-size: clamp(1.6rem, -3.5rem + 20vw, 2.4rem);
 }
 
 .details {
@@ -184,16 +196,12 @@ header {
   flex-wrap: wrap;
 }
 
-.introduction h1 {
-  font-weight: normal;
-  font-size: clamp(2rem, -3.5rem + 20vw, 3rem);
-}
-
 .description {
+  max-width: clamp(660px, -3.5rem + 20vw, 100%);
+  padding-top: 32px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 26px;
-  padding: 30px 0;
+  gap: 32px;
+  grid-template-rows: 1fr auto;
 }
 
 .email-copy { 
@@ -212,8 +220,8 @@ header {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 68px;
-  height: 68px;
+  width: 60px;
+  height: 60px;
   margin: auto 0;
 }
 
@@ -223,13 +231,11 @@ header {
 
 #ellipse-small {
   width: 86%;
-
   animation: rotate-small 24s ease infinite;
 }
 
 #ellipse-big {
   width: 100%;
-
   animation: rotate-big 18s ease infinite;
 }
 
@@ -283,15 +289,27 @@ header {
   margin: 0 auto;
 }
 
+.section-title {
+  font-weight: 900;
+  text-transform: uppercase;
+  margin: 16px auto;
+}
+
 .work-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.work-container div p {
+  max-width: 600px;
+  margin: 16px 0 32px 0;
+
 }
 
 .work-container img {
   width: 100%;
-  height: 100%;
+  height: 560px;
   object-fit: cover;
 }
 
@@ -309,7 +327,7 @@ header {
 }
 
 .project-link a {
-  margin-bottom: 2px;
+  position: relative;
   font-size: 2.6rem;
 }
 
@@ -319,17 +337,4 @@ header {
 
 .footer * {
   margin-bottom: 1rem;
-}
-
-@media screen and (max-width: 800px) {
-  .description {
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr 1fr;
-  }
-}
-
-@media screen and (max-width: 1000px) {
-  .work-container {
-    grid-template-columns: 1fr;
-  }
 }
