@@ -7,4 +7,4 @@ const current = now.toLocaleTimeString('default', {
   minute: '2-digit',
 });
 
-//document.getElementById("current-time").innerHTML = current;
+document.getElementById("current-time").innerHTML = current;

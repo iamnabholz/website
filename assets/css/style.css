@@ -106,14 +106,22 @@ hr {
 
 a {
   display: inline-block;
-  position: inherit;
+  position: relative;
   cursor: pointer;
   text-decoration: none;
   color: var(--text-color);
   transition: ease-in-out 0.4s;
+
+  /* Padding so the background effect on hover has more space on the sides */
   padding: 0 2px;
-  font-size: 1.4rem;
+  font-family: 'PP Monument Extended';
   font-weight: 900;
+}
+
+.work-information a,
+.project-link a {
+  text-transform: capitalize;
+  font-size: 1.6rem;
 }
 
 a:visited  {
@@ -153,10 +161,14 @@ header {
   justify-content: space-between;
 }
 
+.header-links {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: clamp(2rem, 2vw, 4rem);
+}
+
 header a {
-  position: inherit;
-  font-family: 'PP Monument Extended';
-  font-weight: 900;
   font-size: clamp(0.8rem, 2vw, 1.4rem);
 }
 
@@ -169,8 +181,8 @@ p {
 }
 
 .introduction-container {
-  padding: clamp(6rem, 0.1rem + 16vw, 10rem) 0;
-  /*height: calc(100vh - 88px);*/
+  padding-bottom: clamp(1rem, 0.1rem + 10vw, 10rem);
+  height: calc(100vh - 68px);
   display: flex;
   align-items: flex-end;
   justify-content: flex-start;
@@ -213,6 +225,29 @@ p {
 .email-copy:hover {
   /*color: var(--highlight-color);*/
   transform: translate(3px, -3px);
+}
+
+.email-copy::after {
+  content: "Click to copy";
+  position: relative;
+  bottom: 4px;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  margin-left: 8px;
+  padding: 4px;
+  font-size: 0.7rem;
+  color: grey;
+  background-color: #d3d3d3;
+  border-radius: 4px;
+  font-style: italic;
+  opacity: 0;
+  transition: ease 0.2s;
+  z-index: -1;
+}
+
+.email-copy:hover::after {
+  opacity: 1;
 }
 
 #symbol {
@@ -292,43 +327,93 @@ p {
 .section-title {
   font-weight: 900;
   text-transform: uppercase;
-  margin: 16px auto;
+}
+
+.work-section {
+  /*display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: repeat(2, 1fr);*/
+
+  padding: 2rem 0 4rem 0;
+  
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  row-gap: 60px;
+  column-gap: 20px;
 }
 
 .work-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
+  max-width: calc(50% - 10px);
 }
 
-.work-container div p {
-  max-width: 600px;
-  margin: 16px 0 32px 0;
-
+.work-image:hover img {
+  transform: scale(1.04);
 }
 
-.work-container img {
+.work-image {
+  position: relative;
+  height: 420px;
   width: 100%;
-  height: 560px;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.work-image img {
+  transition: ease-out 1s;
+  transform: scale(1);
+  width: 100%;
+  height: 100%;
   object-fit: cover;
+}
+
+.work-information {
+  padding: 0 2rem 1rem 0;
+}
+
+@media screen and (max-width: 860px) {
+  #symbol {
+    width: 42px;
+    height: 42px;
+  }
+
+  .work-section {
+    flex-direction: column;
+  }
+
+  .work-container {
+    max-width: 100%;
+  }
+
+  .work-information {
+    padding-right: 0;
+  }
+}
+
+.project-container {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 2rem;
 }
 
 .project {
   width: 100%;
-  margin: 4rem 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  font-size: 2.6rem;
 }
 
 .project-link {
   max-width: 640px;
 }
 
-.project-link a {
-  position: relative;
-  font-size: 2.6rem;
+.about-section {
+  padding: 2rem 0 4rem 0;
 }
 
 .footer {
