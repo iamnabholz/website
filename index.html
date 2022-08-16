@@ -3,17 +3,14 @@
 <sergey-import src="head" />
 
 <body>
-  <sergey-import src="header" />
-
   <main>
+    <sergey-import src="header" />
 
-    <div class="introduction-container section-container">
+    <div class="symbol-background"> </div>
+    <div class="symbol-background-big"> </div>
+
+    <div class="introduction-container">
       <div class="introduction">
-        <!-- <div class="details">
-          <p>Santa Cruz, BO</p>
-          <p id="current-time" style="padding-left: 35px;">7:06 PM</p>
-        </div> -->
-
         <h1><b>Lukas Nabholz</b> — Freelance digital designer and coder focusing on interactive solutions and user
           experiences.
         </h1>
@@ -24,19 +21,18 @@
             Egestas sit purus arcu praesent etiam facilisis. Magna malesuada neque ipsum aenean laoreet proin viverra
             viverra.</p>
 
-          <p class="email-copy" title="Copy Email" onclick="navigator.clipboard.writeText('lukas@nabholz.work');">
-            lukas@nabholz.work</p>
+          <sergey-import src="email"></sergey-import>
         </div>
       </div>
 
+      <div id="work" class="arrow-indicator"></div>
+
     </div>
 
-    <p id="works" class="section-title section-container">Selected Works</p>
-
-    <div class="work-section section-container">
+    <div class="work-section">
       <div class="work-container">
         <div class="work-information">
-          <a>PROJECT TITLE</a>
+          <a>PROJECT TITLE &#8599;</a>
           <p>Egestas sit purus arcu praesent etiam facilisis. Magna malesuada neque ipsum aenean laoreet proin viverra
             viverra.</p>
         </div>
@@ -48,7 +44,7 @@
 
       <div class="work-container">
         <div class="work-information">
-          <a>PROJECT TITLE</a>
+          <a>PROJECT TITLE &#8599;</a>
           <p>Magna malesuada neque ipsum aenean laoreet proin viverra
             viverra.</p>
         </div>
@@ -59,7 +55,7 @@
 
       <div class="work-container">
         <div class="work-information">
-          <a>PROJECT Title</a>
+          <a>PROJECT Title &#8599;</a>
           <p>Egestas sit purus arcu praesent etiam facilisis.</p>
         </div>
         <div class="work-image"><img
@@ -69,7 +65,7 @@
 
       <div class="work-container">
         <div class="work-information">
-          <a>PROJECT TITLE</a>
+          <a>PROJECT TITLE &#8599;</a>
           <p>Egestas sit purus arcu praesent etiam facilisis. Magna malesuada neque ipsum aenean laoreet proin viverra
             viverra.</p>
         </div>
@@ -77,70 +73,63 @@
           <img src="/assets/img/monofactura 1.png">
         </div>
       </div>
-
     </div>
 
-    <div class="section-container project-container">
-      <p class="section-title">SIDE PROJECTS</p>
-
-      <div class="project">
-        <div class="project-link">
-          <a rel="noreferrer" target="_blank" href="https://ko-fi.com/nabholz">Ko-Fi &#8599;</a>
-          <p>Here I try to post all the side stuff that I work on during my free time: graphics, designs, extensions,
-            apps, etc.</p>
+    <div class="side-projects">
+      <p>Other things I've made</p>
+      <div class="project-container">
+        <div class="project">
+          <p>
+            <a rel="noreferrer" target="_blank" href="https://panoramatab.netlify.app/">Panorama Tab &#8599;</a>
+            Browser extension for your new tab.
+          </p>
         </div>
-      </div>
 
-      <div class="project">
-        <div class="project-link">
-          <a rel="noreferrer" target="_blank" href="https://panoramatab.netlify.app/">Panorama Tab &#8599;</a>
-          <p>Browser extension that replaces your new tab, read top posts from your favorite subreddit, view the current
-            temperature, your most visited sites and more. Available for Firefox, Google Chrome and Microsoft Edge.</p>
+        <div class="project">
+          <p>
+            <a rel="noreferrer" target="_blank" href="https://timesets.netlify.app/">Timesets (Beta) &#8599;</a>
+            Make your own pomodoro-like timers.
+          </p>
         </div>
-      </div>
 
-      <div class="project">
-        <div class="project-link">
-          <a rel="noreferrer" target="_blank" href="https://timesets.netlify.app/">Timesets (Beta) &#8599;</a>
-          <p>Webapp to make your own pomodoro-like timers. Set any number of activities and adjust the time for each
-            one.</p>
+        <div class="project">
+          <p>
+            <a rel="noreferrer" target="_blank" href="https://everydayhuman.itch.io/">Itch.io games &#8599;</a>
+            Some games I have developed.
+          </p>
         </div>
-      </div>
 
-      <div class="project">
-        <div class="project-link">
-          <a rel="noreferrer" target="_blank" href="https://everydayhuman.itch.io/">Itch.io games &#8599;</a>
-          <p>A few small games I've developed, some from Game Jams and other from random experimentation.</p>
+        <div class="project">
+          <p>
+            <a rel="noreferrer" target="_blank" href="https://ko-fi.com/nabholz">Ko-Fi &#8599;</a>
+            Where I post side projects and other things.
+          </p>
         </div>
       </div>
     </div>
 
-    <div id="about" class="section-container about-section">
-      <p class="section-title">ABOUT ME</p>
+    <div id="contact" class="contact-section">
+      <p class="section-title">CONTACT</p>
 
-      <div class="description">
-        <p>I strive to transform complex systems and ideas in to simple and intuitive interfaces to help
-          people.<br><br>
-          Egestas sit purus arcu praesent etiam facilisis. Magna malesuada neque ipsum aenean laoreet proin viverra
-          viverra.</p>
-
+      <div class="contact-container" style="flex-direction: column; row-gap: 2rem; margin: 2rem 0;">
+        <p>I'm currently available for freelance work, if you'd like to talk about a project you have in
+          mind send me and email at:</p>
+        <sergey-import src="email"></sergey-import>
+        <p>
+          You can explore more of my work on
+          <a rel="noreferrer" target="_blank" href="https://dribbble.com/nabholz">Dribbble &#8599;</a> and
+          <a rel="noreferrer" target="_blank" href="https://behance.net/nabholz">Behance &#8599;</a>.
+          <br>You can also find some of my coding projects on
+          <a rel="noreferrer" target="_blank" href="https://github.com/iamnabholz">GitHub &#8599;</a>
+        </p>
       </div>
 
-      <p>Santa Cruz, Bolivia</p>
-      <p id="current-time">4:20 PM</p>
+      <p style="font-family: 'PP Monument Extended';">Santa Cruz, Bolivia</p>
+      <p style="font-family: 'PP Monument Extended'; font-weight: 900;" id="current-time">4:20 PM</p>
     </div>
 
-    <div id="about" class="section-container about-section">
-      <p class="section-title">CONTACT INFOrmation</p>
-
-      <p>Santa Cruz, Bolivia</p>
-      <p id="current-time">4:20 PM</p>
-    </div>
-
-    <div id="footer" class="section-container footer">
-      <p class="email-copy" title="Copy Email" onclick="navigator.clipboard.writeText('lukas@nabholz.work');">
-        lukas@nabholz.work</p>
-      <p style="font-size: 12px;">© 2022 LUKAS NABHOLZ</p>
+    <div id="footer" class="footer">
+      <p style="font-size: 12px; font-family: 'PP Monument Extended';">© 2022 LUKAS NABHOLZ</p>
     </div>
 
     </div>

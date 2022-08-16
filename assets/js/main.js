@@ -1,3 +1,4 @@
+// GET CURRENT LOCAL TIME AND DISPLAY IT
 const now = new Date();
 
 const current = now.toLocaleTimeString('default', {
@@ -8,3 +9,12 @@ const current = now.toLocaleTimeString('default', {
 });
 
 document.getElementById("current-time").innerHTML = current;
+
+// HIDE ARROW INDICATOR ON SCROLL
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 36) {
+      document.getElementById('work').classList.add("hide");
+  } else {
+      document.getElementById('work').classList.remove("hide");
+  }
+})

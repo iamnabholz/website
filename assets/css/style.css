@@ -2,6 +2,7 @@
   --background-color: #D8D8D8;
   --text-color: #080808;
   --highlight-color: #7ab1d6;
+  --accent-color: #de1616;
 }
 
 ::-moz-selection {
@@ -25,7 +26,7 @@
 
 @font-face {
   font-family: 'Trap';
-  src: url('../fonts/TrapBold.woff2') format('woff2');
+  src: url('../fonts/TrapBlack.woff2') format('woff2');
   font-weight: 900;
   font-style: normal;
   font-display: swap;
@@ -92,6 +93,69 @@ nav {
   display: block;
 }
 
+.symbol-background {
+  position: fixed;
+  top: 10%;
+  right: 6%;
+  width: 300px;
+  height: 300px;
+  background: no-repeat center/100% url("/assets/img/icons/ellipse symbol.png");
+  filter: blur(25px);
+  opacity: 0.5;
+  animation: deco 20s ease infinite;
+  z-index: -1;
+}
+
+@keyframes deco {
+  0% {
+    transform: rotateZ(0deg) translate(0px, 0px);
+  }
+
+  35% {
+    transform: rotateZ(-50deg) translate(20px, -100px);
+  }
+
+  76% {
+    transform: rotateZ(140deg) translate(-120px, -40px)
+  }
+
+  100% {
+    transform: rotateZ(1deg) translate(0px, 0px);
+  }
+}
+
+.symbol-background-big {
+  position: fixed;
+  top: 20%;
+  left: -10%;
+  width: 900px;
+  height: 900px;
+  background: no-repeat center/100% url("/assets/img/icons/ellipse symbol.png");
+  filter: blur(40px);
+  opacity: 0.4;
+  animation: deco-big 69s ease-out infinite;
+  z-index: -1;
+}
+
+@keyframes deco-big {
+  0% {
+    transform: rotateZ(-45deg) translate(0px, 0px);
+  }
+
+  30% {
+    transform: rotateZ(150deg) translate(-30px, -230px);
+  }
+
+  60% {
+    transform: rotateZ(-140deg) translate(-120px, 160px);
+  }
+
+  100% {
+    transform: rotateZ(-45deg) translate(0px, 0px);
+  }
+}
+
+
 *,
 *:before,
 *:after {
@@ -110,26 +174,27 @@ a {
   cursor: pointer;
   text-decoration: none;
   color: var(--text-color);
-  transition: ease-in-out 0.4s;
-
-  /* Padding so the background effect on hover has more space on the sides */
-  padding: 0 2px;
-  font-family: 'PP Monument Extended';
+  transition: ease-in-out 200ms;
+  margin-bottom: 6px;
   font-weight: 900;
 }
 
-.work-information a,
-.project-link a {
+.work-information a {
   text-transform: capitalize;
-  font-size: 1.6rem;
+  font-size: 2rem;
 }
 
-a:visited  {
+.project-link a {
+  text-transform: capitalize;
+  font-size: 1.2rem;
+}
+
+a:visited {
   color: var(--text-color);
 }
 
 a:hover {
-  color: var(--background-color);
+  color: var(--accent-color);
 }
 
 a::before {
@@ -137,16 +202,15 @@ a::before {
   position: absolute;
   bottom: 0;
   left: 0;
-  height: 100%;
-  width: 100%;
-  background-color: var(--text-color);
-  transform: scaleY(0);
-  transition: ease 0.4s;
+  height: 2px;
+  width: 0;
+  background-color: var(--accent-color);
+  transition: ease-in-out 200ms;
   z-index: -1;
 }
 
 a:hover::before {
-  transform: scaleY(1);
+  width: 100%;
 }
 
 /* Header */
@@ -169,7 +233,9 @@ header {
 }
 
 header a {
-  font-size: clamp(0.8rem, 2vw, 1.4rem);
+  margin: 0;
+  font-family: 'PP Monument Extended';
+  font-size: clamp(0.8rem, 2vw, 1rem);
 }
 
 code {
@@ -177,19 +243,48 @@ code {
 }
 
 p {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
 }
 
 .introduction-container {
-  padding-bottom: clamp(1rem, 0.1rem + 10vw, 10rem);
+  padding-bottom: clamp(4rem, 0.1rem + 10vw, 10rem);
   height: calc(100vh - 68px);
   display: flex;
   align-items: flex-end;
   justify-content: flex-start;
 }
 
+.arrow-indicator {
+  background-color: var(--accent-color);
+  background: no-repeat center url("/assets/img/icons/arrow.svg");
+  position: absolute;
+  height: 50px;
+  width: 18px;
+  bottom: 26px;
+  opacity: 1;
+  animation: arrow 4s ease infinite;
+  transition: 0.6s ease-in;
+}
+
+.hide {
+  opacity: 0;
+}
+
+@keyframes arrow {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(16px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
 .introduction {
-  /*font-size: clamp(2.4rem, 0.6rem + 4vw, 3.2rem);*/
   max-width: 1000px;
   cursor: default;
 }
@@ -197,15 +292,7 @@ p {
 .introduction h1 {
   font-family: 'PP Monument Extended';
   font-weight: normal;
-  font-size: clamp(1.6rem, -3.5rem + 20vw, 2.4rem);
-}
-
-.details {
-  padding-bottom: 30px;
-  /*width: 35%;
-  justify-content: space-between;*/
-  display: flex;
-  flex-wrap: wrap;
+  font-size: clamp(1.6rem, -3.5rem + 20vw - 5vh, 2.4rem);
 }
 
 .description {
@@ -216,25 +303,53 @@ p {
   grid-template-rows: 1fr auto;
 }
 
-.email-copy { 
+.email-copy-container {
   cursor: pointer;
-  transition: ease-in-out 0.4s;
+  text-decoration: none;
   width: fit-content;
+  height: 1.6rem;
 }
 
-.email-copy:hover {
-  /*color: var(--highlight-color);*/
-  transform: translate(3px, -3px);
+.email-copy {
+  top: 100%;
+  left: 0px;
+  display: block;
+  transition: transform 150ms ease-in-out 0s, color 50ms ease;
+  font-family: 'PP Monument Extended';
 }
 
-.email-copy::after {
-  content: "Click to copy";
+.email-mask {
   position: relative;
-  bottom: 4px;
-  right: 0;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+.email-copy::before {
+  content: attr(data-text);
+  position: relative;
+  top: 100%;
+  left: 0px;
+  display: block;
   height: 100%;
   width: 100%;
-  margin-left: 8px;
+}
+
+/* Move up two texts (20px = font-size) */
+.email-copy-container:hover .email-copy {
+  transform: translateY(-1.6rem);
+}
+
+.email-copy-container:active .email-copy {
+  color: var(--accent-color);
+}
+
+.email-copy-container::after {
+  content: "Click to copy";
+  position: relative;
+  bottom: 1.4rem;
+  left: 80%;
+  margin-left: 65px;
   padding: 4px;
   font-size: 0.7rem;
   color: grey;
@@ -246,7 +361,7 @@ p {
   z-index: -1;
 }
 
-.email-copy:hover::after {
+.email-copy-container:hover::after {
   opacity: 1;
 }
 
@@ -318,13 +433,14 @@ p {
   }
 }
 
-.section-container {
+main {
   width: 90%;
   max-width: 1420px;
   margin: 0 auto;
 }
 
 .section-title {
+  font-family: 'PP Monument Extended';
   font-weight: 900;
   text-transform: uppercase;
 }
@@ -335,20 +451,19 @@ p {
   grid-template-columns: repeat(2, 1fr);*/
 
   padding: 2rem 0 4rem 0;
-  
+
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
 
-  row-gap: 60px;
-  column-gap: 20px;
+  row-gap: 6rem;
 }
 
 .work-container {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: space-between;
-  max-width: calc(50% - 10px);
+  /*width: calc(50% - 10px);*/
 }
 
 .work-image:hover img {
@@ -357,7 +472,7 @@ p {
 
 .work-image {
   position: relative;
-  height: 420px;
+  height: 500px;
   width: 100%;
   overflow: hidden;
   border-radius: 4px;
@@ -372,7 +487,11 @@ p {
 }
 
 .work-information {
-  padding: 0 2rem 1rem 0;
+  position: sticky;
+  top: 10rem;
+  width: 80%;
+  height: fit-content;
+  padding-right: 4rem;
 }
 
 @media screen and (max-width: 860px) {
@@ -381,39 +500,72 @@ p {
     height: 42px;
   }
 
+  .arrow-indicator {
+    width: 16px;
+    bottom: 10px;
+  }
+
   .work-section {
     flex-direction: column;
   }
 
-  .work-container {
-    max-width: 100%;
+  .work-information {
+    position: relative;
+    top: 0;
+    width: 100%;
+    padding-right: 0;
+    margin-bottom: 1rem;
   }
 
-  .work-information {
-    padding-right: 0;
+  .email-copy-container::after {
+    display: none;
   }
+}
+
+@media screen and (max-width: 1000px) {
+  .work-container {
+    flex-direction: column;
+  }
+}
+
+.side-projects {
+  margin-top: 4rem;
 }
 
 .project-container {
   display: flex;
   align-items: flex-start;
   flex-direction: column;
-  gap: 2rem;
+  gap: 1rem;
+  margin: 2rem 0;
 }
 
 .project {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.project-link {
   max-width: 640px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  column-gap: 2rem;
 }
 
-.about-section {
+.project a {
+  margin-right: 0.4rem;
+}
+
+.contact-section {
   padding: 2rem 0 4rem 0;
+}
+
+.contact-container {
+  max-width: 640px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  column-gap: 2rem;
+}
+
+.contact-container a {
+  margin-bottom: 0;
 }
 
 .footer {
