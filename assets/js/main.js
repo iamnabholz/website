@@ -12,7 +12,7 @@ document.getElementById("current-time").innerHTML = current;
 
 // HIDE ARROW INDICATOR ON SCROLL
 window.addEventListener('scroll', () => {
-  if (window.scrollY > 36) {
+  if (window.scrollY > 30) {
       document.getElementById('work').classList.add("hide");
   } else {
       document.getElementById('work').classList.remove("hide");

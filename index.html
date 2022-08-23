@@ -3,13 +3,19 @@
 <sergey-import src="head" />
 
 <body>
+
+  <div class="symbol-background-container">
+    <div class="symbol-background"> </div>
+  </div>
+
+  <div class="symbol-background-big-container">
+    <div class="symbol-background-big"></div>
+  </div>
+
   <main>
     <sergey-import src="header" />
 
-    <div class="symbol-background"> </div>
-    <div class="symbol-background-big"> </div>
-
-    <div class="introduction-container">
+    <div class="introduction-section section-container">
       <div class="introduction">
         <h1><b>Lukas Nabholz</b> — Freelance digital designer and coder focusing on interactive solutions and user
           experiences.
@@ -18,64 +24,69 @@
         <div class="description">
           <p>I strive to transform complex systems and ideas in to simple and intuitive interfaces to help
             people.<br><br>
-            Egestas sit purus arcu praesent etiam facilisis. Magna malesuada neque ipsum aenean laoreet proin viverra
-            viverra.</p>
+            Using emotive design and street smarts to help ideas thrive.</p>
 
           <sergey-import src="email"></sergey-import>
         </div>
       </div>
 
       <div id="work" class="arrow-indicator"></div>
-
     </div>
 
-    <div class="work-section">
-      <div class="work-container">
-        <div class="work-information">
-          <a>PROJECT TITLE &#8599;</a>
-          <p>Egestas sit purus arcu praesent etiam facilisis. Magna malesuada neque ipsum aenean laoreet proin viverra
-            viverra.</p>
+    <div class="work-section section-container">
+      <a class="work-link" rel="noreferrer" target="_blank" href="https://dribbble.com/nabholz">
+        <div class="work-container" style="background-color: #AF2159; color: var(--text-color-alt);">
+          <div class="work-information">
+            <h1>Dribbble Shots<span> &#8599;</span></h1>
+            <p>While I update my case studies you can check my Dribbble profile for a variety of previous work.</p>
+          </div>
+          <div class="work-image">
+            <img src="/assets/img/dribbble-projects.png">
+          </div>
         </div>
-        <div class="work-image"><img
-            src="https://cdn.dribbble.com/users/1918813/screenshots/15641079/media/987b1adb07a2ebb5fa7d1dd4a9d7feed.png">
-        </div>
-      </div>
+      </a>
 
-
-      <div class="work-container">
-        <div class="work-information">
-          <a>PROJECT TITLE &#8599;</a>
-          <p>Magna malesuada neque ipsum aenean laoreet proin viverra
-            viverra.</p>
-        </div>
-        <div class="work-image">
-          <img src="/assets/img/monofactura 1.png">
-        </div>
-      </div>
-
-      <div class="work-container">
-        <div class="work-information">
-          <a>PROJECT Title &#8599;</a>
-          <p>Egestas sit purus arcu praesent etiam facilisis.</p>
-        </div>
-        <div class="work-image"><img
-            src="https://cdn.dribbble.com/users/1918813/screenshots/15641079/media/987b1adb07a2ebb5fa7d1dd4a9d7feed.png">
-        </div>
-      </div>
-
-      <div class="work-container">
-        <div class="work-information">
-          <a>PROJECT TITLE &#8599;</a>
-          <p>Egestas sit purus arcu praesent etiam facilisis. Magna malesuada neque ipsum aenean laoreet proin viverra
-            viverra.</p>
-        </div>
-        <div class="work-image">
-          <img src="/assets/img/monofactura 1.png">
-        </div>
-      </div>
+      <!-- 
+        <a class="work-link">
+          <div class="work-container" style="background-color: #5544D7; color: var(--text-color-alt);">
+            <div class="work-information">
+              <h1>Clear Website<span> &#8599;</span></h1>
+              <p>Magna malesuada neque ipsum aenean laoreet proin viverra
+                viverra.</p>
+            </div>
+            <div class="work-image">
+              <img src="/assets/img/insight.png">
+            </div>
+          </div>
+        </a>
+        
+        <a class="work-link">
+          <div class="work-container" style="background-color: #682BCF; color: var(--text-color-alt);">
+            <div class="work-information">
+              <h1>Domain Registar App<span> &#8599;</span></h1>
+              <p>Egestas sit purus arcu praesent etiam facilisis.</p>
+            </div>
+            <div class="work-image"><img src="/assets/img/domain.png">
+            </div>
+          </div>
+        </a>
+        
+        <a class="work-link">
+          <div class="work-container" style="background-color: #0F245B; color: var(--text-color-alt);">
+            <div class="work-information">
+              <h1>PROJECT TITLE<span> &#8599;</span></h1>
+              <p>Egestas sit purus arcu praesent etiam facilisis. Magna malesuada neque ipsum aenean laoreet proin viverra
+                viverra.</p>
+            </div>
+            <div class="work-image">
+              <img src="/assets/img/apps-header.png">
+            </div>
+          </div>
+        </a>
+      -->
     </div>
 
-    <div class="side-projects">
+    <div class="project-section section-container">
       <p>Other things I've made</p>
       <div class="project-container">
         <div class="project">
@@ -108,7 +119,7 @@
       </div>
     </div>
 
-    <div id="contact" class="contact-section">
+    <div id="contact" class="contact-section section-container">
       <p class="section-title">CONTACT</p>
 
       <div class="contact-container" style="flex-direction: column; row-gap: 2rem; margin: 2rem 0;">
@@ -125,14 +136,13 @@
       </div>
 
       <p style="font-family: 'PP Monument Extended';">Santa Cruz, Bolivia</p>
-      <p style="font-family: 'PP Monument Extended'; font-weight: 900;" id="current-time">4:20 PM</p>
+      <p style="font-family: 'PP Monument Extended';" id="current-time">4:20 PM</p>
     </div>
 
-    <div id="footer" class="footer">
+    <div id="footer" class="footer section-container">
       <p style="font-size: 12px; font-family: 'PP Monument Extended';">© 2022 LUKAS NABHOLZ</p>
     </div>
 
-    </div>
   </main>
 
   <script data-host="https://microanalytics.io" data-dnt="false" src="https://microanalytics.io/js/script.js"
