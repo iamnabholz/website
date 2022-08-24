@@ -2,6 +2,9 @@
   --background-color: #D8D8D8;
   --text-color: #080808;
   --text-color-alt: #f3f3f3;
+
+  --title-color: #080808;
+  --title-color-alt: #f3f3f3;
   --accent-color: #de1616;
 }
 
@@ -91,6 +94,7 @@ nav {
   right: 6%;
   width: 300px;
   height: 300px;
+  filter: blur(25px);
   animation: deco-translate 42s ease infinite;
   z-index: -1;
 }
@@ -99,7 +103,6 @@ nav {
   width: 100%;
   height: 100%;
   background: no-repeat center/100% url("/assets/img/icons/ellipse symbol.svg");
-  filter: blur(25px);
   opacity: 0.5;
   animation: deco-rotate 35s ease-in infinite;
 }
@@ -147,6 +150,7 @@ nav {
   left: -10%;
   width: 900px;
   height: 900px;
+  filter: blur(40px);
   animation: deco-big-translate 60s ease-out infinite;
   z-index: -1;
 }
@@ -155,7 +159,6 @@ nav {
   width: 100%;
   height: 100%;
   background: no-repeat center/100% url("/assets/img/icons/ellipse symbol.svg");
-  filter: blur(40px);
   opacity: 0.4;
   animation: deco-big-rotate 90s ease-out infinite;
 }
@@ -519,6 +522,10 @@ p {
   background-color: var(--background-color);
 }
 
+.work-link:hover {
+  color: inherit;
+}
+
 .work-container:hover img {
   transform: scale(1.04);
 }
@@ -658,4 +665,23 @@ p {
 
 .footer * {
   margin-bottom: 1rem;
+}
+
+/* DARK MODE */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: #3a4043;
+    --text-color: #f3f3f3;
+    --text-color-alt: #080808;
+  }
+
+  .svg-element {
+    filter: invert(100%) sepia(0%) saturate(5596%) hue-rotate(80deg) brightness(112%) contrast(91%);
+  }
+
+  .symbol-background,
+  .symbol-background-big {
+    opacity: 0.2;
+  }
 }
