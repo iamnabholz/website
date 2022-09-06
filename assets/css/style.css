@@ -278,6 +278,10 @@ header {
   gap: clamp(2rem, 2vw, 4rem);
 }
 
+.language-selector {
+  font-size: 1rem;
+}
+
 header a {
   margin: 0;
   font-family: 'PP Monument Extended';
