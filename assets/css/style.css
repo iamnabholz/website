@@ -71,8 +71,8 @@ figure {
 }
 
 img {
-  max-width: 100%;
-  height: auto;
+  width: auto;
+  max-height: 100%;
   border: none;
 }
 
@@ -249,14 +249,6 @@ a::before {
 
 a:hover::before {
   width: 100%;
-}
-
-.work-link::before {
-  content: none;
-}
-
-.work-link {
-  transition: none;
 }
 
 /* Header */
@@ -498,7 +490,7 @@ p {
 .work-section {
   /*display: grid;
   grid-template-rows: auto;
-  grid-template-columns: repeat(2, 1fr);*/
+  grid-template-columns: repeat(2, 1fr);
 
   padding: 2rem 0 4rem 0;
 
@@ -506,91 +498,61 @@ p {
   flex-direction: column;
   flex-wrap: wrap;
 
-  row-gap: 4rem;
-}
+  row-gap: 4rem;*/
 
-.work-link {
-  display: inherit;
-  margin-bottom: 0;
+  /*display: grid;
+
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+
+  gap: 0px;
+  height: 100%;*/
+
+
+  display: grid;
+  grid-auto-columns: 1fr 1fr;
+
+  row-gap: 4rem;
 }
 
 .work-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
 
-  height: clamp(60vh, 60vw, 78vh);
   width: 100%;
-  border-radius: 2px;
-  background-color: var(--background-color);
 }
 
-.work-link:hover {
-  color: inherit;
+.work-r2c2 {
+  grid-row: 2;
+  grid-column: 2;
 }
 
-.work-container:hover img {
-  transform: scale(1.04);
-}
-
-.work-container:hover .work-information h1 span {
-  transform: translateX(0px);
-  width: 47px;
-  opacity: 1;
-}
-
-.work-container:hover {
-  color: var(--text-color);
-}
-
-.work-information {
-  /*position: sticky;
-  top: 10rem;*/
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  width: 100%;
-  height: fit-content;
-  padding: 3rem;
-  text-align: center;
-}
-
-.work-information h1 {
-  text-transform: capitalize;
-  font-size: 1.6rem;
-  font-family: 'PP Monument Extended';
-  transition: width 0.2s linear;
-}
-
-.work-information h1 span {
-  transform: translateX(-20px);
-  display: inline-block;
-  width: 0;
-  opacity: 0;
-  transition: all 0.2s linear;
-}
-
-.work-information p {
-  font-weight: normal;
-  margin-top: 14px;
-  max-width: 600px;
+.work-r3c1 {
+  grid-row: 3;
+  grid-column: 1;
 }
 
 .work-image {
-  position: relative;
-  max-height: 620px;
-  max-width: 60%;
+  max-height: 480px;
+  max-width: 600px;
   overflow: hidden;
-  border-radius: 2px;
 }
 
 .work-image img {
-  transition: ease-out 0.8s;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+}
+
+.work-information {
+  margin: 1rem 0;
+}
+
+.work-information a {
+  text-transform: capitalize;
+  font-family: 'PP Monument Extended';
 }
 
 @media screen and (max-width: 620px) {
@@ -600,22 +562,17 @@ p {
   }
 
   .work-section {
-    padding-bottom: 0;
+    grid-auto-columns: 1fr;
     width: 100vw;
   }
 
+  .work-r2c2,
+  .work-r3c1 {
+    grid-column: 1;
+  }
+
   .work-information {
-    padding: 2rem 5%;
-  }
-
-  .work-information h1 span {
-    transform: translateX(0px);
-    width: 47px;
-    opacity: 1;
-  }
-
-  .work-image {
-    max-width: 100%;
+    margin: 1rem 5%;
   }
 
   .email-copy-container::after {
@@ -624,7 +581,7 @@ p {
 }
 
 .project-section {
-  margin-top: 4rem;
+  margin-top: 6rem;
 }
 
 .project-container {
@@ -675,7 +632,8 @@ p {
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background-color: #3a4043;
+    /* --background-color: #3a4043;*/
+    --background-color: #2f3335;
     --text-color: #f3f3f3;
     --text-color-alt: #080808;
   }
