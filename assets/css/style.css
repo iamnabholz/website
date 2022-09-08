@@ -218,37 +218,38 @@ a {
   cursor: pointer;
   text-decoration: none;
   color: var(--text-color);
-  transition: ease-in-out 200ms;
-  margin-bottom: 6px;
+}
+
+#link {
+  padding: 0 2px;
   font-weight: 900;
+  transition: ease 150ms;
 }
 
-.project-link a {
-  text-transform: capitalize;
-  font-size: 1.2rem;
-}
-
-a:visited {
+#link:visited {
   color: var(--text-color);
 }
 
-a:hover {
-  color: var(--accent-color);
+#link:hover {
+  color: var(--text-color-alt);
+  transform: scale(1.05);
 }
 
-a::before {
+#link::before {
   content: "";
   position: absolute;
   bottom: 0;
   left: 0;
-  height: 2px;
-  width: 0;
-  background-color: var(--accent-color);
-  transition: ease-in-out 200ms;
+  height: 100%;
+  width: 100%;
+  transform: scaleY(0);
+  background-color: var(--text-color);
+  transition: ease 150ms;
+  z-index: -2;
 }
 
-a:hover::before {
-  width: 100%;
+#link:hover::before {
+  transform: scaleY(1);
 }
 
 /* Header */
@@ -261,23 +262,28 @@ header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  font-family: 'PP Monument Extended';
 }
 
 .header-links {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: clamp(2rem, 2vw, 4rem);
+  gap: clamp(1rem, 2vw, 5rem);
 }
 
-.language-selector {
-  font-size: 1rem;
+.language-selector a,
+.language-selector p {
+  font-size: 0.6rem;
+}
+
+.language-selector a {
+  color: #de1616;
 }
 
 header a {
   margin: 0;
-  font-family: 'PP Monument Extended';
-  font-size: clamp(0.8rem, 2vw, 1rem);
+  font-size: clamp(0.74rem, 2vw, 1rem);
 }
 
 code {
@@ -488,54 +494,28 @@ p {
 }
 
 .work-section {
-  /*display: grid;
-  grid-template-rows: auto;
-  grid-template-columns: repeat(2, 1fr);
-
-  padding: 2rem 0 4rem 0;
-
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-
-  row-gap: 4rem;*/
-
-  /*display: grid;
-
-  grid-template-rows: 1fr 1fr 1fr;
-  grid-template-columns: 1fr 1fr;
-
-  gap: 0px;
-  height: 100%;*/
-
-
   display: grid;
-  grid-auto-columns: 1fr 1fr;
-
-  row-gap: 4rem;
 }
 
 .work-container {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
 
   width: 100%;
 }
 
-.work-r2c2 {
-  grid-row: 2;
+.right-column {
   grid-column: 2;
-}
-
-.work-r3c1 {
-  grid-row: 3;
-  grid-column: 1;
 }
 
 .work-image {
   max-height: 480px;
   max-width: 600px;
   overflow: hidden;
+  transition: ease 150ms;
+  display: flex;
 }
 
 .work-image img {
@@ -546,11 +526,16 @@ p {
   height: auto;
 }
 
+.work-image:hover {
+  transform: scale(1.01) rotateZ(-2deg);
+}
+
 .work-information {
   margin: 1rem 0;
 }
 
 .work-information a {
+  margin-bottom: 6px;
   text-transform: capitalize;
   font-family: 'PP Monument Extended';
 }
@@ -564,10 +549,10 @@ p {
   .work-section {
     grid-auto-columns: 1fr;
     width: 100vw;
+    row-gap: 5rem;
   }
 
-  .work-r2c2,
-  .work-r3c1 {
+  .right-column {
     grid-column: 1;
   }
 
@@ -593,7 +578,7 @@ p {
 }
 
 .project {
-  max-width: 640px;
+  /*max-width: 640px;*/
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
