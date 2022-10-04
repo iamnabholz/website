@@ -17,4 +17,4 @@ window.addEventListener('scroll', () => {
   } else {
       document.getElementById('work').classList.remove("hide");
   }
-})
+});

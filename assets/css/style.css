@@ -1,11 +1,11 @@
 :root {
-  --background-color: #D8D8D8;
-  --text-color: #080808;
+  --background-color: #090F1F;
+  --text-color: #ffffff;
   --text-color-alt: #f3f3f3;
 
-  --title-color: #080808;
+  --title-color: #f1f1f1;
   --title-color-alt: #f3f3f3;
-  --accent-color: #de1616;
+  --accent-color: #090F1F;
 }
 
 /* Fonts */
@@ -59,6 +59,8 @@ body {
   font-size: 100%;
 }
 
+
+
 h1,
 p,
 blockquote,
@@ -74,6 +76,7 @@ img {
   width: auto;
   max-height: 100%;
   border: none;
+  display: block;
 }
 
 article,
@@ -87,115 +90,72 @@ nav {
   display: block;
 }
 
-.symbol-background-container {
-  pointer-events: none;
+.bg {
   position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: linear-gradient(45deg, #6B86DD, #223861);
+  z-index: -10;
+}
+
+.bg-detail {
+  position: absolute;
+  top: -20%;
+  left: -25vw;
+  width: 1200px;
+  height: 1050px;
+  background-image: linear-gradient(to top, #34528E, #090F1F);
+  filter: blur(50px);
+  border-radius: 50%;
+  animation: deco 90s linear infinite;
+}
+
+.bg-detail-small {
+  position: absolute;
   top: 10%;
-  right: 6%;
-  width: 300px;
-  height: 300px;
-  filter: blur(25px);
-  animation: deco-translate 42s ease infinite;
-  z-index: -1;
+  right: 20%;
+  width: 250px;
+  height: 200px;
+  background-color: #090F1F;
+  filter: blur(50px);
+  border-radius: 50%;
+  animation: deco-small 45s ease-in-out infinite;
 }
 
-.symbol-background {
-  width: 100%;
-  height: 100%;
-  background: no-repeat center/100% url("/assets/img/icons/ellipse symbol.svg");
-  opacity: 0.5;
-  animation: deco-rotate 35s ease-in infinite;
-}
-
-@keyframes deco-translate {
+@keyframes deco-small {
   0% {
-    transform: translate(0px, 0px);
+    transform: translate(0px, 0px) rotateZ(-98deg);
+    opacity: 0.3;
   }
 
-  48% {
-    transform: translate(-308px, 183px);
-  }
-
-  70% {
-    transform: translate(-444px, -60px);
+  55% {
+    transform: translate(-460px, 300px) rotateZ(190deg);
+    opacity: 1;
   }
 
   100% {
-    transform: translate(0px, 0px);
+    transform: translate(0px, 0px) rotateZ(-99deg);
+    opacity: 0.2;
   }
 }
 
-@keyframes deco-rotate {
+@keyframes deco {
   0% {
-    transform: rotateZ(13deg);
-  }
-
-  48% {
-    transform: rotateZ(190deg);
-  }
-
-  70% {
-    transform: rotateZ(120deg);
-  }
-
-  100% {
-    transform: rotateZ(13deg);
-  }
-}
-
-.symbol-background-big-container {
-  pointer-events: none;
-  position: fixed;
-  top: 20%;
-  left: -10%;
-  width: 900px;
-  height: 900px;
-  filter: blur(40px);
-  animation: deco-big-translate 60s ease-out infinite;
-  z-index: -1;
-}
-
-.symbol-background-big {
-  width: 100%;
-  height: 100%;
-  background: no-repeat center/100% url("/assets/img/icons/ellipse symbol.svg");
-  opacity: 0.4;
-  animation: deco-big-rotate 90s ease-out infinite;
-}
-
-@keyframes deco-big-translate {
-  0% {
-    transform: translate(0px, 0px);
+    transform: translate(0px, 0px) rotateZ(-45deg);
   }
 
   37% {
-    transform: translate(340px, 100px);
+    transform: translate(560px, 300px) rotateZ(150deg);
   }
 
   70% {
-    transform: translate(200px, -200px);
+    transform: translate(200px, -50px) rotateZ(-140deg);
   }
 
   100% {
-    transform: translate(0px, 0px);
-  }
-}
-
-@keyframes deco-big-rotate {
-  0% {
-    transform: rotateZ(-45deg);
-  }
-
-  30% {
-    transform: rotateZ(150deg);
-  }
-
-  60% {
-    transform: rotateZ(-140deg);
-  }
-
-  100% {
-    transform: rotateZ(-45deg);
+    transform: translate(0px, 0px) rotateZ(-45deg);
   }
 }
 
@@ -231,7 +191,6 @@ a {
 }
 
 #link:hover {
-  color: var(--text-color-alt);
   transform: scale(1.05);
 }
 
@@ -240,16 +199,17 @@ a {
   position: absolute;
   bottom: 0;
   left: 0;
-  height: 100%;
+  height: 2px;
   width: 100%;
-  transform: scaleY(0);
+  transform: scaleX(0);
+  border-radius: 10px;
   background-color: var(--text-color);
   transition: ease 150ms;
   z-index: -2;
 }
 
 #link:hover::before {
-  transform: scaleY(1);
+  transform: scaleX(1);
 }
 
 /* Header */
@@ -265,25 +225,19 @@ header {
   font-family: 'PP Monument Extended';
 }
 
-.header-links {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: clamp(1rem, 2vw, 5rem);
-}
-
-.language-selector a,
-.language-selector p {
-  font-size: 0.6rem;
+.language-selector {
+  width: 28px;
+  border-radius: 4px;
+  overflow: hidden;
+  transition: ease 100ms;
 }
 
 .language-selector a {
-  color: #de1616;
+  display: block;
 }
 
-header a {
-  margin: 0;
-  font-size: clamp(0.74rem, 2vw, 1rem);
+.language-selector:hover {
+  transform: scale(1.1);
 }
 
 code {
@@ -303,15 +257,36 @@ p {
 }
 
 .arrow-indicator {
-  background-color: var(--accent-color);
-  background: no-repeat center url("/assets/img/icons/arrow.svg");
   position: absolute;
-  height: 50px;
-  width: 18px;
+  display: flex;
+  align-items: center;
+  column-gap: 6px;
   bottom: 26px;
-  opacity: 1;
+  opacity: 0.6;
+  transition: 150ms ease-in;
+}
+
+.mouse-element {
+  height: 24px;
+  width: 16px;
+  border: 2px solid white;
+  border-radius: 10px;
+}
+
+.mouse-element::after {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 6px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: white;
   animation: arrow 4s ease infinite;
-  transition: 0.4s ease-in;
+}
+
+.arrow-indicator p {
+  font-size: 12px;
 }
 
 .hide {
@@ -324,7 +299,7 @@ p {
   }
 
   50% {
-    transform: translateY(16px);
+    transform: translateY(10px);
   }
 
   100% {
@@ -333,7 +308,7 @@ p {
 }
 
 .introduction {
-  max-width: 1000px;
+  max-width: 940px;
   cursor: default;
 }
 
@@ -418,8 +393,8 @@ p {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 60px;
-  height: 60px;
+  width: 36px;
+  height: 36px;
   margin: auto 0;
 }
 
@@ -481,6 +456,17 @@ p {
   }
 }
 
+.name-container {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+}
+
+.name-container p {
+  font-size: 0.8rem;
+}
+
 .section-container {
   width: 90%;
   max-width: 1420px;
@@ -494,32 +480,18 @@ p {
 }
 
 .work-section {
-  /*display: flex;
-  flex-direction: column;
-  align-items: flex-start;*/
-
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 2rem;
-}
-
-.work-container {
-  display: inline-block;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  max-width: 100%;
-}
-
-.right-column {
-  align-self: flex-end;
+  gap: 8rem 2rem;
 }
 
 .work-image {
   max-height: 480px;
-  max-width: 600px;
-  overflow: hidden;
-  transition: ease 150ms;
+  display: flex;
+  justify-content: center;
+}
+
+.work-image a {
   display: flex;
   justify-content: center;
 }
@@ -530,20 +502,18 @@ p {
   max-height: 100%;
   width: auto;
   height: auto;
+  transition: ease 200ms;
 }
 
-.work-image:hover {
-  transform: scale(1.01) rotateZ(-2deg);
+.work-image img:hover {
+  transform: scale(1.015);
 }
 
-.work-information {
-  margin: 1rem 0;
-}
-
-.work-information a {
-  margin-bottom: 6px;
-  text-transform: capitalize;
-  font-family: 'PP Monument Extended';
+@media screen and (max-width: 920px) {
+  .work-section {
+    grid-template-columns: 1fr;
+    gap: 5rem 0;
+  }
 }
 
 @media screen and (max-width: 620px) {
@@ -554,8 +524,6 @@ p {
 
   .work-section {
     width: 100vw;
-    row-gap: 5rem;
-    justify-content: center;
   }
 
   .right-column {
@@ -617,24 +585,4 @@ p {
 
 .footer * {
   margin-bottom: 1rem;
-}
-
-/* DARK MODE */
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* --background-color: #3a4043;*/
-    --background-color: #2f3335;
-    --text-color: #f3f3f3;
-    --text-color-alt: #080808;
-  }
-
-  .svg-element {
-    filter: invert(100%) sepia(0%) saturate(5596%) hue-rotate(80deg) brightness(112%) contrast(91%);
-  }
-
-  .symbol-background,
-  .symbol-background-big {
-    opacity: 0.2;
-  }
 }

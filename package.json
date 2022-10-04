@@ -1,7 +1,7 @@
 {
-  "name": "sergey-netlify",
+  "name": "personal-website",
   "version": "1.0.0",
-  "description": "A Sergey example project, ready for Netlify",
+  "description": "Website portfolio of Lukas Nabholz",
   "private": true,
   "main": "index.js",
   "scripts": {
