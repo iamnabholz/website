@@ -294,8 +294,8 @@ p {
   bottom: 26px;
   opacity: 0.6;
   transition: 150ms ease-in;
-  padding-top: 4rem;
-  padding-bottom: 6rem;
+  padding-top: 8rem;
+  padding-bottom: 2rem;
 }
 
 .arrow-indicator a {
@@ -464,6 +464,11 @@ p {
 }
 
 @media screen and (max-width: 620px) {
+  .arrow-indicator {
+    padding-top: 4rem;
+    padding-bottom: 6rem;
+  }
+
   .work-section {
     width: 100vw;
   }
