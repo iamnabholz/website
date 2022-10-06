@@ -294,8 +294,8 @@ p {
   bottom: 26px;
   opacity: 0.6;
   transition: 150ms ease-in;
-  padding-top: 5rem;
-  padding-bottom: 3rem;
+  padding-top: 4rem;
+  padding-bottom: 6rem;
 }
 
 .arrow-indicator a {
