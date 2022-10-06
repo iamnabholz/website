@@ -59,8 +59,6 @@ body {
   font-size: 100%;
 }
 
-
-
 h1,
 p,
 blockquote,
@@ -178,12 +176,12 @@ a {
   cursor: pointer;
   text-decoration: none;
   color: var(--text-color);
+  transition: ease 150ms;
 }
 
 #link {
   padding: 0 2px;
   font-weight: 900;
-  transition: ease 150ms;
 }
 
 #link:visited {
@@ -225,6 +223,40 @@ header {
   font-family: 'PP Monument Extended';
 }
 
+.asterisk {
+  width: 24px;
+  animation: rotate-asterisk 60s infinite;
+}
+
+.name-container {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  column-gap: 12px;
+}
+
+.name-container p {
+  font-size: 0.8rem;
+}
+
+.links-container {
+  display: flex;
+  align-items: center;
+  column-gap: 1rem;
+  font-family: 'Trap';
+  font-weight: normal;
+  font-size: 1rem;
+  height: 2rem;
+}
+
+.links-container a {
+  opacity: 0.7;
+}
+
+.links-container a:hover {
+  opacity: 1;
+}
+
 .language-selector {
   width: 28px;
   border-radius: 4px;
@@ -260,10 +292,15 @@ p {
   position: absolute;
   display: flex;
   align-items: center;
-  column-gap: 6px;
+  column-gap: 8px;
   bottom: 26px;
   opacity: 0.6;
   transition: 150ms ease-in;
+}
+
+.arrow-indicator a {
+  padding-top: 2px;
+  font-size: 12px;
 }
 
 .mouse-element {
@@ -282,11 +319,7 @@ p {
   height: 4px;
   border-radius: 50%;
   background-color: white;
-  animation: arrow 4s ease infinite;
-}
-
-.arrow-indicator p {
-  font-size: 12px;
+  animation: arrow 2s ease infinite;
 }
 
 .hide {
@@ -299,7 +332,7 @@ p {
   }
 
   50% {
-    transform: translateY(10px);
+    transform: translateY(6px);
   }
 
   100% {
@@ -316,6 +349,7 @@ p {
   font-family: 'PP Monument Extended';
   font-weight: normal;
   font-size: clamp(1.6rem, -3.5rem + 20vw - 5vh, 2.4rem);
+  line-height: 1.4;
 }
 
 .description {
@@ -330,37 +364,18 @@ p {
   cursor: pointer;
   text-decoration: none;
   width: fit-content;
-  height: 1.6rem;
+  height: 1.4rem;
+  position: relative;
 }
 
 .email-copy {
-  top: 100%;
-  left: 0px;
   display: block;
   transition: transform 150ms ease-in-out 0s, color 50ms ease;
   font-family: 'PP Monument Extended';
-}
-
-.email-mask {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  height: 100%;
-}
-
-.email-copy::before {
-  content: attr(data-text);
-  position: relative;
-  top: 100%;
-  left: 0px;
-  display: block;
-  height: 100%;
-  width: 100%;
-}
-
-/* Move up two texts (20px = font-size) */
-.email-copy-container:hover .email-copy {
-  transform: translateY(-1.6rem);
+  font-size: 1rem;
+  font-weight: normal;
+  line-height: 1.4;
+  margin: 0;
 }
 
 .email-copy-container:active .email-copy {
@@ -369,15 +384,13 @@ p {
 
 .email-copy-container::after {
   content: "Click to copy";
-  position: relative;
-  bottom: 1.4rem;
-  left: 80%;
-  margin-left: 65px;
-  padding: 4px;
+  position: absolute;
+  bottom: calc(50% - 0.4rem);
+  left: 100%;
+  width: max-content;
+  margin-left: 8px;
   font-size: 0.7rem;
-  color: grey;
-  background-color: #d3d3d3;
-  border-radius: 4px;
+  color: #d3d3d3;
   font-style: italic;
   opacity: 0;
   transition: ease 0.2s;
@@ -385,86 +398,21 @@ p {
 }
 
 .email-copy-container:hover::after {
-  opacity: 1;
+  opacity: 0.4;
 }
 
-#symbol {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  margin: auto 0;
+.email-copy-container:active::after {
+  content: "Copied!";
 }
 
-#symbol img {
-  position: absolute;
-}
-
-#ellipse-small {
-  width: 86%;
-  animation: rotate-small 24s ease infinite;
-}
-
-#ellipse-big {
-  width: 100%;
-  animation: rotate-big 18s ease infinite;
-}
-
-@keyframes rotate-small {
+@keyframes rotate-asterisk {
   0% {
-    transform: rotateZ(60deg);
-  }
-
-  19% {
-    transform: rotateZ(-20deg);
-  }
-
-  41% {
-    transform: rotateZ(-130deg);
-  }
-
-  74% {
-    transform: rotateZ(180deg);
+    transform: rotateZ(0deg);
   }
 
   100% {
-    transform: rotateZ(61deg);
+    transform: rotateZ(360deg);
   }
-}
-
-@keyframes rotate-big {
-  0% {
-    transform: rotateZ(41deg);
-  }
-
-  46% {
-    transform: rotateZ(120deg);
-  }
-
-  67% {
-    transform: rotateZ(81deg);
-  }
-
-  88% {
-    transform: rotateZ(-20deg);
-  }
-
-  100% {
-    transform: rotateZ(42deg);
-  }
-}
-
-.name-container {
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  column-gap: 8px;
-}
-
-.name-container p {
-  font-size: 0.8rem;
 }
 
 .section-container {
@@ -517,11 +465,6 @@ p {
 }
 
 @media screen and (max-width: 620px) {
-  .arrow-indicator {
-    width: 16px;
-    bottom: 14px;
-  }
-
   .work-section {
     width: 100vw;
   }
@@ -575,14 +518,28 @@ p {
   column-gap: 2rem;
 }
 
-.contact-container a {
-  margin-bottom: 0;
+.contact-container p {
+  line-height: 1.2;
 }
 
 .footer {
   font-size: 1.6rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .footer * {
   margin-bottom: 1rem;
+}
+
+.appear {
+  transform: translateY(0px);
+  transition: .4s ease-in-out;
+}
+
+.hidden {
+  transform: translateY(20px);
+  opacity: 0;
+  visibility: hidden;
 }
