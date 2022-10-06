@@ -281,7 +281,6 @@ p {
 }
 
 .introduction-section {
-  padding-bottom: clamp(5rem, 0.1rem + 10vw, 10rem);
   height: calc(100vh - 68px);
   display: flex;
   align-items: flex-end;
@@ -289,13 +288,14 @@ p {
 }
 
 .arrow-indicator {
-  position: absolute;
   display: flex;
   align-items: center;
   column-gap: 8px;
   bottom: 26px;
   opacity: 0.6;
   transition: 150ms ease-in;
+  padding-top: 5rem;
+  padding-bottom: 3rem;
 }
 
 .arrow-indicator a {
@@ -313,7 +313,6 @@ p {
 .mouse-element::after {
   content: "";
   position: absolute;
-  top: 5px;
   left: 6px;
   width: 4px;
   height: 4px;
