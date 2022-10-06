@@ -287,7 +287,7 @@ p {
   justify-content: flex-start;
 }
 
-.arrow-indicator {
+.scroll-indicator {
   display: flex;
   align-items: center;
   column-gap: 8px;
@@ -298,7 +298,7 @@ p {
   padding-bottom: 2rem;
 }
 
-.arrow-indicator a {
+.scroll-indicator a {
   padding-top: 2px;
   font-size: 12px;
 }
@@ -318,16 +318,16 @@ p {
   height: 4px;
   border-radius: 50%;
   background-color: white;
-  animation: arrow 2s ease infinite;
+  animation: mouse-dot 2s ease infinite;
 }
 
 .hide {
   opacity: 0;
 }
 
-@keyframes arrow {
+@keyframes mouse-dot {
   0% {
-    transform: translateY(0px);
+    transform: translateY(2px);
   }
 
   50% {
@@ -335,7 +335,7 @@ p {
   }
 
   100% {
-    transform: translateY(0px);
+    transform: translateY(2px);
   }
 }
 
@@ -464,7 +464,7 @@ p {
 }
 
 @media screen and (max-width: 620px) {
-  .arrow-indicator {
+  .scroll-indicator {
     padding-top: 4rem;
     padding-bottom: 6rem;
   }

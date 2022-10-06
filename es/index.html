@@ -3,165 +3,143 @@
 <sergey-import src="head" />
 
 <body>
-
-  <div class="symbol-background-container">
-    <div class="symbol-background svg-element"> </div>
-  </div>
-
-  <div class="symbol-background-big-container">
-    <div class="symbol-background-big svg-element"></div>
+  <div class="bg">
+    <div class="bg-detail"></div>
+    <div class="bg-detail-small"></div>
   </div>
 
   <main>
-    <sergey-import src="header">
-      <sergey-template name="workText">TRABAJO</sergey-template>
-      <sergey-template name="aboutText">SOBRE MI</sergey-template>
 
+    <sergey-import src="header">
       <sergey-template name="link">
         <a title="Read in English" href="/"><img src="/assets/img/icons/gb.svg"></a>
       </sergey-template>
-
     </sergey-import>
 
     <div class="introduction-section section-container">
-      <div class="introduction">
-        <h1><b>Lukas Nabholz</b> — Freelance digital designer and coder focusing on interactive solutions and user
-          experiences.
+      <div class="appear hidden introduction">
+        <h1><b>Lukas Nabholz</b> — Diseñador digital freelance y programador enfocado en soluciones interactivas y las
+          experiencias de usuario.
         </h1>
 
         <div class="description">
-          <p>I strive to transform complex systems and ideas in to simple and intuitive interfaces to help
-            people.</p>
-
+          <p>Trabajo resolviendo problemas en diseño y ayudando a nuevas ideas a lograr sus objetivos, creando
+            interfaces que son intuitivas, fáciles de usar y sorprendentes.</p>
           <sergey-import src="email"></sergey-import>
         </div>
-      </div>
+        <div id="work" class="scroll-indicator svg-element">
+          <div class="mouse-element"></div>
+          <a href="#work">SCROLL</a>
+        </div>
 
-      <div id="work" class="arrow-indicator svg-element"></div>
+      </div>
     </div>
 
     <div class="work-section section-container">
 
-      <div class="work-container">
-        <div class="work-image">
-          <a rel="noreferrer" target="_blank" href="https://dribbble.com/nabholz">
-            <img src="/assets/img/boost browser.png"></a>
-        </div>
-        <div class="work-information">
-          <a id="link" rel="noreferrer" target="_blank" href="https://dribbble.com/nabholz">
-            BoostAgent Website &#8599;</a>
-          <p>Behance</p>
-        </div>
-
+      <div class="appear hidden work-image">
+        <a rel="noreferrer" target="_blank" href="https://dribbble.com/shots/19575394-BoostAgent-Landing-Hero-Concept">
+          <img src="/assets/img/boost.png"></a>
       </div>
 
-      <div class="work-container right-column" style="grid-row: 2;">
-        <div class="work-image">
-          <a rel="noreferrer" target="_blank" href="https://dribbble.com/nabholz">
-            <img src="/assets/img/domain-registar.png">
-          </a>
-        </div>
-        <div class="work-information">
-          <a id="link" rel="noreferrer" target="_blank" href="https://dribbble.com/nabholz">
-            Domain Registar App Design &#8599;</a>
-          <p>Dribbble</p>
-        </div>
+      <div class="appear hidden work-image">
+        <a rel="noreferrer" target="_blank"
+          href="https://dribbble.com/shots/15193290-Domain-Name-Registrar-Exploration-App">
+          <img src="/assets/img/domain-registar.png">
+        </a>
       </div>
 
-      <div class="work-container" style="grid-row: 3;">
-        <div class="work-image">
-          <a rel="noreferrer" target="_blank" href="https://dribbble.com/nabholz">
-            <img src="/assets/img/boost browser.png">
-          </a>
-        </div>
-        <div class="work-information">
-          <a id="link" rel="noreferrer" target="_blank" href="https://dribbble.com/nabholz">
-            BoostAgent Website &#8599;</a>
-          <p>Medium</p>
-        </div>
+      <div class="appear hidden work-image">
+        <a rel="noreferrer" target="_blank"
+          href="https://dribbble.com/shots/19473399--homme-Landing-Page-Design-Concept">
+          <img src="/assets/img/homme.png">
+        </a>
       </div>
 
-      <div class="work-container right-column" style="grid-row: 4;">
-        <div class="work-image">
-          <a rel="noreferrer" target="_blank" href="https://dribbble.com/nabholz">
-            <img src="/assets/img/boost browser.png"></a>
-        </div>
-        <div class="work-information">
-          <a id="link" rel="noreferrer" target="_blank" href="https://dribbble.com/nabholz">
-            BoostAgent Website &#8599;</a>
-          <p>Behance</p>
-        </div>
-
+      <div class="appear hidden work-image">
+        <a rel="noreferrer" target="_blank" href="https://dribbble.com/shots/18196217-ADAT-Home-Page-Design">
+          <img src="/assets/img/adat.png"></a>
       </div>
 
-      <div class="work-container" style="grid-row: 5;">
-        <div class="work-image">
-          <a rel="noreferrer" target="_blank" href="https://dribbble.com/nabholz">
-            <img src="/assets/img/domain-registar.png">
-          </a>
-        </div>
-        <div class="work-information">
-          <a id="link" rel="noreferrer" target="_blank" href="https://dribbble.com/nabholz">
-            Domain Registar App Design &#8599;</a>
-          <p>Dribbble</p>
-        </div>
+      <div class="appear hidden work-image">
+        <a rel="noreferrer" target="_blank" href="https://timesets.netlify.app">
+          <img src="/assets/img/timesets.png"></a>
       </div>
 
+      <div class="appear hidden work-image">
+        <a rel="noreferrer" target="_blank" href="https://dribbble.com/shots/10816234-Bus-Routes-Cruzero-App">
+          <img src="/assets/img/cruzero.png"></a>
+      </div>
+
+      <div class="appear hidden work-image">
+        <a rel="noreferrer" target="_blank" href="https://panoramatab.netlify.app/">
+          <img src="/assets/img/panorama.png"></a>
+      </div>
     </div>
 
-    <div class="project-section section-container">
-      <p>Other things I've made</p>
+    <div class="appear hidden project-section section-container">
+      <p>Otros proyectos que hice</p>
       <div class="project-container">
         <div class="project">
           <p>
             <a id="link" rel="noreferrer" target="_blank" href="https://panoramatab.netlify.app/">Panorama Tab
-              &#8599;</a>
-            Browser extension for your new tab.
+              &#8599;&#xFE0E;</a>
+            Extension de navegador que reemplaza la nueva pestaña.
           </p>
         </div>
 
         <div class="project">
           <p>
-            <a id="link" rel="noreferrer" target="_blank" href="https://timesets.netlify.app/">Timesets (Beta)
-              &#8599;</a>
-            Make your own pomodoro-like timers.
+            <a id="link" rel="noreferrer" target="_blank" href="https://timesets.netlify.app/">Timesets
+              &#8599;&#xFE0E;</a>
+            Cronometro y contador Pomodoro que puedes customizar.
           </p>
         </div>
 
         <div class="project">
           <p>
             <a id="link" rel="noreferrer" target="_blank" href="https://everydayhuman.itch.io/">Itch.io games
-              &#8599;</a>
-            Some games I have developed.
+              &#8599;&#xFE0E;</a>
+            Algunos video juegos que hice.
           </p>
         </div>
 
         <div class="project">
           <p>
-            <a id="link" rel="noreferrer" target="_blank" href="https://ko-fi.com/nabholz">Ko-Fi &#8599;</a>
-            Where I post side projects and other things.
+            <a id="link" rel="noreferrer" target="_blank" href="https://buymeacoffee.com/nabholz">Buy Me A Coffee
+              &#8599;&#xFE0E;</a>
+            Aqui publica mas cosas sobre mis proyectos secundarios y demas.
           </p>
         </div>
       </div>
     </div>
 
-    <div id="about" class="contact-section section-container">
+    <div id="about" class="appear hidden contact-section section-container">
       <p class="section-title">ABOUT ME</p>
 
       <div class="contact-container" style="flex-direction: column; row-gap: 2rem; margin: 2rem 0;">
-        <p>24 years old designer from Santa Cruz, Bolivia.
-          <br>With 3 years of experience as a freelancer working on projects from different categories, products and
-          more.
+        <p>
+          Más de 4 años de experiencia me han dado la oportunidad de trabajar en muchos proyectos de diferentes
+          categorías, desde ayudar a construir ideas completamente nuevas y conectar con su audiencia hasta rediseñar la
+          experiencia de los usuarios de un producto ya establecido.
+          <br><br>
+          Mi conocimiento en programación de interfaces me ayuda a entender mejor como se llevaría el proceso de
+          desarrollo, el cual lo utilizo para crear experiencias que son increíbles y recordadas mientras toma en cuenta
+          las limitaciones de la tecnología que sea usada.
+          <br><br>
+          En mi Tech Stack está: HTML&CSS, JavaScript y Svelte. Para diseño principalmente utilizo Figma, pero también
+          puedo trabajar con: Photoshop, Framer, Sketch, Adobe Xd, Illustrator y las herramientas Affinity.
         </p>
-        <p>I'm currently available for freelance work, if you'd like to talk about a project you have in
-          mind send me and email at:</p>
+        <p>Actualmente estoy disponible para trabajo freelance, si te gustaría hablar de algún proyecto que tienes en
+          mente, envíame un email a:</p>
         <sergey-import src="email"></sergey-import>
         <p>
-          You can explore more of my work on
-          <a id="link" rel="noreferrer" target="_blank" href="https://dribbble.com/nabholz">Dribbble &#8599;</a> and
-          <a id="link" rel="noreferrer" target="_blank" href="https://behance.net/nabholz">Behance &#8599;</a>.
-          <br>You can also find some of my coding projects on
-          <a id="link" rel="noreferrer" target="_blank" href="https://github.com/iamnabholz">GitHub &#8599;</a>
+          Puedes encontrar más de mi trabajo en
+          <a id="link" rel="noreferrer" target="_blank" href="https://dribbble.com/nabholz">Dribbble &#8599;&#xFE0E;</a>
+          <!-- and
+              <a id="link" rel="noreferrer" target="_blank" href="https://behance.net/nabholz">Behance &#8599;&#xFE0E;</a>.-->
+          <br>También algunos de mis proyectos de programación
+          <a id="link" rel="noreferrer" target="_blank" href="https://github.com/iamnabholz">GitHub &#8599;&#xFE0E;</a>
         </p>
       </div>
 
@@ -169,8 +147,11 @@
       <p style="font-family: 'PP Monument Extended';" id="current-time">4:20 PM</p>
     </div>
 
-    <div id="footer" class="footer section-container">
+    <div class="footer section-container">
       <p style="font-size: 12px; font-family: 'PP Monument Extended';">© 2022 LUKAS NABHOLZ</p>
+
+      <img title="Back to top" onclick='window.scrollTo({top: 0, behavior: "smooth"});' class="asterisk"
+        alt="Asterisk Symbol" style="cursor: pointer;" src="/assets/img/icons/symbol.svg">
     </div>
 
   </main>
@@ -179,7 +160,6 @@
     id="ZwSg9rf6GA" async defer></script>
 
   <script src="../assets/js/main.js"></script>
-
 </body>
 
 </html>
