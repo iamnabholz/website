@@ -465,7 +465,7 @@ p {
 
 @media screen and (max-width: 620px) {
   .scroll-indicator {
-    padding-top: 4rem;
+    padding-top: 2rem;
     padding-bottom: 6rem;
   }
 
