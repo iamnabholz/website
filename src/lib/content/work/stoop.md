@@ -1,0 +1,84 @@
+---
+title: "Stoop Inbox"
+subtitle: "Redesigning the full mobile experience"
+href: "/stoop"
+detail: "App Design"
+image: "/img/stoop/cover.png"
+color: "#15AF41"
+order: 1
+---
+
+## 1. Introduction
+
+Stoop inbox is a service that provides you with a custom email address that you can use to subscribe to newsletters and channels.
+
+This helps keeping your personal and work email addresses clear of any mail that is not important to you.
+
+![Screenshots Of Stoop's App Multiple Tabs](../../img/stoop/showcase.png)
+
+## 2. Redesign objective
+
+The app provides a way to receive alerts when a new issue or post is made in the channels and newsletters you follow.
+After reading a lot of reviews and looking at similar services and apps there were some clear problems with the latest design update that it received:
+
+- Features like muting, folders and more are hidden behind non relevant elements and actions
+- In-app browser lacking basic functionality
+- Overall design and style guide not feeling connected
+- Lack of new features and general improvement of existing ones
+- Single screen design doesn't provide with some useful functionality in multitasking
+
+<br/>
+
+To know exactly what we need to do we can just take a look at the current design to find all the flaws we can.
+
+Things like:
+- Repeated elements and actions
+- Hidden menus and options
+
+![Screenshots Of Stoop's App Multiple Tabs](../../img/stoop/features.png)
+
+## 3. Features
+
+After making some designs and exploring some new features that could expand the funcionality and usability of the app I decided to apply the next ones
+
+### 3.1 Inbox
+
+There is not really a science behind making a feed that people would enjoy using, it is usually a matter of content your users get.
+
+![Inbox Feature Showcase](../../img/stoop/inbox.png)
+
+### 3.2 New Library Feature
+
+With a new "Library" tab you can have better organization and save the things that matter the most to you, it could be a quote, tools, advice or anything you find in your newsletters.
+
+**Finish reading**: Collects all issues you started reading but haven't mark as read yet.
+
+**Highlights**: Save single pieces of text information from the issues you read.
+
+**Links and Media**: Do exactly what they say, collect your saved links or your media like images, video, audio, etc.
+
+**Saved**: Your saved issues.
+
+And last your **Reading History** showing you all issues and videos you have marked as done.
+
+![Library Features Showcase](../../img/stoop/library.png)
+
+### 3.3 Discovery
+
+Stoop can help you find new insteresting and fun newsletters and channels to subscribe to.
+
+**Tags** allow you to find more specific topics for what you want to follow, while **Categories** will help you find the top newsletters and channels in different categories of course!
+
+Stoop provides basic information like a description and category for the newsletter, you can add quickly to any folder you've created before and update you subscription.
+
+![Discovery Features Showcase](../../img/stoop/discover.png)
+
+### 3.4 Reading Experience
+
+The most important feature of a newsletter reading app is the reading experience, doing some research on the most common types of concepts for the user experience and analyzing what worked, what didn't and what could be improved from previous designs of the app.
+
+![Discovery Features Showcase](../../img/stoop/reading.png)
+
+### 3.5 Settings & Customization
+
+![Discovery Features Showcase](../../img/stoop/styles.png)
