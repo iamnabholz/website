@@ -1,5 +1,6 @@
 ---
 title: 'homme'
+subtitle: 'What a beautiful design I made right'
 href: '/homme'
 detail: 'Web Design'
 image: '/img/homme.webp'

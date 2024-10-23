@@ -1,30 +1,31 @@
 <script>
-	import EmailCopy from '../components/EmailCopy.svelte';
-	import FlickeringTitle from '../components/FlickeringTitle.svelte';
-	import Gradient from '../components/Gradient.svelte';
-	import TitleText from '../components/TitleText.svelte';
-	import WorkLink from '../components/WorkLink.svelte';
-	import MoreShowcase from '../components/MoreShowcase.svelte';
+	import EmailCopy from "../components/EmailCopy.svelte";
+	import FlickeringTitle from "../components/FlickeringTitle.svelte";
+	import Gradient from "../components/Gradient.svelte";
+	import TitleText from "../components/TitleText.svelte";
+	import WorkLink from "../components/WorkLink.svelte";
+	import MoreShowcase from "../components/MoreShowcase.svelte";
 
-	import mailIcon from '$lib/icons/mail-icon.svg?raw';
+	import mailIcon from "$lib/icons/mail-icon.svg?raw";
+	import Contact from "../components/Contact.svelte";
 
 	export let data;
 
 	const skills = [
-		'Figma',
-		'Affinity Suite',
-		'Penpot',
-		'Photoshop',
-		'Illustrator',
-		'Zeplin',
-		'Readymag',
-		'Webflow',
-		'Framer',
-		'HTML&CSS',
-		'JavaScript'
+		"Figma",
+		"Affinity Suite",
+		"Penpot",
+		"Photoshop",
+		"Illustrator",
+		"Zeplin",
+		"Readymag",
+		"Webflow",
+		"Framer",
+		"HTML&CSS",
+		"JavaScript",
 	];
 
-	const icons = ['A', 'B', 'D', 'E', 'F', 'H', 'M', 'S', 'W'];
+	const icons = ["A", "B", "D", "E", "F", "H", "M", "S", "W"];
 
 	let scrollY = 0;
 </script>
@@ -54,11 +55,12 @@
 <div class="column-container">
 	<span>
 		<p>
-			Multidisciplinary designer with a passion for discovery, experimentation and innovation.
+			Multidisciplinary designer with a passion for discovery, experimentation
+			and innovation.
 			<br />
 			<br />
-			Solving complex problems and helping new ideas achieve their goals by crafting intuitive and easy-to-use
-			interfaces that are beautiful.
+			Solving complex problems and helping new ideas achieve their goals by crafting
+			intuitive and easy-to-use interfaces that are beautiful.
 			<br />
 			<br />
 		</p>
@@ -99,50 +101,20 @@
 
 <div style="height: 2rem;"></div>
 
-<FlickeringTitle text="Contact" iconSrc={mailIcon} />
+<Contact showLinks={true} />
 
-<div class="column-container hidden">
-	<div class="first-column">
-		<p>
-			Currently open to freelance projects or remote positions.
-			<br />
-			<br />
-			If you are curious to hear more about my work, have an idea, or simply want to chat you can contact
-			me at:
-		</p>
-		<br />
-		<EmailCopy />
-		<br />
-		<a id="mailto-link" href="mailto:lukas@nabholz.work">Open email</a>
-
-		<div class="links">
-			<p><b>Links</b></p>
-			<!--<a target="_blank" href="https://medium.com/@nabholz">
-                    Medium
-                </a>
-                <a target="_blank" href="https://behance.net/nabholz">
-                    Behance
-                </a>-->
-			<a target="_blank" href="https://buymeacoffee.com/nabholz"> BuyMeACoffee </a>
-			<a target="_blank" href="https://dribbble.com/nabholz"> Dribbble </a>
-			<a target="_blank" href="https://layers.to/nabholz"> Layers </a>
-			<a target="_blank" href="https://github.com/iamnabholz"> Github </a>
-		</div>
-
-		<p>
-			Santa Cruz, Bolivia <br />
-			<b style="font-size: 1.4rem;">
-				{new Date().toLocaleTimeString('default', {
-					timeZone: 'America/La_Paz',
-					weekday: 'short',
-					hour: '2-digit',
-					minute: '2-digit',
-					hour12: true
-				})}
-			</b>
-		</p>
-	</div>
-</div>
+<p>
+	Santa Cruz, Bolivia <br />
+	<b style="font-size: 1.4rem;">
+		{new Date().toLocaleTimeString("default", {
+			timeZone: "America/La_Paz",
+			weekday: "short",
+			hour: "2-digit",
+			minute: "2-digit",
+			hour12: true,
+		})}
+	</b>
+</p>
 
 <div style="height: 4rem;"></div>
 
@@ -196,7 +168,7 @@
 
 		.scroll-indicator {
 			display: block;
-			opacity: 0.3;
+			opacity: 0.5;
 		}
 	}
 
@@ -204,13 +176,6 @@
 		.gradient-container {
 			height: 130%;
 		}
-	}
-
-	.links {
-		display: flex;
-		flex-direction: column;
-		padding: 2rem 0;
-		gap: 12px;
 	}
 
 	.pill-wrapper {

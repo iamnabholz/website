@@ -11,7 +11,8 @@ async function getPosts() {
 
     if (file && typeof file === 'object' && 'metadata' in file && slug) {
       const metadata = file.metadata
-      const post = { ...metadata, slug }
+      const content = file.default;
+      const post = { ...metadata, content, slug }
       posts.push(post)
     }
   }

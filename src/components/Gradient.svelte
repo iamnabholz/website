@@ -1,22 +1,23 @@
 <script>
 	// Uncomment and update these if you're using the icons
-	import worldIcon from '$lib/icons/world-icon.svg?raw';
-	import happyIcon from '$lib/icons/sun-icon.svg?raw';
+	import worldIcon from "$lib/icons/world-icon.svg?raw";
+	import happyIcon from "$lib/icons/sun-icon.svg?raw";
 
 	export let small = false;
 
 	const gradients = [
-		['#D16BA5', '#86A8E7', '#5FFBF1'],
-		['#ffa600', '#ff6361', '#003f5c'],
-		['#f9ce34', '#ee2a7b', '#6228d7'],
-		['#fa8bff', '#2bd2ff', '#2bff88'],
-		['#f878ff', '#ffda9e', '#ffffff'],
-		['#abffee', '#3d00a6', '#000e17'],
-		['#ffd700', '#ed7014', '#89cff0'],
-		['#c2ffdf', '#ff8861', '#4854f9']
+		["#D16BA5", "#86A8E7", "#5FFBF1"],
+		["#ffa600", "#ff6361", "#003f5c"],
+		["#f9ce34", "#ee2a7b", "#6228d7"],
+		["#fa8bff", "#2bd2ff", "#2bff88"],
+		["#f878ff", "#ffda9e", "#ffffff"],
+		["#abffee", "#3d00a6", "#000e17"],
+		["#ffd700", "#ed7014", "#89cff0"],
+		["#c2ffdf", "#ff8861", "#4854f9"],
 	];
 
-	const selectedGradient = gradients[Math.floor(Math.random() * gradients.length)];
+	const selectedGradient =
+		gradients[Math.floor(Math.random() * gradients.length)];
 
 	const shuffleGradientColor = (colors) => {
 		for (let i = colors.length - 1; i > 0; i--) {
@@ -26,7 +27,8 @@
 		return colors;
 	};
 
-	const [firstColor, secondColor, thirdColor] = shuffleGradientColor(selectedGradient);
+	const [firstColor, secondColor, thirdColor] =
+		shuffleGradientColor(selectedGradient);
 
 	const minSize = 180;
 	const height = Math.floor(Math.random() * (360 - minSize + 1)) + minSize;
@@ -40,11 +42,13 @@
 	const gradientHeight = small ? 120 : 300;
 </script>
 
-<a href="/">
+<a href="/" aria-label="Home" title="Home">
 	<div
 		style="height: {gradientHeight}px; background: radial-gradient(circle at {Math.floor(
-			Math.random() * 100
-		)}% {Math.floor(Math.random() * 100)}%, {firstColor} 0%, {secondColor} 100%)"
+			Math.random() * 100,
+		)}% {Math.floor(
+			Math.random() * 100,
+		)}%, {firstColor} 0%, {secondColor} 100%)"
 		class="gradient"
 	>
 		<div
@@ -79,7 +83,7 @@
 
 	/* NOISE TEXTURE */
 	.gradient::after {
-		content: '';
+		content: "";
 		position: absolute;
 		top: 0;
 		left: 0;

@@ -1,9 +1,8 @@
 <script>
-	import { onMount } from 'svelte';
-	import Gradient from '../../components/Gradient.svelte';
-	import FlickeringTitle from '../../components/FlickeringTitle.svelte';
-	import EmailCopy from '../../components/EmailCopy.svelte';
-	import mailIcon from '$lib/icons/mail-icon.svg?raw';
+	import { onMount } from "svelte";
+	import Gradient from "../../components/Gradient.svelte";
+
+	import Contact from "../../components/Contact.svelte";
 
 	export let data;
 
@@ -12,12 +11,12 @@
 	const parallax = () => {
 		var yPos = 0 - window.scrollY / 10;
 		if (cover) {
-			cover.style.top = 30 + yPos + '%';
+			cover.style.top = 30 + yPos + "%";
 		}
 	};
 
 	onMount(() => {
-		window.addEventListener('scroll', function () {
+		window.addEventListener("scroll", function () {
 			parallax();
 		});
 	});
@@ -41,8 +40,16 @@
 	</div>
 </div>
 
-<div class="cover-image image-container hidden" style="background-color: {data.meta.color}">
-	<img bind:this={cover} id="cover" src={data.meta.image} alt={data.meta.title + ' screenshots'} />
+<div
+	class="cover-image image-container hidden"
+	style="background-color: {data.meta.color}"
+>
+	<img
+		bind:this={cover}
+		id="cover"
+		src={data.meta.image}
+		alt={data.meta.title + " screenshots"}
+	/>
 </div>
 
 <div class="content hidden" style="--themeColor: {data.meta.color}">
@@ -52,39 +59,28 @@
 
 <div style="height: 2rem;"></div>
 
-<FlickeringTitle text="Contact" iconSrc={mailIcon} />
+<Contact />
 
-<div class="column-container hidden">
-	<div class="first-column">
-		<p>
-			Currently open to freelance, if you are curious to hear more about my work, have an unhinged
-			idea, or simply want to chat you can contact me at:
-		</p>
-		<br />
-		<EmailCopy />
-		<br />
-		<a id="mailto-link" href="mailto:lukas@nabholz.work">Open email</a>
-	</div>
-</div>
+<div style="height: 1px;"></div>
 
 <div class="post-buttons hidden">
-	<a href={data.previousPost?.href || '/'}>
+	<a href={data.previousPost?.href || "/"}>
 		<div class="button">
 			<div>
 				<span class="icons">D </span>
 				Previous post
 			</div>
-			<h2>{data.previousPost?.title || 'Back home'}</h2>
+			<h2>{data.previousPost?.title || "Back home"}</h2>
 		</div>
 	</a>
 
-	<a href={data.nextPost?.href || '/'}>
+	<a href={data.nextPost?.href || "/"}>
 		<div class="button" style="align-items: flex-end;">
 			<div>
 				Next post
 				<span class="icons"> A</span>
 			</div>
-			<h2>{data.nextPost?.title || 'Back home'}</h2>
+			<h2>{data.nextPost?.title || "Back home"}</h2>
 		</div>
 	</a>
 </div>

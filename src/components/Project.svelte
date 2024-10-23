@@ -7,7 +7,7 @@
 
 <div class="project hidden">
 	<a {href} target="_blank">
-		<img src={imgSrc} alt="{title} Icon" />
+		<img loading="lazy" src={imgSrc} alt="{title} Icon" />
 
 		<br />
 		<p class="title" style="padding-bottom: 6px;">

@@ -1,40 +1,29 @@
 import { error } from '@sveltejs/kit';
 
-export const load = async ({ params }) => {
+export const load = async ({ params, fetch }) => {
   try {
-    // Step 1: Import all markdown posts
-    const allPosts = import.meta.glob('../../lib/content/work/*.md');
+    const response = await fetch('api/posts');
+    const posts = await response.json();
 
-    // Convert the glob imports into an array of promises
-    const posts = await Promise.all(
-      Object.entries(allPosts).map(async ([path, resolver]) => {
-        const post = await resolver();
-        return {
-          path,
-          content: post.default,
-          meta: post.metadata
-        };
-      })
-    );
-
-    // Step 2: Find the current post
-    const currentPostIndex = posts.findIndex(post => post.meta.href === "/" + params.work);
+    const currentPostIndex = posts.findIndex(post => post.slug === params.work);
 
     if (currentPostIndex === -1) {
       throw error(404, 'Post not found');
     }
 
-    // Step 3: Get next and previous posts
-    const nextPost = posts[currentPostIndex + 1] || null; // Null if no next post
-    const previousPost = posts[currentPostIndex - 1] || null; // Null if no previous post
+    const currentPost = posts[currentPostIndex];
+    const postContent = await import(`../../lib/content/work/${currentPost.slug}.md`);
+
+    const previousPost = posts[currentPostIndex - 1] || null;
+    const nextPost = posts[currentPostIndex + 1] || null;
 
     return {
-      content: posts[currentPostIndex].content,
-      meta: posts[currentPostIndex].meta,
-      nextPost: nextPost?.meta,
-      previousPost: previousPost?.meta
+      content: postContent.default,
+      meta: posts[currentPostIndex],
+      previousPost: previousPost || null,
+      nextPost: nextPost || null
     };
   } catch (err) {
-    throw error(404, 'Post not found');
+    throw error(404, err);
   }
 };
