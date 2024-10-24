@@ -8,9 +8,10 @@
 		"UI Designer",
 		"Web Designer",
 		"UX Designer",
-		"Game Dev",
+		"User Researcher",
 	];
-	const characters = "abcdefghijklmnopqrstuvwxyz0123456789&%$#@;<>" + " " + " ";
+
+	const characters = "abcdefghijklmnopqrstuvwxyz0123456789<?&%$#@;>       ";
 
 	const starterTitle = "UX Designer";
 	let currentTitle = starterTitle;

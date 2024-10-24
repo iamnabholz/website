@@ -164,8 +164,9 @@
 
 	@media screen and (max-width: 1020px) {
 		.header-container {
-			height: calc(100vh - 6rem);
+			height: calc(100vh - 6.4rem);
 		}
+
 		.header {
 			top: 16px;
 			grid-template-columns: 1fr;

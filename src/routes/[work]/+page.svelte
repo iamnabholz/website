@@ -68,19 +68,23 @@
 		<div class="button">
 			<div>
 				<span class="icons">D </span>
-				Previous post
+				{data.previousPost ? "Previous post" : "Back home"}
 			</div>
-			<h2>{data.previousPost?.title || "Back home"}</h2>
+			{#if data.previousPost}
+				<h2>{data.previousPost.title}</h2>
+			{/if}
 		</div>
 	</a>
 
 	<a href={data.nextPost?.href || "/"}>
 		<div class="button" style="align-items: flex-end;">
 			<div>
-				Next post
+				{data.nextPost ? "Next post" : "Back home"}
 				<span class="icons"> A</span>
 			</div>
-			<h2>{data.nextPost?.title || "Back home"}</h2>
+			{#if data.nextPost}
+				<h2>{data.nextPost.title}</h2>
+			{/if}
 		</div>
 	</a>
 </div>

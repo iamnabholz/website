@@ -21,7 +21,7 @@
 		</p>
 	</div>
 
-	<a href="/extra">Explore more projects</a>
+	<!--<a href="/extra">Explore more projects</a>-->
 
 	<div class="column-container">
 		<Project
