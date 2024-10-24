@@ -184,7 +184,7 @@
 		background-color: var(--themeColor);
 		overflow: hidden;
 
-		height: fit-content;
+		height: 100%;
 		width: 100%;
 		margin: 56px 0;
 	}
