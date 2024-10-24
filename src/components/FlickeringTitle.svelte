@@ -1,5 +1,6 @@
 <script>
-	import { onMount } from 'svelte';
+	import { onMount } from "svelte";
+	import eyeIcon from "$lib/icons/eye-icon.svg?raw";
 
 	let container;
 	export let text;
@@ -8,7 +9,7 @@
 	// Function to start the "bitmapped" animation
 	const startSwitch = () => {
 		if (!container) return;
-		const letters = container.querySelectorAll('.letter');
+		const letters = container.querySelectorAll(".letter");
 
 		if (letters.length === 0) return;
 
@@ -17,13 +18,13 @@
 		const randomLetter = letters[randomIndex];
 
 		// Apply the "bitmapped" class to the random letter
-		randomLetter.classList.add('bitmapped');
+		randomLetter.classList.add("bitmapped");
 
 		// Set a duration to remove the class again
 		const duration = Math.max(3000, Math.floor(Math.random() * 5000));
 
 		setTimeout(() => {
-			randomLetter.classList.remove('bitmapped');
+			randomLetter.classList.remove("bitmapped");
 		}, duration);
 
 		// Set a delay before starting the next switch
@@ -36,41 +37,42 @@
 	onMount(startSwitch);
 </script>
 
-<div class="titles hidden">
+<div class="row-wrapper title">
 	<h1 bind:this={container}>
 		{#each text as letter}
 			<span class="letter">{letter}</span>
 		{/each}
 	</h1>
 
-	{#if iconSrc}
-		<div class="icon">
+	<div class="icon">
+		{#if iconSrc}
 			{@html iconSrc}
-		</div>
-	{/if}
+		{:else}
+			{@html eyeIcon}
+		{/if}
+	</div>
 </div>
 
 <style>
-	.titles {
-		height: 4rem;
-		position: relative;
-		overflow-y: hidden;
+	.title {
+		overflow: visible;
+		height: 6rem;
+		justify-content: space-between;
 	}
 
 	.icon {
-		position: absolute;
-		top: -8px;
-		right: 0;
 		height: 96px;
 		width: 96px;
-		max-width: none;
 	}
 
 	@media screen and (max-width: 620px) {
 		.icon {
-			top: -10px;
 			height: 60px;
 			width: 60px;
+		}
+
+		.title {
+			height: 4rem;
 		}
 	}
 </style>

@@ -13,6 +13,7 @@
     --border-radius: 12px;
     --page-padding-full: 4rem;
     --page-padding-small: 16px;
+    --rem-gap: 2rem;
 }
 
 @font-face {
@@ -201,7 +202,7 @@ h3 {
 main {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: var(--rem-gap);
 
     padding: var(--page-padding-full);
     margin: 0 auto;
@@ -209,7 +210,7 @@ main {
 }
 
 .bitmapped {
-    font-family: "PP Mondwest";
+    font-family: "PP Mondwest" !important;
 }
 
 .icons {
@@ -228,19 +229,31 @@ main {
     gap: 1rem;
 }
 
-.wrap {
+.column-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.row-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.works-wrapper {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     justify-items: center;
-
-    gap: 4rem;
+    gap: 6rem;
+    padding: var(--rem-gap) 0;
 }
 
-.wrap > :nth-child(even) {
+.works-wrapper > :nth-child(even) {
     margin-top: 24rem;
 }
 
-.wrap > :last-child {
+.works-wrapper > :last-child {
     margin-top: -12rem;
 }
 
@@ -253,11 +266,11 @@ main {
         grid-template-columns: repeat(2, 1fr);
     }
 
-    .wrap {
+    .works-wrapper {
         grid-template-columns: 1fr;
     }
 
-    .wrap > * {
+    .works-wrapper > * {
         margin-top: 0 !important;
     }
 }
@@ -277,6 +290,10 @@ main {
 @media screen and (max-width: 620px) {
     h1 {
         font-size: 2.2rem;
+    }
+
+    .works-wrapper {
+        gap: 4rem;
     }
 }
 

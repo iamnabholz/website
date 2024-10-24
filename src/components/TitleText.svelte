@@ -1,22 +1,24 @@
 <script>
-	import { onMount } from 'svelte';
+	import { onMount } from "svelte";
 
 	const titles = [
-		'Visual Designer',
-		'Product Designer',
-		'Web Developer',
-		'UI Designer',
-		'Web Designer',
-		'UX Designer',
-		'Game Dev'
+		"Visual Designer",
+		"Product Designer",
+		"Web Developer",
+		"UI Designer",
+		"Web Designer",
+		"UX Designer",
+		"Game Dev",
 	];
-	const characters = 'abcdefghijklmnopqrstuvwxyz0123456789&%$#@;<>' + ' ' + ' ';
+	const characters = "abcdefghijklmnopqrstuvwxyz0123456789&%$#@;<>" + " " + " ";
 
-	const starterTitle = 'UX Designer';
+	const starterTitle = "UX Designer";
 	let currentTitle = starterTitle;
 
 	let textElement;
-	$: currentLetters = Array.from(textElement?.querySelectorAll('.letter') || []);
+	$: currentLetters = Array.from(
+		textElement?.querySelectorAll(".letter") || [],
+	);
 
 	const changeText = () => {
 		let newTitle = currentTitle;
@@ -28,7 +30,7 @@
 		for (let index = 0; index < currentLetters.length; index++) {
 			const timer = Math.random() * 450 * index;
 			setTimeout(() => {
-				shuffleLetter(currentLetters[index], currentTitle[index] || '');
+				shuffleLetter(currentLetters[index], currentTitle[index] || "");
 			}, timer);
 
 			if (index == currentLetters.length - 1) {
@@ -37,17 +39,18 @@
 		}
 	};
 
-	const shuffleLetter = (element, letter) => {
-		element?.classList.add('bitmapped');
+	const shuffleLetter = (element, letter, isUppercase = false) => {
+		element?.classList.add("bitmapped");
 
 		let timeoutId;
 		const delay = Math.max(100, Math.floor(Math.random() * 300));
 		const duration = 1000;
 
 		function randomize() {
-			let randomChar = characters[Math.floor(Math.random() * characters.length)]; // Pick a random character
+			let randomChar =
+				characters[Math.floor(Math.random() * characters.length)]; // Pick a random character
 			if (Math.random() < 0.5) {
-				//randomChar = randomChar.toUpperCase(); // Convert to uppercase with 50% probability
+				randomChar = randomChar.toUpperCase(); // Convert to uppercase with 50% probability
 			}
 			const finalText = randomChar;
 			element.textContent = finalText.toString();
@@ -55,12 +58,8 @@
 				timeoutId = setTimeout(randomize, delay); // Recursively call randomize until duration expires
 			} else {
 				clearTimeout(timeoutId);
-				if (letter == letter.toLowerCase()) {
-					element.textContent = letter.toLowerCase();
-				} else {
-					element.textContent = letter.toUpperCase();
-				}
-				element.classList.remove('bitmapped');
+				element.textContent = letter;
+				element.classList.remove("bitmapped");
 			}
 		}
 
@@ -70,20 +69,20 @@
 		return {
 			cancel: function () {
 				clearTimeout(timeoutId); // Cancel the timeout
-			}
+			},
 		};
 	};
 
 	const initializeText = () => {
 		const characters = titles.reduce(
 			(maxLength, currentString) => Math.max(maxLength, currentString.length),
-			0
+			0,
 		);
 
 		for (let index = 0; index < characters; index++) {
 			const letter = currentTitle[index];
-			const span = document.createElement('span');
-			span.classList.add('letter');
+			const span = document.createElement("span");
+			span.classList.add("letter");
 			textElement.appendChild(span);
 			if (letter) {
 				shuffleLetter(span, letter);
@@ -106,6 +105,7 @@
 	h1 {
 		height: 1.25em;
 		white-space: nowrap;
-		overflow-y: hidden;
+		overflow-y: visible;
+		text-transform: none;
 	}
 </style>

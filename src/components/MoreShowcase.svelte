@@ -1,28 +1,27 @@
 <script>
-	import FlickeringTitle from './FlickeringTitle.svelte';
+	import FlickeringTitle from "./FlickeringTitle.svelte";
 
-	import timesetsIcon from '$lib/icons/timesets-icon.webp';
-	import itchioIcon from '$lib/icons/itchio-icon.webp';
-	import luckyIcon from '$lib/icons/lucky-icon.webp';
-	import fabricIcon from '$lib/icons/fabric-icon.webp';
+	import timesetsIcon from "$lib/icons/timesets-icon.webp";
+	import itchioIcon from "$lib/icons/itchio-icon.webp";
+	import luckyIcon from "$lib/icons/lucky-icon.webp";
+	import fabricIcon from "$lib/icons/fabric-icon.webp";
 
-	import eyeIcon from '$lib/icons/eye-icon.svg?raw';
-
-	import Project from './Project.svelte';
+	import Project from "./Project.svelte";
 </script>
 
-<div class="side-container hidden">
-	<FlickeringTitle text="Experiments" iconSrc={eyeIcon} />
-	<div class="column-container" style="padding-bottom: 24px;">
+<div class="side-container">
+	<FlickeringTitle text="Experiments" />
+
+	<div class="column-container">
 		<p>
-			Some side projects I've started on my free time, from time managing webapps to videogames.
-			<br />
-			<br />
+			Some side projects I've started on my free time, from time managing
+			webapps to videogames.
+			<br /> <br />
 			I enjoy exploring a lot of fields that relate to programming and design.
 		</p>
 	</div>
 
-	<!--<a href="/side">Explore side projects</a> -->
+	<a href="/extra">Explore more projects</a>
 
 	<div class="column-container">
 		<Project
@@ -62,12 +61,12 @@
 		background-color: var(--dark-color);
 		color: var(--light-color);
 		position: relative;
-
-		padding: 2rem 0;
+		padding: 2.5rem 0 4rem 0;
+		gap: var(--rem-gap);
 	}
 
 	.side-container::before {
-		content: '';
+		content: "";
 		position: absolute;
 		left: -4rem;
 		top: 0;
@@ -77,8 +76,9 @@
 		z-index: -5;
 	}
 
-	.column-container {
-		padding-top: 2rem;
+	a::after {
+		font-family: "Icons";
+		content: "A";
 	}
 
 	@media screen and (max-width: 1020px) {

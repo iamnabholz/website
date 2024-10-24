@@ -6,7 +6,7 @@
 	import WorkLink from "../components/WorkLink.svelte";
 	import MoreShowcase from "../components/MoreShowcase.svelte";
 
-	import mailIcon from "$lib/icons/mail-icon.svg?raw";
+	import sunIcon from "$lib/icons/sun-icon.svg?raw";
 	import Contact from "../components/Contact.svelte";
 
 	export let data;
@@ -57,49 +57,45 @@
 		<p>
 			Multidisciplinary designer with a passion for discovery, experimentation
 			and innovation.
-			<br />
-			<br />
+			<br /> <br />
 			Solving complex problems and helping new ideas achieve their goals by crafting
 			intuitive and easy-to-use interfaces that are beautiful.
-			<br />
-			<br />
+			<br /> <br />
 		</p>
 		<EmailCopy />
 	</span>
 </div>
 
-<div style="height: 4rem;"></div>
+<div class="column-wrapper" style="padding-top: var(--rem-gap);">
+	<FlickeringTitle text="Works" iconSrc={sunIcon} />
 
-<div class="wrap">
-	{#each data.posts as post}
-		<WorkLink
-			title={post.title}
-			href={post.href}
-			detail={post.detail}
-			color={post.color}
-			image={post.image}
-		/>
-	{/each}
+	<span class="works-wrapper">
+		{#each data.posts as post}
+			<WorkLink
+				title={post.title}
+				href={post.href}
+				detail={post.detail}
+				color={post.color}
+				image={post.image}
+			/>
+		{/each}
+	</span>
 </div>
-
-<div style="height: 2rem;"></div>
 
 <div class="pill-wrapper">
 	{#each skills as skill}
-		<p class="hidden">
+		<p>
 			{skill}
 		</p>
-		<p class="hidden icons">
+		<p class="icons">
 			{icons[Math.floor(Math.random() * icons.length)]}
 		</p>
 	{/each}
 </div>
 
-<div style="height: 2rem;"></div>
+<span style="height: 2vw"></span>
 
 <MoreShowcase />
-
-<div style="height: 2rem;"></div>
 
 <Contact showLinks={true} />
 
@@ -116,7 +112,7 @@
 	</b>
 </p>
 
-<div style="height: 4rem;"></div>
+<span style="height: 64px"></span>
 
 <style>
 	.header-container {
@@ -135,9 +131,13 @@
 
 	.header > .text {
 		grid-column: span 2;
+		position: relative;
 	}
 
 	.scroll-indicator {
+		position: absolute;
+		bottom: -18px;
+		left: 0;
 		display: none;
 		opacity: 0;
 		font-size: 0.8rem;
@@ -147,6 +147,19 @@
 		display: inline-block;
 		transform: rotateZ(90deg);
 		margin: 0px 2px 0px -2px;
+		animation: float 3s ease infinite;
+	}
+
+	@keyframes float {
+		0% {
+			transform: translateY(-2px) rotateZ(90deg);
+		}
+		50% {
+			transform: translateY(5px) rotateZ(90deg);
+		}
+		100% {
+			transform: translateY(-2px) rotateZ(90deg);
+		}
 	}
 
 	@media screen and (max-width: 1020px) {
@@ -168,7 +181,7 @@
 
 		.scroll-indicator {
 			display: block;
-			opacity: 0.5;
+			opacity: 0.6;
 		}
 	}
 
@@ -184,13 +197,9 @@
 		align-items: center;
 		justify-content: center;
 		column-gap: 20px;
-		row-gap: 12px;
+		row-gap: 16px;
 
 		width: min(100%, 860px);
 		margin: 0 auto;
-	}
-
-	.pill-wrapper > .icons {
-		margin-top: -4px;
 	}
 </style>
