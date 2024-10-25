@@ -70,6 +70,10 @@
 		text-transform: capitalize;
 	}
 
+    .icons {
+        padding-right: 6px;
+    }
+
 	@media screen and (max-width: 1020px) {
 		.image {
 			padding: 14px;
