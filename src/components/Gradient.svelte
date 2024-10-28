@@ -68,9 +68,7 @@
 <style>
 	.gradient {
 		position: relative;
-
 		border-radius: var(--border-radius);
-
 		background: #3f5efb;
 	}
 

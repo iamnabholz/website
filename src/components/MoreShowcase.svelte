@@ -2,14 +2,12 @@
     import FlickeringTitle from "./FlickeringTitle.svelte";
 
     import timesetsIcon from "$lib/icons/timesets-icon.webp";
-    import itchioIcon from "$lib/icons/itchio-icon.webp";
-    import luckyIcon from "$lib/icons/lucky-icon.webp";
     import fabricIcon from "$lib/icons/fabric-icon.webp";
 
     import Project from "./Project.svelte";
 </script>
 
-<div class="side-container">
+<section class="side-container">
     <FlickeringTitle text="Experiments"/>
 
     <div class="column-container">
@@ -52,7 +50,7 @@
                 href="https://panoramatab.netlify.app/"
         />
     </div>
-</div>
+</section>
 
 <style>
     .side-container {
@@ -76,10 +74,10 @@
         z-index: -5;
     }
 
-    a::after {
+    /*a::after {
         font-family: "Icons";
         content: "A";
-    }
+    }*/
 
     @media screen and (max-width: 1020px) {
         .side-container::before {

@@ -2,13 +2,14 @@
 	export let image, title, detail, color, href;
 </script>
 
-<div class="work hidden">
+<div class="work">
 	<a {href}>
 		<div class="image" style="background-color: {color}">
 			<img src={image} alt="Showcase of {title}" />
 		</div>
-		<p><span class="icons">E </span><b> {title}</b></p>
-		<div style="padding-top: 4px;">
+
+		<div class="column-wrapper info">
+			<p><span class="icons">E </span><b> {title}</b></p>
 			<p>{detail} <span class="icons hover"> A</span></p>
 		</div>
 	</a>
@@ -16,6 +17,8 @@
 
 <style>
 	a {
+		width: 100%;
+		height: 100%;
 		color: var(--text-color);
 		border-bottom: none;
 	}
@@ -28,14 +31,20 @@
 		color: var(--accent-color);
 	}
 
+
+	.info {
+		gap: 4px;
+	}
+
 	.hover {
 		opacity: 0;
 		transition: opacity 150ms ease;
 	}
 
 	.work {
-		width: fit-content;
+		width: 100%;
 		height: fit-content;
+		position: relative;
 	}
 
 	.image {

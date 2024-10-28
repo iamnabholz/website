@@ -8,6 +8,7 @@
 
     import sunIcon from "$lib/icons/sun-icon.svg?raw";
     import Contact from "../components/Contact.svelte";
+    import LastFM from "../components/LastFM.svelte";
 
     export let data;
 
@@ -40,7 +41,7 @@
     </div>
 </div>
 
-<div class="column-container">
+<section class="column-container">
 	<span>
 		<p>
 			Multidisciplinary designer with a passion for discovery, experimentation
@@ -52,9 +53,9 @@
 		</p>
 		<EmailCopy/>
 	</span>
-</div>
+</section>
 
-<div class="column-wrapper" style="padding-top: var(--rem-gap);">
+<section class="column-wrapper" style="padding-top: var(--rem-gap);">
     <FlickeringTitle text="Works" iconSrc={sunIcon}/>
 
     <span class="works-wrapper">
@@ -68,9 +69,9 @@
             />
 		{/each}
 	</span>
-</div>
+</section>
 
-<div class="pill-wrapper">
+<section class="pill-wrapper">
     {#each skills as skill}
         <p>
             {skill}
@@ -79,7 +80,7 @@
             {icons[Math.floor(Math.random() * icons.length)]}
         </p>
     {/each}
-</div>
+</section>
 
 <span style="height: 2vw"></span>
 
@@ -99,6 +100,8 @@
         })}
     </b>
 </p>
+
+<LastFM/>
 
 <span style="height: 64px"></span>
 
