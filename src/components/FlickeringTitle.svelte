@@ -61,14 +61,6 @@
         text-transform: none;
     }
 
-    .letter {
-        font-size-adjust: 0.484;
-    }
-
-    .bitmapped {
-        font-size-adjust: 0.484;
-    }
-
     .row-wrapper {
         justify-content: space-between;
     }

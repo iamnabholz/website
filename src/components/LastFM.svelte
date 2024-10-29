@@ -7,6 +7,10 @@
     let trackArtist = "Artist";
     let trackPlaying = "";
 
+    const relativeTime = (date) => {
+
+    }
+
     onMount(async () => {
         const response = await fetch(
             "https://lively-credit-b295.nabholz.workers.dev/"
