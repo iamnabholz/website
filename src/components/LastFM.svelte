@@ -5,10 +5,24 @@
     let trackLink = "";
     let trackName = "Song Name";
     let trackArtist = "Artist";
-    let trackPlaying = "";
+    let trackPlayed = "";
+    let isCurrentlyPlaying = false;
 
-    const relativeTime = (date) => {
+    const relativeTime = (duration) => {
+        const minutes = Math.floor((duration / (1000 * 60)) % 60);
+        const hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
 
+        if (hours > 1) {
+            if (minutes < 2) {
+                return "An hour ago";
+            }
+            return hours + " hours ago"
+        } else if (hours < 1) {
+            if (minutes < 1) {
+                return "A minute ago";
+            }
+            return minutes + " minutes ago"
+        }
     }
 
     onMount(async () => {
@@ -23,17 +37,16 @@
         trackName = recent[0].name;
         trackArtist = recent[0].artist["#text"];
         if (recent[0]["@attr"] !== undefined) {
-            trackPlaying = "Now Playing";
+            isCurrentlyPlaying = true;
+            trackPlayed = "Currently Playing";
         } else {
-            trackPlaying = new Date(recent[0].date.uts * 1000).toLocaleTimeString("default", {
-                timeZone: "America/La_Paz",
-                weekday: "short",
-                hour: "2-digit",
-                minute: "2-digit",
-                hour12: true,
-            });
+            isCurrentlyPlaying = false;
+            const currentTime = new Date();
+            const trackTime = new Date(recent[0].date.uts * 1000);
+            const finalTime = currentTime.getTime() - trackTime.getTime();
+
+            trackPlayed = relativeTime(finalTime);
         }
-        console.log(recent)
     });
 </script>
 
@@ -42,7 +55,7 @@
         <img class="track-cover" src={trackCover} alt="Song cover"/>
     </a>
     <div class="track-information">
-        <p class="now-playing">{trackPlaying}</p>
+        <p class="playing-info" class:is-playing={isCurrentlyPlaying}>{trackPlayed}</p>
         <p>{trackName}</p>
         <p>{trackArtist}</p>
     </div>
@@ -67,19 +80,18 @@
         gap: 0.1rem;
     }
 
-    .now-playing {
-        color: var(--accent-color);
+    .playing-info {
+        color: var(--text-color);
         font-size: 12px;
         text-transform: uppercase;
         font-weight: bold;
-        display: block;
         opacity: 1;
     }
 
-    /*.show-np {
-        display: block
+    .is-playing {
+        color: var(--accent-color);
         opacity: 1;
-    }*/
+    }
 
     a {
         border: none;
