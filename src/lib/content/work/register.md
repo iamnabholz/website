@@ -15,3 +15,5 @@ sometimes).
 
 Regardless of what your go-to domain register is, everybody has experienced having to reach for your PC to finish doing
 some task that feels mundane: "Copy and paste this value in this box of your domain register"
+
+![Screenshots Of Stoop's App Multiple Tabs](../../img/stoop/showcase.png)

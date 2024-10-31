@@ -12,8 +12,8 @@
 
     export let data;
 
-    const skills = ["Figma", "Affinity Suite", "Penpot", "Photoshop", "Illustrator", "Zeplin", "Readymag", "Webflow", "Framer", "HTML&CSS", "JavaScript",];
-
+    const desSkills = ["Figma", "Affinity Suite", "Penpot", "Photoshop", "Illustrator", "Zeplin"];
+    const devSkills = ["Readymag", "Webflow", "Framer", "HTML&CSS", "JavaScript", "Astro", "Svelte"]
     const icons = ["A", "B", "D", "E", "F", "H", "M", "S", "W"];
 
     let scrollY = 0;
@@ -71,18 +71,57 @@
 	</span>
 </section>
 
-<section class="pill-wrapper">
-    {#each skills as skill}
-        <p>
-            {skill}
-        </p>
-        <p class="icons">
-            {icons[Math.floor(Math.random() * icons.length)]}
-        </p>
-    {/each}
+<span style="height: 1vh"></span>
+
+<section class="skills-container">
+    <div class="pill-wrapper">
+        <div class="pills">
+            {#each desSkills as skill}
+                <p>
+                    {skill}
+                </p>
+                <p class="icons">
+                    {icons[Math.floor(Math.random() * icons.length)]}
+                </p>
+            {/each}
+        </div>
+        <div class="pills">
+            {#each desSkills as skill}
+                <p>
+                    {skill}
+                </p>
+                <p class="icons">
+                    {icons[Math.floor(Math.random() * icons.length)]}
+                </p>
+            {/each}
+        </div>
+    </div>
 </section>
 
-<span style="height: 2vw"></span>
+<section class="skills-container">
+    <div class="pill-wrapper pill-wrapper-op">
+        <div class="pills">
+            {#each devSkills as skill}
+                <p>
+                    {skill}
+                </p>
+                <p class="icons">
+                    {icons[Math.floor(Math.random() * icons.length)]}
+                </p>
+            {/each}
+        </div>
+        <div class="pills">
+            {#each devSkills as skill}
+                <p>
+                    {skill}
+                </p>
+                <p class="icons">
+                    {icons[Math.floor(Math.random() * icons.length)]}
+                </p>
+            {/each}
+        </div>
+    </div>
+</section>
 
 <MoreShowcase/>
 
@@ -183,15 +222,50 @@
         }
     }
 
+    .skills-container {
+        border-radius: 2px;
+        padding-top: 8px;
+        padding-bottom: 4px;
+        overflow: hidden;
+    }
+
     .pill-wrapper {
         display: flex;
-        flex-wrap: wrap;
+        width: 200%;
+        column-gap: 2rem;
+        /*flex-wrap: wrap;
         align-items: center;
         justify-content: center;
-        column-gap: 20px;
         row-gap: 16px;
 
         width: min(100%, 860px);
-        margin: 0 auto;
+        margin: 0 auto;*/
+        animation: slide 46s linear infinite;
+    }
+
+    .pill-wrapper-op {
+        animation: slide 46s linear reverse infinite;
+    }
+
+    @keyframes slide {
+        from {
+            transform: translateX(0);
+        }
+        to {
+            transform: translateX(-50%);
+        }
+    }
+
+    .pills {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        column-gap: 2rem;
+    }
+
+    .pills p {
+        font-size: 1.4rem;
+        text-wrap: nowrap;
     }
 </style>
