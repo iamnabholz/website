@@ -41,7 +41,7 @@
 </div>
 
 <div
-	class="cover-image image-container hidden"
+		class="cover-image image-container"
 	style="background-color: {data.meta.color}"
 >
 	<img
@@ -52,7 +52,7 @@
 	/>
 </div>
 
-<div class="content hidden" style="--themeColor: {data.meta.color}">
+<div class="content" style="--themeColor: {data.meta.color}">
 	<svelte:component this={data.content} />
 	<!--{@html content}-->
 </div>
@@ -63,7 +63,7 @@
 
 <div style="height: 1px;"></div>
 
-<div class="post-buttons hidden">
+<div class="post-buttons">
 	<a href={data.previousPost?.href || "/"}>
 		<div class="button">
 			<div>
@@ -89,7 +89,7 @@
 	</a>
 </div>
 
-<style is:global>
+<style>
 	.title-container > h1 {
 		line-height: 1.2;
 		text-transform: unset;
@@ -118,6 +118,9 @@
 		position: relative;
 
 		z-index: -1;
+		backface-visibility: hidden;
+		transform: translateZ(0);
+		-webkit-transform: translateZ(0);
 	}
 
 	.cover-image img {
