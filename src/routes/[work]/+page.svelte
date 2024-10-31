@@ -9,7 +9,7 @@
 	let cover;
 
 	const parallax = () => {
-		var yPos = 0 - window.scrollY / 10;
+		let yPos = 0 - window.scrollY / 10;
 		if (cover) {
 			cover.style.top = 30 + yPos + "%";
 		}

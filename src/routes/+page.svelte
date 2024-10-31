@@ -30,7 +30,7 @@
             <h1>Lukas Nabholz</h1>
             <TitleText/>
             <span class:hide={scrollY > 50} style="transition: all 200ms ease-in;">
-				<p class="scroll-indicator"><span class="icons">A</span> Scroll down</p>
+				<span class="scroll-indicator"><span class="icons">A</span> Scroll down</span>
 			</span>
         </div>
 
@@ -41,17 +41,17 @@
 </div>
 
 <section class="column-container">
-	<span>
-		<p>
-			Multidisciplinary designer with a passion for discovery, experimentation
-			and innovation.
-			<br/> <br/>
-			Solving complex problems and helping new ideas achieve their goals by crafting
-			intuitive and easy-to-use interfaces that are beautiful.
-			<br/> <br/>
-		</p>
-		<EmailCopy/>
-	</span>
+    <div>
+        <p>
+            Multidisciplinary designer with a passion for discovery, experimentation
+            and innovation.
+            <br/> <br/>
+            Solving complex problems and helping new ideas achieve their goals by crafting
+            intuitive and easy-to-use interfaces that are beautiful.
+            <br/> <br/>
+        </p>
+        <EmailCopy/>
+    </div>
 </section>
 
 <section class="column-wrapper" style="padding-top: var(--rem-gap);">
@@ -70,7 +70,7 @@
 	</span>
 </section>
 
-<span style="height: 1vh"></span>
+<span style="height: 1vw"></span>
 
 <section class="skills-container">
     <div class="pill-wrapper">
@@ -85,7 +85,7 @@
     </div>
 </section>
 
-<span style="height: 2vh"></span>
+<span style="height: 1vw"></span>
 
 <MoreShowcase/>
 
@@ -130,7 +130,7 @@
 
     .scroll-indicator {
         position: absolute;
-        bottom: -18px;
+        bottom: -20px;
         left: 0;
         display: none;
         opacity: 0;
@@ -149,11 +149,24 @@
             transform: translateY(-2px) rotateZ(90deg);
         }
         50% {
-            transform: translateY(5px) rotateZ(90deg);
+            transform: translateY(2px) rotateZ(90deg);
         }
         100% {
             transform: translateY(-2px) rotateZ(90deg);
         }
+    }
+
+    .pill-wrapper {
+        font-size: 1.2rem;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        column-gap: 16px;
+        row-gap: 16px;
+
+        width: min(100%, 840px);
+        margin: 0 auto;
     }
 
     @media screen and (max-width: 1020px) {
@@ -184,18 +197,10 @@
         .gradient-container {
             height: 130%;
         }
+
+        .pill-wrapper {
+            font-size: 1rem;
+            column-gap: 14px;
+        }
     }
-
-    .pill-wrapper {
-        font-size: 1.2rem;
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: center;
-        gap: 1em;
-
-        width: min(100%, 840px);
-        margin: 0 auto;
-    }
-
 </style>

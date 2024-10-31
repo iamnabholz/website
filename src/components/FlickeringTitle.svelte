@@ -6,7 +6,7 @@
     export let text;
     export let iconSrc;
 
-    // Function to start the "bitmapped" animation
+    // Function to start the "bit-mapped" animation
     const startSwitch = () => {
         if (!container) return;
         const letters = container.querySelectorAll(".letter");
@@ -17,14 +17,14 @@
         const randomIndex = Math.floor(Math.random() * letters.length);
         const randomLetter = letters[randomIndex];
 
-        // Apply the "bitmapped" class to the random letter
-        randomLetter.classList.add("bitmapped");
+        // Apply the "bit-mapped" class to the random letter
+        randomLetter.classList.add("bit-mapped");
 
         // Set a duration to remove the class again
         const duration = Math.max(3000, Math.floor(Math.random() * 5000));
 
         setTimeout(() => {
-            randomLetter.classList.remove("bitmapped");
+            randomLetter.classList.remove("bit-mapped");
         }, duration);
 
         // Set a delay before starting the next switch

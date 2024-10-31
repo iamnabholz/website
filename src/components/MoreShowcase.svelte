@@ -13,7 +13,7 @@
     <div class="column-container">
         <p>
             Some side projects I've started on my free time, from time managing
-            webapps to videogames.
+            webapps to video games.
             <br/> <br/>
             I enjoy exploring a lot of fields that relate to programming and design.
         </p>
@@ -24,7 +24,7 @@
     <div class="column-container">
         <Project
                 title="Fabric Visions"
-                desc="Videogames I've developed over the past few years."
+                desc="Video games I've developed over the past few years."
                 imgSrc={fabricIcon}
                 href="https://fabricvisions.itch.io/"
         />

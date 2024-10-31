@@ -11,19 +11,17 @@
 
     <div class="column-container">
     <span>
-      <p>
         Currently open to freelance, if you are curious to hear more about my
         work, have an unhinged idea, or simply want to chat you can contact me
         at:
-      </p>
-      <br/>
+      <br/> <br/>
       <EmailCopy/>
       <br/>
       <a id="mailto-link" href="mailto:lukas@nabholz.work">Open email</a>
 
         {#if showLinks}
         <div class="links">
-          <p><b>Links</b></p>
+          <span><b>Links</b></span>
             <!--<a target="_blank" href="https://medium.com/@nabholz">
                       Medium
                   </a>
