@@ -257,7 +257,7 @@
     }
 
     .pills {
-        width: 100%;
+        width: max-content;
         display: flex;
         justify-content: space-around;
         align-items: center;
