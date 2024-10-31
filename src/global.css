@@ -107,14 +107,14 @@ ul li {
     margin: 0.8rem 0;
     padding-left: 1.5em;
     line-height: 1.2;
-    background-image: url(../img/icons/sun-icon.svg);
+    background-image: url("/img/icons/sun-icon.svg");
     background-position: 0 0;
     background-size: 1rem 1em;
     background-repeat: no-repeat;
 }
 
 ul li:hover {
-    background-image: url(../img/icons/happy-icon.svg);
+    background-image: url("/img/icons/happy-icon.svg");
 }
 
 *,
