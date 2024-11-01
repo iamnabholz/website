@@ -1,8 +1,7 @@
 <script>
 	import { onMount } from "svelte";
-	import Gradient from "../../components/Gradient.svelte";
-
-	import Contact from "../../components/Contact.svelte";
+	import Gradient from "$lib/components/Gradient.svelte";
+	import Contact from "$lib/components/Contact.svelte";
 
 	export let data;
 
@@ -88,6 +87,7 @@
 		</div>
 	</a>
 </div>
+
 
 <style>
 	.title-container > h1 {

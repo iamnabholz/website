@@ -18,7 +18,7 @@ This helps keeping your personal and work email addresses clear of any mail that
 Plus, receiving your newsletters in a service made specifically for them provides a bigger advantages than your
 email provider, with many more _reading_ focused features.
 
-![Screenshots Of Stoop's App Multiple Tabs](../../img/stoop/showcase.png)
+![Screenshots Of Stoop's App Multiple Tabs](/img/stoop/showcase.png)
 
 ## 2. Why redesign
 
@@ -48,17 +48,17 @@ The app provides a way to receive alerts when a new issue or post is made in the
 After reading a lot of reviews and looking at similar services and apps there were some clear problems with the latest
 design update that it received:
 
-- Features like muting, folders and more are hidden behind non relevant elements and actions
+- Features like muting, folders and more are hidden behind non-relevant elements and actions
 - In-app browser lacking basic functionality
 - Overall design and style guide not feeling connected
 - Lack of new features and general improvement of existing ones
 - Single screen design doesn't provide with some useful functionality in multitasking
 
-![Screenshots Of Stoop's App Multiple Tabs](../../img/stoop/features.png)
+![Screenshots Of Stoop's App Multiple Tabs](/img/stoop/features.png)
 
 ## 4. Features
 
-After making some designs and exploring some new features that could expand the funcionality and usability of the app I
+After making some designs and exploring some new features that could expand the functionality and usability of the app I
 decided to apply the next ones
 
 ### 4.1 Inbox
@@ -66,14 +66,14 @@ decided to apply the next ones
 There is not really a science behind making a feed that people would enjoy using, it is usually a matter of content your
 users get.
 
-![Inbox Feature Showcase](../../img/stoop/inbox.png)
+![Inbox Feature Showcase](/img/stoop/inbox.png)
 
 ### 4.2 New Library Feature
 
 With a new "Library" tab you can have better organization and save the things that matter the most to you, it could be a
 quote, tools, advice or anything you find in your newsletters.
 
-**Finish reading**: Collects all issues you started reading but haven't mark as read yet.
+**Finish reading**: Collects all issues you started reading but haven't marked as read yet.
 
 **Highlights**: Save single pieces of text information from the issues you read.
 
@@ -83,11 +83,11 @@ quote, tools, advice or anything you find in your newsletters.
 
 And last your **Reading History** showing you all issues and videos you have marked as done.
 
-![Library Features Showcase](../../img/stoop/library.png)
+![Library Features Showcase](/img/stoop/library.png)
 
 ### 4.3 Discovery
 
-Stoop can help you find new insteresting and fun newsletters and channels to subscribe to.
+Stoop can help you find new interesting and fun newsletters and channels to subscribe to.
 
 **Tags** allow you to find more specific topics for what you want to follow, while **Categories** will help you find the
 top newsletters and channels in different categories of course!
@@ -95,7 +95,7 @@ top newsletters and channels in different categories of course!
 Stoop provides basic information like a description and category for the newsletter, you can add quickly to any folder
 you've created before and update you subscription.
 
-![Discovery Features Showcase](../../img/stoop/discover.png)
+![Discovery Features Showcase](/img/stoop/discover.png)
 
 ### 4.4 Reading Experience
 
@@ -103,8 +103,8 @@ The most important feature of a newsletter reading app is the reading experience
 types of concepts for the user experience and analyzing what worked, what didn't and what could be improved from
 previous designs of the app.
 
-![Discovery Features Showcase](../../img/stoop/reading.png)
+![Discovery Features Showcase](/img/stoop/reading.png)
 
 ### 4.5 Settings & Customization
 
-![Discovery Features Showcase](../../img/stoop/styles.png)
+![Discovery Features Showcase](/img/stoop/styles.png)

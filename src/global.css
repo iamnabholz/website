@@ -107,14 +107,14 @@ ul li {
     margin: 0.8rem 0;
     padding-left: 1.5em;
     line-height: 1.2;
-    background-image: url("/img/icons/sun-icon.svg");
+    background-image: url("$lib/icons/sun-icon.svg");
     background-position: 0 0;
     background-size: 1rem 1em;
     background-repeat: no-repeat;
 }
 
 ul li:hover {
-    background-image: url("/img/icons/happy-icon.svg");
+    background-image: url("$lib/icons/happy-icon.svg");
 }
 
 *,
@@ -153,7 +153,7 @@ a {
     color: var(--text-color);
     border-bottom: 0.09em solid var(--text-color);
 
-    transition: all 150ms linear;
+    transition: color 150ms ease-out;
 }
 
 a::after {
@@ -163,12 +163,12 @@ a::after {
     right: -32px;
     top: 2px;
 
-    color: var(--accent-color);
+    color: var(--text-color);
 
     opacity: 0;
 
     pointer-events: none;
-    transition: all 150ms linear;
+    transition: 150ms ease-out;
 }
 
 a:hover,

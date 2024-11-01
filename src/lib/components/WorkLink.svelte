@@ -1,5 +1,5 @@
 <script>
-	export let image, title, detail, color, href;
+	let {image, title, detail, color, href} = $props();
 </script>
 
 <div class="work">
@@ -9,8 +9,8 @@
 		</div>
 
 		<div class="column-wrapper info">
-			<p><span class="icons">E </span><b> {title}</b></p>
-			<p>{detail} <span class="icons hover"> A</span></p>
+			<span><span class="icons">E </span><b> {title}</b></span>
+			<span>{detail} <span class="icons hover"> A</span></span>
 		</div>
 	</a>
 </div>
@@ -28,9 +28,9 @@
 	}
 
 	a:hover {
+		cursor: url("$lib/icons/eye-cursor.svg") 16 16, pointer;
 		color: var(--accent-color);
 	}
-
 
 	.info {
 		gap: 4px;
@@ -75,7 +75,7 @@
 		opacity: 1;
 	}
 
-	p {
+	span {
 		text-transform: capitalize;
 	}
 

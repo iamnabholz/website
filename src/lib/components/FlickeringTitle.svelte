@@ -3,8 +3,8 @@
     import eyeIcon from "$lib/icons/eye-icon.svg?raw";
 
     let container;
-    export let text;
-    export let iconSrc;
+
+    let {text, iconSrc} = $props();
 
     // Function to start the "bit-mapped" animation
     const startSwitch = () => {
@@ -39,6 +39,7 @@
 
 <div class="row-wrapper title">
     <h1 bind:this={container}>
+        <span class="text-height">|</span>
         {#each text as letter}
             <span class="letter">{letter}</span>
         {/each}
@@ -59,6 +60,7 @@
         white-space: nowrap;
         overflow-y: visible;
         text-transform: none;
+        position: relative;
     }
 
     .row-wrapper {
@@ -68,6 +70,14 @@
     .icon {
         height: 96px;
         width: 96px;
+    }
+
+    .text-height {
+        visibility: hidden;
+        position: absolute;
+        height: 100%; /* Retain height while hidden */
+        width: auto; /* Ensure it doesn't occupy width */
+        overflow: hidden;
     }
 
     @media screen and (max-width: 620px) {

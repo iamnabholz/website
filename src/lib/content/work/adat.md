@@ -5,7 +5,7 @@ href: '/adat'
 detail: 'Web Design'
 image: '/img/adat.webp'
 color: '#9423F0'
-order: 2
+order: 5
 ---
 
 ## Introduction
@@ -21,7 +21,7 @@ dictumst vestibulum. Sagittis purus sit amet volutpat.
 | UX Designer      | Figma |   |
 | Product Designer |       |   |
 
-![Imagen](../../img/adat.webp)
+![Imagen](/img/adat.webp)
 
 ## Another heading
 
@@ -29,4 +29,4 @@ Netus et malesuada fames ac turpis egestas. Eget magna fermentum iaculis eu non 
 sit amet mattis vulputate enim. Habitasse platea dictumst quisque sagittis.
 Integer quis auctor elit sed vulputate mi. Dictumst quisque sagittis purus sit amet.
 
-![Imagen](../../img/cruzero.webp)
+![Imagen](/img/cruzero.webp)

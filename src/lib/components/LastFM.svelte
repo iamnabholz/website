@@ -44,14 +44,13 @@
             const currentTime = new Date();
             const trackTime = new Date(recent[0].date.uts * 1000);
             const finalTime = currentTime.getTime() - trackTime.getTime();
-
             trackPlayed = relativeTime(finalTime);
         }
     });
 </script>
 
 <div class="track-container">
-    <a href={trackLink} target="_blank">
+    <a href={trackLink} target="_blank" title="View song on last.fm">
         <img class="track-cover" src={trackCover} alt="Song cover"/>
     </a>
     <div class="track-information">

@@ -5,7 +5,7 @@ href: '/register'
 detail: 'App Design'
 image: '/img/domain-register.webp'
 color: '#5419B6'
-order: 5
+order: 2
 ---
 
 ## Introduction
@@ -16,4 +16,4 @@ sometimes).
 Regardless of what your go-to domain register is, everybody has experienced having to reach for your PC to finish doing
 some task that feels mundane: "Copy and paste this value in this box of your domain register"
 
-![Screenshots Of Stoop's App Multiple Tabs](../../img/stoop/showcase.png)
+![Screenshots Of Stoop's App Multiple Tabs](/img/stoop/showcase.png)

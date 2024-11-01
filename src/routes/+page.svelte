@@ -1,14 +1,14 @@
 <script>
-    import EmailCopy from "../components/EmailCopy.svelte";
-    import FlickeringTitle from "../components/FlickeringTitle.svelte";
-    import Gradient from "../components/Gradient.svelte";
-    import TitleText from "../components/TitleText.svelte";
-    import WorkLink from "../components/WorkLink.svelte";
-    import MoreShowcase from "../components/MoreShowcase.svelte";
+    import EmailCopy from "$lib/components/EmailCopy.svelte";
+    import FlickeringTitle from "$lib/components/FlickeringTitle.svelte";
+    import Gradient from "$lib/components/Gradient.svelte";
+    import TitleText from "$lib/components/TitleText.svelte";
+    import WorkLink from "$lib/components/WorkLink.svelte";
+    import MoreShowcase from "$lib/components/MoreShowcase.svelte";
 
     import sunIcon from "$lib/icons/sun-icon.svg?raw";
-    import Contact from "../components/Contact.svelte";
-    import LastFM from "../components/LastFM.svelte";
+    import Contact from "$lib/components/Contact.svelte";
+    import LastFM from "$lib/components/LastFM.svelte";
 
     export let data;
 
@@ -110,7 +110,7 @@
 
 <style>
     .header-container {
-        min-height: 25rem;
+        min-height: 24.6rem;
     }
 
     .header {

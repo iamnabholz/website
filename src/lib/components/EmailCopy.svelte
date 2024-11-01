@@ -29,6 +29,10 @@
         outline: none;
     }
 
+    .icons {
+        transition: color 150ms ease-out;
+    }
+
     button:hover,
     button:active,
     button:hover .icons,

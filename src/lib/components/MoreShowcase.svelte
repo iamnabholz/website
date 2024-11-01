@@ -1,9 +1,5 @@
 <script>
     import FlickeringTitle from "./FlickeringTitle.svelte";
-
-    import timesetsIcon from "$lib/icons/timesets-icon.webp";
-    import fabricIcon from "$lib/icons/fabric-icon.webp";
-
     import Project from "./Project.svelte";
 </script>
 
@@ -25,14 +21,14 @@
         <Project
                 title="Fabric Visions"
                 desc="Video games I've developed over the past few years."
-                imgSrc={fabricIcon}
+                imgSrc="./img/fabric-icon.webp"
                 href="https://fabricvisions.itch.io/"
         />
 
         <Project
                 title="Timesets"
                 desc="Pomodoro-like timer and stopwatch that you can customize."
-                imgSrc={timesetsIcon}
+                imgSrc="./img/timesets-icon.webp"
                 href="https://timesets.netlify.app/"
         />
 
@@ -46,7 +42,7 @@
         <Project
                 title="Panorama Tab"
                 desc="Browser extension that replaces your new tab with a new customizable design."
-                imgSrc="/favicon.png"
+                imgSrc="./favicon.png"
                 href="https://panoramatab.netlify.app/"
         />
     </div>

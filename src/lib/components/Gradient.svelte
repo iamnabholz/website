@@ -37,7 +37,7 @@
 	const top = Math.random() * 90;
 	const left = Math.random() * 90;
 
-	const icon = Math.random() > 0.5 ? happyIcon : worldIcon; // If you want to use icons, uncomment
+	const icon = Math.random() > 0.5 ? worldIcon : happyIcon; // If you want to use icons, uncomment
 
 	const gradientHeight = small ? 120 : 300;
 </script>
