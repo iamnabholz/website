@@ -30,7 +30,7 @@
     }
 
     .icons {
-        transition: color 150ms ease-out;
+        transition: 150ms ease-out;
     }
 
     button:hover,
@@ -38,5 +38,9 @@
     button:hover .icons,
     button:active .icons {
         color: var(--accent-color);
+    }
+
+    button:active .icons {
+        transform: scale(1.4);
     }
 </style>
