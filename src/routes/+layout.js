@@ -2,3 +2,11 @@
 export const prerender = true;
 
 import '../global.css';
+
+export const load = ({url}) => {
+    const {pathname} = url;
+
+    return {
+        pathname
+    };
+};

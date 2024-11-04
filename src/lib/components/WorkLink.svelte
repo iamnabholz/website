@@ -64,11 +64,11 @@
 		height: auto;
 
 		filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5));
-		transition: all 150ms ease;
+		transition: transform 2s ease-out;
 	}
 
 	.work:hover img {
-		transform: scale(1.01);
+		transform: scale(1.04);
 	}
 
 	.work:hover .hover {

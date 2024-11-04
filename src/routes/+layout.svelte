@@ -1,28 +1,36 @@
 <script>
-	import { onMount } from 'svelte';
+    import {onMount} from 'svelte';
+    import {slide, fly} from "svelte/transition";
+    import {cubicIn, cubicOut} from "svelte/easing";
 
-	const darkThemeSelectionColors = ['#ff6361', '#2bff88', '#f9ce34', '#4854f9'];
+    export let data;
 
-	const lightThemeSelectionColors = ['#ff6361', '#4854f9', '#06BEE1'];
+    const darkThemeSelectionColors = ['#ff6361', '#2bff88', '#f9ce34', '#4854f9'];
 
-	const darkThemeColor =
-		darkThemeSelectionColors[Math.floor(Math.random() * darkThemeSelectionColors.length)];
+    const lightThemeSelectionColors = ['#ff6361', '#4854f9', '#06BEE1'];
 
-	const lightThemeColor =
-		lightThemeSelectionColors[Math.floor(Math.random() * lightThemeSelectionColors.length)];
+    const darkThemeColor =
+        darkThemeSelectionColors[Math.floor(Math.random() * darkThemeSelectionColors.length)];
 
-	onMount(() => {
-		// Select the root element
-		const root = document.documentElement;
+    const lightThemeColor =
+        lightThemeSelectionColors[Math.floor(Math.random() * lightThemeSelectionColors.length)];
 
-		// Update CSS variables
-		root.style.setProperty('--dark-theme', darkThemeColor);
-		root.style.setProperty('--light-theme', lightThemeColor);
-	});
+    onMount(() => {
+        // Select the root element
+        const root = document.documentElement;
+
+        // Update CSS variables
+        root.style.setProperty('--dark-theme', darkThemeColor);
+        root.style.setProperty('--light-theme', lightThemeColor);
+    });
 </script>
 
 <svelte:head>
-	<title>Lukas Nabholz | UX Designer</title>
+    <title>Lukas Nabholz | UX Designer</title>
 </svelte:head>
 
-<slot />
+{#key data.pathname}
+    <main in:fly={{ y: 100, duration: 350, delay: 400 }} out:fly={{ y: 100, duration: 350 }}>
+        <slot/>
+    </main>
+{/key}

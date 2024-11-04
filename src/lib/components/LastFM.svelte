@@ -12,12 +12,12 @@
         const minutes = Math.floor((duration / (1000 * 60)) % 60);
         const hours = Math.floor((duration / (1000 * 60 * 60)) % 24);
 
-        if (hours > 1) {
-            if (minutes < 2) {
+        if (hours > 0) {
+            if (hours < 2) {
                 return "An hour ago";
             }
             return hours + " hours ago"
-        } else if (hours < 1) {
+        } else {
             if (minutes < 1) {
                 return "A minute ago";
             }
@@ -94,6 +94,11 @@
 
     a {
         border: none;
+        transition: 250ms ease-out;
+    }
+
+    a:hover {
+        transform: scale(1.02);
     }
 
     a::after {

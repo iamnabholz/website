@@ -163,7 +163,7 @@
         align-items: center;
         justify-content: center;
         column-gap: 16px;
-        row-gap: 16px;
+        row-gap: 12px;
 
         width: min(100%, 840px);
         margin: 0 auto;

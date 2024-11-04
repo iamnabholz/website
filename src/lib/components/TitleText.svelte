@@ -99,7 +99,7 @@
 </script>
 
 <h1 bind:this={textElement}>
-    <span style="display: none; opacity: 0; width: 0;">s</span>
+    <span style="display: none; opacity: 0; width: 0;">|</span>
 </h1>
 
 <style>
