@@ -86,6 +86,7 @@
 	@media screen and (max-width: 1020px) {
 		.image {
 			padding: 14px;
+			min-height: 16rem;
 		}
 
 		.image img {

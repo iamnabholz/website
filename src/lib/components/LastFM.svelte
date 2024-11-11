@@ -1,5 +1,5 @@
 <script>
-    import {onMount} from "svelte";
+    import { onMount } from "svelte";
 
     let trackCover = "/img/track-cover.png";
     let trackLink = "";
@@ -16,18 +16,18 @@
             if (hours < 2) {
                 return "An hour ago";
             }
-            return hours + " hours ago"
+            return hours + " hours ago";
         } else {
             if (minutes < 1) {
                 return "A minute ago";
             }
-            return minutes + " minutes ago"
+            return minutes + " minutes ago";
         }
-    }
+    };
 
     onMount(async () => {
         const response = await fetch(
-            "https://lively-credit-b295.nabholz.workers.dev/"
+            "https://lively-credit-b295.nabholz.workers.dev/",
         );
         const data = await response.json();
         const recent = data.recenttracks.track;
@@ -51,10 +51,21 @@
 
 <div class="track-container">
     <a href={trackLink} target="_blank" title="View song on last.fm">
-        <img class="track-cover" src={trackCover} alt="Song cover"/>
+        <img class="track-cover" src={trackCover} alt="Song cover" />
     </a>
     <div class="track-information">
-        <p class="playing-info" class:is-playing={isCurrentlyPlaying}>{trackPlayed}</p>
+        <span class="playing-info" class:is-playing={isCurrentlyPlaying}>
+            {trackPlayed}
+            <span
+                class:is-playing={isCurrentlyPlaying}
+                class="playing-lines row-wrapper"
+            >
+                <span class="line bass"></span>
+                <span class="line mid"></span>
+                <span class="line high"></span>
+            </span>
+        </span>
+
         <p>{trackName}</p>
         <p>{trackArtist}</p>
     </div>
@@ -85,11 +96,8 @@
         text-transform: uppercase;
         font-weight: bold;
         opacity: 1;
-    }
-
-    .is-playing {
-        color: var(--accent-color);
-        opacity: 1;
+        position: relative;
+        width: fit-content;
     }
 
     a {
@@ -103,5 +111,57 @@
 
     a::after {
         display: none;
+    }
+
+    .playing-lines {
+        height: 100%;
+        align-items: center;
+        gap: 3px;
+        position: absolute;
+        top: -1px;
+        right: -26px;
+        opacity: 0;
+    }
+
+    .line {
+        height: 12px;
+        width: 3px;
+        border-radius: 4px;
+        background-color: var(--accent-color);
+    }
+
+    .bass {
+        animation: pulse 4.3s 100ms infinite reverse ease-in-out;
+    }
+
+    .mid {
+        animation: pulse 2s 120ms infinite ease-out;
+    }
+
+    .high {
+        animation: pulse 1s infinite alternate-reverse ease-out;
+    }
+
+    .is-playing {
+        color: var(--accent-color);
+        opacity: 1;
+    }
+
+    @keyframes pulse {
+        0% {
+            height: 2px;
+        }
+        50% {
+            height: 12px;
+        }
+        60% {
+            height: 5px;
+        }
+        80% {
+            height: 10px;
+        }
+        100% {
+            height: 2px;
+        }
     }
 </style>

@@ -88,7 +88,6 @@
 	</a>
 </div>
 
-
 <style>
 	.title-container > h1 {
 		line-height: 1.2;
@@ -196,6 +195,41 @@
 		margin: 56px 0;
 	}
 
+	:global(.side-by-side) {
+		margin: 5rem 0 0;
+		width: 100%;
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 4rem;
+		align-items: center;
+	}
+
+	:global(.side-text) {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+		width: min(100%, 620px);
+	}
+
+	:global(.side-image) {
+		background-color: var(--themeColor);
+		padding: 1rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		overflow: hidden;
+
+		height: 660px;
+		width: 100%;
+	}
+
+	:global(.side-image > img) {
+		object-fit: contain;
+		max-width: 100%;
+		max-height: 100%;
+		height: auto;
+	}
+
 	.image-container img {
 		object-fit: contain;
 		max-width: 100%;
@@ -212,6 +246,15 @@
 
 		:global(.content > *) {
 			margin-left: 0;
+		}
+
+		:global(.side-by-side) {
+			margin: 5rem 0 0;
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 4rem;
 		}
 	}
 </style>

@@ -1,7 +1,6 @@
 <script>
     import {onMount} from 'svelte';
     import {slide, fly} from "svelte/transition";
-    import {cubicIn, cubicOut} from "svelte/easing";
 
     export let data;
 
