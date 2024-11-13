@@ -2,7 +2,7 @@
 	// Uncomment and update these if you're using the icons
 	//import worldIcon from "$lib/icons/world-icon.svg?raw";
 	//import happyIcon from "$lib/icons/sun-icon.svg?raw";
-	import logo from "$lib/icons/logo.svg?raw";
+	import logo from "$lib/icons/eye-icon.svg?raw";
 
 	export let small = false;
 
@@ -52,7 +52,7 @@
 		const topY = mouseY - bounds.y;
 		const center = {
 			x: leftX - bounds.width / 2,
-			y: topY - bounds.height / 2
+			y: topY - bounds.height / 2,
 		};
 		const distance = Math.sqrt(center.x ** 2 + center.y ** 2);
 
@@ -65,19 +65,26 @@
        	${Math.log(distance) * 2}deg
       )
     `;
-	}
+	};
 
 	const handleMouseEnter = () => {
 		bounds = card.getBoundingClientRect();
-	}
+	};
 
 	const handleMouseLeave = () => {
-		card.style.transform = '';
-	}
+		card.style.transform = "";
+	};
 </script>
 
-<a href="/" aria-label="Home" title="Home" bind:this={card} onmousemove={rotateToMouse} onmouseenter={handleMouseEnter}
-   onmouseleave={handleMouseLeave}>
+<a
+	href="/"
+	aria-label="Home"
+	title="Home"
+	bind:this={card}
+	onmousemove={rotateToMouse}
+	onmouseenter={handleMouseEnter}
+	onmouseleave={handleMouseLeave}
+>
 	<div
 		style="height: {gradientHeight}px; background: radial-gradient(circle at {Math.floor(
 			Math.random() * 100,
@@ -131,11 +138,11 @@
 
 	.floating-icon {
 		position: absolute;
-		bottom: calc(50% - 60px);
-		left: calc(50% - 60px);
+		bottom: calc(50% - 50px);
+		left: calc(50% - 50px);
 
-		height: 120px;
-		width: 120px;
+		height: 100px;
+		width: 100px;
 
 		color: white;
 		filter: drop-shadow(0 0 4px #00000030);

@@ -1,5 +1,5 @@
 <script>
-	let {image, title, detail, color, href} = $props();
+	let { image, title, detail, color, href } = $props();
 </script>
 
 <div class="work">
@@ -28,7 +28,7 @@
 	}
 
 	a:hover {
-		cursor: url("$lib/icons/eye-cursor.svg") 16 16, pointer;
+		cursor: pointer;
 		color: var(--accent-color);
 	}
 
@@ -79,9 +79,9 @@
 		text-transform: capitalize;
 	}
 
-    .icons {
-        padding-right: 6px;
-    }
+	.icons {
+		padding-right: 6px;
+	}
 
 	@media screen and (max-width: 1020px) {
 		.image {

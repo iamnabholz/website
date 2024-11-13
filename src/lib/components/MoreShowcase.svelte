@@ -4,13 +4,13 @@
 </script>
 
 <section class="side-container">
-    <FlickeringTitle text="Experiments"/>
+    <FlickeringTitle text="Experiments" />
 
     <div class="column-container">
         <p>
             Some side projects I've started on my free time, from time managing
             webapps to video games.
-            <br/> <br/>
+            <br /> <br />
             I enjoy exploring a lot of fields that relate to programming and design.
         </p>
     </div>
@@ -19,17 +19,17 @@
 
     <div class="column-container">
         <Project
-                title="Fabric Visions"
-                desc="Video games I've developed over the past few years."
-                imgSrc="./img/fabric-icon.webp"
-                href="https://fabricvisions.itch.io/"
+            title="Fabric Visions"
+            desc="Video games I've developed over the past few years."
+            imgSrc="./img/fabric-icon.webp"
+            href="https://fabricvisions.itch.io/"
         />
 
         <Project
-                title="Timesets"
-                desc="Pomodoro-like timer and stopwatch that you can customize."
-                imgSrc="./img/timesets-icon.webp"
-                href="https://timesets.netlify.app/"
+            title="Timesets"
+            desc="Pomodoro-like timer and stopwatch that you can customize."
+            imgSrc="./img/timesets-icon.webp"
+            href="https://timesets.netlify.app/"
         />
 
         <!--<Project
@@ -40,10 +40,10 @@
         />-->
 
         <Project
-                title="Panorama Tab"
-                desc="Browser extension that replaces your new tab with a new customizable design."
-                imgSrc="./favicon.png"
-                href="https://panoramatab.netlify.app/"
+            title="Panorama Tab"
+            desc="Browser extension that replaces your new tab with a new customizable design."
+            imgSrc="./favicon.png"
+            href="https://panoramatab.netlify.app/"
         />
     </div>
 </section>
@@ -70,7 +70,16 @@
         z-index: -5;
     }
 
-    /*a::after {
+    /*a {
+        color: var(--light-color);
+        border-bottom: 0.09em solid currentColor;
+    }
+
+    a:hover {
+        color: var(--accent-color);
+    }
+
+    a::after {
         font-family: "Icons";
         content: "A";
     }*/

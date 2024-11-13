@@ -1,28 +1,28 @@
 <script>
-    import FlickeringTitle from "./FlickeringTitle.svelte";
-    import EmailCopy from "./EmailCopy.svelte";
-    import mailIcon from "$lib/icons/mail-icon.svg?raw";
+  import FlickeringTitle from "./FlickeringTitle.svelte";
+  import EmailCopy from "./EmailCopy.svelte";
+  import mailIcon from "$lib/icons/mail-icon.svg?raw";
+  import atIcon from "$lib/icons/at-icon.svg?raw";
 
-    export let showLinks = false;
+  export let showLinks = false;
 </script>
 
 <section class="column-wrapper">
-    <FlickeringTitle text="Contact" iconSrc={mailIcon}/>
+  <FlickeringTitle text="Contact" iconSrc={showLinks ? atIcon : mailIcon} />
 
-    <div class="column-container">
+  <div class="column-container">
     <span>
-        Currently open to freelance, if you are curious to hear more about my
-        work, have an unhinged idea, or simply want to chat you can contact me
-        at:
-      <br/> <br/>
-      <EmailCopy/>
-      <br/>
+      Currently open to freelance, if you are curious to hear more about my
+      work, have an unhinged idea, or simply want to chat you can contact me at:
+      <br /> <br />
+      <EmailCopy />
+      <br />
       <a id="mailto-link" href="mailto:lukas@nabholz.work">Open email</a>
 
-        {#if showLinks}
+      {#if showLinks}
         <div class="links">
           <span><b>Links</b></span>
-            <!--<a target="_blank" href="https://medium.com/@nabholz">
+          <!--<a target="_blank" href="https://medium.com/@nabholz">
                       Medium
                   </a>
                   <a target="_blank" href="https://behance.net/nabholz">
@@ -37,18 +37,18 @@
         </div>
       {/if}
     </span>
-    </div>
+  </div>
 </section>
 
 <style>
-    .column-wrapper {
-        gap: var(--rem-gap);
-    }
+  .column-wrapper {
+    gap: var(--rem-gap);
+  }
 
-    .links {
-        padding-top: var(--rem-gap);
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-    }
+  .links {
+    padding-top: var(--rem-gap);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
 </style>

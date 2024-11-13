@@ -116,17 +116,16 @@
     .playing-lines {
         height: 100%;
         align-items: center;
-        gap: 3px;
+        gap: 2.4px;
         position: absolute;
         top: -1px;
-        right: -26px;
+        right: -20px;
         opacity: 0;
     }
 
     .line {
         height: 12px;
-        width: 3px;
-        border-radius: 4px;
+        width: 2px;
         background-color: var(--accent-color);
     }
 
