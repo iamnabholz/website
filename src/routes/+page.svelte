@@ -9,25 +9,10 @@
   import sunIcon from "$lib/icons/sun-icon.svg?raw";
   import Contact from "$lib/components/Contact.svelte";
   import LastFM from "$lib/components/LastFM.svelte";
+  import Skills from "../lib/components/Skills.svelte";
+  import Project from "../lib/components/Project.svelte";
 
   export let data;
-
-  const skills = [
-    "Figma",
-    "Affinity Suite",
-    "Penpot",
-    "Photoshop",
-    "Illustrator",
-    "Zeplin",
-    "Readymag",
-    "Webflow",
-    "Framer",
-    "HTML&CSS",
-    "JavaScript",
-    "Astro",
-    "Svelte",
-  ];
-  const icons = ["A", "B", "D", "E", "F", "H", "M", "S", "W"];
 
   let scrollY = 0;
 </script>
@@ -85,11 +70,7 @@
     {/each}
   </span>
 
-  <p
-    style="font-family: 'PP Editorial New'; font-size: 1.6rem; padding-top: 2rem;"
-  >
-    Projects from Dribbble
-  </p>
+  <p class="title" style="padding-top: 2rem;">From Dribbble</p>
 
   <span class="work-links-wrapper">
     <a
@@ -121,18 +102,7 @@
 
 <span style="height: 1vw"></span>
 
-<section class="skills-container">
-  <div class="pill-wrapper">
-    {#each skills as skill}
-      <p>
-        {skill}
-      </p>
-      <p class="icons">
-        {icons[Math.floor(Math.random() * icons.length)]}
-      </p>
-    {/each}
-  </div>
-</section>
+<Skills />
 
 <span style="height: 1vw"></span>
 
@@ -140,24 +110,70 @@
 
 <Contact showLinks={true} />
 
-<p>
-  Santa Cruz, Bolivia <br />
-  <b style="font-size: 1.4rem;">
-    {new Date().toLocaleTimeString("default", {
-      timeZone: "America/La_Paz",
-      weekday: "short",
-      hour: "2-digit",
-      minute: "2-digit",
-      hour12: true,
-    })}
-  </b>
-</p>
+<section class="column-wrapper">
+  <p>
+    Santa Cruz, Bolivia
+    <br />
+    <b style="font-size: 1.4rem;">
+      {new Date().toLocaleTimeString("default", {
+        timeZone: "America/La_Paz",
+        weekday: "short",
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true,
+      })}
+    </b>
+  </p>
 
-<LastFM />
+  <div class="footer">
+    <span class="column-wrapper">
+      <p class="title">I've been listening to—</p>
+      <br />
+      <LastFM />
+    </span>
+    <span class="column-wrapper">
+      <p class="title">And working on—</p>
+      <br />
+      <Project
+        title="Squircles Plugin"
+        desc="Penpot plugin to generate squircle shapes directly on Penpot"
+        imgSrc="/img/icons/squircles-icon.webp"
+        href="/"
+      />
+    </span>
+  </div>
+</section>
 
-<span style="height: 64px"></span>
+<span class="bottom-gradient"> </span>
 
 <style>
+  .footer {
+    padding: 4rem 0;
+    display: grid;
+    gap: 2rem;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .bottom-gradient {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 240px;
+    background: var(--background-color);
+    background: linear-gradient(
+      180deg,
+      var(--background-color) 0%,
+      var(--accent-color) 100%
+    );
+    z-index: -10;
+  }
+
+  .title {
+    font-family: "PP Editorial New";
+    font-size: 1.6rem;
+  }
+
   .header-container {
     min-height: 24.6rem;
   }
@@ -205,19 +221,6 @@
     }
   }
 
-  .pill-wrapper {
-    font-size: 1.2rem;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    column-gap: 16px;
-    row-gap: 12px;
-
-    width: min(100%, 840px);
-    margin: 0 auto;
-  }
-
   .work-links-wrapper {
     padding-top: 1rem;
     display: grid;
@@ -227,7 +230,7 @@
 
   .work-links-wrapper img {
     width: 100%;
-    transition: 200ms ease-in-out;
+    transition: 1s ease-out;
   }
 
   .work-links-wrapper a {
@@ -257,7 +260,7 @@
   }
 
   .work-links-wrapper a:hover img {
-    transform: scale(1.01);
+    transform: scale(1.05);
   }
 
   .work-links-wrapper a::after {
@@ -299,14 +302,17 @@
     }
   }
 
+  @media screen and (max-width: 820px) {
+    .footer {
+      padding-bottom: 6rem;
+      gap: 3rem;
+      grid-template-columns: 1fr;
+    }
+  }
+
   @media screen and (max-width: 620px) {
     .gradient-container {
       height: 130%;
-    }
-
-    .pill-wrapper {
-      font-size: 1rem;
-      column-gap: 14px;
     }
 
     .work-links-wrapper {

@@ -12,8 +12,10 @@
 
   <div class="column-container">
     <span>
-      Currently open to freelance, if you are curious to hear more about my
-      work, have an unhinged idea, or simply want to chat you can contact me at:
+      Currently open for freelance projects.
+      <br /> <br />
+      If you'd like to discuss your ideas, explore a creative collaboration, or simply
+      connect, drop me a message at:
       <br /> <br />
       <EmailCopy />
       <br />

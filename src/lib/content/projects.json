@@ -3,14 +3,14 @@
     "visible": true,
     "title": "Fabric Visions",
     "description": "Video games I've developed over the past few years.",
-    "image": "./img/fabric-icon.webp",
+    "image": "./img/icons/fabric-icon.webp",
     "href": "https://fabricvisions.itch.io/"
   },
   {
     "visible": true,
     "title": "Timesets",
     "description": "Pomodoro-like timer and stopwatch that you can customize.",
-    "image": "./img/timesets-icon.webp",
+    "image": "./img/icons/timesets-icon.webp",
     "href": "https://timesets.netlify.app/"
   },
   {
@@ -24,7 +24,7 @@
     "visible": false,
     "title": "LUCKYSCREENS",
     "description": "Sharing graphics, wallpapers and more.",
-    "image": "./favicon.png",
+    "image": "./img/icons/lucky-icon.webp",
     "href": "https://luckyscreens.netlify.app/"
   },
   {

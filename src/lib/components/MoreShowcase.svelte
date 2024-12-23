@@ -17,14 +17,14 @@
 
   <div class="column-container">
     <p>
-      Some side projects I've started on my free time, from time managing
-      webapps to video games.
-      <br /> <br />
-      I enjoy exploring a lot of fields that relate to programming and design.
+      From small game-jam projects to utility-focused extensions, I love
+      exploring different ways to bring ideas to life through code and design.
+      <br /><br />
+      These side projects are my playground for learning and experimentation.
     </p>
   </div>
 
-  <!--<a href="/projects">Explore all projects</a>-->
+  <a href="/projects">Explore all projects</a>
 
   <div class="column-container">
     {#each projects.slice(0, 3) as project}
@@ -60,7 +60,7 @@
     z-index: -5;
   }
 
-  /*a {
+  a {
     color: var(--light-color);
     border-bottom: 0.09em solid currentColor;
   }
@@ -72,7 +72,7 @@
   a::after {
     font-family: "Icons";
     content: "A";
-    }*/
+  }
 
   @media screen and (max-width: 1020px) {
     .side-container::before {
