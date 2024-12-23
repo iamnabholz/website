@@ -1,14 +1,13 @@
 <script>
   const skills = [
     "Figma",
-    "Affinity Suite",
     "Penpot",
+    "Affinity Suite",
     "Photoshop",
     "Illustrator",
     "Zeplin",
     "Readymag",
     "Webflow",
-    "Framer",
     "HTML&CSS",
     "JavaScript",
     "Astro",
