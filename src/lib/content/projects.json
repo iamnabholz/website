@@ -1,0 +1,37 @@
+[
+  {
+    "visible": true,
+    "title": "Fabric Visions",
+    "description": "Video games I've developed over the past few years.",
+    "image": "./img/fabric-icon.webp",
+    "href": "https://fabricvisions.itch.io/"
+  },
+  {
+    "visible": true,
+    "title": "Timesets",
+    "description": "Pomodoro-like timer and stopwatch that you can customize.",
+    "image": "./img/timesets-icon.webp",
+    "href": "https://timesets.netlify.app/"
+  },
+  {
+    "visible": true,
+    "title": "Panorama Tab",
+    "description": "Browser extension that replaces your new tab with a new customizable design.",
+    "image": "./favicon.png",
+    "href": "https://panoramatab.netlify.app/"
+  },
+  {
+    "visible": false,
+    "title": "LUCKYSCREENS",
+    "description": "Sharing graphics, wallpapers and more.",
+    "image": "./favicon.png",
+    "href": "https://luckyscreens.netlify.app/"
+  },
+  {
+    "visible": true,
+    "title": "Penpot Plugins",
+    "description": "5 Penpot plugins I made for a plugin challenge",
+    "image": "./favicon.png",
+    "href": "https://buymeacoffee.com/nabholz/open-source-penpot-plugins"
+  }
+]

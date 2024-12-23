@@ -1,11 +1,11 @@
 ---
-title: 'Domain Register'
-subtitle: 'Bringing the management experience to mobile'
-href: '/register'
-detail: 'App Design'
-image: '/img/domain-register.webp'
-color: '#5419B6'
-order: 2
+title: "Domain Register"
+subtitle: "Domain management experience for mobile"
+href: "/register"
+detail: "App Design"
+image: "/img/domain-register.webp"
+color: "#5419B6"
+order: 3
 ---
 
 ## Introduction
@@ -16,19 +16,17 @@ sometimes).
 Regardless of what your go-to domain register is, everybody has experienced having to reach for your PC to finish doing
 some task that feels mundane: "Copy and paste this value in this box of your domain register"
 
-
 <div class="side-by-side">
 
 <span class="side-text">
 
-## Content
+## Homepage
 
-Adipiscing enim eu turpis egestas pretium. Euismod elementum nisi quis eleifend quam adipiscing. In hac habitasse platea
-dictumst vestibulum.
+In the homepage you will find every action you can take is one tap away.
 
-Sagittis purus sit amet volutpat. Netus et malesuada fames ac turpis egestas. Eget magna fermentum iaculis eu non diam
-phasellus vestibulum lorem. Varius sit amet mattis vulputate enim. Habitasse platea dictumst quisque sagittis. Integer
-quis auctor elit sed vulputate mi. Dictumst quisque sagittis purus sit amet.
+Search for new domains, transfer your existing domains or view your wishlisted domains or items you've already added to your cart.
+
+Quick look to all the domains you have currently registered.
 
 </span>
 
@@ -44,20 +42,17 @@ quis auctor elit sed vulputate mi. Dictumst quisque sagittis purus sit amet.
 
 <span class="side-text">
 
-## Content
+## Search and Save
 
-Adipiscing enim eu turpis egestas pretium. Euismod elementum nisi quis eleifend quam adipiscing. In hac habitasse platea
-dictumst vestibulum.
+Search for domains and quickly see discounts or save it for later if you want to keep an eye of it for the future.
 
-Sagittis purus sit amet volutpat. Netus et malesuada fames ac turpis egestas. Eget magna fermentum iaculis eu non diam
-phasellus vestibulum lorem. Varius sit amet mattis vulputate enim. Habitasse platea dictumst quisque sagittis. Integer
-quis auctor elit sed vulputate mi. Dictumst quisque sagittis purus sit amet.
+Find recommended domains based on your input.
 
 </span>
 
 <span class="side-image">
 
-![Add to cart screenshot](/img/register/add-to-cart.png)
+![Search functionality](/img/register/search.png)
 
 </span>
 
@@ -67,20 +62,15 @@ quis auctor elit sed vulputate mi. Dictumst quisque sagittis purus sit amet.
 
 <span class="side-text">
 
-## Content
+## Cart Management
 
-Adipiscing enim eu turpis egestas pretium. Euismod elementum nisi quis eleifend quam adipiscing. In hac habitasse platea
-dictumst vestibulum.
-
-Sagittis purus sit amet volutpat. Netus et malesuada fames ac turpis egestas. Eget magna fermentum iaculis eu non diam
-phasellus vestibulum lorem. Varius sit amet mattis vulputate enim. Habitasse platea dictumst quisque sagittis. Integer
-quis auctor elit sed vulputate mi. Dictumst quisque sagittis purus sit amet.
+Quickly manage the registration of your new domain, set the number of years and included packages that you'd like: e-mail service registration, premium customer support, and more.
 
 </span>
 
 <span class="side-image">
 
-![Search functionality](/img/register/search.png)
+![Add to cart screenshot](/img/register/add-to-cart.png)
 
 </span>
 

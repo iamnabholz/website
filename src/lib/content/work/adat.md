@@ -1,11 +1,11 @@
 ---
-title: 'Adat'
-subtitle: 'Effective membership communities for creators'
-href: '/adat'
-detail: 'Web Design'
-image: '/img/adat.webp'
-color: '#9423F0'
-order: 5
+title: "Adat"
+subtitle: "Effective membership communities for creators"
+href: "/adat"
+detail: "Web Design"
+image: "/img/adat.webp"
+color: "#9423F0"
+order: 2
 ---
 
 ## Introduction
@@ -16,10 +16,10 @@ aliqua. Vitae ultricies leo integer malesuada nunc vel risus commodo viverra.
 Adipiscing enim eu turpis egestas pretium. Euismod elementum nisi quis eleifend quam adipiscing. In hac habitasse platea
 dictumst vestibulum. Sagittis purus sit amet volutpat.
 
-| Role             | Tools |   |
-|:-----------------|:------|:--|
-| UX Designer      | Figma |   |
-| Product Designer |       |   |
+| Role             | Tools |     |
+| :--------------- | :---- | :-- |
+| UX Designer      | Figma |     |
+| Product Designer |       |     |
 
 ![Imagen](/img/adat.webp)
 
