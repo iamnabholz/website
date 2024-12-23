@@ -304,5 +304,10 @@
       font-size: 1rem;
       column-gap: 14px;
     }
+
+    .work-links-wrapper {
+      padding-top: 0.8rem;
+      gap: 0.6rem;
+    }
   }
 </style>
