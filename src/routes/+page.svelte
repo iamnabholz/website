@@ -265,6 +265,10 @@
   }
 
   @media screen and (max-width: 1200px) {
+    .work-links-wrapper a:first-child {
+      display: none;
+    }
+
     .work-links-wrapper {
       gap: 2rem;
       grid-template-columns: repeat(2, 1fr);
