@@ -1,8 +1,8 @@
 import { error } from "@sveltejs/kit";
 
-export const load = async ({ params }) => {
+export const load = async ({ params, fetch }) => {
   try {
-    const response = await fetch("api/posts");
+    const response = await fetch("/api/works");
     const posts = await response.json();
 
     const currentPostIndex = posts.findIndex(
