@@ -15,11 +15,9 @@
   <title>Side Projects | Lukas Nabholz</title>
 </svelte:head>
 
-<div>
+<div style="min-height: 6rem">
   <Gradient small={true} />
 </div>
-
-<span style="height: 2rem"></span>
 
 <FlickeringTitle text="More Projects" {iconSrc} />
 
