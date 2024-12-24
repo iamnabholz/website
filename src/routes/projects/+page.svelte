@@ -15,7 +15,7 @@
   <title>Side Projects | Lukas Nabholz</title>
 </svelte:head>
 
-<div style="min-height: 6rem">
+<div style="min-height: 16rem">
   <Gradient small={true} />
 </div>
 
