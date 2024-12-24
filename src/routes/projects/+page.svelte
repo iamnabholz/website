@@ -2,6 +2,7 @@
   import FlickeringTitle from "$lib/components/FlickeringTitle.svelte";
   import Gradient from "$lib/components/Gradient.svelte";
   import Project from "$lib/components/Project.svelte";
+  import ProjectBig from "../../lib/components/ProjectBig.svelte";
   import Contact from "$lib/components/Contact.svelte";
   import iconSrc from "$lib/icons/asterisk.svg?raw";
 
@@ -23,12 +24,20 @@
 
 <div class="column-container">
   {#each projects as item}
-    <Project
-      title={item.title}
-      desc={item.description}
-      imgSrc={item.image}
-      href={item.href}
-    />
+    {#if !item.links}
+      <Project
+        title={item.title}
+        description={item.description}
+        imgSrc={item.image}
+        href={item.href}
+      />
+    {:else}
+      <ProjectBig
+        title={item.title}
+        description={item.description}
+        links={item.links}
+      />
+    {/if}
   {/each}
 </div>
 

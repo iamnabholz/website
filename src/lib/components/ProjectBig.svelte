@@ -1,20 +1,30 @@
 <script>
-  let { title, description, imgSrc, href, dark = false } = $props();
+  let { title, description, links, dark = false } = $props();
 </script>
 
 <div class="project" class:dark>
-  <a {href} target="_blank">
-    <img loading="lazy" src={imgSrc} alt="{title} Icon" />
-
+  <p class="title" style="padding-bottom: 1rem;">
+    <b>
+      {title}
+    </b>
     <br />
-    <p class="title" style="padding-bottom: 6px;">
-      <b>
-        {title}
-      </b>
-      <span style="font-family: 'Icons'; padding-left: 4px;"> F </span>
-    </p>
-    <p>{description}</p>
-  </a>
+    {description}
+  </p>
+
+  <div class="column-wrapper" style="gap: 1.4rem;">
+    {#each links as link}
+      <a href={link.href} target="_blank">
+        <img loading="lazy" src={link.image} alt="{link.title} Icon" />
+        <p class="title">
+          <b>
+            {link.title}
+          </b>
+          <span style="font-family: 'Icons'; padding-left: 4px;"> F </span>
+        </p>
+        <p>{link.description}</p>
+      </a>
+    {/each}
+  </div>
 </div>
 
 <style>
@@ -23,10 +33,17 @@
     cursor: pointer;
     color: inherit;
     border-bottom: none;
-    padding: 1rem;
 
     transition: all 150ms linear;
     width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  a img {
+    margin-bottom: 4px;
   }
 
   p {
@@ -38,6 +55,8 @@
   }
 
   .project {
+    padding: 1rem;
+
     height: fit-content;
     width: 100%;
     color: var(--text-color);
@@ -60,7 +79,7 @@
     border-color: var(--accent-color);
   }
 
-  .project:hover .title {
+  a:hover {
     color: var(--accent-color);
   }
 

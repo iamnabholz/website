@@ -31,9 +31,10 @@
     {#each projects.slice(0, 3) as project}
       <Project
         title={project.title}
-        desc={project.description}
+        description={project.description}
         imgSrc={project.image}
         href={project.href}
+        dark={true}
       />
     {/each}
   </div>

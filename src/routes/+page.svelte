@@ -123,7 +123,7 @@
       <p class="title">And working on—</p>
       <Project
         title="Squircles Plugin"
-        desc="Penpot plugin to generate squircle shapes"
+        description="Penpot plugin to generate squircle shapes"
         imgSrc="/img/icons/squircles-icon.webp"
         href="https://github.com/iamnabholz/penpot-squircle-plugin"
       />
