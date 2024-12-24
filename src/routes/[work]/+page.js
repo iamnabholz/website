@@ -31,13 +31,3 @@ export const load = async ({ params, fetch }) => {
     throw error(404, err);
   }
 };
-
-export const entries = () => {
-	return [
-		{ slug: 'adat' },
-		{ slug: 'stoop' },
-    		{ slug: 'registrar' }
-	];
-};
-
-export const prerender = true;
