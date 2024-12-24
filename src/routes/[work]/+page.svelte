@@ -4,6 +4,7 @@
   import Contact from "$lib/components/Contact.svelte";
 
   export let data;
+  const { content, meta, previousPost, nextPost } = data;
 
   let cover;
 
@@ -22,7 +23,7 @@
 </script>
 
 <svelte:head>
-  <title>{data.meta.title} | Lukas Nabholz</title>
+  <title>{meta.title} | Lukas Nabholz</title>
 </svelte:head>
 
 <div class="project-header">
@@ -31,28 +32,25 @@
 
 <div class="title-container hidden">
   <h1>
-    {data.meta.title}:
-    {data.meta.subtitle}
+    {meta.title}:
+    {meta.subtitle}
   </h1>
   <div style="display: flex; gap: 6px; padding-top: 2px;">
-    <p><span class="icons">E</span> {data.meta.detail}</p>
+    <p><span class="icons">E</span> {meta.detail}</p>
   </div>
 </div>
 
-<div
-  class="cover-image image-container"
-  style="background-color: {data.meta.color}"
->
+<div class="cover-image image-container" style="background-color: {meta.color}">
   <img
     bind:this={cover}
     id="cover"
-    src={data.meta.image}
-    alt={data.meta.title + " screenshots"}
+    src={meta.image}
+    alt={meta.title + " screenshots"}
   />
 </div>
 
-<div class="content" style="--themeColor: {data.meta.color}">
-  <svelte:component this={data.content} />
+<div class="content" style="--themeColor: {meta.color}">
+  <svelte:component this={content} />
   <!--{@html content}-->
 </div>
 
@@ -63,26 +61,26 @@
 <div style="height: 1px;"></div>
 
 <div class="post-buttons">
-  <a href={data.previousPost?.href || "/"}>
+  <a href={previousPost?.href || "/"}>
     <div class="button">
       <div>
         <span class="icons">D </span>
-        {data.previousPost ? "Previous post" : "Back home"}
+        {previousPost ? "Previous post" : "Back home"}
       </div>
-      {#if data.previousPost}
-        <h2>{data.previousPost.title}</h2>
+      {#if previousPost}
+        <h2>{previousPost.title}</h2>
       {/if}
     </div>
   </a>
 
-  <a href={data.nextPost?.href || "/"}>
+  <a href={nextPost?.href || "/"}>
     <div class="button" style="align-items: flex-end;">
       <div>
-        {data.nextPost ? "Next post" : "Back home"}
+        {nextPost ? "Next post" : "Back home"}
         <span class="icons"> A</span>
       </div>
-      {#if data.nextPost}
-        <h2>{data.nextPost.title}</h2>
+      {#if nextPost}
+        <h2>{nextPost.title}</h2>
       {/if}
     </div>
   </a>
