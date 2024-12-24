@@ -1,6 +1,6 @@
 import { error } from "@sveltejs/kit";
 
-export const load = async ({ params, fetch }) => {
+export const load = async ({ params }) => {
   try {
     const response = await fetch("api/posts");
     const posts = await response.json();
@@ -17,17 +17,21 @@ export const load = async ({ params, fetch }) => {
     const postContent = await import(
       `../../lib/content/work/${currentPost.slug}.md`
     );
+    const content = postContent.default;
+    const meta = posts[currentPostIndex];
 
     const previousPost = posts[currentPostIndex - 1] || null;
     const nextPost = posts[currentPostIndex + 1] || null;
 
     return {
-      content: postContent.default,
-      meta: posts[currentPostIndex],
-      previousPost: previousPost || null,
-      nextPost: nextPost || null,
+      content,
+      meta,
+      previousPost,
+      nextPost,
     };
   } catch (err) {
     throw error(404, err);
   }
 };
+
+export const prerender = true;
