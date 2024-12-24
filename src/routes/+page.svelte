@@ -136,9 +136,9 @@
       <br />
       <Project
         title="Squircles Plugin"
-        desc="Penpot plugin to generate squircle shapes directly on Penpot"
+        desc="Penpot plugin to generate squircle shapes"
         imgSrc="/img/icons/squircles-icon.webp"
-        href="/"
+        href="https://github.com/iamnabholz/penpot-squircle-plugin"
       />
     </span>
   </div>
