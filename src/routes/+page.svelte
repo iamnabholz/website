@@ -115,11 +115,11 @@
   </p>
 
   <div class="footer">
-    <span class="column-wrapper" style="gap: 16px">
+    <span class="column-wrapper" style="gap: 14px">
       <p class="title">I've been listening to—</p>
       <LastFM />
     </span>
-    <span class="column-wrapper" style="gap: 16px">
+    <span class="column-wrapper" style="gap: 14px">
       <p class="title">And working on—</p>
       <Project
         title="Squircles Plugin"
