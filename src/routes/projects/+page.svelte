@@ -1,6 +1,7 @@
 <script>
   import FlickeringTitle from "../../lib/components/FlickeringTitle.svelte";
   import Gradient from "../../lib/components/Gradient.svelte";
+  import iconSrc from "$lib/icons/asterisk.svg?raw";
 
   export let data;
   const { projects } = data;
@@ -14,7 +15,7 @@
 
 <span style="height: 2rem"></span>
 
-<FlickeringTitle text="More Projects" />
+<FlickeringTitle text="More Projects" {iconSrc} />
 
 {#each [...projects].sort(() => Math.random() - 0.5) as item}
   <p>{item.title}</p>

@@ -13,7 +13,7 @@
     "Astro",
     "Svelte",
   ];
-  const icons = ["A", "B", "D", "E", "F", "H", "M", "S", "W"];
+  const icons = ["A", "B", "D", "E", "F", "H", "M", "S", "T", "W"];
 
   let lastIcons = [];
 
