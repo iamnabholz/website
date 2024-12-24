@@ -24,7 +24,7 @@
       randomSelection = icons[Math.floor(Math.random() * icons.length)];
     }
 
-    if (lastIcons.length >= 2) {
+    if (lastIcons.length >= 4) {
       lastIcons.shift(); // Remove the oldest icon
     }
     lastIcons.push(randomSelection); // Add the new icon
@@ -34,6 +34,9 @@
 </script>
 
 <section class="skills-container">
+  <p class="icons">
+    {getRandomIcon()}
+  </p>
   {#each skills as skill}
     <p>
       {skill}

@@ -14,8 +14,8 @@
     <span>
       Currently open for freelance projects.
       <br /> <br />
-      If you'd like to discuss your ideas, explore a creative collaboration, or simply
-      connect, drop me a message at:
+      If you'd like to discuss your ideas or projects, explore a creative collaboration,
+      or simply connect, drop me a message at:
       <br /> <br />
       <EmailCopy />
       <br />
