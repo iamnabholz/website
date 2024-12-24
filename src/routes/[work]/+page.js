@@ -32,4 +32,12 @@ export const load = async ({ params, fetch }) => {
   }
 };
 
+export const entries = () => {
+	return [
+		{ slug: 'adat' },
+		{ slug: 'stoop' },
+    		{ slug: 'registrar' }
+	];
+};
+
 export const prerender = true;
