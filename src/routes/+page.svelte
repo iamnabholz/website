@@ -17,41 +17,41 @@
   let scrollY = 0;
 </script>
 
-<svelte:head>
-  <title>Lukas Nabholz | UX Designer</title>
-</svelte:head>
-
 <svelte:window bind:scrollY />
 
 <div class="header-container">
-  <div class="header">
-    <div class="text">
-      <h1>Lukas Nabholz</h1>
-      <TitleText />
-      <span class:hide={scrollY > 50} style="transition: all 200ms ease-in;">
-        <span class="scroll-indicator"
-          ><span class="icons">A</span> Scroll down</span
-        >
+  <div class="header-wrapper">
+    <div class="header">
+      <div class="text">
+        <h1>Lukas Nabholz</h1>
+        <TitleText />
+        <span class:hide={scrollY > 50} style="transition: all 200ms ease-in;">
+          <span class="scroll-indicator"
+            ><span class="icons">A</span> Scroll down</span
+          >
+        </span>
+      </div>
+
+      <span class="gradient-wrapper">
+        <span class="gradient-container">
+          <Gradient />
+        </span>
       </span>
     </div>
-
-    <span class="gradient-container">
-      <Gradient />
-    </span>
   </div>
-</div>
 
-<section class="column-container">
-  <span>
-    Multidisciplinary designer with a passion for discovery, experimentation and
-    innovation.
-    <br /> <br />
-    Solving complex problems and helping new ideas achieve their goals by crafting
-    intuitive and easy-to-use interfaces that are beautiful.
-    <br /> <br />
-    <EmailCopy />
-  </span>
-</section>
+  <section class="column-container">
+    <span>
+      Multidisciplinary designer with a passion for discovery, experimentation
+      and innovation.
+      <br /> <br />
+      Solving complex problems and helping new ideas achieve their goals by crafting
+      intuitive and easy-to-use interfaces that are beautiful.
+      <br /> <br />
+      <EmailCopy />
+    </span>
+  </section>
+</div>
 
 <section class="column-wrapper" style="padding-top: var(--rem-gap);">
   <FlickeringTitle text="Works" iconSrc={sunIcon} />
@@ -147,13 +147,20 @@
   }
 
   .header-container {
-    min-height: 24.6rem;
+    height: calc(100vh - calc(var(--page-padding-full) * 2));
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .header-wrapper {
+    height: 100%;
   }
 
   .header {
     position: sticky;
     top: 4rem;
-
     width: 100%;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -166,8 +173,8 @@
   }
 
   .scroll-indicator {
-    position: absolute;
-    bottom: -20px;
+    position: relative;
+    bottom: 0;
     left: 0;
     display: none;
     opacity: 0;
@@ -252,19 +259,30 @@
 
   @media screen and (max-width: 1020px) {
     .header-container {
-      height: calc(100vh - 6.4rem);
+      height: calc(100vh - calc(var(--page-padding-small) * 2));
     }
 
     .header {
-      top: 16px;
-      grid-template-columns: 1fr;
-      align-items: start;
+      position: relative;
+      top: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: normal;
       row-gap: 2rem;
       height: 100%;
     }
 
+    .gradient-wrapper {
+      height: 100%;
+    }
+
+    .gradient-container {
+      position: sticky;
+      top: var(--page-padding-small);
+    }
+
     .header > .text {
-      align-self: self-end;
+      align-self: self-start;
       order: 2;
     }
 
@@ -290,6 +308,16 @@
     .work-links-wrapper {
       padding-top: 0.8rem;
       gap: 0.6rem;
+    }
+  }
+
+  @media screen and (max-width: 460px) {
+    .header-container {
+      height: auto;
+    }
+
+    .header-wrapper {
+      height: calc(100vh - calc(var(--page-padding-small) * 2));
     }
   }
 </style>

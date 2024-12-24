@@ -1,12 +1,12 @@
-// This can be false if you're using a fallback (i.e. SPA mode)
 export const prerender = true;
+export const ssr = false;
 
-import '../global.css';
+import "../global.css";
 
 export const load = ({ url }) => {
-    const { pathname } = url;
+  const { pathname } = url;
 
-    return {
-        pathname
-    };
+  return {
+    pathname,
+  };
 };

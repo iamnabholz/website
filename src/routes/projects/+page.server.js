@@ -4,3 +4,5 @@ export const load = async ({ fetch }) => {
 
   return { projects };
 };
+
+export const prerender = true;
