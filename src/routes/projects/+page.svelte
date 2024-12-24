@@ -2,6 +2,7 @@
   import FlickeringTitle from "$lib/components/FlickeringTitle.svelte";
   import Gradient from "$lib/components/Gradient.svelte";
   import Project from "$lib/components/Project.svelte";
+  import Contact from "$lib/components/Contact.svelte";
   import iconSrc from "$lib/icons/asterisk.svg?raw";
 
   export let data;
@@ -20,11 +21,21 @@
 
 <FlickeringTitle text="More Projects" {iconSrc} />
 
-{#each projects as item}
-  <Project
-    title={item.title}
-    desc={item.description}
-    imgSrc={item.image}
-    href={item.href}
-  />
-{/each}
+<div class="column-container">
+  {#each projects as item}
+    <Project
+      title={item.title}
+      desc={item.description}
+      imgSrc={item.image}
+      href={item.href}
+    />
+  {/each}
+</div>
+
+<span style="height: 1vw"></span>
+
+<Contact showLinks={true} />
+
+<span style="height: 5rem"></span>
+
+<span class="bottom-gradient"> </span>

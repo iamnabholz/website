@@ -143,21 +143,6 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .bottom-gradient {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 240px;
-    background: var(--background-color);
-    background: linear-gradient(
-      180deg,
-      var(--background-color) 0%,
-      var(--accent-color) 100%
-    );
-    z-index: -10;
-  }
-
   .title {
     font-family: "PP Editorial New";
     font-size: 1.6rem;

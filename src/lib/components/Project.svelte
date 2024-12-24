@@ -26,6 +26,7 @@
     padding: 1rem;
 
     transition: all 150ms linear;
+    width: 100%;
   }
 
   p {
