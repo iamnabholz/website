@@ -42,17 +42,15 @@
 </div>
 
 <section class="column-container">
-  <div>
-    <p>
-      Multidisciplinary designer with a passion for discovery, experimentation
-      and innovation.
-      <br /> <br />
-      Solving complex problems and helping new ideas achieve their goals by crafting
-      intuitive and easy-to-use interfaces that are beautiful.
-      <br /> <br />
-    </p>
+  <span>
+    Multidisciplinary designer with a passion for discovery, experimentation and
+    innovation.
+    <br /> <br />
+    Solving complex problems and helping new ideas achieve their goals by crafting
+    intuitive and easy-to-use interfaces that are beautiful.
+    <br /> <br />
     <EmailCopy />
-  </div>
+  </span>
 </section>
 
 <section class="column-wrapper" style="padding-top: var(--rem-gap);">
@@ -77,25 +75,16 @@
       target="_blank"
       href="https://dribbble.com/shots/10868604-Bunny-Book-Landing-Page"
     >
-      <img
-        alt="Bunny Book landing page design"
-        src="https://cdn.dribbble.com/users/1918813/screenshots/10868604/media/d1ab45a1800e21a7f90e02302c71198b.png"
-      />
+      <img alt="Bunny Book page" src="/img/dribbble/dribbble-1.webp" />
     </a>
     <a
       target="_blank"
       href="https://dribbble.com/shots/18196217-ADAT-Home-Page-Design"
     >
-      <img
-        alt="ADAT Project Cover"
-        src="https://cdn.dribbble.com/users/1918813/screenshots/18196217/media/23e857d0090902fef9ddf36ebeb51c96.png"
-      />
+      <img alt="ADAT Project Cover" src="/img/dribbble/dribbble-2.webp" />
     </a>
     <a target="_blank" href="https://dribbble.com/nabholz">
-      <img
-        alt="homme landing page design concept"
-        src="https://cdn.dribbble.com/users/1918813/screenshots/19481167/media/c276b29c41fc673b86789acd37bf57c3.png"
-      />
+      <img alt="homme concept" src="/img/dribbble/dribbble-3.webp" />
     </a>
   </span>
 </section>
