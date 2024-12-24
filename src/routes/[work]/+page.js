@@ -34,4 +34,8 @@ export const load = async ({ params, fetch }) => {
   }
 };
 
+export const entries = () => {
+  return [{ work: "adat" }, { work: "register" }, { work: "stoop" }];
+};
+
 export const prerender = true;
