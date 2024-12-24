@@ -117,12 +117,10 @@
   <div class="footer">
     <span class="column-wrapper">
       <p class="title">I've been listening to—</p>
-      <br />
       <LastFM />
     </span>
     <span class="column-wrapper">
       <p class="title">And working on—</p>
-      <br />
       <Project
         title="Squircles Plugin"
         desc="Penpot plugin to generate squircle shapes"
