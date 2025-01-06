@@ -147,18 +147,12 @@
   }
 
   .header-container {
-    height: calc(100dvh - calc(var(--page-padding-full) * 2));
+    height: calc(100vh - calc(var(--page-padding-full) * 2));
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     gap: 1rem;
   }
-
-@supports (height: 100dvh) {
-  .header-container {
-    height: calc(100dvh - calc(var(--page-padding-full) * 2));
-  }
-}
 
   .header-wrapper {
     height: 100%;
@@ -323,7 +317,7 @@
     }
 
     .header-wrapper {
-      height: calc(100vh - calc(var(--page-padding-small) * 2));
+      height: calc(100dvh - calc(var(--page-padding-small) * 2));
     }
   }
 </style>
