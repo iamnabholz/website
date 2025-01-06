@@ -154,6 +154,12 @@
     gap: 1rem;
   }
 
+@supports (height: 100dvh) {
+  .header-container {
+    height: calc(100dvh - calc(var(--page-padding-full) * 2));
+  }
+}
+
   .header-wrapper {
     height: 100%;
   }
