@@ -147,7 +147,7 @@
   }
 
   .header-container {
-    height: calc(100vh - calc(var(--page-padding-full) * 2));
+    height: calc(100dvh - calc(var(--page-padding-full) * 2));
     display: flex;
     flex-direction: column;
     justify-content: space-between;
