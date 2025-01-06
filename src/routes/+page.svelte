@@ -317,7 +317,7 @@
     }
 
     .header-wrapper {
-      height: calc(100dvh - calc(var(--page-padding-small) * 2));
+      height: calc(90vh - calc(var(--page-padding-small) * 2));
     }
   }
 </style>
