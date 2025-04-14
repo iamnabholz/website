@@ -107,10 +107,12 @@
   onMount(initializeText);
 </script>
 
-<h1 bind:this={textElement}>
-  <span style="display: none; opacity: 0; width: 0;">|</span>
-  UX Designer
-</h1>
+<div>
+  <h1 bind:this={textElement}>
+    <span style="display: none; opacity: 0; width: 0;">|</span>
+    UX Designer
+  </h1>
+</div>
 
 <style>
   h1 {

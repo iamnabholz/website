@@ -25,11 +25,13 @@
       <div class="text">
         <h1>Lukas Nabholz</h1>
         <TitleText />
-        <span class:hide={scrollY > 50} style="transition: all 200ms ease-in;">
-          <span class="scroll-indicator"
-            ><span class="icons">A</span> Scroll down</span
-          >
-        </span>
+        <span
+          class="scroll-indicator"
+          class:hide={scrollY >= 50}
+          style="transition: all 200ms ease-in;"
+        >
+          <span class="icons">A</span> Scroll down</span
+        >
       </div>
 
       <span class="gradient-wrapper">
@@ -68,7 +70,9 @@
     {/each}
   </span>
 
-  <p class="title" style="padding-top: 2rem;">From Dribbble</p>
+  <!--
+
+  <p class="title" style="padding-top: 2rem;">More Projects</p>
 
   <span class="work-links-wrapper">
     <a
@@ -87,6 +91,8 @@
       <img alt="homme concept" src="/img/dribbble/dribbble-3.webp" />
     </a>
   </span>
+
+  -->
 </section>
 
 <span style="height: 1vw"></span>
@@ -168,6 +174,7 @@
   }
 
   .header > .text {
+    width: 100%;
     grid-column: span 2;
     position: relative;
   }
@@ -200,6 +207,7 @@
     }
   }
 
+  /*
   .work-links-wrapper {
     padding-top: 1rem;
     display: grid;
@@ -256,6 +264,7 @@
       grid-template-columns: repeat(2, 1fr);
     }
   }
+*/
 
   @media screen and (max-width: 1020px) {
     .header-container {
@@ -305,10 +314,10 @@
       height: 130%;
     }
 
-    .work-links-wrapper {
+    /*.work-links-wrapper {
       padding-top: 0.8rem;
       gap: 0.6rem;
-    }
+      }*/
   }
 
   @media screen and (max-width: 460px) {

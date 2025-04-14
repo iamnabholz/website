@@ -12,10 +12,10 @@
 
   <div class="column-container">
     <span>
-      Currently open for freelance projects.
+      If you'd like to discuss your ideas or projects, explore a creative
+      collaboration, or simply connect, drop me a message.
       <br /> <br />
-      If you'd like to discuss your ideas or projects, explore a creative collaboration,
-      or simply connect, drop me a message at:
+      Currently open for freelance projects.
       <br /> <br />
       <EmailCopy />
       <br />

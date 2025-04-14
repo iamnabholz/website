@@ -29,39 +29,37 @@
   },
   {
     "visible": true,
-    "title": "Penpot Plugins",
-    "description": "5 Penpot plugins I made for a plugin challenge",
-    "links": [
-      {
-        "title": "Confettier",
-        "description": "Simple confetti generator",
-        "image": "./img/icons/confettier.webp",
-        "href": "https://penpot.app/penpothub/plugins/confettier"
-      },
-      {
-        "title": "Gridify",
-        "description": "Quickly generate dot and grid lines for your designs",
-        "image": "./img/icons/gridify.webp",
-        "href": "https://penpot.app/penpothub/plugins/gridify"
-      },
-      {
-        "title": "Tints and Shades",
-        "description": "Generate darker or lighter variants of any color",
-        "image": "./img/icons/tints-and-shades.webp",
-        "href": "https://penpot.app/penpothub/plugins/tints-and-shades"
-      },
-      {
-        "title": "Skeleton Layout",
-        "description": "Plugin to transform your designs to low-fidelity, skeleton versions",
-        "image": "./img/icons/skeleton-layout.webp",
-        "href": "https://penpot.app/penpothub/plugins/skeleton-layout"
-      },
-      {
-        "title": "Starter Profile",
-        "description": "Generate avatars and text to fill profile information in your designs; avatars, names, countries, usernames, and dates.",
-        "image": "./img/icons/starter-profile.webp",
-        "href": "https://penpot.app/penpothub/plugins/starter-profile"
-      }
-    ]
+    "title": "Confettier",
+    "description": "Simple confetti generator for Penpot",
+    "image": "./img/icons/confettier.webp",
+    "href": "https://penpot.app/penpothub/plugins/confettier"
+  },
+  {
+    "visible": true,
+    "title": "Gridify",
+    "description": "Quickly generate dot and grid lines for your designs on Penpot",
+    "image": "./img/icons/gridify.webp",
+    "href": "https://penpot.app/penpothub/plugins/gridify"
+  },
+  {
+    "visible": true,
+    "title": "Tints and Shades",
+    "description": "Generate darker or lighter variants of any color on Penpot",
+    "image": "./img/icons/tints-and-shades.webp",
+    "href": "https://penpot.app/penpothub/plugins/tints-and-shades"
+  },
+  {
+    "visible": true,
+    "title": "Skeleton Layout",
+    "description": "Plugin to transform your designs to low-fidelity, skeleton versions on Penpot",
+    "image": "./img/icons/skeleton-layout.webp",
+    "href": "https://penpot.app/penpothub/plugins/skeleton-layout"
+  },
+  {
+    "visible": true,
+    "title": "Starter Profile",
+    "description": "Generate avatars and text to fill profile information in your designs; directly from Penpot.",
+    "image": "./img/icons/starter-profile.webp",
+    "href": "https://penpot.app/penpothub/plugins/starter-profile"
   }
 ]
