@@ -269,6 +269,15 @@ main {
   z-index: -10;
 }
 
+.project-header {
+  height: 12rem;
+}
+
+.project-header > * {
+  position: sticky !important;
+  top: var(--page-padding-full);
+}
+
 @media screen and (max-width: 1300px) {
   .column-container {
     grid-template-columns: repeat(2, 1fr);
@@ -278,6 +287,10 @@ main {
 @media screen and (max-width: 1020px) {
   main {
     padding: var(--page-padding-small);
+  }
+
+  .project-header > * {
+    top: var(--page-padding-small);
   }
 }
 

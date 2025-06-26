@@ -11,7 +11,7 @@
     "User Researcher",
   ];
 
-  const characters = "abcdefghijklmnopqrstuvwxyz0123456789<?&%$#@;>       ";
+  const characters = "a b c d e f g hijklmnopqrstuvwxyz0123456789<?&%$#@;>";
 
   const starterTitle = "UX Designer";
   let currentTitle = starterTitle;
@@ -107,12 +107,10 @@
   onMount(initializeText);
 </script>
 
-<div>
-  <h1 bind:this={textElement}>
-    <span style="display: none; opacity: 0; width: 0;">|</span>
-    UX Designer
-  </h1>
-</div>
+<h1 bind:this={textElement}>
+  <span style="display: none; opacity: 0; width: 0;">|</span>
+  UX Designer
+</h1>
 
 <style>
   h1 {
@@ -120,5 +118,7 @@
     white-space: nowrap;
     overflow-y: visible;
     text-transform: none;
+    max-width: 100vw;
+    overflow-x: hidden;
   }
 </style>

@@ -34,8 +34,8 @@
         >
       </div>
 
-      <span class="gradient-wrapper">
-        <span class="gradient-container">
+      <span style="height: 100%">
+        <span class="gradient-wrapper">
           <Gradient />
         </span>
       </span>
@@ -171,6 +171,7 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     align-items: center;
+    justify-content: space-between;
   }
 
   .header > .text {
@@ -282,10 +283,6 @@
     }
 
     .gradient-wrapper {
-      height: 100%;
-    }
-
-    .gradient-container {
       position: sticky;
       top: var(--page-padding-small);
     }
@@ -307,17 +304,6 @@
       gap: 3rem;
       grid-template-columns: 1fr;
     }
-  }
-
-  @media screen and (max-width: 620px) {
-    .gradient-container {
-      height: 130%;
-    }
-
-    /*.work-links-wrapper {
-      padding-top: 0.8rem;
-      gap: 0.6rem;
-      }*/
   }
 
   @media screen and (max-width: 460px) {

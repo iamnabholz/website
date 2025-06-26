@@ -155,10 +155,6 @@
     border-color: var(--accent-color);
   }
 
-  .project-header {
-    height: 12rem;
-  }
-
   @media screen and (max-width: 1020px) {
     .post-buttons {
       flex-direction: column;
@@ -167,11 +163,6 @@
     .post-buttons > :last-child {
       align-self: flex-end;
     }
-  }
-
-  :global(.project-header > *) {
-    position: sticky !important;
-    top: var(--page-padding-full);
   }
 
   :global(.content > *) {
@@ -238,10 +229,6 @@
   }
 
   @media screen and (max-width: 1020px) {
-    :global(.project-header > *) {
-      top: var(--page-padding-small);
-    }
-
     :global(.content > *) {
       margin-left: 0;
     }
