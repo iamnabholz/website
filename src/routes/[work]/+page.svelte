@@ -2,6 +2,7 @@
   import { onMount } from "svelte";
   import Gradient from "$lib/components/Gradient.svelte";
   import Contact from "$lib/components/Contact.svelte";
+  import PixelIcon from "../../lib/components/PixelIcon.svelte";
 
   export let data;
   const { content, meta, previousPost, nextPost } = data;
@@ -35,8 +36,9 @@
     {meta.title}:
     {meta.subtitle}
   </h1>
-  <div style="display: flex; gap: 6px; padding-top: 2px;">
-    <p><span class="icons">E</span> {meta.detail}</p>
+  <div style="display: flex; gap: 6px; padding-top: 2px; align-items: center;">
+    <PixelIcon name="folder" size="32px" />
+    <p>{meta.detail}</p>
   </div>
 </div>
 

@@ -4,7 +4,6 @@
   import Project from "$lib/components/Project.svelte";
   import ProjectBig from "../../lib/components/ProjectBig.svelte";
   import Contact from "$lib/components/Contact.svelte";
-  import iconSrc from "$lib/icons/asterisk.svg?raw";
 
   export let data;
   const { projects } = data;
@@ -20,7 +19,7 @@
   <Gradient small={true} />
 </div>
 
-<FlickeringTitle text="More Projects" {iconSrc} />
+<FlickeringTitle text="More Projects" icon="asterisk" />
 
 <div class="column-container">
   {#each projects as item}

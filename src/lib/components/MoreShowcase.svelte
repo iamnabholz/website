@@ -1,7 +1,6 @@
 <script>
   import FlickeringTitle from "./FlickeringTitle.svelte";
   import Project from "./Project.svelte";
-  import icon from "$lib/icons/asterisk.svg?raw";
 
   import { onMount } from "svelte";
 
@@ -14,7 +13,7 @@
 </script>
 
 <section class="side-container">
-  <FlickeringTitle text="Side Projects" iconSrc={icon} />
+  <FlickeringTitle text="Side Projects" icon="asterisk" />
 
   <div class="column-container">
     <p>

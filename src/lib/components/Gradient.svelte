@@ -1,8 +1,5 @@
 <script>
-  // Uncomment and update these if you're using the icons
-  //import worldIcon from "$lib/icons/world-icon.svg?raw";
-  //import happyIcon from "$lib/icons/sun-icon.svg?raw";
-  import logo from "$lib/icons/eye-icon.svg?raw";
+  import PixelIcon from "./PixelIcon.svelte";
 
   export let small = false;
 
@@ -103,7 +100,7 @@
       ></div>
     </div>
     <div class="floating-icon">
-      {@html logo}
+      <PixelIcon name="eye-icon" />
     </div>
   </div>
 </a>

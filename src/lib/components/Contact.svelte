@@ -1,14 +1,12 @@
 <script>
   import FlickeringTitle from "./FlickeringTitle.svelte";
   import EmailCopy from "./EmailCopy.svelte";
-  import mailIcon from "$lib/icons/mail-icon.svg?raw";
-  import atIcon from "$lib/icons/at-icon.svg?raw";
 
   export let showLinks = false;
 </script>
 
 <section class="column-wrapper">
-  <FlickeringTitle text="Contact" iconSrc={showLinks ? atIcon : mailIcon} />
+  <FlickeringTitle text="Contact" icon={showLinks ? "at-icon" : "mail-icon"} />
 
   <div class="column-container">
     <span>

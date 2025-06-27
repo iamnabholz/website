@@ -1,10 +1,10 @@
 <script>
   import { onMount } from "svelte";
-  import eyeIcon from "$lib/icons/eye-icon.svg?raw";
+  import PixelIcon from "./PixelIcon.svelte";
 
   let container;
 
-  let { text, iconSrc } = $props();
+  let { text, icon } = $props();
 
   // Function to start the "bit-mapped" animation
   const startSwitch = () => {
@@ -46,11 +46,7 @@
   </h1>
 
   <div class="icon">
-    {#if iconSrc}
-      {@html iconSrc}
-    {:else}
-      {@html eyeIcon}
-    {/if}
+    <PixelIcon name={icon} />
   </div>
 </div>
 

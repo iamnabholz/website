@@ -1,5 +1,5 @@
 <script>
-  import copy from "$lib/icons/folder.svg?raw";
+  import PixelIcon from "./PixelIcon.svelte";
 
   let { image, title, detail, color, href } = $props();
 </script>
@@ -12,9 +12,7 @@
 
     <div class="column-wrapper info">
       <span class="row-wrapper" style="gap: 2px">
-        <span style="display: inline-block; height: 28px; width: 28px;">
-          {@html copy}
-        </span>
+        <PixelIcon name="folder" size="32px" />
         <b> {title}</b>
       </span>
       <span>{detail} <span class="icons hover"> A</span></span>

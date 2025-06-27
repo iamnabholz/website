@@ -5,9 +5,6 @@
   import TitleText from "$lib/components/TitleText.svelte";
   import WorkLink from "$lib/components/WorkLink.svelte";
   import MoreShowcase from "$lib/components/MoreShowcase.svelte";
-
-  import briefcase from "$lib/icons/briefcase.svg?raw";
-
   import Contact from "$lib/components/Contact.svelte";
   import LastFM from "$lib/components/LastFM.svelte";
   import Skills from "../lib/components/Skills.svelte";
@@ -61,7 +58,7 @@
 </div>
 
 <section class="column-wrapper" style="padding-top: var(--rem-gap);">
-  <FlickeringTitle text="Works" iconSrc={briefcase} />
+  <FlickeringTitle text="Works" icon="briefcase" />
 
   <span class="works-wrapper">
     {#each data.posts as post}
