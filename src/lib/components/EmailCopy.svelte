@@ -1,5 +1,6 @@
 <script>
-  import copy from "$lib/icons/copy.svg?raw";
+  import PixelIcon from "./PixelIcon.svelte";
+
   const address = "lukas@nabholz.work";
 
   const copyAddress = async () => {
@@ -14,10 +15,9 @@
 
 <button onclick={copyAddress}>
   {address.toString()}
-  <span style="height: 28px; width: 28px;">
-    {@html copy}
+  <span>
+    <PixelIcon name="copy" size="26px" />
   </span>
-  <!-- <span class="icons">C</span>-->
 </button>
 
 <style>
@@ -38,18 +38,14 @@
     transition: 150ms ease-out;
   }
 
-  /*.icons {
-    transition: 150ms ease-out;
-    }*/
-
   button:hover,
   button:active,
-  button:hover > *,
-  button:active > * {
+  button:hover > span,
+  button:active > span {
     color: var(--accent-color);
   }
 
-  button:active > * {
+  button:active > span {
     transform: scale(1.4);
   }
 </style>

@@ -47,7 +47,9 @@
     <slot />
 
     <div class="BTT-button" class:hide={scrollY <= 550}>
-      <a class="clean-anchor" href="#top"> {@html chevron} </a>
+      <a aria-label="Back to top button" class="clean-anchor" href="#top">
+        {@html chevron}
+      </a>
     </div>
 
     <span style="height:4rem"></span>
