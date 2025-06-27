@@ -6,7 +6,8 @@
   import WorkLink from "$lib/components/WorkLink.svelte";
   import MoreShowcase from "$lib/components/MoreShowcase.svelte";
 
-  import sunIcon from "$lib/icons/sun-icon.svg?raw";
+  import briefcase from "$lib/icons/briefcase.svg?raw";
+
   import Contact from "$lib/components/Contact.svelte";
   import LastFM from "$lib/components/LastFM.svelte";
   import Skills from "../lib/components/Skills.svelte";
@@ -44,19 +45,23 @@
 
   <section class="column-container">
     <span>
-      Multidisciplinary designer with a passion for discovery, experimentation
-      and innovation.
-      <br /> <br />
-      Solving complex problems and helping new ideas achieve their goals by crafting
-      intuitive and easy-to-use interfaces that are beautiful.
-      <br /> <br />
+      <span>
+        Multidisciplinary designer with a passion for discovery, experimentation
+        and innovation.
+        <br /> <br />
+      </span>
+      <span>
+        Solving complex problems and helping new ideas achieve their goals by
+        crafting intuitive and easy-to-use interfaces that are beautiful.
+        <br /> <br />
+      </span>
       <EmailCopy />
     </span>
   </section>
 </div>
 
 <section class="column-wrapper" style="padding-top: var(--rem-gap);">
-  <FlickeringTitle text="Works" iconSrc={sunIcon} />
+  <FlickeringTitle text="Works" iconSrc={briefcase} />
 
   <span class="works-wrapper">
     {#each data.posts as post}
@@ -137,8 +142,6 @@
   </div>
 </section>
 
-<span class="bottom-gradient"> </span>
-
 <style>
   .footer {
     padding: 4rem 0;
@@ -153,7 +156,7 @@
   }
 
   .header-container {
-    height: calc(100vh - calc(var(--page-padding-full) * 2));
+    height: calc(100vh - calc(var(--current-default-padding) * 2));
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -268,10 +271,6 @@
 */
 
   @media screen and (max-width: 1020px) {
-    .header-container {
-      height: calc(100vh - calc(var(--page-padding-small) * 2));
-    }
-
     .header {
       position: relative;
       top: 0;

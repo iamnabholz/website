@@ -84,6 +84,7 @@
   onmousemove={rotateToMouse}
   onmouseenter={handleMouseEnter}
   onmouseleave={handleMouseLeave}
+  class="clean-anchor"
 >
   <div
     style="height: {gradientHeight}px; background: radial-gradient(circle at {Math.floor(
@@ -147,24 +148,6 @@
     color: white;
     filter: drop-shadow(0 0 4px #00000030);
     transition: transform 800ms ease-out;
-  }
-
-  a {
-    width: 100%;
-    border: none;
-    transition-duration: 300ms;
-    transition-property: transform, box-shadow;
-    transition-timing-function: ease-out;
-    transform: rotate3d(0, 0, 0, 0deg);
-  }
-
-  a::after,
-  a::before {
-    content: none;
-  }
-
-  a:hover {
-    transition-duration: 150ms;
   }
 
   a:hover .floating-icon {

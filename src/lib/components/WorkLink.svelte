@@ -1,4 +1,6 @@
 <script>
+  import copy from "$lib/icons/folder.svg?raw";
+
   let { image, title, detail, color, href } = $props();
 </script>
 
@@ -9,7 +11,12 @@
     </div>
 
     <div class="column-wrapper info">
-      <span><span class="icons">E </span><b> {title}</b></span>
+      <span class="row-wrapper" style="gap: 2px">
+        <span style="display: inline-block; height: 28px; width: 28px;">
+          {@html copy}
+        </span>
+        <b> {title}</b>
+      </span>
       <span>{detail} <span class="icons hover"> A</span></span>
     </div>
   </a>
