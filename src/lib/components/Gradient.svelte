@@ -100,7 +100,7 @@
       ></div>
     </div>
     <div class="floating-icon">
-      <PixelIcon name="eye" />
+      <PixelIcon name="asterisk" />
     </div>
   </div>
 </a>
