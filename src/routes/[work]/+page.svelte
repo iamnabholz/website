@@ -28,7 +28,7 @@
 </svelte:head>
 
 <div class="project-header">
-  <Gradient small="true" />
+  <Gradient short />
 </div>
 
 <div class="title-container hidden">

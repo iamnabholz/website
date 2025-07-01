@@ -1,32 +1,31 @@
 <script>
-  export let name = "arrow-corner",
-    size,
-    rotation;
+  let { name = "arrow-corner", size, rotation } = $props();
 
-  let iconComp;
+  let IconComp = $state();
 
-  $: if (name) {
-    if (!size) {
-      size = "100%";
+  $effect(() => {
+    if (name) {
+      // Dynamic import based on icon name
+      import(`../icons/${name}.svelte`)
+        .then((mod) => {
+          IconComp = mod.default;
+        })
+        .catch(() => {
+          console.error(`Icon "${name}" not found`);
+          IconComp = "sun";
+        });
     }
-    // Dynamic import based on icon name
-    import(`../icons/${name}.svelte`)
-      .then((mod) => {
-        iconComp = mod.default;
-      })
-      .catch(() => {
-        console.error(`Icon "${name}" not found`);
-        iconComp = "sun";
-      });
-  }
+  });
+
+  const iconSize = $derived(size || "100%");
 </script>
 
 <span
   class="icon-container"
-  style="display: inline-block; height: {size}; width: {size}; transform: rotateZ({rotation ||
+  style="display: inline-block; height: {iconSize}; width: {iconSize}; transform: rotateZ({rotation ||
     0}deg); color: inherit;"
 >
-  <svelte:component this={iconComp} />
+  <IconComp />
 </span>
 
 <style>

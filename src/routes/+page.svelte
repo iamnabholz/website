@@ -74,8 +74,6 @@
     {/each}
   </span>
 
-  <!--
-
   <p class="title" style="padding-top: 2rem;">More Projects</p>
 
   <span class="work-links-wrapper">
@@ -95,8 +93,6 @@
       <img alt="homme concept" src="/img/dribbble/dribbble-3.webp" />
     </a>
   </span>
-
-  -->
 </section>
 
 <span style="height: 1vw"></span>
@@ -209,11 +205,10 @@
     }
   }
 
-  /*
   .work-links-wrapper {
     padding-top: 1rem;
     display: grid;
-    gap: 2rem;
+    gap: 1rem;
     grid-template-columns: repeat(3, 1fr);
   }
 
@@ -255,18 +250,6 @@
   .work-links-wrapper a::after {
     content: "";
   }
-
-  @media screen and (max-width: 1200px) {
-    .work-links-wrapper a:first-child {
-      display: none;
-    }
-
-    .work-links-wrapper {
-      gap: 2rem;
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
-*/
 
   @media screen and (max-width: 1020px) {
     .header {

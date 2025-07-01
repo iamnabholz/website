@@ -1,7 +1,8 @@
 <script>
   import PixelIcon from "./PixelIcon.svelte";
+  import { onMount, onDestroy } from "svelte";
 
-  export let small = false;
+  let { short } = $props();
 
   const gradients = [
     ["#D16BA5", "#86A8E7", "#5FFBF1"],
@@ -29,60 +30,51 @@
     shuffleGradientColor(selectedGradient);
 
   const minSize = 180;
-  const height = Math.floor(Math.random() * (360 - minSize + 1)) + minSize;
-  const width = Math.floor(Math.random() * (360 - minSize + 1)) + minSize;
+  let height = $state(
+    Math.floor(Math.random() * (360 - minSize + 1)) + minSize,
+  );
+  let width = $state(Math.floor(Math.random() * (360 - minSize + 1)) + minSize);
 
-  const top = Math.random() * 90;
-  const left = Math.random() * 90;
+  let top = $state(Math.random() * 90);
+  let left = $state(Math.random() * 90);
+
+  let animationInterval;
 
   //const icon = Math.random() > 0.5 ? worldIcon : happyIcon; // If you want to use icons, uncomment
 
-  const gradientHeight = small ? 120 : 300;
+  const gradientHeight = short ? 120 : 300;
 
-  let card;
-  let bounds;
+  const animateBlob = () => {
+    // Generate new random positions and sizes
+    const newTop = Math.random() * 90;
+    const newLeft = Math.random() * 90;
+    const newHeight = Math.floor(Math.random() * (360 - minSize + 1)) + minSize;
+    const newWidth = Math.floor(Math.random() * (360 - minSize + 1)) + minSize;
 
-  const rotateToMouse = (e) => {
-    const mouseX = e.clientX;
-    const mouseY = e.clientY;
-    const leftX = mouseX - bounds.x;
-    const topY = mouseY - bounds.y;
-    const center = {
-      x: leftX - bounds.width / 2,
-      y: topY - bounds.height / 2,
+    // Update the reactive variables
+    top = newTop;
+    left = newLeft;
+    height = newHeight;
+    width = newWidth;
+  };
+
+  onMount(() => {
+    // Start the animation loop - change position every 8-12 seconds
+    const startAnimation = () => {
+      animateBlob();
+      animationInterval = setInterval(animateBlob, 8000 + Math.random() * 4000);
     };
-    const distance = Math.sqrt(center.x ** 2 + center.y ** 2);
+    startAnimation();
+  });
 
-    card.style.transform = `
-      scale3d(1.03, 1.03, 1.03)
-      rotate3d(
-        ${center.y / 100},
-        ${-center.x / 100},
-        0,
-       	${Math.log(distance) * 2}deg
-      )
-    `;
-  };
-
-  const handleMouseEnter = () => {
-    bounds = card.getBoundingClientRect();
-  };
-
-  const handleMouseLeave = () => {
-    card.style.transform = "";
-  };
+  onDestroy(() => {
+    if (animationInterval) {
+      clearInterval(animationInterval);
+    }
+  });
 </script>
 
-<a
-  href="/"
-  aria-label="Home"
-  title="Home"
-  bind:this={card}
-  onmousemove={rotateToMouse}
-  onmouseenter={handleMouseEnter}
-  onmouseleave={handleMouseLeave}
-  class="clean-anchor"
->
+<a href="/" aria-label="Home" title="Home" class="clean-anchor">
   <div
     style="height: {gradientHeight}px; background: radial-gradient(circle at {Math.floor(
       Math.random() * 100,
@@ -106,6 +98,10 @@
 </a>
 
 <style>
+  a {
+    display: block;
+  }
+
   .gradient {
     position: relative;
     border-radius: var(--border-radius);
@@ -115,9 +111,9 @@
 
   .gradient-element {
     position: absolute;
-
     filter: blur(40px);
     border-radius: 50%;
+    transition: all 16s ease-in-out;
   }
 
   /* NOISE TEXTURE */
@@ -145,16 +141,10 @@
     color: white;
     filter: drop-shadow(0 0 4px #00000030);
     transition: transform 800ms ease-out;
-
-    margin-top: 3px;
   }
 
   a:hover .floating-icon {
-    transform: scale(1.1);
-  }
-
-  a:hover .gradient {
-    box-shadow: 0 0 10px #00000028;
+    transform: scale(1.06);
   }
 
   @media screen and (max-width: 620px) {
