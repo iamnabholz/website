@@ -14,7 +14,7 @@
 </script>
 
 <section class="side-container">
-  <FlickeringTitle text="Side Projects" icon="more" />
+  <FlickeringTitle text="Side Projects" icon="eye" />
 
   <div class="column-container">
     <p>

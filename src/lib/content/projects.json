@@ -3,70 +3,70 @@
     "visible": true,
     "title": "Fabric Visions",
     "description": "Video games I've developed over the past few years.",
-    "image": "./img/icons/fabric-icon.webp",
+    "image": "/img/icons/fabric-icon.webp",
     "href": "https://fabricvisions.itch.io/"
   },
   {
     "visible": true,
     "title": "Timesets",
     "description": "Pomodoro-like timer and stopwatch that you can customize.",
-    "image": "./img/icons/timesets-icon.webp",
+    "image": "/img/icons/timesets-icon.webp",
     "href": "https://timesets.netlify.app/"
   },
   {
     "visible": true,
     "title": "Panorama Tab",
     "description": "Browser extension that replaces your new tab with a new customizable design.",
-    "image": "./favicon.png",
+    "image": "/favicon.png",
     "href": "https://panoramatab.netlify.app/"
   },
   {
     "visible": false,
     "title": "LUCKYSCREENS",
     "description": "Sharing graphics, wallpapers and more.",
-    "image": "./img/icons/lucky-icon.webp",
+    "image": "/img/icons/lucky-icon.webp",
     "href": "https://luckyscreens.netlify.app/"
   },
   {
     "visible": true,
     "title": "Tints and Shades",
     "description": "Generate darker or lighter variants of any color on Penpot",
-    "image": "./img/icons/tints-and-shades.webp",
+    "image": "/img/icons/tints-and-shades.webp",
     "href": "https://penpot.app/penpothub/plugins/tints-and-shades"
   },
   {
     "visible": true,
     "title": "SQUIRCLES",
     "description": "Penpot plugin to generate squircle shapes.",
-    "image": "./img/icons/squircles-icon.webp",
+    "image": "/img/icons/squircles-icon.webp",
     "href": "https://github.com/iamnabholz/penpot-squircle-plugin"
   },
   {
     "visible": true,
     "title": "Confettier",
     "description": "Simple confetti generator for Penpot",
-    "image": "./img/icons/confettier.webp",
+    "image": "/img/icons/confettier.webp",
     "href": "https://penpot.app/penpothub/plugins/confettier"
   },
   {
     "visible": true,
     "title": "Gridify",
     "description": "Quickly generate dot and grid lines for your designs on Penpot",
-    "image": "./img/icons/gridify.webp",
+    "image": "/img/icons/gridify.webp",
     "href": "https://penpot.app/penpothub/plugins/gridify"
   },
   {
     "visible": true,
     "title": "Skeleton Layout",
     "description": "Plugin to transform your designs to low-fidelity, skeleton versions on Penpot",
-    "image": "./img/icons/skeleton-layout.webp",
+    "image": "/img/icons/skeleton-layout.webp",
     "href": "https://penpot.app/penpothub/plugins/skeleton-layout"
   },
   {
     "visible": true,
     "title": "Starter Profile",
     "description": "Generate avatars and text to fill profile information in your designs; directly from Penpot.",
-    "image": "./img/icons/starter-profile.webp",
+    "image": "/img/icons/starter-profile.webp",
     "href": "https://penpot.app/penpothub/plugins/starter-profile"
   }
 ]
