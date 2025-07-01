@@ -19,14 +19,6 @@
 }
 
 @font-face {
-  font-family: "Icons";
-  src: url("/fonts/icons.otf") format("opentype");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
   font-family: "PP Mori";
   src: url("/fonts/PPMori-Regular.woff2") format("woff2");
   font-weight: normal;
@@ -110,14 +102,10 @@ ul li {
   margin: 0.8rem 0;
   padding-left: 1.5em;
   line-height: 1.2;
-  background-image: url("$lib/icons/sun-icon.svg");
+  background-image: url("$lib/icons/asterisk.svg");
   background-position: 0 0;
   background-size: 1rem 1em;
   background-repeat: no-repeat;
-}
-
-ul li:hover {
-  background-image: url("$lib/icons/happy-icon.svg");
 }
 
 *,
@@ -145,59 +133,19 @@ button {
 }
 
 a {
-  line-height: 1.1;
-  display: block;
-  width: fit-content;
-  position: relative;
-
-  text-decoration: none;
-
-  cursor: pointer;
   color: var(--text-color);
-  border-bottom: 0.09em solid var(--text-color);
-
-  transition: color 150ms ease-out;
-}
-
-a::after {
-  font-family: "Icons", emoji;
-  content: "F";
-  position: absolute;
-  right: -32px;
-  top: 2px;
-
-  color: var(--text-color);
-
-  opacity: 0;
-
-  pointer-events: none;
-  transition: 150ms ease-out;
-}
-
-a:hover,
-a:focus,
-a:active,
-a:hover::after {
-  opacity: 1;
-  color: var(--accent-color);
-  border-color: var(--accent-color);
-}
-
-.clean-anchor {
-  width: 100%;
   border: none;
+  text-decoration: none;
   transition-duration: 300ms;
   transition-timing-function: ease-out;
   transform: rotate3d(0, 0, 0, 0deg);
 }
 
-.clean-anchor::after,
-.clean-anchor::before {
-  content: none;
-}
-
-.clean-anchor:hover {
-  transition-duration: 150ms;
+a:hover,
+a:focus,
+a:active,
+a:visited {
+  color: var(--text-color);
 }
 
 h1,
@@ -231,15 +179,6 @@ main {
 
 .bit-mapped {
   font-family: "PP Mondwest", serif !important;
-}
-
-.icons {
-  font-family: "Icons", emoji;
-  font-weight: normal;
-}
-
-#mailto-link::after {
-  content: "M";
 }
 
 .column-container {

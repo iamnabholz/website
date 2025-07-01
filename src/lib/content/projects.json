@@ -29,6 +29,20 @@
   },
   {
     "visible": true,
+    "title": "Tints and Shades",
+    "description": "Generate darker or lighter variants of any color on Penpot",
+    "image": "./img/icons/tints-and-shades.webp",
+    "href": "https://penpot.app/penpothub/plugins/tints-and-shades"
+  },
+  {
+    "visible": true,
+    "title": "SQUIRCLES",
+    "description": "Penpot plugin to generate squircle shapes.",
+    "image": "./img/icons/squircles-icon.webp",
+    "href": "https://github.com/iamnabholz/penpot-squircle-plugin"
+  },
+  {
+    "visible": true,
     "title": "Confettier",
     "description": "Simple confetti generator for Penpot",
     "image": "./img/icons/confettier.webp",
@@ -40,13 +54,6 @@
     "description": "Quickly generate dot and grid lines for your designs on Penpot",
     "image": "./img/icons/gridify.webp",
     "href": "https://penpot.app/penpothub/plugins/gridify"
-  },
-  {
-    "visible": true,
-    "title": "Tints and Shades",
-    "description": "Generate darker or lighter variants of any color on Penpot",
-    "image": "./img/icons/tints-and-shades.webp",
-    "href": "https://penpot.app/penpothub/plugins/tints-and-shades"
   },
   {
     "visible": true,

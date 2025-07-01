@@ -29,7 +29,7 @@
     }
 
     for (let index = 0; index < currentLetters.length; index++) {
-      const timer = Math.random() * 450 * index;
+      const timer = 250 * index;
       setTimeout(() => {
         shuffleLetter(currentLetters[index], currentTitle[index] || "");
       }, timer);

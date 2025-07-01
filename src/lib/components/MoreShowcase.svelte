@@ -1,4 +1,5 @@
 <script>
+  import Anchor from "./Anchor.svelte";
   import FlickeringTitle from "./FlickeringTitle.svelte";
   import Project from "./Project.svelte";
 
@@ -24,7 +25,15 @@
     </p>
   </div>
 
-  <a href="/projects">Explore all projects</a>
+  <span class="anch">
+    <Anchor
+      text="Explore all projects"
+      href="/projects"
+      darkOnly={true}
+      icon="arrow"
+      autoHide={false}
+    />
+  </span>
 
   <div class="column-container">
     {#each projects.slice(0, 3) as project}
@@ -59,20 +68,6 @@
     width: calc(100% + 8rem);
     height: 100%;
     z-index: -5;
-  }
-
-  a {
-    color: var(--light-color);
-    border-bottom: 0.09em solid currentColor;
-  }
-
-  a:hover {
-    color: var(--accent-color);
-  }
-
-  a::after {
-    font-family: "Icons";
-    content: "A";
   }
 
   @media screen and (max-width: 1020px) {

@@ -2,7 +2,7 @@
   import { onMount } from "svelte";
   import { fly } from "svelte/transition";
 
-  import chevron from "$lib/icons/up-chevron.svg?raw";
+  import PixelIcon from "../lib/components/PixelIcon.svelte";
 
   export let data;
 
@@ -30,6 +30,10 @@
   });
 
   let scrollY;
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 </script>
 
 <svelte:head>
@@ -42,15 +46,14 @@
   <main
     in:fly={{ y: 100, duration: 350, delay: 400 }}
     out:fly={{ y: 100, duration: 350 }}
-    id="top"
   >
     <slot />
 
-    <div class="BTT-button" class:hide={scrollY <= 550}>
-      <a aria-label="Back to top button" class="clean-anchor" href="#top">
-        {@html chevron}
-      </a>
-    </div>
+    {#if scrollY >= 500}
+      <button on:click={scrollToTop} class:hide={scrollY <= 550}>
+        <PixelIcon name="up-chevron" />
+      </button>
+    {/if}
 
     <span style="height:4rem"></span>
     <span class="bottom-gradient"> </span>
@@ -58,12 +61,17 @@
 {/key}
 
 <style>
-  .BTT-button {
+  main {
+    min-height: 100vh;
+  }
+
+  button {
     position: fixed;
     right: var(--current-default-padding);
     bottom: var(--current-default-padding);
     z-index: 5;
 
+    color: var(--background-color);
     background-color: var(--text-color);
     border-radius: 100%;
 
@@ -73,13 +81,7 @@
     transition: 150ms ease;
   }
 
-  .clean-anchor {
-    padding: 4px;
-    padding-bottom: 6px;
-    color: var(--background-color);
-  }
-
-  .clean-anchor:hover {
+  button:hover {
     color: var(--accent-color);
   }
 

@@ -45,9 +45,11 @@
     {/each}
   </h1>
 
-  <div class="icon">
-    <PixelIcon name={icon} />
-  </div>
+  {#if icon}
+    <div class="icon">
+      <PixelIcon name={icon} />
+    </div>
+  {/if}
 </div>
 
 <style>

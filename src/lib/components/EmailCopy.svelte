@@ -16,7 +16,7 @@
 <button onclick={copyAddress}>
   {address.toString()}
   <span>
-    <PixelIcon name="copy" size="26px" />
+    <PixelIcon name="copy" size="1em" />
   </span>
 </button>
 
@@ -25,7 +25,7 @@
     font-weight: 600;
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 12px;
     color: var(--text-color);
     background-color: transparent;
     margin: 0;

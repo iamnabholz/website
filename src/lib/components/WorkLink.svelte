@@ -11,11 +11,16 @@
     </div>
 
     <div class="column-wrapper info">
-      <span class="row-wrapper" style="gap: 2px">
-        <PixelIcon name="folder" size="32px" />
+      <span class="row-wrapper" style="gap: 2px; margin-left: -5px;">
+        <PixelIcon name="folder" size="1em" />
         <b> {title}</b>
       </span>
-      <span>{detail} <span class="icons hover"> A</span></span>
+      <span class="row-wrapper" style="gap: 2px;">
+        {detail}
+        <span class="hover" style="display: flex;">
+          <PixelIcon name="arrow" size="1em" />
+        </span>
+      </span>
     </div>
   </a>
 </div>
@@ -38,7 +43,7 @@
   }
 
   .info {
-    gap: 4px;
+    gap: 2px;
   }
 
   .hover {
@@ -82,10 +87,6 @@
 
   span {
     text-transform: capitalize;
-  }
-
-  .icons {
-    padding-right: 6px;
   }
 
   @media screen and (max-width: 1020px) {

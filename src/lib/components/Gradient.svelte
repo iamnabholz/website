@@ -100,7 +100,7 @@
       ></div>
     </div>
     <div class="floating-icon">
-      <PixelIcon name="eye-icon" />
+      <PixelIcon name="eye" />
     </div>
   </div>
 </a>
@@ -145,6 +145,8 @@
     color: white;
     filter: drop-shadow(0 0 4px #00000030);
     transition: transform 800ms ease-out;
+
+    margin-top: 3px;
   }
 
   a:hover .floating-icon {

@@ -1,4 +1,6 @@
 <script>
+  import PixelIcon from "./PixelIcon.svelte";
+
   let { title, description, imgSrc, href, dark = false } = $props();
 </script>
 
@@ -7,11 +9,11 @@
     <img loading="lazy" src={imgSrc} alt="{title} Icon" />
 
     <br />
-    <p class="title" style="padding-bottom: 6px;">
+    <p class="title row-wrapper" style="padding-bottom: 6px;">
       <b>
         {title}
       </b>
-      <span style="font-family: 'Icons'; padding-left: 4px;"> F </span>
+      <PixelIcon size="1em" />
     </p>
     <p>{description}</p>
   </a>
@@ -19,6 +21,7 @@
 
 <style>
   a {
+    display: block;
     line-height: 1.2;
     cursor: pointer;
     color: inherit;

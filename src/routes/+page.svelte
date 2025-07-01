@@ -9,6 +9,7 @@
   import LastFM from "$lib/components/LastFM.svelte";
   import Skills from "../lib/components/Skills.svelte";
   import Project from "../lib/components/Project.svelte";
+  import PixelIcon from "../lib/components/PixelIcon.svelte";
 
   export let data;
 
@@ -28,8 +29,9 @@
           class:hide={scrollY >= 50}
           style="transition: all 200ms ease-in;"
         >
-          <span class="icons">A</span> Scroll down</span
-        >
+          <span><PixelIcon name="arrow" size="16px" rotation="90" /></span>
+          Scroll down
+        </span>
       </div>
 
       <span style="height: 100%">
@@ -42,7 +44,7 @@
 
   <section class="column-container">
     <span>
-      <span>
+      <span id="paragraph">
         Multidisciplinary designer with a passion for discovery, experimentation
         and innovation.
         <br /> <br />
@@ -191,20 +193,19 @@
 
   .scroll-indicator > span {
     display: inline-block;
-    transform: rotateZ(90deg);
     margin: 0 2px 0 -2px;
     animation: float 3s ease infinite;
   }
 
   @keyframes float {
     0% {
-      transform: translateY(-2px) rotateZ(90deg);
+      transform: translateY(-1px);
     }
     50% {
-      transform: translateY(2px) rotateZ(90deg);
+      transform: translateY(3px);
     }
     100% {
-      transform: translateY(-2px) rotateZ(90deg);
+      transform: translateY(-1px);
     }
   }
 

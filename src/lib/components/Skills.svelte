@@ -1,4 +1,6 @@
 <script>
+  import PixelIcon from "./PixelIcon.svelte";
+
   const skills = [
     "Figma",
     "Penpot",
@@ -13,7 +15,19 @@
     "Astro",
     "Svelte",
   ];
-  const icons = ["A", "B", "D", "E", "F", "H", "M", "S", "T", "W"];
+  const icons = [
+    "arrow",
+    "arrow-corner",
+    "asterisk",
+    "at",
+    "briefcase",
+    "eye",
+    "folder",
+    "sun",
+    "happy",
+    "mail",
+    "world",
+  ];
 
   let lastIcons = [];
 
@@ -34,16 +48,12 @@
 </script>
 
 <section class="skills-container">
-  <p class="icons">
-    {getRandomIcon()}
-  </p>
+  <PixelIcon name={getRandomIcon()} size="1em" />
   {#each skills as skill}
     <p>
       {skill}
     </p>
-    <p class="icons">
-      {getRandomIcon()}
-    </p>
+    <PixelIcon name={getRandomIcon()} size="1em" />
   {/each}
 </section>
 

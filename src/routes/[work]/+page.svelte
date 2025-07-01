@@ -37,7 +37,7 @@
     {meta.subtitle}
   </h1>
   <div style="display: flex; gap: 6px; padding-top: 2px; align-items: center;">
-    <PixelIcon name="folder" size="32px" />
+    <PixelIcon name="folder" size="1.6em" />
     <p>{meta.detail}</p>
   </div>
 </div>
@@ -65,8 +65,8 @@
 <div class="post-buttons">
   <a href={previousPost?.href || "/"}>
     <div class="button">
-      <div>
-        <span class="icons">D </span>
+      <div class="row-wrapper">
+        <PixelIcon name="arrow" size="1em" rotation="180" />
         {previousPost ? "Previous post" : "Back home"}
       </div>
       {#if previousPost}
@@ -77,9 +77,9 @@
 
   <a href={nextPost?.href || "/"}>
     <div class="button" style="align-items: flex-end;">
-      <div>
+      <div class="row-wrapper">
         {nextPost ? "Next post" : "Back home"}
-        <span class="icons"> A</span>
+        <PixelIcon name="arrow" size="1em" />
       </div>
       {#if nextPost}
         <h2>{nextPost.title}</h2>
@@ -104,6 +104,10 @@
 
     height: 420px;
     width: 100%;
+  }
+
+  a:hover {
+    color: var(--accent-color);
   }
 
   .cover-image {
@@ -133,15 +137,6 @@
     display: flex;
     justify-content: space-between;
     gap: 1rem;
-  }
-
-  .post-buttons a {
-    display: block;
-    border: none;
-  }
-
-  .post-buttons a::after {
-    content: none;
   }
 
   .button {

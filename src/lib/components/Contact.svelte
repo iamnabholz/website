@@ -1,12 +1,13 @@
 <script>
   import FlickeringTitle from "./FlickeringTitle.svelte";
   import EmailCopy from "./EmailCopy.svelte";
+  import Anchor from "./Anchor.svelte";
 
   export let showLinks = false;
 </script>
 
 <section class="column-wrapper">
-  <FlickeringTitle text="Contact" icon={showLinks ? "at-icon" : "mail-icon"} />
+  <FlickeringTitle text="Contact" icon={showLinks ? "at" : "mail"} />
 
   <div class="column-container">
     <span>
@@ -17,7 +18,8 @@
       <br /> <br />
       <EmailCopy />
       <br />
-      <a id="mailto-link" href="mailto:lukas@nabholz.work">Open email</a>
+
+      <Anchor text="Open email" href="mailto:lukas@nabholz.work" icon="mail" />
 
       {#if showLinks}
         <div class="links">
@@ -28,12 +30,11 @@
                   <a target="_blank" href="https://behance.net/nabholz">
                       Behance
                   </a>-->
-          <a target="_blank" href="https://buymeacoffee.com/nabholz">
-            BuyMeACoffee
-          </a>
-          <a target="_blank" href="https://dribbble.com/nabholz"> Dribbble </a>
-          <a target="_blank" href="https://layers.to/nabholz"> Layers </a>
-          <a target="_blank" href="https://github.com/iamnabholz"> Github </a>
+
+          <Anchor text="BuyMeACoffee" href="https://buymeacoffee.com/nabholz" />
+          <Anchor text="Dribbble" href="https://dribbble.com/nabholz" />
+          <Anchor text="Layers" href="https://layers.to/nabholz" />
+          <Anchor text="Github" href="https://github.com/iamnabholz" />
         </div>
       {/if}
     </span>
