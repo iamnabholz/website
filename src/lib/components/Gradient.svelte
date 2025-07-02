@@ -1,6 +1,5 @@
 <script>
   import PixelIcon from "./PixelIcon.svelte";
-  import { onMount, onDestroy } from "svelte";
 
   let { short } = $props();
 
@@ -38,40 +37,7 @@
   let top = $state(Math.random() * 90);
   let left = $state(Math.random() * 90);
 
-  let animationInterval;
-
-  //const icon = Math.random() > 0.5 ? worldIcon : happyIcon; // If you want to use icons, uncomment
-
   const gradientHeight = short ? 120 : 300;
-
-  const animateBlob = () => {
-    // Generate new random positions and sizes
-    const newTop = Math.random() * 90;
-    const newLeft = Math.random() * 90;
-    const newHeight = Math.floor(Math.random() * (360 - minSize + 1)) + minSize;
-    const newWidth = Math.floor(Math.random() * (360 - minSize + 1)) + minSize;
-
-    // Update the reactive variables
-    top = newTop;
-    left = newLeft;
-    height = newHeight;
-    width = newWidth;
-  };
-
-  onMount(() => {
-    // Start the animation loop - change position every 8-12 seconds
-    const startAnimation = () => {
-      animateBlob();
-      animationInterval = setInterval(animateBlob, 8000 + Math.random() * 4000);
-    };
-    startAnimation();
-  });
-
-  onDestroy(() => {
-    if (animationInterval) {
-      clearInterval(animationInterval);
-    }
-  });
 </script>
 
 <a href="/" aria-label="Home" title="Home" class="clean-anchor">
