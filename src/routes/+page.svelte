@@ -307,7 +307,8 @@
 
     .header-wrapper {
       height: calc(
-        100vh - calc(var(--page-padding-small) * 2) - var(--span-height)
+        100dvh - env(safe-area-inset-bottom, 0px) -
+          calc(var(--page-padding-small) * 2) - var(--span-height)
       );
     }
   }
