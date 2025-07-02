@@ -38,5 +38,6 @@
     height: 100%;
     color: inherit;
     fill: currentColor;
+    image-rendering: pixelated;
   }
 </style>
