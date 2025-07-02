@@ -14,12 +14,13 @@
   export let data;
 
   let scrollY = 0;
+  let spanHeight = 0;
 </script>
 
 <svelte:window bind:scrollY />
 
 <div class="header-container">
-  <div class="header-wrapper">
+  <div class="header-wrapper" style="--span-height: {spanHeight}px;">
     <div class="header">
       <div class="text">
         <h1>Lukas Nabholz</h1>
@@ -44,11 +45,11 @@
 
   <section class="column-container">
     <span>
-      <span id="paragraph">
+      <p bind:clientHeight={spanHeight}>
         Multidisciplinary designer with a passion for discovery, experimentation
         and innovation.
         <br /> <br />
-      </span>
+      </p>
       <span>
         Solving complex problems and helping new ideas achieve their goals by
         crafting intuitive and easy-to-use interfaces that are beautiful.
@@ -305,7 +306,9 @@
     }
 
     .header-wrapper {
-      height: calc(90vh - calc(var(--page-padding-small) * 2));
+      height: calc(
+        100vh - calc(var(--page-padding-small) * 2) - var(--span-height)
+      );
     }
   }
 </style>
