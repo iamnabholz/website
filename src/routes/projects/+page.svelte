@@ -19,7 +19,7 @@
   <Gradient short />
 </div>
 
-<FlickeringTitle text="More Projects" icon="eye" />
+<FlickeringTitle text="Side Projects" icon="code" />
 
 <div class="column-container">
   {#each projects as item}

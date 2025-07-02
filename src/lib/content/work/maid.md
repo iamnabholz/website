@@ -1,11 +1,11 @@
 ---
-title: "Domain Register"
-subtitle: "Domain management experience for mobile"
-href: "/register"
-detail: "App Design"
+title: "Maid"
+subtitle: "For the future of technology"
+href: "/maid"
+detail: "Web Design"
 image: "/img/domain-register.webp"
-color: "#5419B6"
-order: 2
+color: "#5429B6"
+order: 3
 ---
 
 ## Introduction

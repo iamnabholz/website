@@ -14,7 +14,7 @@
 </script>
 
 <section class="side-container">
-  <FlickeringTitle text="Side Projects" icon="eye" />
+  <FlickeringTitle text="Other Projects" icon="code" />
 
   <div class="column-container">
     <p>
@@ -31,7 +31,7 @@
       href="/projects"
       darkOnly={true}
       icon="arrow"
-      autoHide={false}
+      alwaysShow={true}
     />
   </span>
 

@@ -1,19 +1,21 @@
 <script>
-  export let text,
+  let {
+    text,
     href,
     icon = "arrow-corner",
     selfTab,
     darkOnly,
-    autoHide;
+    alwaysShow,
+  } = $props();
 
   import PixelIcon from "./PixelIcon.svelte";
 </script>
 
-<span class="row-wrapper" class:dark={darkOnly}>
+<span class="row-wrapper" class:darkOnly>
   <a {href} target={selfTab ? "_blank" : "_self"}>
     {text}
   </a>
-  <span class="icon" class:show={autoHide === false}>
+  <span class="icon" class:alwaysShow>
     <PixelIcon name={icon} size="1em" />
   </span>
 </span>
@@ -44,7 +46,11 @@
       border-color 150ms ease-out;
   }
 
-  .dark {
+  a:visited {
+    color: inherit;
+  }
+
+  .darkOnly {
     color: var(--light-color);
   }
 
@@ -59,7 +65,7 @@
     pointer-events: none;
   }
 
-  .show {
+  .alwaysShow {
     opacity: 1;
   }
 

@@ -72,14 +72,12 @@
     position: relative;
     border-radius: var(--border-radius);
     background: #3f5efb;
-    transition: 150ms linear;
   }
 
   .gradient-element {
     position: absolute;
     filter: blur(40px);
     border-radius: 50%;
-    transition: all 16s ease-in-out;
   }
 
   /* NOISE TEXTURE */

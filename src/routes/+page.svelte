@@ -306,8 +306,14 @@
     }
 
     .header-wrapper {
+      /* Fallback for older browsers */
       height: calc(
-        100dvh - env(safe-area-inset-bottom, 0px) -
+        100vh - env(safe-area-inset-bottom, 0px) -
+          calc(var(--page-padding-small) * 2) - var(--span-height)
+      );
+      /* Modern browsers - use small viewport height to prevent layout shifts */
+      height: calc(
+        100svh - env(safe-area-inset-bottom, 0px) -
           calc(var(--page-padding-small) * 2) - var(--span-height)
       );
     }
