@@ -213,6 +213,7 @@
   }
 
   .work-links-wrapper img {
+    object-fit: cover;
     width: 100%;
     transition: 1s ease-out;
   }
@@ -279,6 +280,18 @@
   }
 
   @media screen and (max-width: 820px) {
+    .work-links-wrapper a:first-child {
+      display: none;
+    }
+
+    .work-links-wrapper {
+      grid-template-columns: 1fr;
+    }
+
+    .work-links-wrapper a {
+      height: 180px;
+    }
+
     .footer {
       padding-bottom: 6rem;
       gap: 3rem;

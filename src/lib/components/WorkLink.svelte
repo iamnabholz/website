@@ -11,14 +11,14 @@
     </div>
 
     <div class="column-wrapper info">
-      <span class="row-wrapper" style="gap: 2px; margin-left: -5px;">
-        <PixelIcon name="folder" size="1em" />
+      <span class="row-wrapper" style="gap: 2px; margin-left: -2px;">
+        <PixelIcon name="folder" size="1.2em" />
         <b> {title}</b>
       </span>
       <span class="row-wrapper" style="gap: 2px;">
         {detail}
         <span class="hover" style="display: flex;">
-          <PixelIcon name="arrow" size="1em" />
+          <PixelIcon name="arrow" size="1.2em" />
         </span>
       </span>
     </div>
