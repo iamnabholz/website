@@ -8,103 +8,91 @@ color: "#15AF41"
 order: 1
 ---
 
-## 1. Introduction
+## Overview
 
-Stoop inbox is a service that provides you with a custom email address that you can use to subscribe to newsletters and
-channels.
-
-This helps keeping your personal and work email addresses clear of any mail that is not important to you.
-
-Plus, receiving your newsletters in a service made specifically for them provides a bigger advantages than your
-email provider, with many more _reading_ focused features.
+Stoop Inbox is a service that gives you a custom email address for newsletters and subscriptions. It's designed to keep your main email clean while giving you a better reading experience than regular email apps.
 
 ![Screenshots Of Stoop's App Multiple Tabs](/img/stoop/showcase.png)
 
-## 2. Why redesign
+## Problems
 
-Other than the obvious reason that the app has not received an update in around TWO YEARS!
+After looking at user reviews and comparing it to similar apps, the problems were pretty clear:
 
-It's clear to see a lot little design choices that leave a lot to be desired.
+- **Too much clutter** - The same buttons and menus showed up duplicated in different places of the app, this felt like a "quick patch" solution to other issues like having menus hidden and the single screen design decision
+- **Hidden features** - Useful actions like creating and managing folders and muting newsletters or channels were buried in menus
+- **Basic notifications** - You couldn't customize when or how you got alerts
+- **Outdated look** - The design felt old and disconnected
 
-To know exactly what we need to do we can just take a look at the current design to find all the flaws we can.
+The app had potential, but it wasn't meeting users' needs.
 
-- Repeated elements, actions, and menus
-- Hidden menus and options
-- Notifications settings are very limited
-- Outdated design
+## Research and Planning
 
-## 3. Redesign
+I looked at popular email apps and newsletter services to see what worked well. The best apps had:
 
-### 3.1 Feature analysis
-
-Looking into apps that offer similar features (as well as email apps since after all, this is what we are trying to
-replace) we can find a myriad of features that can provide with different benefits:
-
-- Scheduled notifications
-- Customized notifications per folder, tag, or even publications
--
-
-The app provides a way to receive alerts when a new issue or post is made in the channels and newsletters you follow.
-After reading a lot of reviews and looking at similar services and apps there were some clear problems with the latest
-design update that it received:
-
-- Features like muting, folders and more are hidden behind non-relevant elements and actions
-- In-app browser lacking basic functionality
-- Overall design and style guide not feeling connected
-- Lack of new features and general improvement of existing ones
-- Single screen design doesn't provide with some useful functionality in multitasking
+- Smart notification controls (schedule quiet hours, customize by folder)
+- Easy organization tools
+- Clean, focused reading experience
+- Features that actually saved people time
 
 ![Screenshots Of Stoop's App Multiple Tabs](/img/stoop/features.png)
 
-## 4. Features
+## Redesign
 
-After making some designs and exploring some new features that could expand the functionality and usability of the app I
-decided to apply the next ones
+I redesigned the app around four main areas that would make the biggest difference for users.
 
-### 4.1 Inbox
+### Better Inbox Experience
 
-There is not really a science behind making a feed that people would enjoy using, it is usually a matter of content your
-users get.
+The inbox is where people spend most of their time, so it needed to be clean and fast. I focused on making it easy to scan through new content and quickly decide what to read now vs. later.
 
 ![Inbox Feature Showcase](/img/stoop/inbox.png)
 
-### 4.2 New Library Feature
+### New Library Feature
 
-With a new "Library" tab you can have better organization and save the things that matter the most to you, it could be a
-quote, tools, advice or anything you find in your newsletters.
+This was the biggest addition. Instead of just reading and forgetting, users could now save and organize the good stuff:
 
-**Finish reading**: Collects all issues you started reading but haven't marked as read yet.
-
-**Highlights**: Save single pieces of text information from the issues you read.
-
-**Links and Media**: Do exactly what they say, collect your saved links or your media like images, video, audio, etc.
-
-**Saved**: Your saved issues.
-
-And last your **Reading History** showing you all issues and videos you have marked as done.
+- **Finish Reading**: Issues you started but didn't finish
+- **Highlights**: Save quotes or important text from articles
+- **Links & Media**: Collect useful links, images, and videos
+- **Saved Issues**: Full articles you want to keep
+- **Reading History**: Track what you've read
 
 ![Library Features Showcase](/img/stoop/library.png)
 
-### 4.3 Discovery
+### Discovery That Actually Works
 
-Stoop can help you find new interesting and fun newsletters and channels to subscribe to.
+Finding new newsletters was a pain in the old app. The new discovery section makes it easy to:
 
-**Tags** allow you to find more specific topics for what you want to follow, while **Categories** will help you find the
-top newsletters and channels in different categories of course!
-
-Stoop provides basic information like a description and category for the newsletter, you can add quickly to any folder
-you've created before and update you subscription.
+- Browse by categories or search specific tags
+- See what's popular and trending
+- Get basic info about newsletters before subscribing
+- Add new subscriptions directly to organized folders
 
 ![Discovery Features Showcase](/img/stoop/discover.png)
 
-### 4.4 Reading Experience
+### Reading Experience
 
-The most important feature of a newsletter reading app is the reading experience, doing some research on the most common
-types of concepts for the user experience and analyzing what worked, what didn't and what could be improved from
-previous designs of the app.
+This is what the whole app is about - making reading enjoyable. I studied how people actually read on mobile and designed around those patterns:
+
+- Clean typography that's easy on the eyes
+- Smart text sizing and spacing
+- Quick actions for saving and sharing
+- Distraction-free mode for longer articles
 
 ![Discovery Features Showcase](/img/stoop/reading.png)
 
-### 4.5 Settings & Customization
+### Customization Options
+
+Everyone reads differently, so the app needed to adapt. Users can now:
+
+- Choose from different reading themes
+- Adjust text size and spacing
+- Set notification preferences
+- Organize content their way
 
 ![Discovery Features Showcase](/img/stoop/styles.png)
+
+## Results
+
+The redesign addressed the main pain points while adding features that made the app genuinely useful for daily reading. Users could finally organize their newsletters, find new content easily, and actually enjoy the reading experience.
+
+The key was keeping things simple while adding power where it mattered most - in organization, discovery, and reading.

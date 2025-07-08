@@ -21,12 +21,14 @@
     "asterisk",
     "at",
     "briefcase",
+    "code",
     "eye",
     "folder",
-    "sun",
     "happy",
     "mail",
+    "sun",
     "world",
+    "up-chevron",
   ];
 
   let lastIcons = [];
@@ -38,7 +40,7 @@
       randomSelection = icons[Math.floor(Math.random() * icons.length)];
     }
 
-    if (lastIcons.length >= 4) {
+    if (lastIcons.length >= icons.length) {
       lastIcons.shift(); // Remove the oldest icon
     }
     lastIcons.push(randomSelection); // Add the new icon

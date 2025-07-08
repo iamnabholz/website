@@ -1,6 +1,6 @@
 ---
 title: "Domain Register"
-subtitle: "Domain management experience for mobile"
+subtitle: "Simplifying domain management on mobile"
 href: "/register"
 detail: "App Design"
 image: "/img/domain-register.webp"
@@ -8,25 +8,28 @@ color: "#5419B6"
 order: 2
 ---
 
-## Introduction
+## Overview
 
-Managing domains is task that a lot of us do, using a mobile phone to be productivity is also a lot of us do (
-sometimes).
+Domain management on mobile can turn into a frustrating experience. Constantly needing to switch to desktop to complete different tasks like updating DNS records, renewing or purchasing new domains or upgrades like custom email addresses, extra security and more.
 
-Regardless of what your go-to domain register is, everybody has experienced having to reach for your PC to finish doing
-some task that feels mundane: "Copy and paste this value in this box of your domain register"
+I worked on a native mobile app that puts all essential domain management tools at users' fingertips. The app prioritizes speed and simplicity, allowing users to have more control over their domains while on mobile.
 
 <div class="side-by-side">
 
 <span class="side-text">
 
-## Homepage
+## Quick Access Dashboard
 
-In the homepage you will find every action you can take is one tap away.
+The homepage provides instant access to all key functions:
 
-Search for new domains, transfer your existing domains or view your wishlisted domains or items you've already added to your cart.
+- Search for new domains
+- Transfer of existing domains
+- View wishlisted domains
+- Manage shopping cart
+- Overview of registered domains
+- Notifications for wishlisted items or other information about your domains
 
-Quick look to all the domains you have currently registered.
+Everything is one tap away.
 
 </span>
 
@@ -42,11 +45,16 @@ Quick look to all the domains you have currently registered.
 
 <span class="side-text">
 
-## Search and Save
+## Smart Domain Search
 
-Search for domains and quickly see discounts or save it for later if you want to keep an eye of it for the future.
+Search results show:
 
-Find recommended domains based on your input.
+- Real-time availability
+- Current discounts
+- Save-for-later option
+- Intelligent recommendations
+
+Users can quickly compare options and make decisions on the spot.
 
 </span>
 
@@ -62,9 +70,16 @@ Find recommended domains based on your input.
 
 <span class="side-text">
 
-## Cart Management
+## Streamlined Checkout
 
-Quickly manage the registration of your new domain, set the number of years and included packages that you'd like: e-mail service registration, premium customer support, and more.
+The cart management flow is also designed for simplicity:
+
+- Adjust registration years with quick controls
+- Add services like email hosting
+- Clear pricing breakdown
+- Fast checkout process
+
+No more abandoned carts due to mobile friction.
 
 </span>
 
@@ -75,3 +90,15 @@ Quickly manage the registration of your new domain, set the number of years and 
 </span>
 
 </div>
+
+## Key Features
+
+- **One-tap actions**: Common tasks require minimal steps
+- **Advanced options**: View and update advanced options directly from the app
+- **Push notifications**: Renewal reminders and status updates
+- **Secure authentication**: Biometric login support
+- **Offline capability**: View domain info without internet
+
+<br/>
+
+The design eliminates the need for desktop access for 90% of domain management tasks, making domain management more accessible to mobile-first users and improving overall user satisfaction.

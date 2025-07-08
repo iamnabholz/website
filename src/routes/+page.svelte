@@ -9,15 +9,11 @@
   import LastFM from "$lib/components/LastFM.svelte";
   import Skills from "../lib/components/Skills.svelte";
   import Project from "../lib/components/Project.svelte";
-  import PixelIcon from "../lib/components/PixelIcon.svelte";
 
   export let data;
 
-  let scrollY = 0;
   let spanHeight = 0;
 </script>
-
-<svelte:window bind:scrollY />
 
 <div class="header-container">
   <div class="header-wrapper" style="--span-height: {spanHeight}px;">
@@ -25,14 +21,6 @@
       <div class="text">
         <h1>Lukas Nabholz</h1>
         <TitleText />
-        <span
-          class="scroll-indicator"
-          class:hide={scrollY >= 50}
-          style="transition: all 200ms ease-in;"
-        >
-          <span><PixelIcon name="arrow" size="16px" rotation="90" /></span>
-          Scroll down
-        </span>
       </div>
 
       <span style="height: 100%">
@@ -179,21 +167,6 @@
     position: relative;
   }
 
-  .scroll-indicator {
-    position: relative;
-    bottom: 0;
-    left: 0;
-    display: none;
-    opacity: 0;
-    font-size: 0.8rem;
-  }
-
-  .scroll-indicator > span {
-    display: inline-block;
-    margin: 0 2px 0 -2px;
-    animation: float 3s ease infinite;
-  }
-
   @keyframes float {
     0% {
       transform: translateY(-1px);
@@ -272,11 +245,6 @@
     .header > .text {
       align-self: self-start;
       order: 2;
-    }
-
-    .scroll-indicator {
-      display: block;
-      opacity: 0.6;
     }
   }
 

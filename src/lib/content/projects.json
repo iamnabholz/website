@@ -21,7 +21,7 @@
     "href": "https://panoramatab.netlify.app/"
   },
   {
-    "visible": false,
+    "visible": true,
     "title": "LUCKYSCREENS",
     "description": "Sharing graphics, wallpapers and more.",
     "image": "/img/icons/lucky-icon.webp",
