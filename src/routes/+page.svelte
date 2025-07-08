@@ -31,21 +31,15 @@
     </div>
   </div>
 
-  <section class="column-container">
-    <span>
-      <p bind:clientHeight={spanHeight}>
-        Multidisciplinary designer with a passion for discovery, experimentation
-        and innovation.
-        <br /> <br />
-      </p>
-      <span>
-        Solving complex problems and helping new ideas achieve their goals by
-        crafting intuitive and easy-to-use interfaces that are beautiful.
-        <br /> <br />
-      </span>
-      <EmailCopy />
-    </span>
-  </section>
+  <p class="column-container" bind:clientHeight={spanHeight}>
+    Multidisciplinary designer with a passion for discovery, experimentation and
+    innovation.
+  </p>
+  <p class="column-container">
+    Solving complex problems and helping new ideas achieve their goals by
+    crafting intuitive and easy-to-use interfaces that are beautiful.
+  </p>
+  <EmailCopy />
 </div>
 
 <section class="column-wrapper" style="padding-top: var(--rem-gap);">
@@ -277,12 +271,12 @@
       /* Fallback for older browsers */
       height: calc(
         100vh - env(safe-area-inset-bottom, 0px) -
-          calc(var(--page-padding-small) * 2) - var(--span-height)
+          calc(var(--page-padding-small) * 3) - var(--span-height)
       );
       /* Modern browsers - use small viewport height to prevent layout shifts */
       height: calc(
         100svh - env(safe-area-inset-bottom, 0px) -
-          calc(var(--page-padding-small) * 2) - var(--span-height)
+          calc(var(--page-padding-small) * 3) - var(--span-height)
       );
     }
   }

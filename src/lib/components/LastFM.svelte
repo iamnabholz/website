@@ -51,7 +51,7 @@
 
 <div class="track-container">
   <a href={trackLink} target="_blank" title="View song on last.fm">
-    <img class="track-cover" src={trackCover} alt="Song cover" />
+    <img loading="lazy" class="track-cover" src={trackCover} alt="Song cover" />
   </a>
   <div class="track-information">
     <span class="playing-info" class:is-playing={isCurrentlyPlaying}>
@@ -66,7 +66,7 @@
       </span>
     </span>
 
-    <p>{trackName}</p>
+    <p><b>{trackName}</b></p>
     <p>{trackArtist}</p>
   </div>
 </div>
@@ -92,9 +92,8 @@
 
   .playing-info {
     color: var(--text-color);
-    font-size: 12px;
+    font-size: 14px;
     text-transform: uppercase;
-    font-weight: bold;
     opacity: 1;
     position: relative;
     width: fit-content;
@@ -142,8 +141,8 @@
   }
 
   .is-playing {
+    font-weight: bold;
     color: var(--accent-color);
-    opacity: 1;
   }
 
   @keyframes pulse {

@@ -4,11 +4,9 @@
   let { short } = $props();
 
   const gradients = [
-    ["#D16BA5", "#86A8E7", "#5FFBF1"],
+    ["rgba(255,255,255,1)", "rgba(177,10,10,1)", "rgba(235,158,98,1)"],
     ["#ffa600", "#ff6361", "#003f5c"],
     ["#f9ce34", "#ee2a7b", "#6228d7"],
-    ["#fa8bff", "#2bd2ff", "#2bff88"],
-    ["#f878ff", "#ffda9e", "#ffffff"],
     ["#abffee", "#3d00a6", "#000e17"],
     ["#ffd700", "#ed7014", "#89cff0"],
     ["#c2ffdf", "#ff8861", "#4854f9"],

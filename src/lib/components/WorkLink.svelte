@@ -70,6 +70,7 @@
   .image img {
     object-fit: contain;
     max-width: 100%;
+    min-height: 420px;
     max-height: 580px;
     height: auto;
 
