@@ -56,7 +56,7 @@
       ></div>
     </div>
     <div class="floating-icon">
-      <PixelIcon name="asterisk" />
+      <PixelIcon name="mark" />
     </div>
   </div>
 </a>
