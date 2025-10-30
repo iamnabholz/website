@@ -111,10 +111,10 @@
     <span class="column-wrapper" style="gap: 14px">
       <p class="title">And working on—</p>
       <Project
-        title="Squircles Plugin"
-        description="Penpot plugin to generate squircle shapes"
-        imgSrc="/img/icons/squircles-icon.webp"
-        href="https://github.com/iamnabholz/penpot-squircle-plugin"
+        title="touchreport."
+        description="Find apps, games, and more that are free"
+        imgSrc="/img/icons/tr.webp"
+        href="https://touchreport.pages.dev/"
       />
     </span>
   </div>
