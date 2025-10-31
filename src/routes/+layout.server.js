@@ -1,13 +1,8 @@
 export const load = async ({ fetch, url }) => {
   const { pathname } = url;
 
-  const [projectsResponse, postsResponse] = await Promise.all([
-    fetch("/api/projects"),
-    fetch("/api/works"),
-  ]);
-
+  const projectsResponse = await fetch("/api/projects");
   const projects = await projectsResponse.json();
-  const posts = await postsResponse.json();
 
   const sortedProjects = projects.sort((a, b) => {
     const aHasOrder = a.order !== undefined;
@@ -27,7 +22,6 @@ export const load = async ({ fetch, url }) => {
   });
 
   return {
-    posts,
     projects: sortedProjects,
     pathname,
   };

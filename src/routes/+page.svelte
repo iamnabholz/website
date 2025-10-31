@@ -11,7 +11,7 @@
   import Project from "../lib/components/Project.svelte";
 
   let { data } = $props();
-  const { projects, posts } = data;
+  const { projects } = data;
 
   let spanHeight = $state(0);
 </script>
@@ -47,15 +47,21 @@
   <FlickeringTitle text="Works" icon="briefcase" />
 
   <span class="works-wrapper">
-    {#each posts as post}
-      <WorkLink
-        title={post.title}
-        href={post.href}
-        detail={post.detail}
-        color={post.color}
-        image={post.image}
-      />
-    {/each}
+    <WorkLink
+      title="Stoop Inbox"
+      href="/stoop"
+      detail="App Design"
+      image="/img/stoop/cover.png"
+      color="#15AF41"
+    />
+    <WorkLink
+      title="Domain Register"
+      subtitle="Simplifying domain management on mobile"
+      href="/register"
+      detail="App Design"
+      image="/img/domain-register.webp"
+      color="#5419B6"
+    />
   </span>
 
   <p class="title" style="padding-top: 2rem;">More Projects</p>

@@ -1,5 +1,5 @@
 import { json } from "@sveltejs/kit";
-import projectsData from "$lib/content/projects.json";
+import projectsData from "$lib/projects.json";
 
 export function GET() {
   // Filter projects where visible is true

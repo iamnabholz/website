@@ -4,10 +4,16 @@
   import Contact from "$lib/components/Contact.svelte";
   import PixelIcon from "../../lib/components/PixelIcon.svelte";
 
-  let { data } = $props();
-  const { meta, previousPost, nextPost } = data;
-
   let cover;
+
+  const meta = {
+    title: "Domain Register",
+    subtitle: "Simplifying domain management on mobile",
+    href: "/register",
+    detail: "App Design",
+    image: "/img/domain-register.webp",
+    color: "#5419B6",
+  };
 
   const parallax = () => {
     let yPos = 0 - window.scrollY / 10;
@@ -52,7 +58,107 @@
 </div>
 
 <div class="content" style="--themeColor: {meta.color}">
-  <data.content />
+  <h2>Overview</h2>
+  <p>
+    Domain management on mobile can turn into a frustrating experience.
+    <br />
+    Constantly needing to switch to desktop to complete different tasks like updating
+    DNS records, renewing or purchasing new domains or upgrades like custom email
+    addresses, extra security and more.
+    <br />
+    I worked on a native mobile app that puts all essential domain management tools
+    at users' fingertips.
+    <br />
+    The app prioritizes speed and simplicity, allowing users to have more control
+    over their domains while on mobile.
+  </p>
+
+  <div class="side-by-side">
+    <span class="side-text">
+      <h2>Quick Access Dashboard</h2>
+      <p>The homepage provides instant access to all key functions:</p>
+      <ul>
+        <li>Search for new domains</li>
+        <li>Transfer of existing domains</li>
+        <li>View wishlisted domains</li>
+        <li>Manage shopping cart</li>
+        <li>Overview of registered domains</li>
+        <li>
+          Notifications for wishlisted items or other information about your
+          domains
+        </li>
+      </ul>
+      <p>Everything is one tap away.</p>
+    </span>
+
+    <span class="side-image">
+      <img
+        src="/img/register/home.png"
+        alt="Screenshot showcasing homepage in the app"
+      />
+    </span>
+  </div>
+
+  <div class="side-by-side">
+    <span class="side-text">
+      <h2>Smart Domain Search</h2>
+      <p>Search results show:</p>
+      <ul>
+        <li>Real-time availability</li>
+        <li>Current discounts</li>
+        <li>Save-for-later option</li>
+        <li>Intelligent recommendations</li>
+      </ul>
+      <p>Users can quickly compare options and make decisions on the spot.</p>
+    </span>
+
+    <span class="side-image">
+      <img
+        src="/img/register/search.png"
+        alt="Screenshot showcasing search functionality in the app"
+      />
+    </span>
+  </div>
+
+  <div class="side-by-side">
+    <span class="side-text">
+      <h2>Streamlined Checkout</h2>
+      <p>The cart management flow is also designed for simplicity:</p>
+      <ul>
+        <li>Adjust registration years with quick controls</li>
+        <li>Add services like email hosting</li>
+        <li>Clear pricing breakdown</li>
+        <li>Fast checkout process</li>
+      </ul>
+      <p>No more abandoned carts due to mobile friction.</p>
+    </span>
+
+    <span class="side-image">
+      <img
+        src="/img/register/add-to-cart.png"
+        alt="Screenshot showing Add to cart functionality"
+      />
+    </span>
+  </div>
+
+  <h2>Key Features</h2>
+  <ul>
+    <li><b>One-tap actions</b> Common tasks require minimal steps</li>
+    <li><b>Push notifications</b> Renewal reminders and status updates</li>
+    <li>
+      <b>Advanced options</b> View and update advanced options directly from the
+      app
+    </li>
+    <li><b>Secure authentication</b> Biometric login support</li>
+    <li><b>Offline capability</b> View domain info without internet</li>
+  </ul>
+  <br />
+
+  <p>
+    The design eliminates the need for desktop access for 90% of domain
+    management tasks, making domain management more accessible to mobile-first
+    users and improving overall user satisfaction.
+  </p>
 </div>
 
 <div style="height: 2rem;"></div>
@@ -62,27 +168,21 @@
 <div style="height: 1px;"></div>
 
 <div class="post-buttons">
-  <a href={previousPost?.href || "/"}>
+  <a href="/">
     <div class="button">
       <div class="row-wrapper">
         <PixelIcon name="arrow" size="1em" rotation="180" />
-        {previousPost ? "Previous post" : "Back home"}
+        Back home
       </div>
-      {#if previousPost}
-        <h2>{previousPost.title}</h2>
-      {/if}
     </div>
   </a>
 
-  <a href={nextPost?.href || "/"}>
-    <div class="button" style="align-items: flex-end;">
+  <a href="/stoop">
+    <div class="button">
       <div class="row-wrapper">
-        {nextPost ? "Next post" : "Back home"}
-        <PixelIcon name="arrow" size="1em" />
+        <PixelIcon name="arrow" size="1em" rotation="180" />
+        Stoop Inbox
       </div>
-      {#if nextPost}
-        <h2>{nextPost.title}</h2>
-      {/if}
     </div>
   </a>
 </div>
