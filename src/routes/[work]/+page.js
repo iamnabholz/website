@@ -1,41 +1,35 @@
 import { error } from "@sveltejs/kit";
 
-export async function entries() {
-  const response = await fetch("/api/works");
-  const posts = await response.json();
-
-  return posts.map((post) => ({
-    work: post.slug,
-  }));
-}
-
-export const load = async ({ params }) => {
+export const load = async ({ params, fetch }) => {
   try {
+    // Fetch the list of all works (this returns metadata from frontmatter)
     const response = await fetch("/api/works");
 
     if (!response.ok) {
+      console.error("Failed to fetch works list:", response.status);
       throw error(response.status, "Failed to fetch works list");
     }
 
     const posts = await response.json();
 
+    // Find the current post by matching the slug from the URL
     const currentPostIndex = posts.findIndex(
       (post) => post.slug === params.work,
     );
 
     if (currentPostIndex === -1) {
-      throw error(404, "Post not found");
+      throw error(404, `Post "${params.work}" not found`);
     }
 
     const currentPost = posts[currentPostIndex];
 
-    // Import the markdown file which has been compiled to a Svelte component
+    // Dynamically import the markdown file for this post
+    // The markdown file has been compiled into a Svelte component by mdsvex
     const postContent = await import(
       `../../lib/content/work/${currentPost.slug}.md`
     );
 
-    const meta = posts[currentPostIndex];
-
+    // Calculate previous and next posts for navigation
     const previousPost =
       currentPostIndex > 0 ? posts[currentPostIndex - 1] : null;
     const nextPost =
@@ -43,16 +37,19 @@ export const load = async ({ params }) => {
 
     return {
       content: postContent.default,
-      meta,
+      meta: currentPost,
       previousPost,
       nextPost,
     };
   } catch (err) {
-    // If err is already a SvelteKit error object, rethrow it
+    console.error("Error in work page load:", err);
+
+    // If it's already a SvelteKit error, just rethrow it
     if (err.status) {
       throw err;
     }
-    // Otherwise, wrap it in a proper error
+
+    // Otherwise wrap it in a 500 error
     throw error(500, `Failed to load post: ${err.message}`);
   }
 };
