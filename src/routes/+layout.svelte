@@ -1,12 +1,12 @@
 <script>
-  import { onMount } from "svelte";
   import { fly } from "svelte/transition";
 
   import "../global.css";
 
   import PixelIcon from "../lib/components/PixelIcon.svelte";
 
-  export let data;
+  let { data, children } = $props();
+  const { pathname } = data;
 
   const darkThemeSelectionColors = ["#ff6361", "#2bff88", "#f9ce34", "#4854f9"];
 
@@ -22,7 +22,7 @@
       Math.floor(Math.random() * lightThemeSelectionColors.length)
     ];
 
-  onMount(() => {
+  $effect(() => {
     // Select the root element
     const root = document.documentElement;
 
@@ -31,7 +31,7 @@
     root.style.setProperty("--light-theme", lightThemeColor);
   });
 
-  let scrollY;
+  let scrollY = $state(0);
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -44,15 +44,15 @@
 
 <svelte:window bind:scrollY />
 
-{#key data.pathname}
+{#key pathname}
   <main
     in:fly={{ y: 100, duration: 350, delay: 400 }}
     out:fly={{ y: 100, duration: 350 }}
   >
-    <slot />
+    {@render children?.()}
 
     {#if scrollY >= 500}
-      <button on:click={scrollToTop} class:hide={scrollY <= 550}>
+      <button onclick={scrollToTop} class:hide={scrollY <= 550}>
         <PixelIcon name="up-chevron" />
       </button>
     {/if}

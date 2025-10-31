@@ -1,16 +1,9 @@
 import { error } from "@sveltejs/kit";
 
-export const load = async ({ params, fetch }) => {
+export const load = async ({ params, parent }) => {
   try {
     // Fetch the list of all works (this returns metadata from frontmatter)
-    const response = await fetch("/api/works");
-
-    if (!response.ok) {
-      console.error("Failed to fetch works list:", response.status);
-      throw error(response.status, "Failed to fetch works list");
-    }
-
-    const posts = await response.json();
+    const { posts } = await parent();
 
     // Find the current post by matching the slug from the URL
     const currentPostIndex = posts.findIndex(
