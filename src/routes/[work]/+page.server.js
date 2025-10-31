@@ -48,7 +48,8 @@ export const load = async ({ params, parent }) => {
 };
 
 export async function entries() {
-  const { posts } = await parent();
+  const postsResponse = await fetch("/api/works");
+  const posts = await postsResponse.json();
 
   return posts.map((post) => ({
     work: post.slug,
