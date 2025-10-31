@@ -47,7 +47,7 @@ export const load = async ({ params, parent }) => {
   }
 };
 
-export async function entries({ parent }) {
+export async function entries() {
   const { posts } = await parent();
 
   return posts.map((post) => ({
