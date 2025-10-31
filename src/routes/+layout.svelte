@@ -2,6 +2,8 @@
   import { onMount } from "svelte";
   import { fly } from "svelte/transition";
 
+  import "../global.css";
+
   import PixelIcon from "../lib/components/PixelIcon.svelte";
 
   export let data;

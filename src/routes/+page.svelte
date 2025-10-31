@@ -10,9 +10,10 @@
   import Skills from "../lib/components/Skills.svelte";
   import Project from "../lib/components/Project.svelte";
 
-  export let data;
+  let { data } = $props();
+  const { projects, posts } = data;
 
-  let spanHeight = 0;
+  let spanHeight = $state(0);
 </script>
 
 <div class="header-container">
@@ -46,7 +47,7 @@
   <FlickeringTitle text="Works" icon="briefcase" />
 
   <span class="works-wrapper">
-    {#each data.posts as post}
+    {#each posts as post}
       <WorkLink
         title={post.title}
         href={post.href}
@@ -84,7 +85,7 @@
 
 <span style="height: 1vw"></span>
 
-<MoreShowcase />
+<MoreShowcase {projects} />
 
 <Contact showLinks={true} />
 
@@ -110,12 +111,18 @@
     </span>
     <span class="column-wrapper" style="gap: 14px">
       <p class="title">And working on—</p>
-      <Project
-        title="touchreport."
-        description="Find apps, games, and more that are free"
-        imgSrc="/img/icons/tr.webp"
-        href="https://touchreport.pages.dev/"
-      />
+
+      {#if projects.find((project) => project.current === true)}
+        {@const currentProject = projects.find(
+          (project) => project.current === true,
+        )}
+        <Project
+          title={currentProject.title}
+          description={currentProject.description}
+          imgSrc={currentProject.image}
+          href={currentProject.href}
+        />
+      {/if}
     </span>
   </div>
 </section>

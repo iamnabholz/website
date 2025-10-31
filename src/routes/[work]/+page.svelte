@@ -4,8 +4,8 @@
   import Contact from "$lib/components/Contact.svelte";
   import PixelIcon from "../../lib/components/PixelIcon.svelte";
 
-  export let data;
-  const { content, meta, previousPost, nextPost } = data;
+  let { data } = $props();
+  const { meta, previousPost, nextPost } = data;
 
   let cover;
 
@@ -52,8 +52,7 @@
 </div>
 
 <div class="content" style="--themeColor: {meta.color}">
-  <svelte:component this={content} />
-  <!--{@html content}-->
+  <data.content />
 </div>
 
 <div style="height: 2rem;"></div>

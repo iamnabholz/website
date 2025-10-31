@@ -4,11 +4,6 @@
         .rect {
             fill: #eeeeee;
         }
-        @media (prefers-color-scheme: dark) {
-            .rect {
-                fill: black;
-            }
-        }
     </style>
 
 <rect width="512" height="512" class="rect"/>

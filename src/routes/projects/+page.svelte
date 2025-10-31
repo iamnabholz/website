@@ -5,10 +5,8 @@
   import ProjectBig from "../../lib/components/ProjectBig.svelte";
   import Contact from "$lib/components/Contact.svelte";
 
-  export let data;
+  let { data } = $props();
   const { projects } = data;
-
-  //const sortedProjects = [...projects].sort(() => Math.random() - 0.5);
 </script>
 
 <svelte:head>

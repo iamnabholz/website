@@ -3,14 +3,7 @@
   import FlickeringTitle from "./FlickeringTitle.svelte";
   import Project from "./Project.svelte";
 
-  import { onMount } from "svelte";
-
-  let projects = [];
-
-  onMount(async () => {
-    const response = await fetch("/api/projects");
-    projects = await response.json();
-  });
+  let { projects } = $props();
 </script>
 
 <section class="side-container">

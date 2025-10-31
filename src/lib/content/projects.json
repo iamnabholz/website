@@ -1,23 +1,33 @@
 [
   {
     "visible": true,
+    "title": "touchreport.",
+    "description": "Find deals, reviews, and showcases of the best free iPhone apps and games.",
+    "image": "/img/icons/tr.webp",
+    "href": "https://touchreport.pages.dev/",
+    "current": true
+  },
+  {
+    "visible": true,
     "title": "Fabric Visions",
     "description": "Video games I've developed over the past few years.",
     "image": "/img/icons/fabric-icon.webp",
-    "href": "https://fabricvisions.itch.io/"
+    "href": "https://fabricvisions.itch.io/",
+    "order": 1
   },
   {
     "visible": true,
     "title": "Timesets",
     "description": "Pomodoro-like timer and stopwatch that you can customize.",
     "image": "/img/icons/timesets-icon.webp",
-    "href": "https://timesets.netlify.app/"
+    "href": "https://timesets.netlify.app/",
+    "order": 2
   },
   {
     "visible": true,
     "title": "Panorama Tab",
     "description": "Browser extension that replaces your new tab with a new customizable design.",
-    "image": "/favicon.png",
+    "image": "/img/icons/panorama-icon.webp",
     "href": "https://panoramatab.netlify.app/"
   },
   {
@@ -62,6 +72,7 @@
     "image": "/img/icons/skeleton-layout.webp",
     "href": "https://penpot.app/penpothub/plugins/skeleton-layout"
   },
+
   {
     "visible": true,
     "title": "Starter Profile",
