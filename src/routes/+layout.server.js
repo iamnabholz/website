@@ -1,7 +1,3 @@
-export const prerender = "auto";
-export const ssr = false;
-export const trailingSlash = "always";
-
 export const load = async ({ fetch, url }) => {
   const { pathname } = url;
 
@@ -36,3 +32,7 @@ export const load = async ({ fetch, url }) => {
     pathname,
   };
 };
+
+export const prerender = true;
+export const ssr = false;
+export const trailingSlash = "always";

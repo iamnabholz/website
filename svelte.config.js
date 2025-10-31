@@ -4,7 +4,7 @@ import rehypeUnwrapImages from "rehype-unwrap-images";
 
 export default {
   kit: {
-    adapter: adapter({ strict: true }),
+    adapter: adapter(),
   },
   extensions: [".svelte", ".md"],
   preprocess: [

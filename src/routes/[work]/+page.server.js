@@ -46,3 +46,13 @@ export const load = async ({ params, parent }) => {
     throw error(500, `Failed to load post: ${err.message}`);
   }
 };
+
+export async function entries({ parent }) {
+  const { posts } = await parent();
+
+  return posts.map((post) => ({
+    work: post.slug,
+  }));
+}
+
+export const prerender = true;
