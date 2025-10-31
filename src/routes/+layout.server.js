@@ -1,8 +1,10 @@
-export const load = async ({ fetch, url }) => {
+import projectsData from "$lib/projects.json";
+
+export const load = async ({ url }) => {
   const { pathname } = url;
 
-  const projectsResponse = await fetch("/api/projects");
-  const projects = await projectsResponse.json();
+  // Filter projects where visible is true
+  const projects = projectsData.filter((project) => project.visible === true);
 
   const sortedProjects = projects.sort((a, b) => {
     const aHasOrder = a.order !== undefined;
