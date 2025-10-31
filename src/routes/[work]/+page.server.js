@@ -1,5 +1,14 @@
 import { error } from "@sveltejs/kit";
 
+export async function entries() {
+  const response = await fetch("/api/works");
+  const posts = await response.json();
+
+  return posts.map((post) => ({
+    work: post.slug,
+  }));
+}
+
 export const load = async ({ params }) => {
   try {
     const response = await fetch("/api/works");
@@ -47,5 +56,3 @@ export const load = async ({ params }) => {
     throw error(500, `Failed to load post: ${err.message}`);
   }
 };
-
-export const prerender = true;
