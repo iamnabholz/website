@@ -230,11 +230,11 @@
     </div>
   </a>
 
-  <a href="/stoop">
+  <a href="/register">
     <div class="button">
       <div class="row-wrapper">
-        <PixelIcon name="arrow" size="1em" rotation="180" />
-        Stoop Inbox
+        Domain Register
+        <PixelIcon name="arrow" size="1em" rotation="0" />
       </div>
     </div>
   </a>

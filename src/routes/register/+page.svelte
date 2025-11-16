@@ -61,14 +61,14 @@
   <h2>Overview</h2>
   <p>
     Domain management on mobile can turn into a frustrating experience.
-    <br />
+    <br /> <br />
     Constantly needing to switch to desktop to complete different tasks like updating
     DNS records, renewing or purchasing new domains or upgrades like custom email
     addresses, extra security and more.
-    <br />
+    <br /> <br />
     I worked on a native mobile app that puts all essential domain management tools
     at users' fingertips.
-    <br />
+    <br /> <br />
     The app prioritizes speed and simplicity, allowing users to have more control
     over their domains while on mobile.
   </p>
@@ -168,20 +168,20 @@
 <div style="height: 1px;"></div>
 
 <div class="post-buttons">
-  <a href="/">
-    <div class="button">
-      <div class="row-wrapper">
-        <PixelIcon name="arrow" size="1em" rotation="180" />
-        Back home
-      </div>
-    </div>
-  </a>
-
   <a href="/stoop">
     <div class="button">
       <div class="row-wrapper">
         <PixelIcon name="arrow" size="1em" rotation="180" />
         Stoop Inbox
+      </div>
+    </div>
+  </a>
+
+  <a href="/">
+    <div class="button">
+      <div class="row-wrapper">
+        Back home
+        <PixelIcon name="arrow" size="1em" rotation="0" />
       </div>
     </div>
   </a>
