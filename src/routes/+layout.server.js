@@ -1,8 +1,6 @@
 import projectsData from "$lib/projects.json";
 
-export const load = async ({ url }) => {
-  const { pathname } = url;
-
+export const load = async () => {
   // Filter projects where visible is true
   const projects = projectsData.filter((project) => project.visible === true);
 
@@ -25,7 +23,6 @@ export const load = async ({ url }) => {
 
   return {
     projects: sortedProjects,
-    pathname,
   };
 };
 

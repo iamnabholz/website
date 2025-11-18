@@ -5,7 +5,16 @@
   import Contact from "$lib/components/Contact.svelte";
 
   let { data } = $props();
-  const { projects } = data;
+  let { projects } = data;
+
+  /* function shuffleArray(array) {
+    const shuffled = [...array]; // Create a copy
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  }*/
 </script>
 
 <svelte:head>
@@ -18,7 +27,7 @@
 
 <FlickeringTitle text="Side Projects" icon="code" />
 
-<div class="column-container">
+<div class="projects-container">
   {#each projects as item}
     <Project
       title={item.title}
@@ -35,4 +44,21 @@
 
 <span style="height: 5rem"></span>
 
-<span class="bottom-gradient"> </span>
+<style>
+  .projects-container {
+    column-count: 3;
+    column-gap: 15px;
+  }
+
+  @media (max-width: 1166px) {
+    .projects-container {
+      column-count: 2;
+    }
+  }
+
+  @media (max-width: 766px) {
+    .projects-container {
+      column-count: 1;
+    }
+  }
+</style>

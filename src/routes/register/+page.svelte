@@ -93,7 +93,7 @@
 
     <span class="side-image">
       <img
-        src="/img/register/home.png"
+        src="/img/register/home.webp"
         alt="Screenshot showcasing homepage in the app"
       />
     </span>
@@ -114,7 +114,7 @@
 
     <span class="side-image">
       <img
-        src="/img/register/search.png"
+        src="/img/register/search.webp"
         alt="Screenshot showcasing search functionality in the app"
       />
     </span>
@@ -135,7 +135,7 @@
 
     <span class="side-image">
       <img
-        src="/img/register/add-to-cart.png"
+        src="/img/register/add-to-cart.webp"
         alt="Screenshot showing Add to cart functionality"
       />
     </span>

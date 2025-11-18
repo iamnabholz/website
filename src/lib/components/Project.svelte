@@ -49,6 +49,11 @@
 
     border: 1px solid #303030;
     transition: all 150ms linear;
+
+    margin-bottom: 15px;
+
+    break-inside: avoid;
+    page-break-inside: avoid; /* Fallback for older browsers */
   }
 
   .project img {

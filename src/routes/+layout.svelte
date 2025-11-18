@@ -1,12 +1,9 @@
 <script>
-  import { fly } from "svelte/transition";
-
   import "../global.css";
 
   import PixelIcon from "../lib/components/PixelIcon.svelte";
 
-  let { data, children } = $props();
-  const { pathname } = data;
+  let { children } = $props();
 
   const darkThemeSelectionColors = ["#ff6361", "#2bff88", "#f9ce34", "#4854f9"];
 
@@ -44,23 +41,18 @@
 
 <svelte:window bind:scrollY />
 
-{#key pathname}
-  <main
-    in:fly={{ y: 100, duration: 350, delay: 400 }}
-    out:fly={{ y: 100, duration: 350 }}
-  >
-    {@render children?.()}
+<main>
+  {@render children?.()}
 
-    {#if scrollY >= 500}
-      <button onclick={scrollToTop} class:hide={scrollY <= 550}>
-        <PixelIcon name="up-chevron" />
-      </button>
-    {/if}
+  {#if scrollY >= 500}
+    <button onclick={scrollToTop} class:hide={scrollY <= 550}>
+      <PixelIcon name="up-chevron" />
+    </button>
+  {/if}
 
-    <span style="height:4rem"></span>
-    <span class="bottom-gradient"> </span>
-  </main>
-{/key}
+  <span style="height:4rem"></span>
+  <span class="bottom-gradient"> </span>
+</main>
 
 <style>
   main {

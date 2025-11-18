@@ -51,7 +51,7 @@
       title="Stoop Inbox"
       href="/stoop"
       detail="App Design"
-      image="/img/stoop/cover.png"
+      image="/img/stoop/cover.webp"
       color="#15AF41"
     />
     <WorkLink

@@ -11,7 +11,7 @@
     subtitle: "Redesigning the mobile experience",
     href: "/stoop",
     detail: "App Design",
-    image: "/img/stoop/cover.png",
+    image: "/img/stoop/cover.webp",
     color: "#15AF41",
   };
 
@@ -66,7 +66,7 @@
     while giving you a better reading experience than regular email apps.
   </p>
   <img
-    src="/img/stoop/showcase.png"
+    src="/img/stoop/showcase.webp"
     alt="Screenshots Of Stoop's App Multiple Tabs"
   />
 
@@ -114,7 +114,7 @@
   </ul>
 
   <img
-    src="/img/stoop/features.png"
+    src="/img/stoop/features.webp"
     alt="Screenshots Of Stoop's App Multiple Tabs"
   />
 
@@ -131,7 +131,7 @@
     to read now vs. later.
   </p>
 
-  <img src="/img/stoop/inbox.png" alt="Inbox Feature Showcase" />
+  <img src="/img/stoop/inbox.webp" alt="Inbox Feature Showcase" />
 
   <h3>New Library Feature</h3>
   <p>
@@ -156,7 +156,7 @@
     </li>
   </ul>
 
-  <img src="/img/stoop/library.png" alt="ILibrary Features Showcase" />
+  <img src="/img/stoop/library.webp" alt="ILibrary Features Showcase" />
 
   <h3>Discovery That Actually Works</h3>
   <p>
@@ -170,7 +170,7 @@
     <li>Add new subscriptions directly to organized folders</li>
   </ul>
 
-  <img src="/img/stoop/discover.png" alt="Discovery Features Showcase" />
+  <img src="/img/stoop/discover.webp" alt="Discovery Features Showcase" />
 
   <h3>Reading Experience</h3>
   <p>
@@ -183,7 +183,7 @@
     <li>Quick actions for saving and sharing</li>
     <li>Distraction-free mode for longer articles</li>
   </ul>
-  <img src="/img/stoop/reading.png" alt="Discovery Features Showcase" />
+  <img src="/img/stoop/reading.webp" alt="Discovery Features Showcase" />
 
   <h3>Customization Options</h3>
 
@@ -199,7 +199,7 @@
     <li>Organize content their way</li>
   </ul>
 
-  <img src="/img/stoop/styles.png" alt="Discovery Features Showcase" />
+  <img src="/img/stoop/styles.webp" alt="Discovery Features Showcase" />
 
   <h2>Results</h2>
 
