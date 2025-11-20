@@ -28,7 +28,7 @@
     />
   </span>
 
-  <div class="column-container">
+  <div class="projects-columns">
     {#each projects.slice(0, 3) as project}
       <Project
         title={project.title}
@@ -67,6 +67,23 @@
     .side-container::before {
       left: -16px;
       width: calc(100% + 32px);
+    }
+  }
+
+  .projects-columns {
+    columns: 3;
+    gap: 12px;
+  }
+
+  @media screen and (max-width: 1320px) {
+    .projects-columns {
+      columns: 2;
+    }
+  }
+
+  @media screen and (max-width: 820px) {
+    .projects-columns {
+      columns: 1;
     }
   }
 </style>
