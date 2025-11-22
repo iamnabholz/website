@@ -29,7 +29,7 @@
   </span>
 
   <div class="projects-columns">
-    {#each projects.slice(0, 3) as project}
+    {#each projects.slice(0, 3) as project (project.title)}
       <Project
         title={project.title}
         description={project.description}
