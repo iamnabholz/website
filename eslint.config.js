@@ -27,4 +27,15 @@ export default [
       "svelte/no-at-html-tags": "off",
     },
   },
+  {
+    "svelte/no-navigation-without-resolve": [
+      "error",
+      {
+        ignoreGoto: true,
+        ignoreLinks: false,
+        ignorePushState: false,
+        ignoreReplaceState: false,
+      },
+    ],
+  },
 ];

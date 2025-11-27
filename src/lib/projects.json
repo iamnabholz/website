@@ -1,19 +1,12 @@
 [
   {
     "visible": true,
-    "title": "touchreport.",
-    "description": "Find deals, reviews, and showcases of the best free iPhone apps and games.",
-    "image": "/img/icons/tr.webp",
-    "href": "https://touchreport.pages.dev/",
-    "current": true
-  },
-  {
-    "visible": true,
     "title": "Fabric Visions",
     "description": "Video games I've developed over the past few years.",
     "image": "/img/icons/fabric-icon.webp",
     "href": "https://fabricvisions.itch.io/",
-    "order": 1
+    "order": 1,
+    "current": true
   },
   {
     "visible": true,
@@ -25,17 +18,17 @@
   },
   {
     "visible": true,
+    "title": "Wallpaper Gallery",
+    "description": "Playbook gallery with wallpaper collections I've made",
+    "image": "/img/icons/lucky-icon.webp",
+    "href": "https://www.playbook.com/s/nabholz/wallpapers/"
+  },
+  {
+    "visible": true,
     "title": "Panorama Tab",
     "description": "Browser extension that replaces your new tab with a new customizable design.",
     "image": "/img/icons/panorama-icon.webp",
     "href": "https://panoramatab.netlify.app/"
-  },
-  {
-    "visible": true,
-    "title": "touchreport. Wallpapers",
-    "description": "Sharing some wallpapers and more I made for touchreport..",
-    "image": "/img/icons/lucky-icon.webp",
-    "href": "https://playbook.com/touchreport/wallpapers"
   },
   {
     "visible": true,

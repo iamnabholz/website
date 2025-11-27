@@ -2,6 +2,7 @@
   import "../global.css";
 
   import PixelIcon from "../lib/components/PixelIcon.svelte";
+  import Anchor from "../lib/components/Anchor.svelte";
 
   let { children } = $props();
 
@@ -49,10 +50,24 @@
       <PixelIcon name="up-chevron" />
     </button>
   {/if}
-
-  <span style="height:4rem"></span>
-  <span class="bottom-gradient"> </span>
 </main>
+
+<footer>
+  <div class="footer-content">
+    <div class="footer-icon">
+      <PixelIcon name="mark" />
+    </div>
+
+    <p>
+      Lukas Nabholz. 2025.
+      <br />
+      Fonts by <Anchor
+        text="PangramPangram."
+        href="https://pangrampangram.com/"
+      />
+    </p>
+  </div>
+</footer>
 
 <style>
   main {
@@ -79,10 +94,7 @@
     color: var(--accent-color);
   }
 
-  .bottom-gradient {
-    position: absolute;
-    bottom: 0;
-    left: 0;
+  footer {
     width: 100%;
     height: 240px;
     background: var(--background-color);
@@ -92,5 +104,30 @@
       var(--background-color) 100%
     );
     z-index: -10;
+  }
+
+  .footer-content {
+    padding: var(--current-default-padding);
+    margin: 0 auto;
+    max-width: min(100%, 1720px);
+
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    font-size: 16px;
+  }
+
+  .footer-content :global(.row-wrapper :hover),
+  .footer-content :global(.row-wrapper:hover > .icon) {
+    color: var(--light-color);
+    border-color: var(--light-color);
+  }
+
+  .footer-icon {
+    margin: 0 0 8px -4px;
+    height: 64px;
+    width: 64px;
   }
 </style>
