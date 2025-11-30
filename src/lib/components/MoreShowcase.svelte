@@ -24,6 +24,7 @@
       href="/projects"
       darkOnly={true}
       icon="arrow"
+      selfTab
       alwaysShow={true}
     />
   </span>

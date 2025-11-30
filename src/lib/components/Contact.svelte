@@ -36,6 +36,19 @@
           <Anchor text="Layers" href="https://layers.to/nabholz" />
           <Anchor text="Github" href="https://github.com/iamnabholz" />
         </div>
+
+        <div class="links">
+          <span><b>Socials</b></span>
+          <!--<a target="_blank" href="https://medium.com/@nabholz">
+                      Medium
+                  </a>
+                  <a target="_blank" href="https://behance.net/nabholz">
+                      Behance
+                  </a>-->
+
+          <Anchor text="Bluesky" href="https://bsky.app/profile/nabholz.work" />
+          <Anchor text="Threads" href="https://www.threads.com/@nabholz.work" />
+        </div>
       {/if}
     </span>
   </div>

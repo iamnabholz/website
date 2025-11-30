@@ -12,7 +12,7 @@
 </script>
 
 <span class="row-wrapper" class:darkOnly>
-  <a {href} target={selfTab ? "_blank" : "_self"}>
+  <a {href} target={!selfTab ? "_blank" : "_self"}>
     {text}
   </a>
   <span class="icon" class:alwaysShow>

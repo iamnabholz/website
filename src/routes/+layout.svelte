@@ -59,7 +59,7 @@
     </div>
 
     <p>
-      Lukas Nabholz. 2025.
+      Lukas Nabholz.
       <br />
       Fonts by <Anchor
         text="PangramPangram."

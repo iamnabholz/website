@@ -9,11 +9,32 @@
   import LastFM from "$lib/components/LastFM.svelte";
   import Skills from "../lib/components/Skills.svelte";
   import Project from "../lib/components/Project.svelte";
+  import { onMount } from "svelte";
 
   let { data } = $props();
   const { projects } = data;
 
   let spanHeight = $state(0);
+
+  let currentTime = $state();
+
+  const updateTime = () => {
+    currentTime = new Date().toLocaleTimeString("default", {
+      timeZone: "America/La_Paz",
+      weekday: "short",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+    });
+  };
+
+  onMount(() => {
+    updateTime();
+    const interval = setInterval(updateTime, 30000);
+
+    // Cleanup function runs when component is destroyed
+    return () => clearInterval(interval);
+  });
 </script>
 
 <div class="header-container">
@@ -100,13 +121,7 @@
     Santa Cruz, Bolivia
     <br />
     <b style="font-size: 1.4rem;">
-      {new Date().toLocaleTimeString("default", {
-        timeZone: "America/La_Paz",
-        weekday: "short",
-        hour: "2-digit",
-        minute: "2-digit",
-        hour12: true,
-      })}
+      {currentTime}
     </b>
   </p>
 
