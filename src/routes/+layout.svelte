@@ -126,8 +126,8 @@
   }
 
   .footer-icon {
-    margin: 0 0 8px -4px;
-    height: 64px;
-    width: 64px;
+    margin-bottom: 24px;
+    height: 48px;
+    width: 48px;
   }
 </style>

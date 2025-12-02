@@ -94,11 +94,11 @@
 
   .floating-icon {
     position: absolute;
-    bottom: calc(50% - 50px);
-    left: calc(50% - 50px);
+    bottom: calc(50% - 32px);
+    left: calc(50% - 32px);
 
-    height: 100px;
-    width: 100px;
+    height: 64px;
+    width: 64px;
 
     color: white;
     filter: drop-shadow(0 0 4px #00000030);

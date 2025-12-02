@@ -22,6 +22,8 @@
 
       const recent = data.toptracks.track[0];
 
+      console.log(recent);
+
       trackCover = recent.image?.[2]["#text"] || "/img/track-cover.png";
       trackLink = recent.url || "";
       trackName = recent.name || "Unknown Track";
