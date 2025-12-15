@@ -33,7 +33,6 @@
 
           <Anchor text="BuyMeACoffee" href="https://buymeacoffee.com/nabholz" />
           <Anchor text="Dribbble" href="https://dribbble.com/nabholz" />
-          <Anchor text="Layers" href="https://layers.to/nabholz" />
           <Anchor text="Github" href="https://github.com/iamnabholz" />
         </div>
 
@@ -46,8 +45,8 @@
                       Behance
                   </a>-->
 
-          <Anchor text="Bluesky" href="https://bsky.app/profile/nabholz.work" />
           <Anchor text="Threads" href="https://www.threads.com/@nabholz.work" />
+          <Anchor text="Bluesky" href="https://bsky.app/profile/nabholz.work" />
         </div>
       {/if}
     </span>
