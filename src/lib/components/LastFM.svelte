@@ -7,28 +7,21 @@
   let trackArtist = $state("Artist");
   let trackPlayed = $state("");
 
-  const fetchNowPlaying = async () => {
+  const fetchLastFMData = async () => {
     try {
-      const response = await fetch(
-        "https://lively-credit-b295.nabholz.workers.dev/",
-      );
+      const response = await fetch("https://lasttrack.nabholz.workers.dev/");
 
       // Check if the response is OK before trying to parse JSON
       if (!response.ok) {
         throw new Error(`Failed to fetch: ${response.status}`);
       }
 
-      const data = await response.json();
+      const trackResponse = await response.json();
 
-      const recent = data.toptracks.track[0];
-
-      console.log(recent);
-
-      trackCover = recent.image?.[2]["#text"] || "/img/track-cover.png";
-      trackLink = recent.url || "";
-      trackName = recent.name || "Unknown Track";
-      trackArtist = recent.artist?.["name"] || "Unknown Artist";
-      trackPlayed = recent.playcount || 1;
+      trackCover = trackResponse.cover || "/img/track-cover.png";
+      trackLink = trackResponse.link || "";
+      trackName = trackResponse.name || "Unknown Track";
+      trackArtist = trackResponse.artist || "Unknown Artist";
     } catch (err) {
       // Proper error handling means your component won't break if Last.fm is down
       console.error("Error fetching now playing:", err);
@@ -36,7 +29,7 @@
   };
 
   onMount(() => {
-    fetchNowPlaying();
+    fetchLastFMData();
   });
 </script>
 
@@ -55,14 +48,13 @@
     />
   </a>
   <div class="track-information">
-    <span class="playing-info">
-      Played {trackPlayed > 1 ? trackPlayed + " times" : trackPlayed + " time"}
+    <!--<span class="playing-info">
       <span class="playing-lines row-wrapper">
         <span class="line bass"></span>
         <span class="line mid"></span>
         <span class="line high"></span>
       </span>
-    </span>
+      </span>-->
 
     <p><b>{trackName}</b></p>
     <p>{trackArtist}</p>
@@ -89,14 +81,14 @@
     gap: 0.1rem;
   }
 
-  .playing-info {
+  /*.playing-info {
     color: var(--accent-color);
     font-size: 14px;
     font-weight: bold;
     text-transform: uppercase;
     position: relative;
     width: fit-content;
-  }
+  }*/
 
   a {
     border: none;
@@ -112,8 +104,8 @@
     display: none;
   }
 
-  .playing-lines {
-    display: flex; /* More explicit than relying on row-wrapper class */
+  /*.playing-lines {
+    display: flex;
     height: 100%;
     align-items: center;
     gap: 2.4px;
@@ -158,4 +150,5 @@
       height: 2px;
     }
   }
+  */
 </style>
