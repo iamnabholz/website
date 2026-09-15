@@ -1,0 +1,16 @@
+<svg
+    xmlns="http://www.w3.org/2000/svg"
+    xml:space="preserve"
+    fill-rule="evenodd"
+    stroke-linejoin="round"
+    stroke-miterlimit="2"
+    clip-rule="evenodd"
+    viewBox="0 0 32 32"
+>
+    <path
+        fill="var(--sticker)"
+        d="M16 30.45A10.5 10.5 0 0 1 0 21.5V10.49a10.5 10.5 0 0 1 16-8.94 10.5 10.5 0 0 1 16 8.95v10.99a10.5 10.5 0 0 1-16 8.95"
+    />
+    <path d="M16 24.96A6.5 6.5 0 0 1 4 21.5v-11a6.5 6.5 0 0 1 12-3.46 6.5 6.5 0 0 1 12 3.46v11a6.5 6.5 0 0 1-12 3.46M15 10.5a4.5 4.5 0 0 0-9 0v11a4.5 4.5 0 0 0 9 0zm2 11a4.5 4.5 0 0 0 9 0v-11a4.5 4.5 0 0 0-9 0z" />
+    <path d="M9 12.8a5 5 0 1 1 0 10 5 5 0 0 1 0-10m11 0a5 5 0 1 1 0 10 5 5 0 0 1 0-10" />
+</svg>

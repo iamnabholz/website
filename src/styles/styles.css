@@ -1,0 +1,217 @@
+@import "./reset.css";
+
+@font-face {
+    font-family: "PP Mori";
+    src: url("/fonts/PPMori-Regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "PP Mori";
+    src: url("/fonts/PPMori-SemiBold.woff2") format("woff2");
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "PP Editorial New";
+    src: url("/fonts/PPEditorialNew-Ultralight.woff2") format("woff2");
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "PP Editorial New";
+    src: url("/fonts/PPEditorialNew-UltralightItalic.woff2") format("woff2");
+    font-weight: 200;
+    font-style: italic;
+    font-display: swap;
+}
+
+:root {
+    color-scheme: light dark;
+    accent-color: var(--color-accent);
+
+    /* Color — grey base + orangered accent, both themes via light-dark() */
+    --color-bg: light-dark(#f5f5f4, #18181a);
+    --color-bg-subtle: light-dark(#ebebe9, #222224);
+    --color-surface: light-dark(#ffffff, #202022);
+    --color-border: light-dark(#d9d9d6, #34343a);
+
+    --color-text: light-dark(#1a1a1a, #ededec);
+    --color-text-muted: light-dark(#5c5c58, #a3a39e);
+    --color-text-faint: light-dark(#8a8a85, #6e6e6a);
+
+    --color-accent: light-dark(#e8491d, #ff5a2e);
+    --color-accent-hover: light-dark(#cf3f18, #ff7248);
+    --color-accent-muted: light-dark(#f4d9cd, #402318);
+
+    --color-link: var(--color-accent);
+    --color-focus-ring: var(--color-accent);
+
+    /* Typography */
+    --font-sans: "PP Mori", -apple-system, sans-serif;
+    --font-serif: "PP Editorial New", serif;
+
+    --fs-sm: 0.875rem;
+    --fs-base: 1rem;
+    --fs-lg: 1.125rem;
+    --fs-xl: 1.5rem;
+    --fs-2xl: 2rem;
+    --fs-3xl: 2.75rem;
+
+    --lh-tight: 1.2;
+    --lh-normal: 1.6;
+    --lh-relaxed: 1.8;
+
+    --fw-normal: 400;
+    --fw-bold: 600;
+
+    /* Spacing — 8px scale */
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-6: 1.5rem;
+    --space-8: 2rem;
+    --space-10: 2.5rem;
+    --space-12: 3rem;
+    --space-16: 4rem;
+    --space-24: 6rem;
+
+    /* Layout */
+    --content-width: 42rem;
+    --content-width-wide: 64rem;
+    --content-padding: 48px;
+    --prose-width: 46ch;
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 16px;
+
+    /* Motion */
+    --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-out: cubic-bezier(0, 0, 0.2, 1);
+    --duration-fast: 150ms;
+    --duration-base: 250ms;
+    --duration-slow: 400ms;
+
+    /* Elevation */
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+html {
+    font-size: 100%;
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-sans);
+    font-size: var(--fs-base);
+    font-weight: var(--fw-normal);
+    line-height: var(--lh-normal);
+    transition:
+        background-color var(--duration-base) var(--ease-standard),
+        color var(--duration-base) var(--ease-standard);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-serif);
+    font-weight: var(--fw-bold);
+    line-height: var(--lh-tight);
+    text-wrap: balance;
+}
+
+h1 {
+    font-size: var(--fs-3xl);
+}
+h2 {
+    font-size: var(--fs-2xl);
+}
+h3 {
+    font-size: var(--fs-xl);
+}
+
+p {
+    max-width: var(--content-width);
+    text-wrap: pretty;
+}
+
+/* Links */
+a {
+    font-weight: var(--fw-bold);
+    color: var(--color-link);
+    text-decoration-style: solid;
+    text-decoration-thickness: 0.1em;
+    text-decoration-color: color-mix(in srgb, inherit 20%, transparent);
+    transition: color var(--duration-fast) var(--ease-standard);
+
+    &:is(:hover, :active, :focus-visible) {
+        color: var(--color-accent-hover);
+        text-decoration-color: var(--color-accent-hover);
+    }
+    &[target="_blank"]::after {
+        content: "\00a0↗";
+        font-size: var(--fs-sm);
+        font-weight: inherit;
+        display: inline-block;
+
+        transition: transform 120ms cubic-bezier(0.2, 1.5, 0.4, 1);
+    }
+    &[target="_blank"]:is(:hover, :active, :focus-visible)::after {
+        transform: translate(2px, -2px);
+    }
+}
+
+/* Focus states — accessibility-critical, never remove without replacing */
+:focus-visible {
+    outline: 2px solid var(--color-focus-ring);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+}
+
+/* Remove default focus ring only when :focus-visible is supported/applied */
+:focus:not(:focus-visible) {
+    outline: none;
+}
+
+/* Selection color, matches accent */
+::selection {
+    background: var(--color-accent-muted);
+    color: var(--color-text);
+}
+
+img,
+video,
+svg {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+.content {
+    width: min(calc(100% - var(--content-padding)), var(--content-width));
+    margin-inline: auto;
+}
+
+.content p,
+.prose {
+    max-width: var(--prose-width);
+}

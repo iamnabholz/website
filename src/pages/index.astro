@@ -1,0 +1,104 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ImageShowcase from "../components/ImageShowcase.astro";
+import CurrentTime from "../components/CurrentTime.astro";
+---
+
+<Layout title="Lukas Nabholz">
+    <section class="content stack">
+        <h1>Lukas Nabholz</h1>
+        <p>
+            Designer and coder who turns rough ideas into things people enjoy
+            using. I build tools, websites, apps, games, and anything that
+            sounds fun. Start messy and narrow it down until it feels obvious.
+            From Santa Cruz, Bolivia.
+            <br />
+            <CurrentTime />
+        </p>
+        <p>
+            <a href="/about">read more</a>
+            <br />
+            <a href="mailto:lukas@nabholz.work">email me</a>
+        </p>
+    </section>
+
+    <section class="works-section stack">
+        <div class="work">
+            <div class="content">
+                <p>
+                    <b>Stoop Inbox</b>, reducing friction between your inbox and
+                    your favorite newsletters.
+                </p>
+                <a href="/">read more</a>
+            </div>
+
+            <ImageShowcase
+                eager={true}
+                images={[
+                    "./content/stoop/cover.webp",
+                    "./content/stoop/discover.webp",
+                    "./content/stoop/inbox.webp",
+                    "./content/stoop/library.webp",
+                    "./content/stoop/showcase.webp",
+                ]}
+                background="#15AF41"
+            />
+        </div>
+        <div class="work">
+            <div class="content">
+                <p>
+                    <b>Timesets</b>, a pomodoro-like to build custom timers.
+                </p>
+                <p class="row">
+                    <a href="/">read more</a>
+                    {" — "}
+                    <a target="_blank" href="https://timesets.netlify.app/">
+                        open app
+                    </a>
+                </p>
+            </div>
+            <ImageShowcase
+                images={[
+                    "./content/register/home.webp",
+                    "./content/register/search.webp",
+                ]}
+                background="rgb(235, 220, 190)"
+            />
+        </div>
+
+        <div class="work">
+            <div class="content">
+                <p>
+                    <b>Domain Register</b>, mobile app design putting all the
+                    Porkbun functionality on a native app.
+                </p>
+                <a href="/">read more</a>
+            </div>
+            <ImageShowcase
+                images={[
+                    "./content/register/home.webp",
+                    "./content/register/add-to-cart.webp",
+                    "./content/register/search.webp",
+                ]}
+                background="#5419B6"
+            />
+        </div>
+    </section>
+</Layout>
+
+<style>
+    .links a {
+        text-decoration: none;
+    }
+
+    .works-section {
+        padding: var(--space-24) 0;
+        gap: var(--space-24);
+    }
+
+    .work {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-4);
+    }
+</style>

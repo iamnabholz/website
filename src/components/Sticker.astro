@@ -1,0 +1,142 @@
+<button type="button" class="sticker-wrapper" aria-label="Playful Iconography">
+    <span
+        style={`animation-delay:` + Math.random() * 10 + ";"}
+        class="sticker"
+        aria-hidden="true"
+    ></span>
+</button>
+
+<script>
+    const stickers = Object.values(
+        import.meta.glob<string>("/src/content/stickers/*.svg", {
+            eager: true,
+            query: "?raw",
+            import: "default",
+        }),
+    );
+
+    const colors = [
+        "#fcc010",
+        "#f4971b",
+        "#e9473a",
+        "#cd2e55",
+        "#f6bcd0",
+        "#dedcdd",
+        "#9dbfae",
+        "#8dc04e",
+        "#13955f",
+        "#627e8b",
+        "#4153a1",
+        "#438ecc",
+        "#1eb8d1",
+        "#088ea7",
+    ];
+
+    // Re-rolls until the result differs from `previous`.
+    // If the pool only has one item, there's nothing to differ from — just return it.
+    function pickDifferent<T>(pool: T[], previous: T | undefined): T {
+        if (pool.length <= 1) return pool[0];
+        let next = previous;
+        while (next === previous) {
+            next = pool[Math.floor(Math.random() * pool.length)];
+        }
+        return next as T;
+    }
+
+    function initSticker(wrapper: HTMLElement) {
+        const stickerEl = wrapper.querySelector<HTMLElement>(".sticker");
+        if (!stickerEl) return;
+
+        let lastSticker: string | undefined;
+
+        const update = () => {
+            lastSticker = pickDifferent(stickers, lastSticker);
+
+            stickerEl.innerHTML = lastSticker;
+            wrapper.style.setProperty(
+                "--sticker",
+                pickDifferent(colors, undefined),
+            );
+            wrapper.style.setProperty(
+                "--rotation",
+                `${Math.random() * 16 - 8}deg`,
+            );
+            wrapper.style.setProperty(
+                "--scale",
+                `${0.92 + Math.random() * 0.16}`,
+            );
+        };
+
+        update();
+        wrapper.addEventListener("click", update);
+    }
+
+    document
+        .querySelectorAll<HTMLElement>(".sticker-wrapper")
+        .forEach(initSticker);
+</script>
+
+<style>
+    .sticker-wrapper {
+        all: unset;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 96px;
+        aspect-ratio: 1;
+        cursor: pointer;
+        touch-action: manipulation;
+        -webkit-tap-highlight-color: transparent;
+        transition: transform 120ms ease-out;
+    }
+
+    .sticker-wrapper:hover {
+        transform: scale(1.08);
+    }
+
+    .sticker-wrapper:active {
+        transform: scale(0.9);
+        transition-duration: 60ms;
+    }
+
+    .sticker-wrapper:focus-visible {
+        outline: 2px solid var(--ink);
+        outline-offset: 4px;
+        border-radius: 6px;
+    }
+
+    .sticker {
+        color: var(--ink);
+        display: block;
+        width: 100%;
+        transform: rotate(var(--rotation, 0deg)) scale(var(--scale, 1));
+        transform-origin: center;
+        transition: transform 200ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+        animation: jump-out 200ms ease-in-out;
+    }
+
+    @keyframes jump-out {
+        from {
+            opacity: 0;
+            transform: scale(0);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    .sticker :global(svg) {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .sticker-wrapper,
+        .sticker {
+            transition: none;
+        }
+    }
+</style>

@@ -1,0 +1,75 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+    images: string[];
+    background?: string;
+    eager?: boolean;
+}
+
+const {
+    images,
+    background = "rgb(240, 240, 240)",
+    eager = false,
+} = Astro.props;
+
+// glob-import every image under src/images once, keyed by its path
+const allImages = import.meta.glob<{ default: ImageMetadata }>(
+    "/src/**/*.{jpeg,jpg,png,gif,webp,avif}",
+    { eager: true },
+);
+
+function resolveImage(src: string) {
+    // normalize "./stoop/cover.webp" -> "/src/images/stoop/cover.webp"
+    const key = src.replace(/^\.\//, "/src/");
+    const mod = allImages[key];
+    if (!mod) throw new Error(`Image not found: ${src} (looked for ${key})`);
+    return mod.default;
+}
+---
+
+<div class="images-row">
+    {images.map((src) => (
+        <div class="image-wrapper" style={`background: ${background}`}>
+            <Image
+                loading={eager ? "eager" : "lazy"}
+                src={resolveImage(src)}
+                alt=""
+            />
+        </div>
+    ))}
+</div>
+
+<style>
+    .images-row {
+        display: flex;
+        align-items: center;
+        gap: var(--space-4);
+        width: 100%;
+        min-width: 0;
+        overflow-x: auto;
+        scrollbar-width: none;
+        padding-inline: max(
+            calc(var(--content-padding) / 2),
+            calc((100% - var(--content-width)) / 2)
+        );
+    }
+
+    .images-row::-webkit-scrollbar {
+        display: none;
+    }
+
+    .image-wrapper {
+        position: relative;
+        height: 520px;
+        padding: 2rem;
+        flex: 0 0 auto;
+        border-radius: 32px;
+    }
+
+    .image-wrapper img {
+        height: 100%;
+        width: auto;
+        display: block;
+    }
+</style>
