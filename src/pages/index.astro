@@ -1,104 +1,106 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import ImageShowcase from "../components/ImageShowcase.astro";
-import CurrentTime from "../components/CurrentTime.astro";
+import Sticker from "../components/Sticker.astro";
+import Work from "../components/Work.astro";
+
+import { getCollection } from "astro:content";
+
+const posts = (await getCollection("posts")).sort(
+    (a, b) => a.data.date?.valueOf() - b.data.date?.valueOf(),
+);
 ---
 
 <Layout title="Lukas Nabholz">
     <section class="content stack">
-        <h1>Lukas Nabholz</h1>
-        <p>
-            Designer and coder who turns rough ideas into things people enjoy
-            using. I build tools, websites, apps, games, and anything that
-            sounds fun. Start messy and narrow it down until it feels obvious.
-            From Santa Cruz, Bolivia.
-            <br />
-            <CurrentTime />
+        <h1 class="hero-text prose">
+            <b>Lukas Nabholz</b>.{" "}
+            <Sticker sticker="mac" visualScale={1.6} size="0.8em" />
+            Designer and coder who turns rough ideas into things people actually
+            enjoy using.
+        </h1>
+        <p class="hero-text prose">
+            I build tools, websites, apps, games, and anything that sounds fun.{" "}
+            <Sticker sticker="cursor" visualScale={2} size="0.8em" />
         </p>
-        <p>
-            <a href="/about">read more</a>
-            <br />
-            <a href="mailto:lukas@nabholz.work">email me</a>
+        <p class="links stack">
+            <a href="/about">
+                read more
+                <span>&rarr;</span>
+            </a>
         </p>
+
+        <p>
+            <a>@nabholzwork</a> or <a>lukas@nabholz.work</a>
+        </p>
+        <!--<p class="links stack">
+            <a href="/about">
+                read more
+                <span>&rarr;</span>
+            </a>
+            <a href="mailto:lukas@nabholz.work">
+                Email me
+                <svg
+                    width="1.1em"
+                    height="1.1em"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                >
+                    <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M3.75 5.25L3 6V18L3.75 18.75H20.25L21 18V6L20.25 5.25H3.75ZM4.5 7.6955V17.25H19.5V7.69525L11.9999 14.5136L4.5 7.6955ZM18.3099 6.75H5.68986L11.9999 12.4864L18.3099 6.75Z"
+                    />
+                </svg>
+            </a>
+        </p>-->
     </section>
 
-    <section class="works-section stack">
-        <div class="work">
-            <div class="content">
-                <p>
-                    <b>Stoop Inbox</b>, reducing friction between your inbox and
-                    your favorite newsletters.
-                </p>
-                <a href="/">read more</a>
-            </div>
-
-            <ImageShowcase
-                eager={true}
-                images={[
-                    "./content/stoop/cover.webp",
-                    "./content/stoop/discover.webp",
-                    "./content/stoop/inbox.webp",
-                    "./content/stoop/library.webp",
-                    "./content/stoop/showcase.webp",
-                ]}
-                background="#15AF41"
-            />
-        </div>
-        <div class="work">
-            <div class="content">
-                <p>
-                    <b>Timesets</b>, a pomodoro-like to build custom timers.
-                </p>
-                <p class="row">
-                    <a href="/">read more</a>
-                    {" — "}
-                    <a target="_blank" href="https://timesets.netlify.app/">
-                        open app
-                    </a>
-                </p>
-            </div>
-            <ImageShowcase
-                images={[
-                    "./content/register/home.webp",
-                    "./content/register/search.webp",
-                ]}
-                background="rgb(235, 220, 190)"
-            />
-        </div>
-
-        <div class="work">
-            <div class="content">
-                <p>
-                    <b>Domain Register</b>, mobile app design putting all the
-                    Porkbun functionality on a native app.
-                </p>
-                <a href="/">read more</a>
-            </div>
-            <ImageShowcase
-                images={[
-                    "./content/register/home.webp",
-                    "./content/register/add-to-cart.webp",
-                    "./content/register/search.webp",
-                ]}
-                background="#5419B6"
-            />
-        </div>
+    <section class="works">
+        {posts.map((post) => (
+            <Work
+                title={post.data.title}
+                description={post.data.description}
+                href={`/blog/${post.id}`}
+            >
+                <ImageShowcase
+                    images={post.data.images ?? []}
+                    background={post.data.background}
+                />
+            </Work>
+        ))}
     </section>
 </Layout>
 
 <style>
-    .links a {
-        text-decoration: none;
+    .hero-text {
+        font-family: var(--font-sans);
+        font-size: var(--fs-2xl);
+        line-height: var(--lh-tight);
+        font-weight: var(--fw-normal);
     }
 
-    .works-section {
-        padding: var(--space-24) 0;
-        gap: var(--space-24);
-    }
-
-    .work {
+    .works {
         display: flex;
         flex-direction: column;
+        gap: var(--space-24);
+        padding-top: var(--space-24);
+    }
+
+    .links {
         gap: var(--space-4);
+    }
+
+    .links a {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        font-size: var(--fs-base);
+        text-decoration: none;
+        text-transform: uppercase;
+        padding-block: var(--space-4);
+        border-bottom: 1px solid var(--color-border);
     }
 </style>

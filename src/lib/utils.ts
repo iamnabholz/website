@@ -1,8 +1,17 @@
 // src/lib/random-color.ts
 const PALETTE = [
   "#fcc010",
+  "#f4971b",
+  "#e9473a",
   "#cd2e55",
+  "#f6bcd0",
+  "#dedcdd",
+  "#9dbfae",
+  "#8dc04e",
   "#13955f",
+  "#627e8b",
+  "#4153a1",
+  "#438ecc",
   "#1eb8d1",
   "#088ea7",
 ] as const;

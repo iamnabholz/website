@@ -1,4 +1,23 @@
-<button type="button" class="sticker-wrapper" aria-label="Playful Iconography">
+---
+interface Props {
+    /** Size of the sticker's bounding box (affects layout). Any valid CSS length — defaults to 1em so it scales with surrounding text. */
+    size?: string;
+    /** Visual scale applied on top of the box size, via transform only — doesn't affect layout or surrounding text flow. Defaults to 1 (no extra scaling). */
+    visualScale?: number;
+    /** Filename (without extension) of a specific sticker to show initially, e.g. "mushroom" for mushroom.svg. Falls back to random if omitted or not found. */
+    sticker?: string;
+}
+
+const { size = "1em", visualScale = 1, sticker } = Astro.props;
+---
+
+<button
+    type="button"
+    class="sticker-wrapper"
+    style={`--sticker-size:${size};--sticker-scale:${visualScale};`}
+    data-initial={sticker}
+    aria-label="Playful Iconography"
+>
     <span
         style={`animation-delay:` + Math.random() * 10 + ";"}
         class="sticker"
@@ -7,11 +26,19 @@
 </button>
 
 <script>
-    const stickers = Object.values(
-        import.meta.glob<string>("/src/content/stickers/*.svg", {
-            eager: true,
-            query: "?raw",
-            import: "default",
+    const stickerModules = import.meta.glob<string>(
+        "/src/content/stickers/*.svg",
+        { eager: true, query: "?raw", import: "default" },
+    );
+
+    const stickers = Object.values(stickerModules);
+    const stickersByName = new Map(
+        Object.entries(stickerModules).map(([path, content]) => {
+            const name = path
+                .split("/")
+                .pop()!
+                .replace(/\.svg$/, "");
+            return [name, content];
         }),
     );
 
@@ -47,12 +74,12 @@
         const stickerEl = wrapper.querySelector<HTMLElement>(".sticker");
         if (!stickerEl) return;
 
-        let lastSticker: string | undefined;
+        const requestedName = wrapper.dataset.initial;
+        let lastSticker: string | undefined = requestedName
+            ? stickersByName.get(requestedName)
+            : undefined;
 
-        const update = () => {
-            lastSticker = pickDifferent(stickers, lastSticker);
-
-            stickerEl.innerHTML = lastSticker;
+        const applyColorAndTransform = () => {
             wrapper.style.setProperty(
                 "--sticker",
                 pickDifferent(colors, undefined),
@@ -67,7 +94,19 @@
             );
         };
 
-        update();
+        // First paint: use the named sticker if one was found, otherwise fall back to a normal random pick.
+        if (!lastSticker) {
+            lastSticker = pickDifferent(stickers, undefined);
+        }
+        stickerEl.innerHTML = lastSticker;
+        applyColorAndTransform();
+
+        const update = () => {
+            lastSticker = pickDifferent(stickers, lastSticker);
+            stickerEl.innerHTML = lastSticker;
+            applyColorAndTransform();
+        };
+
         wrapper.addEventListener("click", update);
     }
 
@@ -82,12 +121,16 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        width: 96px;
+        width: var(--sticker-size, 1em);
         aspect-ratio: 1;
         cursor: pointer;
         touch-action: manipulation;
         -webkit-tap-highlight-color: transparent;
         transition: transform 120ms ease-out;
+
+        margin-inline: calc(
+            (var(--sticker-size, 1em) * (var(--sticker-scale, 1) - 1)) / 2
+        );
     }
 
     .sticker-wrapper:hover {
@@ -99,19 +142,16 @@
         transition-duration: 60ms;
     }
 
-    .sticker-wrapper:focus-visible {
-        outline: 2px solid var(--ink);
-        outline-offset: 4px;
-        border-radius: 6px;
-    }
-
     .sticker {
-        color: var(--ink);
+        color: black;
         display: block;
         width: 100%;
-        transform: rotate(var(--rotation, 0deg)) scale(var(--scale, 1));
+        transform: rotate(var(--rotation, 0deg))
+            scale(calc(var(--scale, 1) * var(--sticker-scale, 1)));
         transform-origin: center;
         transition: transform 200ms cubic-bezier(0.34, 1.56, 0.64, 1);
+
+        z-index: -2;
 
         animation: jump-out 200ms ease-in-out;
     }

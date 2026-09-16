@@ -31,21 +31,27 @@
 
 <style>
     .current-time {
-        font-weight: var(--fw-bold);
-        font-size: var(--fs-sm);
         position: relative;
-        padding-left: 0.6em;
-        color: color-mix(in srgb, currentColor 60%, transparent);
+        padding-left: 0.8em;
+        color: var(--color-text-faint);
     }
 
     .current-time::before {
         content: "";
         position: absolute;
-        left: 0;
+        left: 1px;
         top: calc(50% - 0.3em);
         width: 0.4em;
         height: 0.4em;
         border-radius: 50%;
-        background: currentColor;
+        background: var(--color-text-faint);
+        opacity: 0;
+        animation: blink 2s step-end infinite;
+    }
+
+    @keyframes blink {
+        50% {
+            opacity: 1;
+        }
     }
 </style>

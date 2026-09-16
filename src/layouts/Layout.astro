@@ -3,6 +3,7 @@ import "../styles/styles.css";
 import Sticker from "../components/Sticker.astro";
 
 const { title } = Astro.props;
+const isHome = Astro.url.pathname === "/";
 ---
 
 <!doctype html>
@@ -53,40 +54,38 @@ const { title } = Astro.props;
         <meta property="og:locale" content="en_US" />
 
         <!-- other link tags (excluding stylesheets and resource hints) -->
-        <!-- Icon in the highest resolution we need it for -->
-        <link rel="icon" sizes="192x192" href="/apple-touch-icon.png" />
-
-        <!-- Apple Touch Icon (reuse 192px icon.png) -->
+        <!-- Icons -->
+        <link rel="icon" href="/favicon.ico" sizes="32x32" />
+        <link rel="icon" href="/icon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
         <link rel="preconnect" href="https://nabholz.work/" />
         <link rel="dns-prefetch" href="https://nabholz.work/" />
-
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     </head>
-    <body>
-        <header>
-            <div class="content">
-                <Sticker /> <Sticker /> <Sticker />
-            </div>
-        </header>
-
+    <body id="top">
         <div id="animation-wrapper">
+            {!isHome && (
+                <header>
+                    <a href="/">Go back</a>
+                </header>
+            )}
             <main>
                 <slot />
             </main>
 
-            <footer>
-                <div class="content">
-                    <p>
-                        font by{" "}
-                        <a target="_blank" href="https://pangrampangram.com/">
-                            PangramPangram
-                        </a>
-                        <br />
-                        &copy; 2026. Lukas Nabholz.
-                    </p>
-                </div>
+            <footer class="content stack">
+                <nav>
+                    <a href="/">Work</a> <a href="/about">About</a>{" "}
+                    <a href="/projects">Projects</a>
+                </nav>
+                <p>
+                    Fonts by{" "}
+                    <a target="_blank" href="https://pangrampangram.com/">
+                        PangramPangram
+                    </a>
+                    <br />
+                    &copy; 2026 Lukas Nabholz
+                </p>
             </footer>
         </div>
     </body>
@@ -94,7 +93,10 @@ const { title } = Astro.props;
 
 <script>
     import { pickRandomColor } from "../lib/utils";
-    document.documentElement.style.setProperty("--accent", pickRandomColor());
+    document.documentElement.style.setProperty(
+        "--color-accent",
+        pickRandomColor(),
+    );
 </script>
 
 <style>
@@ -104,33 +106,28 @@ const { title } = Astro.props;
         min-height: 100dvh;
 
         font-size: var(--fs-lg);
+
+        padding-block: var(--space-16);
     }
 
     #animation-wrapper {
         display: flex;
         flex-direction: column;
         flex: 1;
-        gap: var(--space-24);
+        gap: var(--space-12);
         animation: slide-up 600ms cubic-bezier(0.16, 1, 0.3, 1) 200ms both;
-    }
-
-    header {
-        padding: var(--space-16) 0 var(--space-10) 0;
     }
 
     main {
         flex: 1;
         display: flex;
         flex-direction: column;
+        gap: var(--space-8);
     }
 
-    footer {
-        padding: var(--space-16) 0 var(--space-24) 0;
-        background: linear-gradient(
-            0deg,
-            var(--color-accent) 0%,
-            transparent 100%
-        );
+    nav {
+        display: flex;
+        gap: 0 var(--space-6);
     }
 
     @keyframes slide-up {

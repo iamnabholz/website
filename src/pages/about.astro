@@ -1,17 +1,36 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Sticker from "../components/Sticker.astro";
+import CurrentTime from "../components/CurrentTime.astro";
 ---
 
 <Layout title="About Lukas Nabholz">
-    <div class="content">
+    <section class="content stack">
+        <Sticker sticker="cursor" size="4rem" visualScale={1.4} />
         <p>
-            <b>About me.</b>
-            <br />
-            How did you get here?
-            <br />
-            <a href="/">back home</a>
+            I'm <b>Lukas Nabholz</b>.
         </p>
-    </div>
+        <p>
+            Passionate about design, software, music, and games. Start messy and
+            narrow it down until it feels obvious.
+        </p>
+
+        <p>
+            I spend my days designing experiences people actually enjoy using,
+            and my nights building tools and apps that other developers and
+            designers use.
+        </p>
+        <p>
+            You can find me posting more about me and what I do on{" "}
+            <a>threads</a> or <a>bluesky</a>.
+        </p>
+
+        <p style="font-size: var(--fs-sm); font-weight: var(--fw-semibold);">
+            Santa Cruz, Bolivia
+            <br />
+            <CurrentTime />
+        </p>
+    </section>
 </Layout>
 
 <style></style>
