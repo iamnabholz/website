@@ -1,6 +1,5 @@
 ---
 import "../styles/styles.css";
-import Sticker from "../components/Sticker.astro";
 
 const { title } = Astro.props;
 const isHome = Astro.url.pathname === "/";
@@ -65,8 +64,10 @@ const isHome = Astro.url.pathname === "/";
     <body id="top">
         <div id="animation-wrapper">
             {!isHome && (
-                <header>
-                    <a href="/">Go back</a>
+                <header class="content">
+                    <a class="back-home" href="/">
+                        Back home
+                    </a>
                 </header>
             )}
             <main>
@@ -74,6 +75,9 @@ const isHome = Astro.url.pathname === "/";
             </main>
 
             <footer class="content stack">
+                <a class="back-top" href="#top">
+                    Back to top
+                </a>
                 <nav>
                     <a href="/">Work</a> <a href="/about">About</a>{" "}
                     <a href="/projects">Projects</a>
@@ -145,5 +149,27 @@ const isHome = Astro.url.pathname === "/";
         main {
             animation: none;
         }
+    }
+
+    .back-home::before,
+    .back-top::before {
+        font-size: var(--fs-sm);
+        font-weight: inherit;
+        display: inline-block;
+        transition: transform 120ms var(--ease-out);
+    }
+
+    .back-home::before {
+        content: "\2190\00a0";
+    }
+    .back-top::before {
+        content: "\2191\00a0";
+    }
+    .back-home:is(:hover, :active, :focus-visible)::before {
+        transform: translateX(-3px);
+    }
+
+    .back-top:is(:hover, :active, :focus-visible)::before {
+        transform: translateY(-3px);
     }
 </style>
