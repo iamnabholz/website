@@ -1,0 +1,30 @@
+---
+interface Props {
+    title: string;
+    description: string;
+    href?: string;
+}
+
+const { title, description, href } = Astro.props;
+---
+
+<article class="stack">
+    <header class="content stack">
+        <h2>
+            <b>{title}:</b> {description}
+        </h2>
+        {href && (
+            <a href={href} aria-label={`Read more about ${title}`}>
+                Read more
+            </a>
+        )}
+    </header>
+
+    <slot />
+</article>
+
+<style>
+    h2 {
+        font-size: var(--fs-xl);
+    }
+</style>
