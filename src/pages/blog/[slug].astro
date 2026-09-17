@@ -19,5 +19,12 @@ const { Content } = await render(entry);
     <article class="content stack">
         <h1>{entry.data.title}</h1>
         <Content />
+        <time datetime={entry.data.date.toISOString()}>
+            {entry.data.date.toLocaleDateString("en-US", {
+                day: "numeric",
+                month: "short",
+                year: "numeric",
+            })}
+        </time>
     </article>
 </Layout>

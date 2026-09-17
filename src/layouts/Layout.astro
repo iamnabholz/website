@@ -66,29 +66,30 @@ const isHome = Astro.url.pathname === "/";
             {!isHome && (
                 <header class="content">
                     <a class="back-home" href="/">
-                        Back home
+                        back home
                     </a>
                 </header>
             )}
             <main>
                 <slot />
             </main>
-
             <footer class="content stack">
                 <a class="back-top" href="#top">
-                    Back to top
+                    back to top
                 </a>
+                <hr />
+                <a href="mailto:lukas@nabholz.work">lukas@nabholz.work</a>
                 <nav>
-                    <a href="/">Work</a> <a href="/about">About</a>{" "}
-                    <a href="/projects">Projects</a>
+                    <a href="/">home</a> <a href="/about">About</a>{" "}
+                    <a href="/blog">Blog</a>
                 </nav>
-                <p>
+                <p class="small-text">
                     Fonts by{" "}
                     <a target="_blank" href="https://pangrampangram.com/">
                         PangramPangram
                     </a>
                     <br />
-                    &copy; 2026 Lukas Nabholz
+                    Designed and developed by Lukas Nabholz
                 </p>
             </footer>
         </div>
@@ -129,9 +130,17 @@ const isHome = Astro.url.pathname === "/";
         gap: var(--space-8);
     }
 
+    footer {
+        padding-top: var(--space-8);
+    }
+
     nav {
         display: flex;
         gap: 0 var(--space-6);
+    }
+
+    nav {
+        text-transform: lowercase;
     }
 
     @keyframes slide-up {
@@ -151,25 +160,48 @@ const isHome = Astro.url.pathname === "/";
         }
     }
 
+    .back-home,
+    .back-top {
+        text-decoration: none;
+    }
+
     .back-home::before,
     .back-top::before {
-        font-size: var(--fs-sm);
-        font-weight: inherit;
+        position: relative;
+        top: 2px;
+        content: "";
         display: inline-block;
-        transition: transform 120ms var(--ease-out);
+        width: 1em;
+        height: 1em;
+        margin-right: 0.25em;
+
+        background-color: var(--color-text-faint);
+
+        transition:
+            background-color var(--duration-base) var(--ease-out),
+            transform var(--duration-base) var(--ease-out);
     }
 
     .back-home::before {
-        content: "\2190\00a0";
+        transform: rotateZ(225deg);
+        mask: url("/icons/arrow-up-right.svg") center / contain no-repeat;
+        -webkit-mask: url("/icons/arrow-up-right.svg") center / contain
+            no-repeat;
     }
+
     .back-top::before {
-        content: "\2191\00a0";
+        transform: rotateZ(-45deg);
+        mask: url("/icons/arrow-up-right.svg") center / contain no-repeat;
+        -webkit-mask: url("/icons/arrow-up-right.svg") center / contain
+            no-repeat;
     }
     .back-home:is(:hover, :active, :focus-visible)::before {
-        transform: translateX(-3px);
+        background-color: var(--color-accent);
+        transform: translateX(-3px) rotateZ(225deg);
     }
 
     .back-top:is(:hover, :active, :focus-visible)::before {
-        transform: translateY(-3px);
+        background-color: var(--color-accent);
+        transform: translateY(-3px) rotateZ(-45deg);
     }
 </style>

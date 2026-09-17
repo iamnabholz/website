@@ -6,7 +6,6 @@ import CurrentTime from "../components/CurrentTime.astro";
 
 <Layout title="About Lukas Nabholz">
     <section class="content stack">
-        <Sticker sticker="cursor" size="4rem" visualScale={1.4} />
         <p>
             I'm <b>Lukas Nabholz</b>.
         </p>
@@ -22,15 +21,32 @@ import CurrentTime from "../components/CurrentTime.astro";
         </p>
         <p>
             You can find me posting more about me and what I do on{" "}
-            <a>threads</a> or <a>bluesky</a>.
+            <a href="https://www.threads.com/@nabholzwork">threads</a> or{" "}
+            <a href="https://www.bluesky.com/@nabholz.work">bluesky</a>
         </p>
+
+        <p>
+            <a href="mailto:lukas@nabholz.work">lukas@nabholz.work</a>
+        </p>
+
+        <hr class="prose" />
 
         <p style="font-size: var(--fs-sm); font-weight: var(--fw-semibold);">
             Santa Cruz, Bolivia
             <br />
             <CurrentTime />
         </p>
+
+        <div class="row stickers-space">
+            <Sticker sticker="cursor" size="4rem" visualScale={1.4} />
+            <Sticker size="4rem" visualScale={1.4} />
+            <Sticker size="4rem" visualScale={1.4} />
+        </div>
     </section>
 </Layout>
 
-<style></style>
+<style>
+    .stickers-space {
+        padding-block: var(--space-8);
+    }
+</style>

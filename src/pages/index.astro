@@ -6,9 +6,16 @@ import Work from "../components/Work.astro";
 
 import { getCollection } from "astro:content";
 
-const posts = (await getCollection("posts")).sort(
-    (a, b) => a.data.date?.valueOf() - b.data.date?.valueOf(),
-);
+const posts = (await getCollection("posts"))
+    // only get posts marked as selected
+    .filter((post) => post.data.selected === true)
+    .sort((a, b) => {
+        const dateA = a.data.date?.valueOf() ?? 0;
+        const dateB = b.data.date?.valueOf() ?? 0;
+
+        // newest first
+        return dateB - dateA;
+    });
 ---
 
 <Layout title="Lukas Nabholz">
@@ -25,43 +32,66 @@ const posts = (await getCollection("posts")).sort(
         </p>
         <p class="links stack">
             <a href="/about">
-                read more
-                <span>&rarr;</span>
+                more about me
+                <span>
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="1.2em"
+                        height="1.2em"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <path d="M12 5l0 14" />
+                        <path d="M5 12l14 0" />
+                    </svg>
+                </span>
+            </a>
+            <a href="/blog">
+                see my work
+                <span>
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="1.2em"
+                        height="1.2em"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <path d="M6 17.6l-2 -1.1v-2.5" />
+                        <path d="M4 10v-2.5l2 -1.1" />
+                        <path d="M10 4.1l2 -1.1l2 1.1" />
+                        <path d="M18 6.4l2 1.1v2.5" />
+                        <path d="M20 14v2.5l-2 1.12" />
+                        <path d="M14 19.9l-2 1.1l-2 -1.1" />
+                        <path d="M12 12l2 -1.1" />
+                        <path d="M18 8.6l2 -1.1" />
+                        <path d="M12 12l0 2.5" />
+                        <path d="M12 18.5l0 2.5" />
+                        <path d="M12 12l-2 -1.12" />
+                        <path d="M6 8.6l-2 -1.1" />
+                    </svg>
+                </span>
             </a>
         </p>
-
         <p>
-            <a>@nabholzwork</a> or <a>lukas@nabholz.work</a>
+            <a href="mailto:lukas@nabholz.work">lukas@nabholz.work</a>
+            <br />
+            <a href="https://www.threads.com/@nabholzwork">@nabholzwork</a>
         </p>
-        <!--<p class="links stack">
-            <a href="/about">
-                read more
-                <span>&rarr;</span>
-            </a>
-            <a href="mailto:lukas@nabholz.work">
-                Email me
-                <svg
-                    width="1.1em"
-                    height="1.1em"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                >
-                    <path
-                        fill-rule="evenodd"
-                        clip-rule="evenodd"
-                        d="M3.75 5.25L3 6V18L3.75 18.75H20.25L21 18V6L20.25 5.25H3.75ZM4.5 7.6955V17.25H19.5V7.69525L11.9999 14.5136L4.5 7.6955ZM18.3099 6.75H5.68986L11.9999 12.4864L18.3099 6.75Z"
-                    />
-                </svg>
-            </a>
-        </p>-->
     </section>
 
     <section class="works">
         {posts.map((post) => (
             <Work
                 title={post.data.title}
-                description={post.data.description}
+                tagline={post.data.tagline}
                 href={`/blog/${post.id}`}
             >
                 <ImageShowcase
@@ -99,7 +129,7 @@ const posts = (await getCollection("posts")).sort(
         width: 100%;
         font-size: var(--fs-base);
         text-decoration: none;
-        text-transform: uppercase;
+        text-transform: lowercase;
         padding-block: var(--space-4);
         border-bottom: 1px solid var(--color-border);
     }

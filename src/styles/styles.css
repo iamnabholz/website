@@ -153,27 +153,67 @@ p {
 
 /* Links */
 a {
-    color: var(--color-text);
     font-weight: var(--fw-semibold);
+    text-decoration-thickness: 0.08rem;
     text-decoration-color: color-mix(in srgb, currentColor 40%, transparent);
     transition:
-        color var(--duration-fast) var(--ease-out),
-        text-decoration-color var(--duration-fast) var(--ease-out);
+        color var(--duration-base) var(--ease-out),
+        text-decoration-color var(--duration-base) var(--ease-out);
 
     &:is(:hover, :active, :focus-visible) {
         color: var(--color-accent);
         text-decoration-color: var(--color-accent);
     }
-    &[target="_blank"]::after {
-        content: "\00a0\2197";
-        font-size: var(--fs-sm);
-        font-weight: inherit;
-        display: inline-block;
-        transition: transform 120ms var(--ease-out);
-    }
-    &[target="_blank"]:is(:hover, :active, :focus-visible)::after {
-        transform: translate(2px, -2px);
-    }
+}
+
+/* External links */
+a[href^="http"]::after {
+    content: "";
+    display: inline-block;
+    position: relative;
+    top: 4px;
+    width: 1em;
+    height: 1em;
+    margin-left: 0.05em;
+
+    background-color: var(--color-text-faint);
+    mask: url("/icons/arrow-up-right.svg") center / contain no-repeat;
+    -webkit-mask: url("/icons/arrow-up-right.svg") center / contain no-repeat;
+
+    transition:
+        background-color var(--duration-base) var(--ease-out),
+        transform var(--duration-base) var(--ease-out);
+}
+
+a[href^="http"]:is(:hover, :active, :focus-visible)::after {
+    background-color: var(--color-accent);
+    transform: translate(2px, -2px);
+}
+
+/* Internal link */
+a[href^="/blog/"]::after {
+    content: "";
+    display: inline-block;
+    position: relative;
+    top: 3px;
+    width: 1em;
+    height: 1em;
+    margin-left: 0.1em;
+
+    background-color: var(--color-text-faint);
+    mask: url("/icons/arrow-up-right.svg") center / contain no-repeat;
+    -webkit-mask: url("/icons/arrow-up-right.svg") center / contain no-repeat;
+
+    transform: rotateZ(45deg);
+
+    transition:
+        background-color var(--duration-base) var(--ease-out),
+        transform var(--duration-base) var(--ease-out);
+}
+
+a[href^="/blog/"]:is(:hover, :active, :focus-visible)::after {
+    background-color: var(--color-accent);
+    transform: translateX(2px) rotateZ(45deg);
 }
 
 :focus-visible {
@@ -206,4 +246,9 @@ hr {
 .content p,
 .prose {
     max-width: var(--prose-width);
+}
+
+.small-text {
+    color: var(--color-text-faint);
+    font-size: var(--fs-base);
 }

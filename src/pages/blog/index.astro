@@ -1,0 +1,33 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/Layout.astro";
+
+const posts = (await getCollection("posts"))
+    // sort by newest first
+    .sort((a, b) => {
+        const dateA = a.data.date?.valueOf() ?? 0;
+        const dateB = b.data.date?.valueOf() ?? 0;
+
+        return dateB - dateA;
+    });
+---
+
+<Layout title="Blog | Lukas Nabholz">
+    <section class="content stack">
+        {posts.map((post) => (
+            <article>
+                <h1>{post.data.title}</h1>
+                <p>
+                    <a href={`/blog/${post.id}`}>read post</a>
+                </p>
+                <time datetime={post.data.date.toISOString()}>
+                    {post.data.date.toLocaleDateString("en-US", {
+                        day: "numeric",
+                        month: "short",
+                        year: "numeric",
+                    })}
+                </time>
+            </article>
+        ))}
+    </section>
+</Layout>

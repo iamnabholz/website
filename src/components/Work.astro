@@ -1,21 +1,21 @@
 ---
 interface Props {
     title: string;
-    description: string;
+    tagline: string;
     href?: string;
 }
 
-const { title, description, href } = Astro.props;
+const { title, tagline, href } = Astro.props;
 ---
 
 <article class="stack">
     <header class="content stack">
-        <h2>
-            <b>{title}:</b> {description}
+        <h2 class="prose">
+            <b>{title}:</b> {tagline.toLowerCase()}
         </h2>
         {href && (
-            <a href={href} aria-label={`Read more about ${title}`}>
-                Read more
+            <a href={href} aria-label={`Read about ${title}`}>
+                read post
             </a>
         )}
     </header>

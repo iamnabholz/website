@@ -32,7 +32,7 @@ function resolveImage(src: string) {
     {images.map((src) => (
         <div class="image-wrapper" style={`background: ${background}`}>
             <Image
-                loading={eager ? "eager" : "lazy"}
+                loading={eager ? "eager" : null}
                 src={resolveImage(src)}
                 alt=""
             />
