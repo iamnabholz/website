@@ -16,9 +16,15 @@ const { Content } = await render(entry);
 ---
 
 <Layout title={entry.data.title}>
-    <article class="content stack">
-        <h1>{entry.data.title}</h1>
-        <Content />
+    <article
+        class="content stack article"
+        style={"--project-accent: " + entry.data.background + ";"}
+    >
+        <h1>
+            <b>{entry.data.title}: </b>
+            {entry.data.tagline}
+        </h1>
+        <p class="faint-text">{entry.data.description}</p>
         <time datetime={entry.data.date.toISOString()}>
             {entry.data.date.toLocaleDateString("en-US", {
                 day: "numeric",
@@ -26,5 +32,37 @@ const { Content } = await render(entry);
                 year: "numeric",
             })}
         </time>
+        <hr />
+        <Content />
     </article>
 </Layout>
+
+<style>
+    .article :global(h2) {
+        padding-top: var(--space-16);
+    }
+
+    .article :global(h3) {
+        padding-top: var(--space-12);
+    }
+
+    .article :global(p:has(> img)) {
+        max-width: none;
+        margin: var(--space-8) 0;
+        padding: 0;
+        background: var(--project-accent);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+    }
+
+    .article :global(p:has(> img) img) {
+        display: block;
+        width: 100%;
+        max-height: 500px;
+        object-fit: contain;
+    }
+
+    h1 {
+        font-weight: var(--fw-normal);
+    }
+</style>
