@@ -9,6 +9,9 @@ images:
 date: Oct 6 2024
 selected: true
 project: false
+tags:
+  - UI/UX
+  - App
 ---
 
 Domain management on mobile can turn into a frustrating experience.
@@ -19,9 +22,9 @@ I worked on a native mobile app that puts all essential domain management tools 
 
 The app prioritizes speed and simplicity, allowing users to have more control over their domains while on mobile.
 
-## Quick Access Dashboard
+![Showcase of the homepage and it's various options](../media/register/home.webp)
 
-![Showcase of the home page](../media/register/home.webp)
+## Quick Access Dashboard
 
 The homepage provides instant access to all key functions:
 
@@ -34,9 +37,9 @@ The homepage provides instant access to all key functions:
 
 Everything is one tap away.
 
-## Smart Domain Search
-
 ![Showcase of the home page](../media/register/search.webp)
+
+## Smart Domain Search
 
 Search results show:
 
@@ -47,9 +50,9 @@ Search results show:
 
 Users can quickly compare options and make decisions on the spot
 
-## Key features
-
 ![Showcase of the home page](../media/register/add-to-cart.webp)
+
+## Key features
 
 - **Push notifications:** Renewal reminders and status updates
 - **One-tap actions:** Common tasks require minimal steps

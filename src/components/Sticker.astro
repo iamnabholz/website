@@ -1,47 +1,37 @@
 ---
 interface Props {
-    /** Size of the sticker's bounding box (affects layout). Any valid CSS length — defaults to 1em so it scales with surrounding text. */
+    /** Base visual size; never increases line height. */
     size?: string;
-    /** Visual scale applied on top of the box size, via transform only — doesn't affect layout or surrounding text flow. Defaults to 1 (no extra scaling). */
+    /** Visual multiplier. Text reserves only 5/6 of the resulting width. */
     visualScale?: number;
-    /** Filename (without extension) of a specific sticker to show initially, e.g. "mushroom" for mushroom.svg. Falls back to random if omitted or not found. */
+    /** Initial sticker filename without .svg; otherwise random. */
     sticker?: string;
 }
 
 const { size = "1em", visualScale = 1, sticker } = Astro.props;
 ---
 
-<button
-    type="button"
-    class="sticker-wrapper"
-    style={`--sticker-size:${size};--sticker-scale:${visualScale};`}
-    data-initial={sticker}
-    aria-label="Playful Iconography"
+<span
+    class="sticker-space"
+    style={`--sticker-size:calc(${size} * ${visualScale});`}
 >
-    <span
-        style={`animation-delay:` + Math.random() * 10 + ";"}
-        class="sticker"
-        aria-hidden="true"
-    ></span>
-</button>
+    <button
+        type="button"
+        class="sticker-wrapper"
+        data-initial={sticker}
+        aria-label="Change decorative sticker"
+    >
+        <span class="sticker" aria-hidden="true"></span>
+    </button>
+</span>
 
 <script>
-    const stickerModules = import.meta.glob<string>(
-        "/src/content/stickers/*.svg",
-        { eager: true, query: "?raw", import: "default" },
-    );
-
-    const stickers = Object.values(stickerModules);
-    const stickersByName = new Map(
-        Object.entries(stickerModules).map(([path, content]) => {
-            const name = path
-                .split("/")
-                .pop()!
-                .replace(/\.svg$/, "");
-            return [name, content];
-        }),
-    );
-
+    const modules = import.meta.glob<string>("/src/content/stickers/*.svg", {
+        eager: true,
+        query: "?raw",
+        import: "default",
+    });
+    const stickers = Object.values(modules);
     const colors = [
         "#fcc010",
         "#f4971b",
@@ -59,124 +49,128 @@ const { size = "1em", visualScale = 1, sticker } = Astro.props;
         "#088ea7",
     ];
 
-    // Re-rolls until the result differs from `previous`.
-    // If the pool only has one item, there's nothing to differ from — just return it.
-    function pickDifferent<T>(pool: T[], previous: T | undefined): T {
-        if (pool.length <= 1) return pool[0];
-        let next = previous;
-        while (next === previous) {
-            next = pool[Math.floor(Math.random() * pool.length)];
-        }
-        return next as T;
-    }
-
-    function initSticker(wrapper: HTMLElement) {
-        const stickerEl = wrapper.querySelector<HTMLElement>(".sticker");
-        if (!stickerEl) return;
-
-        const requestedName = wrapper.dataset.initial;
-        let lastSticker: string | undefined = requestedName
-            ? stickersByName.get(requestedName)
-            : undefined;
-
-        const applyColorAndTransform = () => {
-            wrapper.style.setProperty(
-                "--sticker",
-                pickDifferent(colors, undefined),
-            );
-            wrapper.style.setProperty(
-                "--rotation",
-                `${Math.random() * 16 - 8}deg`,
-            );
-            wrapper.style.setProperty(
-                "--scale",
-                `${0.92 + Math.random() * 0.16}`,
-            );
-        };
-
-        // First paint: use the named sticker if one was found, otherwise fall back to a normal random pick.
-        if (!lastSticker) {
-            lastSticker = pickDifferent(stickers, undefined);
-        }
-        stickerEl.innerHTML = lastSticker;
-        applyColorAndTransform();
-
-        const update = () => {
-            lastSticker = pickDifferent(stickers, lastSticker);
-            stickerEl.innerHTML = lastSticker;
-            applyColorAndTransform();
-        };
-
-        wrapper.addEventListener("click", update);
+    function pickDifferent(pool: string[], previous?: string) {
+        const choices = pool.filter((item) => item !== previous);
+        return choices[Math.floor(Math.random() * choices.length)] ?? pool[0];
     }
 
     document
         .querySelectorAll<HTMLElement>(".sticker-wrapper")
-        .forEach(initSticker);
+        .forEach((button) => {
+            const artwork = button.querySelector<HTMLElement>(".sticker");
+            if (!artwork || !stickers.length) return;
+            let lastSticker: string;
+            let color: string;
+
+            function change(initial?: string) {
+                lastSticker = initial ?? pickDifferent(stickers, lastSticker);
+                color = pickDifferent(colors, color);
+                button.style.setProperty("--sticker", color);
+                button.style.setProperty(
+                    "--rotation",
+                    `${Math.random() * 16 - 8}deg`,
+                );
+                button.style.setProperty(
+                    "--scale",
+                    `${0.92 + Math.random() * 0.16}`,
+                );
+                button.style.setProperty("--x", `${Math.random() * 4 - 2}%`);
+                button.style.setProperty("--y", `${Math.random() * 4 - 2}%`);
+                // A fresh SVG restarts the pop animation, even on rapid clicks.
+                artwork!.innerHTML = lastSticker;
+            }
+
+            change(
+                modules[`/src/content/stickers/${button.dataset.initial}.svg`],
+            );
+            button.addEventListener("click", () => change());
+        });
 </script>
 
 <style>
+    .sticker-space {
+        /* Reserve width only; the artwork stays outside the line box. */
+        position: relative;
+        display: inline-block;
+        width: calc(var(--sticker-size) * 5 / 6);
+        height: 0;
+        line-height: 0;
+        vertical-align: baseline;
+        overflow: visible;
+    }
+
     .sticker-wrapper {
         all: unset;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: var(--sticker-size, 1em);
-        aspect-ratio: 1;
+        position: absolute;
+        z-index: 1;
+        left: 50%;
+        top: -0.345em;
+        width: var(--sticker-size);
+        height: var(--sticker-size);
         cursor: pointer;
         touch-action: manipulation;
         -webkit-tap-highlight-color: transparent;
-        transition: transform 120ms ease-out;
-
-        margin-inline: calc(
-            (var(--sticker-size, 1em) * (var(--sticker-scale, 1) - 1)) / 2
-        );
+        transform: translate(
+                calc(-50% + var(--x, 0%)),
+                calc(-50% + var(--y, 0%))
+            )
+            rotate(var(--rotation, 0deg)) scale(var(--scale, 1));
     }
 
-    .sticker-wrapper:hover {
-        transform: scale(1.08);
-    }
-
-    .sticker-wrapper:active {
-        transform: scale(0.9);
-        transition-duration: 60ms;
+    .sticker-wrapper:focus-visible {
+        outline: 2px solid currentColor;
+        outline-offset: 3px;
+        border-radius: 0.2em;
     }
 
     .sticker {
-        color: black;
         display: block;
         width: 100%;
-        transform: rotate(var(--rotation, 0deg))
-            scale(calc(var(--scale, 1) * var(--sticker-scale, 1)));
-        transform-origin: center;
-        transition: transform 200ms cubic-bezier(0.34, 1.56, 0.64, 1);
-
-        z-index: -2;
-
-        animation: jump-out 200ms ease-in-out;
+        height: 100%;
+        pointer-events: none;
+        color: black;
+        filter: drop-shadow(var(--shadow-md));
     }
 
-    @keyframes jump-out {
-        from {
-            opacity: 0;
-            transform: scale(0);
-        }
-        to {
-            opacity: 1;
-            transform: scale(1);
-        }
+    .sticker-wrapper:active .sticker {
+        transform: scale(1.12, 0.85);
+    }
+
+    .sticker-wrapper:hover .sticker {
+        transform: scale(1.16);
+        transition: transform 100ms linear;
     }
 
     .sticker :global(svg) {
         display: block;
         width: 100%;
-        height: auto;
+        height: 100%;
+        overflow: visible;
+        transform-origin: center;
+        animation: sticker-pop 180ms ease-out;
+    }
+
+    @keyframes sticker-pop {
+        0% {
+            transform: scale(1.18, 0.78);
+        }
+        45% {
+            transform: translateY(-8%) scale(0.88, 1.16);
+        }
+        75% {
+            transform: scale(1.05, 0.95);
+        }
+        100% {
+            transform: scale(1);
+        }
     }
 
     @media (prefers-reduced-motion: reduce) {
-        .sticker-wrapper,
-        .sticker {
-            transition: none;
+        .sticker :global(svg) {
+            animation: none;
+        }
+        .sticker-wrapper:active .sticker {
+            transform: none;
         }
     }
 </style>

@@ -1,0 +1,370 @@
+---
+import AppLayout from "../../layouts/AppLayout.astro";
+
+import layers from "../../content/media/panorama/layers_transparent.png";
+---
+
+<AppLayout
+    title="Panorama Tab — A fresh perspective for every new tab"
+    description="Give your browser a new perspective with Panorama Tab."
+    siteName="Panorama Tab"
+    ogImage="/panorama/big_cover.png"
+    ogImageAlt="A preview of the Panorama Tab experience"
+    favicon="/panorama/icon.svg"
+    faviconType="image/svg+xml"
+    faviconSizes="any"
+    appleTouchIcon="/panorama/apple-touch-icon.png"
+    themeColor="#f5f0e8"
+
+    headerTitle="Panorama Tab"
+>
+    <header class="site-header">
+        <div class="site-brand">
+            <span class="site-brand__icon" aria-hidden="true">
+                <img src={layers.src} />
+            </span>
+            <div class="site-brand__copy" style="margin-top: 0.2rem">
+                <span class="site-brand__name">Panorama Tab</span>
+            </div>
+        </div>
+
+        <nav aria-label="Header">
+            <a
+                class="header-link"
+                href="https://github.com/iamnabholz/panorama-extension"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Panorama Tab on GitHub"
+            >
+                <svg
+                    height="24px"
+                    width="24px"
+                    role="img"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor"
+                >
+                    <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+                </svg>
+
+                <span style="margin-top: 0.2rem">GitHub</span>
+            </a>
+        </nav>
+    </header>
+
+    <section class="hero" aria-labelledby="hero-title">
+        <h1 id="hero-title" class="hero__title">
+            Your new tab.
+            <br />
+            <span>Simple. Beautiful.</span>
+        </h1>
+
+        <p class="hero__tagline">
+            Replace your browser's default new tab page with something calmer,
+            designed to fit your style, with a simple summary of the day for
+            your location and beautiful, customizable backgrounds.
+        </p>
+    </section>
+
+    <section class="features" aria-labelledby="features-title">
+        <div class="section-heading">
+            <h2 id="features-title">
+                Basic features.
+                <br />
+                No distractions.
+            </h2>
+        </div>
+        <div class="feature-grid">
+            <article class="feature-card">
+                <span class="feature-mark" aria-hidden="true">
+                    Holidays
+                </span>
+                <h3>Your day, at a glance.</h3>
+                <p>
+                    Today's date, with today's holiday or the next one to look
+                    forward to.
+                </p>
+            </article>
+            <article class="feature-card">
+                <span class="feature-mark" aria-hidden="true">
+                    Greetings
+                </span>
+                <h3>A little hello, just for you.</h3>
+                <p>
+                    A friendly greeting every time you open a new tab. Add your
+                    name in settings for a more personal welcome.
+                </p>
+            </article>
+            <article class="feature-card">
+                <span class="feature-mark" aria-hidden="true">
+                    Time
+                </span>
+                <h3>A moment to check the time.</h3>
+                <p>
+                    The current time, paired with a little analog clock that
+                    keeps time right alongside it.
+                </p>
+            </article>
+            <article class="feature-card">
+                <span class="feature-mark" aria-hidden="true">
+                    Weather
+                </span>
+                <h3>A quick look outside.</h3>
+                <p>
+                    The current temperature, and a short summary. From clear
+                    skies to clouds, know what it's like outside.
+                </p>
+            </article>
+            <article class="feature-card">
+                <span class="feature-mark" aria-hidden="true">
+                    Backgrounds
+                </span>
+                <h3>Set your own scene.</h3>
+                <p>
+                    Make your tab feel like yours with photos from Unsplash,
+                    solid colors, or gradients. Pick what suits your mood.
+                </p>
+            </article>
+            <article class="feature-card">
+                <span class="feature-mark" aria-hidden="true">
+                    Privacy
+                </span>
+                <h3>Your tab. Your business.</h3>
+                <p>
+                    Free and open source, with no account or premium tier. Your
+                    settings stay on your device, right where they belong.
+                </p>
+            </article>
+        </div>
+    </section>
+
+    <section class="open-source">
+        <div class="stack copy">
+            <h2>Open source.</h2>
+            <p class="muted">
+                Panorama Tab is free and open source. Check out the code, see
+                how it works, or contribute and help make Panorama even better
+                for everyone.
+            </p>
+        </div>
+        <div class="stack links">
+            <a
+                href="https://github.com/iamnabholz/panorama-extension"
+                target="_blank"
+            >
+                View the source on GitHub
+            </a>
+
+            <a
+                href="https://www.producthunt.com/products/panorama-tab"
+                target="_blank"
+            >
+                Review on Product Hunt
+            </a>
+        </div>
+
+        <div class="credits">
+            <p>
+                Built by{" "}
+                <a
+                    href="https://nabholz.work/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Lukas Nabholz
+                </a>
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    xml:space="preserve"
+                    fill-rule="evenodd"
+                    stroke-linejoin="round"
+                    stroke-miterlimit="2"
+                    clip-rule="evenodd"
+                    viewBox="0 0 32 32"
+                >
+                    <path
+                        fill="#fcc010"
+                        d="M6.13 23.8 4.42 5.5a5 5 0 0 1 8.18-4.3l14.1 11.78a5 5 0 0 1-.87 8.27l-.45.23.94 1.77a5 5 0 0 1-2.1 6.75l-2.66 1.4a5 5 0 0 1-6.75-2.1l-.93-1.77-.44.23a5 5 0 0 1-7.3-3.96"
+                    />
+                    <path d="m10.11 23.43-1.7-18.3a1 1 0 0 1 1.63-.87l14.1 11.8a1 1 0 0 1-.17 1.65l-3.99 2.09 2.8 5.31a1 1 0 0 1-.43 1.35l-2.65 1.4a1 1 0 0 1-1.35-.42l-2.8-5.31-3.98 2.09a1 1 0 0 1-1.46-.8m1.86-1.68 3.54-1.86a1 1 0 0 1 1.35.42l2.8 5.31.88-.46-2.8-5.32a1 1 0 0 1 .43-1.35l3.54-1.86-11.1-9.28z" />
+                </svg>
+            </p>
+
+            <p>
+                Help keep it going,{" "}
+                <a
+                    href="https://www.buymeacoffee.com/nabholz"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Buy Me A Coffee
+                </a>
+            </p>
+        </div>
+    </section>
+</AppLayout>
+
+<style>
+    .hero__title span {
+        color: var(--color-text-muted);
+    }
+
+    .features {
+        padding-block: clamp(5rem, 10vw, 9rem);
+    }
+    .section-heading {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+    .section-heading h2 {
+        margin-block: 1rem 1.25rem;
+        font-size: clamp(2rem, 4.5vw, 3.75rem);
+        line-height: 1.1;
+    }
+
+    .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+    }
+    .feature-card {
+        --feature-color: var(--color-brand-pink);
+
+        padding: clamp(1.5rem, 3vw, 2.5rem);
+        border: 1px solid var(--color-border);
+        border-radius: 1.5rem;
+        background: linear-gradient(145deg, var(--color-surface), transparent);
+        text-align: center;
+    }
+    .feature-card:nth-child(3n + 2) {
+        --feature-color: var(--color-brand-yellow);
+    }
+    .feature-card:nth-child(3n) {
+        --feature-color: var(--color-brand-cyan);
+    }
+    .feature-mark {
+        display: inline-block;
+        padding: var(--space-1) var(--space-2);
+        border-radius: var(--radius-full);
+        background: var(--feature-color);
+        color: var(--color-on-brand);
+        font-weight: var(--fw-bold);
+        font-size: 0.68rem;
+        letter-spacing: 0.04em;
+        padding-top: calc(var(--space-1) + 1.5px);
+        text-transform: uppercase;
+    }
+    .feature-card h3 {
+        font-size: 1.3rem;
+        margin-block: 2rem 1rem;
+    }
+    .feature-card p {
+        color: var(--color-text-muted);
+        font-size: 0.95rem;
+        line-height: 1.75;
+    }
+    @media (max-width: 48rem) {
+        .feature-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .hero {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-6);
+
+        width: 100%;
+        margin-inline: auto;
+        padding-top: clamp(2rem, 5vw, 4rem);
+        margin-bottom: clamp(3.5rem, 7vw, 6rem);
+        text-align: center;
+    }
+
+    .hero__title {
+        max-width: 18ch;
+        font-size: clamp(2.65rem, 7.8vw, 6.5rem);
+        letter-spacing: -0.065em;
+        line-height: 1.03;
+    }
+
+    .hero__tagline {
+        max-width: 49ch;
+
+        color: var(--color-text-muted);
+        font-size: clamp(1.05rem, 2vw, 1.2rem);
+        line-height: 1.5;
+    }
+
+    @media (max-width: 30rem) {
+        .hero__title {
+            max-width: none;
+        }
+
+        .hero__tagline {
+            font-size: var(--fs-base);
+        }
+    }
+
+    .open-source {
+        margin: 0 auto;
+        padding: clamp(3rem, 7vw, 6rem) 1.5rem;
+        border-block: 1px solid var(--color-border);
+        background: radial-gradient(
+            ellipse at 50% 100%,
+            color-mix(in srgb, var(--color-brand-yellow) 7%, transparent),
+            transparent 70%
+        );
+        text-align: center;
+    }
+
+    .copy {
+        display: grid;
+        justify-items: center;
+        gap: 1.5rem;
+        margin-bottom: 1.75rem;
+    }
+    .copy h2 {
+        font-size: clamp(2.25rem, 5vw, 4.25rem);
+    }
+    .copy .muted {
+        color: var(--color-text-muted);
+        font-size: 1.05rem;
+        line-height: 1.5;
+        max-width: 48ch;
+    }
+    .links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem 2rem;
+        font-size: 0.9rem;
+    }
+    .links a {
+        color: var(--color-text-muted);
+        text-decoration: underline;
+        text-decoration-color: var(--color-border-strong);
+        text-underline-offset: 3px;
+        transition: text-decoration-color 150ms linear;
+    }
+    .links a:hover {
+        color: var(--color-text);
+        text-decoration-color: currentColor;
+    }
+
+    .credits {
+        font-size: 2rem;
+        padding-top: 6rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .credits svg {
+        display: inline-block;
+        height: 1em;
+        transform: scale(1.6) translate(8px, 4px);
+    }
+</style>

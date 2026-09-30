@@ -1,0 +1,236 @@
+---
+import SiteNav from "../components/SiteNav.astro";
+import "../styles/styles.css";
+
+interface Props {
+    title: string;
+    description: string;
+    siteName?: string;
+
+    canonicalUrl?: string;
+
+    ogImage?: string;
+    ogImageAlt?: string;
+
+    favicon?: string;
+    faviconType?: string;
+    faviconSizes?: string;
+    appleTouchIcon?: string;
+
+    themeColor?: string;
+    robots?: string;
+    showFooter?: boolean;
+
+    headerTitle?: string;
+}
+
+const {
+    title,
+    description,
+    siteName = title,
+
+    canonicalUrl,
+
+    ogImage,
+    ogImageAlt,
+
+    favicon = "/favicon.ico",
+    faviconType,
+    faviconSizes,
+    appleTouchIcon,
+
+    themeColor,
+    robots,
+    showFooter = true,
+
+    headerTitle,
+} = Astro.props;
+
+const siteUrl = Astro.site ?? new URL(Astro.url.origin);
+
+// Use the current page path, without query parameters or fragments.
+const canonical = new URL(canonicalUrl ?? Astro.url.pathname, siteUrl);
+canonical.search = "";
+canonical.hash = "";
+
+// Social previews should use absolute image URLs.
+const socialImageUrl = ogImage ? new URL(ogImage, siteUrl).href : undefined;
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, viewport-fit=cover"
+        />
+
+        <title>{title}</title>
+        <meta name="description" content={description} />
+        <meta name="author" content="Lukas Nabholz" />
+        <meta name="generator" content={Astro.generator} />
+        <meta name="color-scheme" content="light dark" />
+
+        <link rel="canonical" href={canonical.href} />
+
+        {robots && <meta name="robots" content={robots} />}
+        {themeColor && <meta name="theme-color" content={themeColor} />}
+
+        <!-- Open Graph -->
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={canonical.href} />
+        <meta property="og:site_name" content={siteName} />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+
+        {socialImageUrl && (
+            <>
+                <meta property="og:image" content={socialImageUrl} />
+                {ogImageAlt && (
+                    <meta property="og:image:alt" content={ogImageAlt} />
+                )}
+            </>
+        )}
+
+        <!-- X / Twitter -->
+        <meta
+            name="twitter:card"
+            content={socialImageUrl ? "summary_large_image" : "summary"}
+        />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+
+        {socialImageUrl && (
+            <>
+                <meta name="twitter:image" content={socialImageUrl} />
+                {ogImageAlt && (
+                    <meta name="twitter:image:alt" content={ogImageAlt} />
+                )}
+            </>
+        )}
+
+        <!-- Project branding -->
+        <link
+            rel="icon"
+            href={favicon}
+            type={faviconType}
+            sizes={faviconSizes}
+        />
+
+        {appleTouchIcon && (
+            <link rel="apple-touch-icon" href={appleTouchIcon} />
+        )}
+
+        <!-- Additional page-specific metadata or structured data -->
+        <slot name="head" />
+    </head>
+
+    <body>
+        <header class="content header-row">
+            <span class="header-row">
+                <a href="/">
+                    <svg
+                        width="3em"
+                        height="3em"
+                        xmlns="http://www.w3.org/2000/svg"
+                        xml:space="preserve"
+                        fill-rule="evenodd"
+                        stroke-linejoin="round"
+                        stroke-miterlimit="2"
+                        clip-rule="evenodd"
+                        viewBox="0 0 32 32"
+                    >
+                        <path
+                            fill="#fcc010"
+                            d="M6.13 23.8 4.42 5.5a5 5 0 0 1 8.18-4.3l14.1 11.78a5 5 0 0 1-.87 8.27l-.45.23.94 1.77a5 5 0 0 1-2.1 6.75l-2.66 1.4a5 5 0 0 1-6.75-2.1l-.93-1.77-.44.23a5 5 0 0 1-7.3-3.96"
+                        />
+                        <path
+                            fill="black"
+                            d="m10.11 23.43-1.7-18.3a1 1 0 0 1 1.63-.87l14.1 11.8a1 1 0 0 1-.17 1.65l-3.99 2.09 2.8 5.31a1 1 0 0 1-.43 1.35l-2.65 1.4a1 1 0 0 1-1.35-.42l-2.8-5.31-3.98 2.09a1 1 0 0 1-1.46-.8m1.86-1.68 3.54-1.86a1 1 0 0 1 1.35.42l2.8 5.31.88-.46-2.8-5.32a1 1 0 0 1 .43-1.35l3.54-1.86-11.1-9.28z"
+                        />
+                    </svg>
+                </a>
+                {headerTitle && "/ " + headerTitle}
+            </span>
+
+            <SiteNav label="Primary navigation" variant="header" />
+        </header>
+
+        <div id="animation-wrapper">
+            <main class="content">
+                <slot />
+            </main>
+
+            {showFooter && (
+                <footer class="site-footer">
+                    <slot name="footer">
+                        <hr />
+                        <p class="small-text">
+                            Designed and developed by Lukas Nabholz.
+                            <br />
+                            <a href="mailto:hi@nabholz.work">hi@nabholz.work</a>
+                        </p>
+                    </slot>
+                </footer>
+            )}
+        </div>
+    </body>
+</html>
+
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        min-height: 100dvh;
+        gap: var(--space-12);
+        font-size: var(--fs-lg);
+    }
+
+    #animation-wrapper {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        gap: var(--space-12);
+        animation: slide-up 600ms cubic-bezier(0.16, 1, 0.3, 1) 200ms both;
+    }
+    header {
+        padding-top: var(--space-12);
+    }
+
+    .header-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    main {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-8);
+    }
+
+    footer {
+        padding-top: var(--space-8);
+        padding-bottom: var(--space-12);
+    }
+
+    @keyframes slide-up {
+        from {
+            opacity: 0;
+            transform: translateY(64px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        #animation-wrapper {
+            animation: none;
+        }
+    }
+</style>

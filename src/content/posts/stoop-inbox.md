@@ -12,11 +12,14 @@ images:
 date: Jan 30 2025
 selected: true
 project: false
+tags:
+  - UI/UX
+  - App
 ---
 
 Stoop Inbox is a service that gives you a custom email address for newsletters and subscriptions. It's designed to keep your main email clean while giving you a better reading experience than regular email apps.
 
-![Screenshots Of Stoop's App Multiple Tabs](../media/stoop/showcase.webp)
+![Multiple Stoop Inbox screenshots showing various functionality on the app](../media/stoop/showcase.webp)
 
 ## Problems
 

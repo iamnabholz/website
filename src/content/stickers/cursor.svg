@@ -6,7 +6,7 @@
     stroke-linejoin="round"
     stroke-miterlimit="2"
     clip-rule="evenodd"
-    viewBox="0 0 32 32"
+    viewBox="0 0 32 32" overflow="visible"
 >
     <path
         fill="var(--sticker)"

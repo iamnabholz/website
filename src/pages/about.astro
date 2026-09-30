@@ -4,16 +4,15 @@ import Sticker from "../components/Sticker.astro";
 import CurrentTime from "../components/CurrentTime.astro";
 ---
 
-<Layout title="About Lukas Nabholz">
+<Layout
+    title="About — Lukas Nabholz"
+    header="Product designer and front-end developer from Santa Cruz, Bolivia."
+>
     <section class="content stack">
-        <p>
-            I'm <b>Lukas Nabholz</b>.
-        </p>
         <p>
             Passionate about design, software, music, and games. Start messy and
             narrow it down until it feels obvious.
         </p>
-
         <p>
             I spend my days designing experiences people actually enjoy using,
             and my nights building tools and apps that other developers and
@@ -21,32 +20,102 @@ import CurrentTime from "../components/CurrentTime.astro";
         </p>
         <p>
             You can find me posting more about me and what I do on{" "}
-            <a href="https://www.threads.com/@nabholzwork">threads</a> or{" "}
-            <a href="https://www.bluesky.com/@nabholz.work">bluesky</a>
+            <a href="https://www.threads.com/@nabholzwork" rel="me">
+                Threads
+            </a>
+            or{" "}
+            <a href="https://www.bluesky.com/@nabholz.work" rel="me">
+                Bluesky
+            </a>
+            .
         </p>
-
-        <p>
-            <a href="mailto:lukas@nabholz.work">lukas@nabholz.work</a>
-        </p>
-
-        <hr class="prose" />
-
-        <p style="font-size: var(--fs-sm); font-weight: var(--fw-semibold);">
-            Santa Cruz, Bolivia
-            <br />
-            <CurrentTime />
-        </p>
-
-        <div class="row stickers-space">
-            <Sticker sticker="cursor" size="4rem" visualScale={1.4} />
-            <Sticker size="4rem" visualScale={1.4} />
-            <Sticker size="4rem" visualScale={1.4} />
-        </div>
     </section>
+    <section class="content">
+        <h2>Skills</h2>
+        <p>Product Design Svelte Web design App Design Astro</p>
+    </section>
+
+    <section class="content">
+        <h2>Experience</h2>
+
+        <dl class="list">
+            <div>
+                <dt>2018 — Ongoing</dt>
+                <dd>Freelance Work</dd>
+            </div>
+
+            <div>
+                <dt>2015 — 2018</dt>
+                <dd>UX Designer at Monotone Works</dd>
+            </div>
+        </dl>
+    </section>
+
+    <section class="content">
+        <h2>Languages</h2>
+
+        <dl class="list">
+            <div>
+                <dt>English</dt>
+                <dd>Proficent</dd>
+            </div>
+
+            <div>
+                <dt>Spanish</dt>
+                <dd>Native Speaker</dd>
+            </div>
+        </dl>
+    </section>
+
+    <address class="content contact">
+        <h2>Contact</h2>
+
+        <dl class="list">
+            <div>
+                <dt>Location</dt>
+                <dd>Santa Cruz, Bolivia</dd>
+                <dd>
+                    <CurrentTime />
+                </dd>
+            </div>
+
+            <div>
+                <dt>Email</dt>
+                <dd>
+                    <a href="mailto:hi@nabholz.work">hi@nabholz.work</a>
+                </dd>
+            </div>
+
+            <div>
+                <dt>Threads</dt>
+                <dd>
+                    <a href="https://threads.com/@nabholzwork">@nabholzwork</a>
+                </dd>
+            </div>
+
+            <div>
+                <dt>Bluesky</dt>
+                <dd>
+                    <a href="https://bsky.app/profile/nabholz.work">
+                        @nabholz.work
+                    </a>
+                </dd>
+            </div>
+        </dl>
+    </address>
+
+    <div class="content stickers-space">
+        <Sticker sticker="cursor" size="4rem" visualScale={1.4} />
+        <Sticker size="4rem" visualScale={1.4} />
+        <Sticker size="4rem" visualScale={1.4} />
+    </div>
 </Layout>
 
 <style>
     .stickers-space {
-        padding-block: var(--space-8);
+        padding-block: var(--spacing-4xl);
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-xs);
     }
 </style>

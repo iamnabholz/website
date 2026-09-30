@@ -9,6 +9,11 @@ images:
 date: 16 Sep 2026
 selected: true
 project: true
+tags:
+  - Web Design
+  - Extension
 ---
 
 Basic draft for all posts
+
+[panorama](/panorama)

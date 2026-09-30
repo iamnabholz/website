@@ -1,0 +1,218 @@
+---
+interface Props {
+    pixelSize?: number;
+    fps?: number;
+}
+
+const { pixelSize = 8, fps = 24 } = Astro.props;
+---
+
+<dither-canvas data-pixel-size={pixelSize} data-fps={fps} aria-hidden="true">
+    <canvas></canvas>
+</dither-canvas>
+
+<style>
+    dither-canvas {
+        position: absolute;
+        inset: 0;
+        display: block;
+        z-index: 0;
+        pointer-events: none;
+    }
+
+    canvas {
+        display: block;
+        width: 100%;
+        height: 100%;
+        image-rendering: pixelated;
+    }
+</style>
+
+<script>
+    class DitherCanvas extends HTMLElement {
+        private cleanup?: () => void;
+
+        connectedCallback() {
+            this.cleanup?.();
+
+            const section = this.parentElement;
+            const canvas = this.querySelector("canvas");
+            const ctx = canvas?.getContext("2d");
+
+            if (!section || !canvas || !ctx) return;
+
+            const windows = [
+                ...section.querySelectorAll<HTMLElement>("[data-dither-mask]"),
+            ];
+
+            const pixelSize = Math.max(1, Number(this.dataset.pixelSize) || 8);
+            const frameTime =
+                1000 / Math.max(1, Number(this.dataset.fps) || 24);
+            const motion = window.matchMedia(
+                "(prefers-reduced-motion: reduce)",
+            );
+
+            let width = 0;
+            let height = 0;
+            let image: ImageData | undefined;
+            let masks: {
+                left: number;
+                top: number;
+                right: number;
+                bottom: number;
+            }[] = [];
+
+            let visible = false;
+            let frame = 0;
+            let lastFrame = 0;
+
+            function draw(time: number) {
+                if (!image) return;
+
+                const pixels = image.data;
+                const t = time * 0.0004;
+
+                pixels.fill(0);
+
+                // Use section coordinates so the pattern continues across gaps.
+                for (const mask of masks) {
+                    for (let y = mask.top; y < mask.bottom; y++) {
+                        for (let x = mask.left; x < mask.right; x++) {
+                            const value =
+                                (Math.sin(x * 0.16 + t) +
+                                    Math.sin(y * 0.19 - t * 0.7) +
+                                    Math.sin((x + y) * 0.11 + t * 0.4) +
+                                    Math.sin(x * 0.07 - y * 0.09 + t * 0.6)) /
+                                4;
+
+                            const on =
+                                value > 0.76 ||
+                                (value > 0.45 && (x + y) % 2 === 0) ||
+                                (value > -0.15 && x % 2 === 0 && y % 2 === 0);
+
+                            if (!on) continue;
+
+                            const i = (y * width + x) * 4;
+
+                            pixels[i] = 20;
+                            pixels[i + 1] = 20;
+                            pixels[i + 2] = 20;
+                            pixels[i + 3] = Math.round(255 * 0.05);
+                        }
+                    }
+                }
+
+                ctx!.putImageData(image, 0, 0);
+            }
+
+            function resize() {
+                const rect = section!.getBoundingClientRect();
+
+                if (!rect.width || !rect.height) {
+                    image = undefined;
+                    return;
+                }
+
+                width = Math.ceil(rect.width / pixelSize);
+                height = Math.ceil(rect.height / pixelSize);
+
+                canvas!.width = width;
+                canvas!.height = height;
+                image = ctx!.createImageData(width, height);
+
+                const scaleX = width / rect.width;
+                const scaleY = height / rect.height;
+
+                const clipPaths: string[] = [];
+
+                masks = windows.map((element) => {
+                    const bounds = element.getBoundingClientRect();
+
+                    const left = bounds.left - rect.left;
+                    const top = bounds.top - rect.top;
+                    const right = bounds.right - rect.left;
+                    const bottom = bounds.bottom - rect.top;
+
+                    // Clip at the exact CSS boundaries.
+                    clipPaths.push(
+                        `M ${left} ${top} ` +
+                            `H ${right} V ${bottom} H ${left} Z`,
+                    );
+
+                    // Paint every canvas pixel touching the window.
+                    return {
+                        left: Math.max(0, Math.floor(left * scaleX)),
+                        top: Math.max(0, Math.floor(top * scaleY)),
+                        right: Math.min(width, Math.ceil(right * scaleX)),
+                        bottom: Math.min(height, Math.ceil(bottom * scaleY)),
+                    };
+                });
+
+                canvas!.style.clipPath = clipPaths.length
+                    ? `path("${clipPaths.join(" ")}")`
+                    : "inset(50%)";
+
+                draw(motion.matches ? 0 : performance.now());
+            }
+
+            function loop(time: number) {
+                if (time - lastFrame >= frameTime) {
+                    lastFrame = time;
+                    draw(time);
+                }
+
+                frame = requestAnimationFrame(loop);
+            }
+
+            function updatePlayback() {
+                cancelAnimationFrame(frame);
+                frame = 0;
+
+                if (!visible || document.hidden) return;
+
+                if (motion.matches) {
+                    draw(0);
+                    return;
+                }
+
+                lastFrame = 0;
+                frame = requestAnimationFrame(loop);
+            }
+
+            const intersectionObserver = new IntersectionObserver(([entry]) => {
+                visible = entry.isIntersecting;
+                updatePlayback();
+            });
+
+            const resizeObserver = new ResizeObserver(resize);
+
+            resize();
+            intersectionObserver.observe(section);
+            resizeObserver.observe(section);
+            windows.forEach((element) => resizeObserver.observe(element));
+
+            motion.addEventListener("change", updatePlayback);
+            document.addEventListener("visibilitychange", updatePlayback);
+
+            this.cleanup = () => {
+                cancelAnimationFrame(frame);
+                intersectionObserver.disconnect();
+                resizeObserver.disconnect();
+                motion.removeEventListener("change", updatePlayback);
+                document.removeEventListener(
+                    "visibilitychange",
+                    updatePlayback,
+                );
+            };
+        }
+
+        disconnectedCallback() {
+            this.cleanup?.();
+            this.cleanup = undefined;
+        }
+    }
+
+    if (!customElements.get("dither-canvas")) {
+        customElements.define("dither-canvas", DitherCanvas);
+    }
+</script>

@@ -2,7 +2,7 @@
 import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 
-const posts = (await getCollection("posts"))
+const ALL_POSTS = (await getCollection("posts"))
     // sort by newest first
     .sort((a, b) => {
         const dateA = a.data.date?.valueOf() ?? 0;
@@ -12,22 +12,133 @@ const posts = (await getCollection("posts"))
     });
 ---
 
-<Layout title="Blog | Lukas Nabholz">
+<Layout
+    title="Blog — Lukas Nabholz"
+    header="Writing about what I build and how I build it"
+>
     <section class="content stack">
-        {posts.map((post) => (
-            <article>
-                <h1>{post.data.title}</h1>
-                <p>
-                    <a href={`/blog/${post.id}`}>read post</a>
-                </p>
-                <time datetime={post.data.date.toISOString()}>
-                    {post.data.date.toLocaleDateString("en-US", {
-                        day: "numeric",
-                        month: "short",
-                        year: "numeric",
-                    })}
-                </time>
-            </article>
-        ))}
+        <p>
+            Writings I do from time to time about my projects and sometimes
+            other thoughts.
+        </p>
+
+        <ul class="posts">
+            {ALL_POSTS.map((post) => (
+                <li>
+                    <a class="post-link" href={`/blog/${post.id}`}>
+                        <time datetime={post.data.date.toISOString()}>
+                            {post.data.date.toLocaleDateString("en-US", {
+                                day: "numeric",
+                                month: "short",
+                                year: "numeric",
+                            })}
+                        </time>
+
+                        <h2>{post.data.title}</h2>
+
+                        <span class="arrow" aria-hidden="true">
+                            →
+                        </span>
+                    </a>
+                </li>
+            ))}
+        </ul>
     </section>
 </Layout>
+
+<style>
+    .posts {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .posts > li {
+        border-top: var(--border-width-thin) solid var(--color-border);
+    }
+
+    .posts > li:last-child {
+        border-bottom: var(--border-width-thin) solid var(--color-border);
+    }
+
+    .post-link {
+        display: grid;
+        grid-template-columns: 8rem minmax(0, 1fr) auto;
+        align-items: baseline;
+        gap: var(--spacing-md);
+        padding-block: var(--spacing-md);
+
+        color: var(--color-text);
+        font-weight: var(--font-weight-normal);
+        text-decoration: none;
+
+        transition: all 150ms linear;
+    }
+
+    /* Keep the row neutral; highlight only its title and arrow. */
+    .post-link:is(:hover, :active, :focus-visible) {
+        color: var(--color-text);
+    }
+
+    .post-link time {
+        color: var(--color-text-faint);
+        font-size: var(--font-size-sm);
+        font-weight: var(--font-weight-normal);
+        font-variant-numeric: tabular-nums;
+        white-space: nowrap;
+    }
+
+    .post-link h2 {
+        min-width: 0;
+        margin: 0;
+        font-size: inherit;
+        font-weight: var(--font-weight-semibold);
+        line-height: var(--line-height-normal);
+        text-wrap: wrap;
+        overflow-wrap: anywhere;
+
+        text-decoration-line: none;
+        text-decoration-thickness: var(--text-decoration-thickness-link);
+        text-underline-offset: var(--text-underline-offset-link);
+    }
+
+    .arrow {
+        justify-self: end;
+    }
+
+    .post-link:is(:hover, :active, :focus-visible) h2 {
+        color: var(--color-accent);
+        text-decoration-line: underline;
+    }
+
+    .post-link:is(:hover, :active, :focus-visible) .arrow {
+        color: var(--color-accent);
+    }
+
+    .post-link:focus-visible {
+        /* Keep the global focus outline, but draw it inside the row. */
+        outline-offset: calc(-1 * var(--outline-width-focus));
+    }
+
+    @media (max-width: 600px) {
+        .post-link {
+            grid-template-columns: minmax(0, 1fr) auto;
+            row-gap: var(--spacing-xs);
+        }
+
+        .post-link time {
+            grid-column: 1;
+            grid-row: 1;
+        }
+
+        .post-link h2 {
+            grid-column: 1;
+            grid-row: 2;
+        }
+
+        .arrow {
+            grid-column: 2;
+            grid-row: 2;
+        }
+    }
+</style>

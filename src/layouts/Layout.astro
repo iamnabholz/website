@@ -1,8 +1,13 @@
 ---
 import "../styles/styles.css";
+import SiteNav from "../components/SiteNav.astro";
+import Sticker from "../components/Sticker.astro";
 
-const { title } = Astro.props;
-const isHome = Astro.url.pathname === "/";
+const { title, header } = Astro.props;
+
+const DESCRIPTION = "Find the works and projects of Lukas Nabholz.";
+
+const currentPath = Astro.url.pathname;
 ---
 
 <!doctype html>
@@ -16,15 +21,8 @@ const isHome = Astro.url.pathname === "/";
 
         <title>{title}</title>
 
-        <meta
-            name="keywords"
-            content="Designer, Developer, Web Developer, UX Design, UI Design, Apps, Software Design, Tools, Product Designer, UI/UX Design, Web Design, App Design, Graphic Design, Visual Design, Developer, Game Dev, User Experience Design, User Interface Design"
-        />
         <meta name="author" content="Lukas Nabholz" />
-        <meta
-            name="description"
-            content="Find the works and projects of Lukas Nabholz."
-        />
+        <meta name="description" content={DESCRIPTION} />
         <!-- other meta tags -->
         <meta name="generator" content={Astro.generator} />
         <meta name="color-scheme" content="light dark" />
@@ -34,9 +32,9 @@ const isHome = Astro.url.pathname === "/";
         />
 
         <!-- Open Graph / Social meta tags -->
-        <meta property="og:title" content="Lukas Nabholz" />
+        <meta property="og:title" content={title} />
         <!-- other social meta tags -->
-        <meta property="og:description" content="Website of Lukas Nabholz" />
+        <meta property="og:description" content={DESCRIPTION} />
         <meta
             property="og:image"
             content="https://nabholz.work/website_cover.png"
@@ -61,93 +59,71 @@ const isHome = Astro.url.pathname === "/";
         <link rel="preconnect" href="https://nabholz.work/" />
         <link rel="dns-prefetch" href="https://nabholz.work/" />
     </head>
-    <body id="top">
-        <div id="animation-wrapper">
-            {!isHome && (
-                <header class="content">
-                    <a class="back-home" href="/">
-                        back home
-                    </a>
-                </header>
+    <body class="stack">
+        <header class="content stack">
+            {currentPath.startsWith("/blog/") ? (
+                ""
+            ) : (
+                <h1 class="title">
+                    <b>Lukas Nabholz</b>
+                    {" — "}
+                    {header
+                        ? header
+                        : "Product designer and developer building    digital experiences that people actually enjoy using."}
+                </h1>
             )}
-            <main>
+
+            <SiteNav variant="header" label="Primary navigation" />
+        </header>
+        <span id="animation-wrapper">
+            <main class="stack">
                 <slot />
             </main>
-            <footer class="content stack">
-                <a class="back-top" href="#top">
-                    back to top
+
+            <footer>
+                Fonts by{" "}
+                <a target="_blank" href="https://pangrampangram.com/">
+                    PangramPangram
                 </a>
-                <hr />
-                <a href="mailto:lukas@nabholz.work">lukas@nabholz.work</a>
-                <nav>
-                    <a href="/">home</a> <a href="/about">About</a>{" "}
-                    <a href="/blog">Blog</a>
-                </nav>
-                <p class="small-text">
-                    Fonts by{" "}
-                    <a target="_blank" href="https://pangrampangram.com/">
-                        PangramPangram
-                    </a>
-                    <br />
-                    Designed and developed by Lukas Nabholz
-                </p>
+                <br />
+                Designed and developed by Lukas Nabholz
             </footer>
-        </div>
+        </span>
     </body>
 </html>
 
-<script>
-    import { pickRandomColor } from "../lib/utils";
-    document.documentElement.style.setProperty(
-        "--color-accent",
-        pickRandomColor(),
-    );
-</script>
-
 <style>
     body {
-        display: flex;
-        flex-direction: column;
+        padding-block: var(--spacing-lg);
         min-height: 100dvh;
-
-        font-size: var(--fs-lg);
-
-        padding-block: var(--space-16);
+        gap: var(--spacing-4xl);
     }
 
     #animation-wrapper {
-        display: flex;
-        flex-direction: column;
-        flex: 1;
-        gap: var(--space-12);
+        display: contents;
         animation: slide-up 600ms cubic-bezier(0.16, 1, 0.3, 1) 200ms both;
     }
 
+    h1.title {
+        font-weight: var(--font-weight-normal);
+    }
+
     main {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        gap: var(--space-8);
+        gap: var(--spacing-4xl);
+        padding-block: var(--spacing-4xl);
     }
 
     footer {
-        padding-top: var(--space-8);
-    }
-
-    nav {
-        display: flex;
-        gap: 0 var(--space-6);
-    }
-
-    nav {
-        text-transform: lowercase;
+        color: var(--color-text-faint);
+        font-size: var(--font-size-sm);
     }
 
     @keyframes slide-up {
         from {
             opacity: 0;
-            transform: translateY(64px);
+            transform: translateY(var(--spacing-4xl));
         }
+
         to {
             opacity: 1;
             transform: translateY(0);
@@ -155,53 +131,8 @@ const isHome = Astro.url.pathname === "/";
     }
 
     @media (prefers-reduced-motion: reduce) {
-        main {
+        #animation-wrapper {
             animation: none;
         }
-    }
-
-    .back-home,
-    .back-top {
-        text-decoration: none;
-    }
-
-    .back-home::before,
-    .back-top::before {
-        position: relative;
-        top: 2px;
-        content: "";
-        display: inline-block;
-        width: 1em;
-        height: 1em;
-        margin-right: 0.25em;
-
-        background-color: var(--color-text-faint);
-
-        transition:
-            background-color var(--duration-base) var(--ease-out),
-            transform var(--duration-base) var(--ease-out);
-    }
-
-    .back-home::before {
-        transform: rotateZ(225deg);
-        mask: url("/icons/arrow-up-right.svg") center / contain no-repeat;
-        -webkit-mask: url("/icons/arrow-up-right.svg") center / contain
-            no-repeat;
-    }
-
-    .back-top::before {
-        transform: rotateZ(-45deg);
-        mask: url("/icons/arrow-up-right.svg") center / contain no-repeat;
-        -webkit-mask: url("/icons/arrow-up-right.svg") center / contain
-            no-repeat;
-    }
-    .back-home:is(:hover, :active, :focus-visible)::before {
-        background-color: var(--color-accent);
-        transform: translateX(-3px) rotateZ(225deg);
-    }
-
-    .back-top:is(:hover, :active, :focus-visible)::before {
-        background-color: var(--color-accent);
-        transform: translateY(-3px) rotateZ(-45deg);
     }
 </style>

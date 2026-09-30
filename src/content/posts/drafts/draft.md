@@ -9,6 +9,8 @@ images:
 date: 16 Sep 2026
 featured: false
 project: false
+tags:
+  - draft
 ---
 
 Basic draft for all posts

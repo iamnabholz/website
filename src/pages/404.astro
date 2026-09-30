@@ -1,16 +1,16 @@
 ---
+import Sticker from "../components/Sticker.astro";
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout title="Lukas Nabholz doesn't have that page">
-    <section class="content stack">
-        <p>
-            <b>404</b>
-            <br />
-            How did you get here?
-            <br />
-        </p>
-    </section>
+<Layout
+    title="Page Not Found — Lukas Nabholz"
+    header="This page doesn't exist, how did you get here?"
+>
+    <div class="content stack">
+        <h1 class="title">404</h1>
+        <span style="padding-top: 2rem;">
+            <Sticker sticker="toggle" size="3em" visualScale={2} />
+        </span>
+    </div>
 </Layout>
-
-<style></style>

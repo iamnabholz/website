@@ -1,0 +1,56 @@
+---
+interface Props {
+    variant: "header" | "footer";
+    label: string;
+}
+
+const { variant, label } = Astro.props;
+
+const HEADER_LINKS = [
+    { href: "/", label: "Works" },
+    { href: "/about", label: "About" },
+    { href: "/blog", label: "Blog" },
+];
+
+const FOOTER_LINKS = [
+    { href: "/", label: "works" },
+    { href: "/about", label: "about" },
+    { href: "/blog", label: "blog" },
+];
+
+const links = variant === "header" ? HEADER_LINKS : FOOTER_LINKS;
+
+const currentPath = Astro.url.pathname;
+
+const isActive = (href: string) => {
+    if (href === "/") {
+        return currentPath === "/";
+    }
+
+    return currentPath === href || currentPath.startsWith(`${href}/`);
+};
+---
+
+<nav aria-label={label} data-variant={variant}>
+    {links.map(({ href, label: linkLabel }) => (
+        <a href={href} aria-current={isActive(href) ? "page" : undefined}>
+            {linkLabel}
+        </a>
+    ))}
+</nav>
+
+<style>
+    nav {
+        display: flex;
+        gap: 0 var(--spacing-sm);
+        flex-wrap: wrap;
+    }
+
+    nav[data-variant="header"] a {
+        text-decoration-line: none;
+    }
+
+    nav[data-variant="header"] a[aria-current="page"] {
+        text-decoration-line: underline;
+    }
+</style>

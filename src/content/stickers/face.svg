@@ -5,12 +5,9 @@
     stroke-linejoin="round"
     stroke-miterlimit="2"
     clip-rule="evenodd"
-    viewBox="0 0 32 32"
+    viewBox="0 0 32 32" overflow="visible"
 >
-    <clipPath id="a">
-        <path d="M0 0h32v32H0z" />
-    </clipPath>
-    <g clip-path="url(#a)">
+    <g>
         <circle
             cx="56"
             cy="16"

@@ -5,12 +5,9 @@
     stroke-linejoin="round"
     stroke-miterlimit="2"
     clip-rule="evenodd"
-    viewBox="0 0 32 32"
+    viewBox="0 0 32 32" overflow="visible"
 >
-    <clipPath id="a">
-        <path d="M0 0h32v32H0z" />
-    </clipPath>
-    <g clip-path="url(#a)">
+    <g>
         <path
             fill="var(--sticker)"
             d="M12.05 6.16A10.8 10.8 0 0 1 21.8 0H26l1.2.12 1.14.35 1.02.56.88.73.73.88.56 1.02.35 1.13L32 6v3.2A10.8 10.8 0 0 1 21.2 20H21v7l-.4 1.95-1.06 1.59-1.6 1.07L16 32l-1.95-.4-1.59-1.06-1.07-1.6L11 27v-1h-.2A10.8 10.8 0 0 1 0 15.2V12l.12-1.2.35-1.14.56-1.02.73-.88.88-.73 1.02-.56 1.13-.35L6 6h4.2q.95 0 1.85.16"
