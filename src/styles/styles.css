@@ -1,31 +1,9 @@
 @import "./reset.css";
 
 @font-face {
-    font-family: "PP Mori";
-    src: url("/fonts/PPMori-Regular.woff2") format("woff2");
-    font-weight: 400;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: "PP Mori";
-    src: url("/fonts/PPMori-SemiBold.woff2") format("woff2");
-    font-weight: 600;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: "PP Neue Montreal";
-    src: url("/fonts/PPNeueMontreal-Regular.otf") format("opentype");
-    font-weight: 400;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: "PP Neue Montreal";
-    src: url("/fonts/PPNeueMontreal-Semibold.otf") format("opentype");
-    font-weight: 600;
-    font-style: normal;
+    font-family: "Overused Grotesk";
+    src: url("/fonts/OverusedGrotesk-VF.woff2") format("woff2-variations");
+    font-weight: 300 900;
 }
 
 :root {
@@ -66,7 +44,7 @@
 
     /* Font families */
     --font-family-sans:
-        "PP Neue Montreal", -apple-system, BlinkMacSystemFont, "Segoe UI",
+        "Overused Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI",
         sans-serif;
 
     /* Font sizes */
@@ -192,7 +170,7 @@ p {
 
 b,
 strong {
-    font-weight: var(--font-weight-semibold);
+    font-weight: bold;
 }
 
 /* Links */
