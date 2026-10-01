@@ -16,7 +16,10 @@ const { Content, remarkPluginFrontmatter } = await render(entry);
 const readingMinutes = remarkPluginFrontmatter.readingMinutes;
 ---
 
-<Layout title={entry.data.title}>
+<Layout
+    title={entry.data.title}
+    header="Writing about what I build and how I build it"
+>
     <article>
         <header class="article-header stack">
             <h1>

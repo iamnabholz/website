@@ -2,12 +2,11 @@
 import "../styles/styles.css";
 import SiteNav from "../components/SiteNav.astro";
 import Sticker from "../components/Sticker.astro";
+import { ClientRouter } from "astro:transitions";
 
 const { title, header } = Astro.props;
 
 const DESCRIPTION = "Find the works and projects of Lukas Nabholz.";
-
-const currentPath = Astro.url.pathname;
 ---
 
 <!doctype html>
@@ -58,20 +57,18 @@ const currentPath = Astro.url.pathname;
 
         <link rel="preconnect" href="https://nabholz.work/" />
         <link rel="dns-prefetch" href="https://nabholz.work/" />
+
+        <ClientRouter />
     </head>
     <body class="stack">
-        <header class="content stack">
-            {currentPath.startsWith("/blog/") ? (
-                ""
-            ) : (
-                <h1 class="title">
-                    <b>Lukas Nabholz</b>
-                    {" — "}
-                    {header
-                        ? header
-                        : "Product designer and developer building    digital experiences that people actually enjoy using."}
-                </h1>
-            )}
+        <header id="title" class="content stack">
+            <h1 class="title">
+                <b>Lukas Nabholz</b>
+                {" — "}
+                {header
+                    ? header
+                    : "Product designer and developer building    digital experiences that people actually enjoy using."}
+            </h1>
 
             <SiteNav variant="header" label="Primary navigation" />
         </header>
@@ -81,6 +78,7 @@ const currentPath = Astro.url.pathname;
             </main>
 
             <footer>
+                <SiteNav variant="footer" label="Footer navigation" />
                 Fonts by{" "}
                 <a target="_blank" href="https://pangrampangram.com/">
                     PangramPangram
