@@ -13,8 +13,8 @@ const projectGroups = [
                 href: "/panorama",
             },
             {
-                title: "other projects",
-                description: "",
+                title: "GoodBadPassword",
+                description: "Password and bad-word generator",
                 href: null,
             },
         ],
@@ -22,11 +22,6 @@ const projectGroups = [
     {
         label: "2026",
         projects: [
-            {
-                title: "GoodBadPassword",
-                description: "",
-                href: null,
-            },
             {
                 title: "Panorama Tab",
                 description: "New tab browser extension",
@@ -39,7 +34,12 @@ const projectGroups = [
         projects: [
             {
                 title: "Timesets",
-                description: "Build your own pomodoro-like timers.",
+                description: "Build your own pomodoro-like timers",
+                href: "/blog/timesets",
+            },
+            {
+                title: "Penpot Plugins",
+                description: "Set of plugins made for a Penpot challenge",
                 href: "/blog/timesets",
             },
         ],
@@ -132,16 +132,12 @@ const projectGroups = [
 
 <style>
     .projects {
-        row-gap: var(--spacing-lg);
+        row-gap: var(--spacing-2xl);
     }
 
     .projects > div {
         align-items: start;
         row-gap: var(--spacing-xs);
-    }
-
-    .projects > div > dt {
-        padding-top: var(--spacing-md);
     }
 
     .project-card {
@@ -170,6 +166,7 @@ const projectGroups = [
         place-items: center;
         width: 2.5rem;
         height: 2.5rem;
+        background-color: lightgray;
     }
 
     .project-icon > :global(img),

@@ -273,7 +273,7 @@ ul li::marker {
 dl {
     font-style: normal;
     display: grid;
-    grid-template-columns: max-content minmax(0, 1fr);
+    grid-template-columns: 6rem minmax(0, 1fr);
     column-gap: var(--spacing-3xl);
     row-gap: var(--spacing-xs);
 }
@@ -286,6 +286,8 @@ dl > div {
 }
 
 dl dt {
+    min-width: 0;
+    overflow-wrap: anywhere;
     color: var(--color-text-faint);
     font-weight: var(--font-weight-semibold);
     font-size: var(--font-size-sm);
