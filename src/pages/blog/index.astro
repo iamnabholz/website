@@ -2,7 +2,7 @@
 import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 
-const ALL_POSTS = (await getCollection("posts"))
+const ALL_POSTS = (await getCollection("notes"))
     // sort by newest first
     .sort((a, b) => {
         const dateA = a.data.date?.valueOf() ?? 0;
@@ -14,7 +14,7 @@ const ALL_POSTS = (await getCollection("posts"))
 
 <Layout
     title="Blog — Lukas Nabholz"
-    header="Writing about what I build and how I build it"
+    header="— Writing about what I build and how I build it"
 >
     <section class="content stack">
         <p>
@@ -100,10 +100,14 @@ const ALL_POSTS = (await getCollection("posts"))
         text-decoration-line: none;
         text-decoration-thickness: var(--text-decoration-thickness-link);
         text-underline-offset: var(--text-underline-offset-link);
+
+        transition: all 150ms linear;
     }
 
     .arrow {
         justify-self: end;
+
+        transition: all 150ms linear;
     }
 
     .post-link:is(:hover, :active, :focus-visible) h2 {

@@ -1,0 +1,47 @@
+[
+  {
+    "label": "Ongoing",
+    "projects": [
+      {
+        "title": "Panorama Tab",
+        "description": "New tab browser extension",
+        "href": "/panorama",
+        "icon": "/src/content/media/icons/la.png"
+      },
+      {
+        "title": "GoodBadPassword",
+        "description": "Password and bad-word generator",
+        "href": null,
+        "icon": "/src/content/media/icons/tr.webp"
+      }
+    ]
+  },
+  {
+    "label": "2026",
+    "projects": [
+      {
+        "title": "Panorama Tab",
+        "description": "New tab browser extension",
+        "href": "/panorama",
+        "icon": "/src/content/media/icons/panorama-icon.webp"
+      }
+    ]
+  },
+  {
+    "label": "2025",
+    "projects": [
+      {
+        "title": "Timesets",
+        "description": "Build your own pomodoro-like timers",
+        "href": "/blog/timesets",
+        "icon": "/src/content/media/icons/timesets-icon.webp"
+      },
+      {
+        "title": "Penpot Plugins",
+        "description": "Set of plugins made for a Penpot challenge",
+        "href": "/blog/timesets",
+        "icon": "/src/content/media/icons/lucky-icon.webp"
+      }
+    ]
+  }
+]

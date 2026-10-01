@@ -1,17 +1,12 @@
 ---
-title: Domain Register
-tagline: Simplifying domain management on mobile
-description: Mobile app design putting all the Porkbun functionality on a native app.
-background: "#5419B6"
-images:
-  - ./content/media/register/home.webp
-  - ./content/media/register/search.webp
-date: Oct 6 2024
-selected: true
-project: false
+title: Powerful domain register options on mobile
+tagline: Short tagline of the post
+date: 26 Nov 2024
 tags:
-  - UI/UX
-  - App
+  - draft
+image: ./content/media/register/home.webp
+selected: true
+project: Domain Register
 ---
 
 Domain management on mobile can turn into a frustrating experience.

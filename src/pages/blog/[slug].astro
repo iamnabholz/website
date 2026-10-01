@@ -3,9 +3,9 @@ import { getCollection, render } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 
 export async function getStaticPaths() {
-    const posts = await getCollection("posts");
+    const notes = await getCollection("notes");
 
-    return posts.map((entry) => ({
+    return notes.map((entry) => ({
         params: { slug: entry.id },
         props: { entry },
     }));
@@ -16,16 +16,13 @@ const { Content, remarkPluginFrontmatter } = await render(entry);
 const readingMinutes = remarkPluginFrontmatter.readingMinutes;
 ---
 
-<Layout
-    title={entry.data.title}
-    header="Writing about what I build and how I build it"
->
+<Layout title={entry.data.title}>
     <article>
         <header class="article-header stack">
             <h1>
-                <b>{entry.data.title}</b>: {entry.data.tagline.toLowerCase()}
+                <b>{entry.data.title}</b>
             </h1>
-            <p>{entry.data.description}</p>
+            <p>{entry.data.tagline.toLowerCase()}</p>
 
             <span>
                 <time datetime={entry.data.date.toISOString().slice(0, 10)}>

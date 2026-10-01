@@ -54,37 +54,48 @@ const { size = "1em", visualScale = 1, sticker } = Astro.props;
         return choices[Math.floor(Math.random() * choices.length)] ?? pool[0];
     }
 
-    document
-        .querySelectorAll<HTMLElement>(".sticker-wrapper")
-        .forEach((button) => {
-            const artwork = button.querySelector<HTMLElement>(".sticker");
-            if (!artwork || !stickers.length) return;
-            let lastSticker: string;
-            let color: string;
+    document.addEventListener("astro:page-load", () => {
+        document
+            .querySelectorAll<HTMLElement>(".sticker-wrapper")
+            .forEach((button) => {
+                const artwork = button.querySelector<HTMLElement>(".sticker");
+                if (!artwork || !stickers.length) return;
+                let lastSticker: string;
+                let color: string;
 
-            function change(initial?: string) {
-                lastSticker = initial ?? pickDifferent(stickers, lastSticker);
-                color = pickDifferent(colors, color);
-                button.style.setProperty("--sticker", color);
-                button.style.setProperty(
-                    "--rotation",
-                    `${Math.random() * 16 - 8}deg`,
-                );
-                button.style.setProperty(
-                    "--scale",
-                    `${0.92 + Math.random() * 0.16}`,
-                );
-                button.style.setProperty("--x", `${Math.random() * 4 - 2}%`);
-                button.style.setProperty("--y", `${Math.random() * 4 - 2}%`);
-                // A fresh SVG restarts the pop animation, even on rapid clicks.
-                artwork!.innerHTML = lastSticker;
-            }
+                function change(initial?: string) {
+                    lastSticker =
+                        initial ?? pickDifferent(stickers, lastSticker);
+                    color = pickDifferent(colors, color);
+                    button.style.setProperty("--sticker", color);
+                    button.style.setProperty(
+                        "--rotation",
+                        `${Math.random() * 16 - 8}deg`,
+                    );
+                    button.style.setProperty(
+                        "--scale",
+                        `${0.92 + Math.random() * 0.16}`,
+                    );
+                    button.style.setProperty(
+                        "--x",
+                        `${Math.random() * 4 - 2}%`,
+                    );
+                    button.style.setProperty(
+                        "--y",
+                        `${Math.random() * 4 - 2}%`,
+                    );
+                    // A fresh SVG restarts the pop animation, even on rapid clicks.
+                    artwork!.innerHTML = lastSticker;
+                }
 
-            change(
-                modules[`/src/content/stickers/${button.dataset.initial}.svg`],
-            );
-            button.addEventListener("click", () => change());
-        });
+                change(
+                    modules[
+                        `/src/content/stickers/${button.dataset.initial}.svg`
+                    ],
+                );
+                button.addEventListener("click", () => change());
+            });
+    });
 </script>
 
 <style>

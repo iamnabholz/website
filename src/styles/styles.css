@@ -273,7 +273,7 @@ ul li::marker {
 dl {
     font-style: normal;
     display: grid;
-    grid-template-columns: 6rem minmax(0, 1fr);
+    grid-template-columns: 4.6rem minmax(0, 1fr);
     column-gap: var(--spacing-3xl);
     row-gap: var(--spacing-xs);
 }

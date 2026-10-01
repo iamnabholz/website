@@ -1,60 +1,39 @@
 ---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
 import Layout from "../layouts/Layout.astro";
-import SelectedWorks from "../components/SelectedWorks.astro";
+import SelectedProjects from "../components/SelectedProjects.astro";
 import CurrentTime from "../components/CurrentTime.astro";
 
-const projectGroups = [
-    {
-        label: "Ongoing",
-        projects: [
-            {
-                title: "Panorama Tab",
-                description: "New tab browser extension",
-                href: "/panorama",
-            },
-            {
-                title: "GoodBadPassword",
-                description: "Password and bad-word generator",
-                href: null,
-            },
-        ],
-    },
-    {
-        label: "2026",
-        projects: [
-            {
-                title: "Panorama Tab",
-                description: "New tab browser extension",
-                href: "/panorama",
-            },
-        ],
-    },
-    {
-        label: "2025",
-        projects: [
-            {
-                title: "Timesets",
-                description: "Build your own pomodoro-like timers",
-                href: "/blog/timesets",
-            },
-            {
-                title: "Penpot Plugins",
-                description: "Set of plugins made for a Penpot challenge",
-                href: "/blog/timesets",
-            },
-        ],
-    },
-];
+import PROJECTS from "../content/projects.json";
+
+const icons = import.meta.glob<{ default: ImageMetadata }>(
+    "/src/content/media/icons/*",
+    { eager: true },
+);
+
+function resolveIcon(path: string): ImageMetadata {
+    const icon = icons[path];
+
+    if (!icon) {
+        throw new Error(`Project icon not found: ${path}`);
+    }
+
+    return icon.default;
+}
 ---
 
-<Layout title="Home — Lukas Nabholz">
-    <SelectedWorks />
+<Layout
+    title="Home — Lukas Nabholz"
+    header="— Product designer and developer building digital experiences that people actually enjoy using."
+>
+    <SelectedProjects />
 
     <section class="content">
-        <h2>Side Projects</h2>
+        <h2>More Projects</h2>
 
         <dl class="projects">
-            {projectGroups.map((group) => (
+            {PROJECTS.map((group) => (
                 <div>
                     <dt>{group.label}</dt>
 
@@ -71,7 +50,13 @@ const projectGroups = [
                                         class="project-icon"
                                         aria-hidden="true"
                                     >
-                                        {/* Add a decorative image or SVG here. */}
+                                        <Image
+                                            src={resolveIcon(project.icon)}
+                                            alt=""
+                                            width={80}
+                                            height={80}
+                                            loading="lazy"
+                                        />
                                     </span>
 
                                     <div class="project-copy">
@@ -137,7 +122,7 @@ const projectGroups = [
 
     .projects > div {
         align-items: start;
-        row-gap: var(--spacing-xs);
+        row-gap: var(--spacing-md);
     }
 
     .project-card {
@@ -166,7 +151,8 @@ const projectGroups = [
         place-items: center;
         width: 2.5rem;
         height: 2.5rem;
-        background-color: lightgray;
+        border-radius: var(--border-radius-md);
+        overflow: hidden;
     }
 
     .project-icon > :global(img),
@@ -182,6 +168,7 @@ const projectGroups = [
 
     .project-title {
         font-weight: var(--font-weight-semibold);
+        transition: all 150ms linear;
     }
 
     a.project-card .project-title {

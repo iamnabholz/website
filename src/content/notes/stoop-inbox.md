@@ -1,20 +1,12 @@
 ---
-title: Stoop Inbox
-tagline: Reduce the friction between your favorite newsletters and your inbox.
-description: Reducing friction between your inbox and your favorite newsletters.
-background: "#15AF41"
-images:
-  - ./content/media/stoop/cover.webp
-  - ./content/media/stoop/discover.webp
-  - ./content/media/stoop/inbox.webp
-  - ./content/media/stoop/library.webp
-  - ./content/media/stoop/showcase.webp
-date: Jan 30 2025
-selected: true
-project: false
+title: Stoop Inbox Mobile App Redesign
+tagline: Short tagline of the post
+date: 8 Jun 2024
 tags:
-  - UI/UX
-  - App
+  - draft
+image: ./content/media/register/home.webp
+selected: true
+project: Stoop Inbox
 ---
 
 Stoop Inbox is a service that gives you a custom email address for newsletters and subscriptions. It's designed to keep your main email clean while giving you a better reading experience than regular email apps.

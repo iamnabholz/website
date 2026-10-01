@@ -63,11 +63,8 @@ const DESCRIPTION = "Find the works and projects of Lukas Nabholz.";
     <body class="stack">
         <header id="title" class="content stack">
             <h1 class="title">
-                <b>Lukas Nabholz</b>
-                {" — "}
-                {header
-                    ? header
-                    : "Product designer and developer building    digital experiences that people actually enjoy using."}
+                <b>Lukas Nabholz </b>
+                {header ?? header}
             </h1>
 
             <SiteNav variant="header" label="Primary navigation" />
@@ -77,14 +74,17 @@ const DESCRIPTION = "Find the works and projects of Lukas Nabholz.";
                 <slot />
             </main>
 
-            <footer>
+            <footer class="stack">
+                <a href="#title">Scroll up</a>
                 <SiteNav variant="footer" label="Footer navigation" />
-                Fonts by{" "}
-                <a target="_blank" href="https://pangrampangram.com/">
-                    PangramPangram
-                </a>
-                <br />
-                Designed and developed by Lukas Nabholz
+                <p>
+                    Fonts by{" "}
+                    <a target="_blank" href="https://pangrampangram.com/">
+                        PangramPangram
+                    </a>
+                    <br />
+                    Designed and developed by Lukas Nabholz
+                </p>
             </footer>
         </span>
     </body>
@@ -112,6 +112,7 @@ const DESCRIPTION = "Find the works and projects of Lukas Nabholz.";
     }
 
     footer {
+        gap: var(--spacing-xs);
         color: var(--color-text-faint);
         font-size: var(--font-size-sm);
     }
