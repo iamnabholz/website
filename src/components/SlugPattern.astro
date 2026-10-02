@@ -5,14 +5,6 @@ interface Props {
 }
 
 const { id, class: className } = Astro.props;
-
-const pixels: string[] = [];
-
-for (let y = 0; y < 12; y += 2) {
-    for (let x = 0; x < 12; x += 2) {
-        pixels.push(`M${x} ${y}h1v1h-1z`);
-    }
-}
 ---
 
 <svg
@@ -21,19 +13,12 @@ for (let y = 0; y < 12; y += 2) {
     aria-hidden="true"
     focusable="false"
     shape-rendering="crispEdges"
-    style="font-size: 1cap;"
-    opacity="0.6"
 >
     <defs>
-        <pattern
-            id={id}
-            width="1em"
-            height="1em"
-            patternUnits="userSpaceOnUse"
-            viewBox="0 0 12 12"
-        >
-            <path d={pixels.join("")} fill="currentColor" />
+        <pattern id={id} width="4" height="4" patternUnits="userSpaceOnUse">
+            <path d="M0 0h1v1H0zM2 2h1v1H2z" fill="currentColor" />
         </pattern>
     </defs>
+
     <rect width="100%" height="100%" fill={`url(#${id})`} />
 </svg>

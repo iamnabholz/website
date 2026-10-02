@@ -7,68 +7,64 @@ interface Props {
     trailingGap?: string;
 }
 
-const { title, idPrefix, trailingGap = "0.15em" } = Astro.props;
+const { title, idPrefix, trailingGap = "0.12em" } = Astro.props;
 
 const words = title.trim().split(/\s+/);
 ---
 
-{words.map((word, index) => (
-    <span class="title-word" aria-hidden="true">
-        {word}
-        {index < words.length - 1 && (
-            <span class="word-pattern">
-                <SlugPattern
-                    id={`${idPrefix}-space-${index}`}
-                    class="word-pattern-svg"
-                />
-            </span>
-        )}
-    </span>
-))}
-
 <span
-    class="trailing-pattern"
+    class="pattern-title"
     style={`--title-pattern-gap: ${trailingGap};`}
     aria-hidden="true"
 >
-    <SlugPattern id={`${idPrefix}-trailing`} class="trailing-pattern-svg" />
+    {words.map((word, index) => (
+        <span class="title-segment">
+            <span class="title-word">{word}</span>
+
+            <span class="title-pattern">
+                <SlugPattern
+                    id={`${idPrefix}-tile-${index}`}
+                    class="title-pattern-svg"
+                />
+            </span>
+        </span>
+    ))}
 </span>
 
 <style>
+    .pattern-title {
+        display: flex;
+        flex-wrap: wrap;
+        column-gap: 0.12em;
+        row-gap: 0;
+    }
+
+    .title-segment {
+        display: inline-flex;
+        flex: 1 0 auto;
+        align-items: baseline;
+        min-inline-size: 0;
+        max-inline-size: 100%;
+        gap: var(--title-pattern-gap);
+    }
+
     .title-word {
-        display: inline-block;
+        min-inline-size: 0;
+        overflow-wrap: anywhere;
     }
 
-    .word-pattern {
-        display: inline-block;
-        width: 1cap;
-        height: 1cap;
-        margin-inline: 0.15em;
-        vertical-align: baseline;
-    }
-
-    .word-pattern :global(.word-pattern-svg) {
+    .title-pattern {
         display: block;
-        width: 100%;
-        height: 100%;
+        flex: 1 0 0.45cap;
+        block-size: 1cap;
+        align-self: baseline;
+        overflow: hidden;
+        opacity: 0.35;
     }
 
-    .trailing-pattern {
-        display: inline-block;
-        position: relative;
-        width: 0;
-        height: 1cap;
-        margin-inline-start: var(--title-pattern-gap);
-        vertical-align: baseline;
-    }
-
-    .trailing-pattern :global(.trailing-pattern-svg) {
+    .title-pattern :global(.title-pattern-svg) {
         display: block;
-        position: absolute;
-        inset-block-start: 0;
-        inset-inline-start: 0;
-        width: 100vw;
-        max-inline-size: none;
-        height: 100%;
+        inline-size: 100%;
+        block-size: 100%;
     }
 </style>
