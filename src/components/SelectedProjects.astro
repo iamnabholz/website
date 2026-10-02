@@ -27,12 +27,8 @@ function resolveImage(src: string) {
 }
 ---
 
-<section>
+<div class="container">
     <DitherCanvas pixelSize={3} />
-
-    <span class="content">
-        <h2>Selected Projects</h2>
-    </span>
 
     <div class="works">
         {SELECTED_NOTES.map((work) => {
@@ -57,18 +53,14 @@ function resolveImage(src: string) {
             );
         })}
     </div>
-</section>
+</div>
 
 <style>
-    section {
+    .container {
         position: relative;
         isolation: isolate;
         display: flex;
         flex-direction: column;
-    }
-
-    .content > h2 {
-        padding-block-end: var(--spacing-md);
     }
 
     .works {
@@ -89,7 +81,7 @@ function resolveImage(src: string) {
 
     .image-wrapper {
         --card-height: clamp(16rem, 50vw, 30rem);
-        --card-padding: clamp(1rem, 4vw, 4rem);
+        --card-padding: clamp(1.4rem, 4vw, 4rem);
 
         position: relative;
         z-index: 1;

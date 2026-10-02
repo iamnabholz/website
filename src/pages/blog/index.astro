@@ -2,47 +2,107 @@
 import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 
-const ALL_POSTS = (await getCollection("notes"))
-    // sort by newest first
-    .sort((a, b) => {
-        const dateA = a.data.date?.valueOf() ?? 0;
-        const dateB = b.data.date?.valueOf() ?? 0;
+const ALL_POSTS = (await getCollection("notes")).sort((a, b) => {
+    const dateA = a.data.date?.valueOf() ?? 0;
+    const dateB = b.data.date?.valueOf() ?? 0;
 
-        return dateB - dateA;
-    });
+    return dateB - dateA;
+});
+
+const years = [
+    ...new Set(ALL_POSTS.map((post) => post.data.date.getUTCFullYear())),
+].sort((a, b) => b - a);
+
+const postGroups = years.map((year) => ({
+    year,
+    posts: ALL_POSTS.filter((post) => post.data.date.getUTCFullYear() === year),
+}));
 ---
 
-<Layout
-    title="Blog — Lukas Nabholz"
-    header="— Writing about what I build and how I build it"
->
-    <section class="content stack">
+<Layout title="Blog — Lukas Nabholz">
+    <section class="stack">
         <p>
             Writings I do from time to time about my projects and sometimes
             other thoughts.
         </p>
 
-        <ul class="posts">
-            {ALL_POSTS.map((post) => (
-                <li>
-                    <a class="post-link" href={`/blog/${post.id}`}>
-                        <time datetime={post.data.date.toISOString()}>
-                            {post.data.date.toLocaleDateString("en-US", {
-                                day: "numeric",
-                                month: "short",
-                                year: "numeric",
-                            })}
-                        </time>
+        {postGroups.map(({ year, posts }) => (
+            <section class="year-group" aria-labelledby={`year-${year}`}>
+                <h2 class="year-heading" id={`year-${year}`}>
+                    {year}
+                </h2>
 
-                        <h2>{post.data.title}</h2>
+                <ul class="posts">
+                    {posts.map((post, index) => (
+                        <li>
+                            <a class="post-link" href={`/blog/${post.id}`}>
+                                <div class="post-row">
+                                    <h2 class="post-title">
+                                        {post.data.title}
+                                        <span
+                                            class="pattern"
+                                            aria-hidden="true"
+                                        >
+                                            <svg
+                                                class="pattern-svg"
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                aria-hidden="true"
+                                                focusable="false"
+                                                opacity="0.2"
+                                            >
+                                                <defs>
+                                                    <pattern
+                                                        id={`post-dots-${index}`}
+                                                        width="6"
+                                                        height="6"
+                                                        patternUnits="userSpaceOnUse"
+                                                    >
+                                                        <circle
+                                                            cx="1.5"
+                                                            cy="1.5"
+                                                            r="0.8"
+                                                            fill="currentColor"
+                                                        />
+                                                        <circle
+                                                            cx="4.5"
+                                                            cy="4.5"
+                                                            r="0.8"
+                                                            fill="currentColor"
+                                                        />
+                                                    </pattern>
+                                                </defs>
+                                                <rect
+                                                    width="100%"
+                                                    height="100%"
+                                                    fill={`url(#post-dots-${index})`}
+                                                />
+                                            </svg>
+                                        </span>
+                                    </h2>
 
-                        <span class="arrow" aria-hidden="true">
-                            →
-                        </span>
-                    </a>
-                </li>
-            ))}
-        </ul>
+                                    <span class="arrow" aria-hidden="true">
+                                        <svg
+                                            viewBox="0 0 48 32"
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            focusable="false"
+                                        >
+                                            <path
+                                                d="M2 16H44M30 2L44 16L30 30"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                stroke-width="3"
+                                                stroke-linecap="square"
+                                                stroke-linejoin="miter"
+                                            />
+                                        </svg>
+                                    </span>
+                                </div>
+                            </a>
+                        </li>
+                    ))}
+                </ul>
+            </section>
+        ))}
     </section>
 </Layout>
 
@@ -53,96 +113,107 @@ const ALL_POSTS = (await getCollection("notes"))
         margin: 0;
     }
 
-    .posts > li {
-        border-top: var(--border-width-thin) solid var(--color-border);
-    }
-
-    .posts > li:last-child {
-        border-bottom: var(--border-width-thin) solid var(--color-border);
-    }
-
     .post-link {
-        display: grid;
-        grid-template-columns: 8rem minmax(0, 1fr) auto;
-        align-items: baseline;
-        gap: var(--spacing-md);
-        padding-block: var(--spacing-md);
-
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        gap: var(--spacing-xs);
+        padding-block: var(--spacing-lg);
         color: var(--color-text);
-        font-weight: var(--font-weight-normal);
         text-decoration: none;
-
-        transition: all 150ms linear;
     }
 
-    /* Keep the row neutral; highlight only its title and arrow. */
-    .post-link:is(:hover, :active, :focus-visible) {
-        color: var(--color-text);
+    .post-row {
+        position: relative;
+        overflow: hidden;
+        padding-inline-end: calc(1em + var(--spacing-sm));
+        font-size: var(--font-size-display);
+        line-height: var(--line-height-tight);
     }
 
-    .post-link time {
-        color: var(--color-text-faint);
-        font-size: var(--font-size-sm);
-        font-weight: var(--font-weight-normal);
-        font-variant-numeric: tabular-nums;
-        white-space: nowrap;
-    }
-
-    .post-link h2 {
-        min-width: 0;
+    .post-title {
         margin: 0;
         font-size: inherit;
-        font-weight: var(--font-weight-semibold);
-        line-height: var(--line-height-normal);
+        font-weight: var(--font-weight-normal);
+        line-height: inherit;
+        letter-spacing: var(--letter-spacing-tight);
+        text-transform: uppercase;
         text-wrap: wrap;
         overflow-wrap: anywhere;
+    }
 
-        text-decoration-line: none;
-        text-decoration-thickness: var(--text-decoration-thickness-link);
-        text-underline-offset: var(--text-underline-offset-link);
+    .pattern {
+        display: inline-block;
+        position: relative;
+        width: 0;
+        height: 1cap;
+        margin-inline-start: var(--spacing-sm);
+        vertical-align: baseline;
+    }
 
-        transition: all 150ms linear;
+    .pattern-svg {
+        display: block;
+        position: absolute;
+        inset-block-start: 0;
+        inset-inline-start: 0;
+        width: 100vw;
+        max-inline-size: none;
+        height: 100%;
     }
 
     .arrow {
-        justify-self: end;
+        position: absolute;
+        inset-inline-end: 0;
+        inset-block-end: 0;
+        display: flex;
+        align-items: center;
+        justify-content: end;
+        width: 1em;
+        height: 1lh;
+        color: inherit;
+        background-color: var(--color-background);
 
-        transition: all 150ms linear;
+        /* Cover the overflowing pattern and leave a gap before the arrow. */
+        box-shadow: calc(-1 * var(--spacing-sm)) 0 var(--color-background);
     }
 
-    .post-link:is(:hover, :active, :focus-visible) h2 {
-        color: var(--color-accent);
-        text-decoration-line: underline;
+    .arrow svg {
+        display: block;
+        width: 100%;
+        height: 1cap;
+        overflow: visible;
     }
 
-    .post-link:is(:hover, :active, :focus-visible) .arrow {
+    .post-link {
+        transition: color var(--transition-duration-fast)
+            var(--transition-timing-standard);
+    }
+
+    .post-link:is(:hover, :active, :focus-visible) {
         color: var(--color-accent);
     }
 
     .post-link:focus-visible {
-        /* Keep the global focus outline, but draw it inside the row. */
         outline-offset: calc(-1 * var(--outline-width-focus));
     }
 
-    @media (max-width: 600px) {
+    @media (prefers-reduced-motion: reduce) {
         .post-link {
-            grid-template-columns: minmax(0, 1fr) auto;
-            row-gap: var(--spacing-xs);
+            transition: none;
         }
+    }
 
-        .post-link time {
-            grid-column: 1;
-            grid-row: 1;
-        }
+    .year-group {
+        margin-block-start: var(--spacing-xl);
+    }
 
-        .post-link h2 {
-            grid-column: 1;
-            grid-row: 2;
-        }
+    .year-heading {
+        font-size: var(--font-size-xl);
+        font-weight: var(--font-weight-normal);
+        color: var(--color-text-faint);
+    }
 
-        .arrow {
-            grid-column: 2;
-            grid-row: 2;
-        }
+    .year-group .post-row {
+        font-size: clamp(var(--font-size-xl), 3vw, var(--font-size-3xl));
     }
 </style>

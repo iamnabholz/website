@@ -4,7 +4,7 @@ import SiteNav from "../components/SiteNav.astro";
 import Sticker from "../components/Sticker.astro";
 import { ClientRouter } from "astro:transitions";
 
-const { title, header } = Astro.props;
+const { title, hideFooter = false } = Astro.props;
 
 const DESCRIPTION = "Find the works and projects of Lukas Nabholz.";
 ---
@@ -60,50 +60,45 @@ const DESCRIPTION = "Find the works and projects of Lukas Nabholz.";
 
         <ClientRouter />
     </head>
-    <body class="stack">
-        <header id="title" class="content stack">
-            <h1 class="title">
-                <b>Lukas Nabholz </b>
-                {header ?? header}
-            </h1>
-
+    <body>
+        <header id="title" class="content">
             <SiteNav variant="header" label="Primary navigation" />
         </header>
-        <span id="animation-wrapper">
+        <div id="animation-wrapper" class="content">
             <main class="stack">
                 <slot />
             </main>
 
-            <footer class="stack">
-                <a href="#title">Scroll up</a>
-                <SiteNav variant="footer" label="Footer navigation" />
-                <p>
-                    Fonts by{" "}
-                    <a target="_blank" href="https://pangrampangram.com/">
-                        PangramPangram
-                    </a>
-                    <br />
-                    Designed and developed by Lukas Nabholz
-                </p>
-            </footer>
-        </span>
+            {hideFooter ? (
+                ""
+            ) : (
+                <footer class="stack">
+                    <a href="#title">Scroll up</a>
+                    <SiteNav variant="footer" label="Footer navigation" />
+                    <p>
+                        Fonts by{" "}
+                        <a target="_blank" href="https://pangrampangram.com/">
+                            PangramPangram
+                        </a>
+                        <br />
+                        Designed and developed by Lukas Nabholz
+                    </p>
+                </footer>
+            )}
+        </div>
     </body>
 </html>
 
 <style>
     body {
-        padding-block: var(--spacing-lg);
+        max-width: 1920px;
         min-height: 100dvh;
-        gap: var(--spacing-4xl);
+        margin: 0 auto;
+        padding: var(--spacing-lg);
     }
 
     #animation-wrapper {
-        display: contents;
         animation: slide-up 600ms cubic-bezier(0.16, 1, 0.3, 1) 200ms both;
-    }
-
-    h1.title {
-        font-weight: var(--font-weight-normal);
     }
 
     main {

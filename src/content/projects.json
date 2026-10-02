@@ -1,47 +1,37 @@
 [
   {
-    "label": "Ongoing",
-    "projects": [
-      {
-        "title": "Panorama Tab",
-        "description": "New tab browser extension",
-        "href": "/panorama",
-        "icon": "/src/content/media/icons/la.png"
-      },
-      {
-        "title": "GoodBadPassword",
-        "description": "Password and bad-word generator",
-        "href": null,
-        "icon": "/src/content/media/icons/tr.webp"
-      }
-    ]
+    "title": "Wallpapers",
+    "description": "Playbook full of wallpaper and similar graphics I've made over the years.",
+    "href": "/pan",
+    "icon": "/src/content/media/icons/lucky-icon.webp",
+    "date": "Ongoing"
   },
   {
-    "label": "2026",
-    "projects": [
-      {
-        "title": "Panorama Tab",
-        "description": "New tab browser extension",
-        "href": "/panorama",
-        "icon": "/src/content/media/icons/panorama-icon.webp"
-      }
-    ]
+    "title": "Panorama Tab",
+    "description": "New tab browser extension",
+    "href": "/panorama",
+    "icon": "/src/content/media/icons/la.png",
+    "date": "2026"
   },
   {
-    "label": "2025",
-    "projects": [
-      {
-        "title": "Timesets",
-        "description": "Build your own pomodoro-like timers",
-        "href": "/blog/timesets",
-        "icon": "/src/content/media/icons/timesets-icon.webp"
-      },
-      {
-        "title": "Penpot Plugins",
-        "description": "Set of plugins made for a Penpot challenge",
-        "href": "/blog/timesets",
-        "icon": "/src/content/media/icons/lucky-icon.webp"
-      }
-    ]
+    "title": "GoodBadPassword",
+    "description": "Password and bad-word generator",
+    "href": null,
+    "icon": "/src/content/media/icons/tr.webp",
+    "date": "Ongoing"
+  },
+  {
+    "title": "Timesets",
+    "description": "Build your own pomodoro-like timers",
+    "href": "/blog/timesets",
+    "icon": "/src/content/media/icons/timesets-icon.webp",
+    "date": "2023"
+  },
+  {
+    "title": "Penpot Plugins",
+    "description": "Set of plugins made for a Penpot challenge",
+    "href": "/blog/timesets",
+    "icon": "/src/content/media/icons/tints-and-shades.webp",
+    "date": "2025"
   }
 ]

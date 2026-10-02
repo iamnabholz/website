@@ -19,10 +19,7 @@ const readingMinutes = remarkPluginFrontmatter.readingMinutes;
 <Layout title={entry.data.title}>
     <article>
         <header class="article-header stack">
-            <h1>
-                <b>{entry.data.title}</b>
-            </h1>
-            <p>{entry.data.tagline.toLowerCase()}</p>
+            <h1 class="title">{entry.data.title}</h1>
 
             <span>
                 <time datetime={entry.data.date.toISOString().slice(0, 10)}>
@@ -32,18 +29,29 @@ const readingMinutes = remarkPluginFrontmatter.readingMinutes;
                         year: "numeric",
                     })}
                 </time>
-                <br />
-                <span class="faint">{readingMinutes} min read</span>
             </span>
             <hr />
         </header>
-        <div class="article-content stack content">
+        <div>
+            <p>{entry.data.tagline.toLowerCase()}</p>
+        </div>
+        <div class="article-content stack">
             <Content />
         </div>
     </article>
 </Layout>
 
 <style>
+    .title {
+        margin: 0;
+        font-size: inherit;
+        font-weight: var(--font-weight-normal);
+        line-height: inherit;
+        letter-spacing: var(--letter-spacing-tight);
+        text-transform: uppercase;
+        text-wrap: wrap;
+        overflow-wrap: anywhere;
+    }
     .faint {
         color: var(--color-text-faint);
         font-size: var(--font-size-base);
@@ -54,7 +62,6 @@ const readingMinutes = remarkPluginFrontmatter.readingMinutes;
     }
 
     .article-header h1 {
-        text-transform: uppercase;
         font-size: var(--font-size-display);
         font-weight: var(--font-weight-normal);
     }

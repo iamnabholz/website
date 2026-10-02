@@ -4,8 +4,8 @@ import Sticker from "../components/Sticker.astro";
 import CurrentTime from "../components/CurrentTime.astro";
 ---
 
-<Layout title="About — Lukas Nabholz" header="— From Santa Cruz, Bolivia.">
-    <section class="content stack">
+<Layout title="About — Lukas Nabholz">
+    <section class="stack prose">
         <p>
             Passionate about design, software, music, and games. Start messy and
             narrow it down until it feels obvious.
@@ -28,7 +28,7 @@ import CurrentTime from "../components/CurrentTime.astro";
         </p>
     </section>
 
-    <section class="content">
+    <section>
         <h2>Languages</h2>
 
         <dl class="list">
@@ -44,7 +44,7 @@ import CurrentTime from "../components/CurrentTime.astro";
         </dl>
     </section>
 
-    <section class="content">
+    <section>
         <h2>Skills</h2>
         <ul>
             <li>Product Design</li>
@@ -54,7 +54,7 @@ import CurrentTime from "../components/CurrentTime.astro";
         </ul>
     </section>
 
-    <address class="content contact">
+    <address class="contact">
         <h2>Contact</h2>
 
         <dl class="list">
@@ -91,7 +91,7 @@ import CurrentTime from "../components/CurrentTime.astro";
         </dl>
     </address>
 
-    <div class="content stickers-space">
+    <div class="stickers-space">
         <Sticker sticker="cursor" size="4rem" visualScale={1.4} />
         <Sticker size="4rem" visualScale={1.4} />
         <Sticker size="4rem" visualScale={1.4} />

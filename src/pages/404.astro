@@ -3,11 +3,8 @@ import Sticker from "../components/Sticker.astro";
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout
-    title="Page Not Found — Lukas Nabholz"
-    header="— This page doesn't exist, how did you get here?"
->
-    <div class="content stack">
+<Layout title="Page Not Found — Lukas Nabholz" hideFooter>
+    <div class="stack">
         <h1 class="title">404</h1>
         <span style="padding-top: 2rem;">
             <Sticker sticker="toggle" size="3em" visualScale={2} />
