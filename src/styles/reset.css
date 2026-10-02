@@ -11,7 +11,6 @@
 }
 
 html {
-    font-size: 16px;
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
     line-height: 1.5;
@@ -86,13 +85,7 @@ li {
 
 input,
 label,
-button,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+button {
     line-height: 1.1;
 }
 
@@ -128,17 +121,9 @@ sub {
 a {
     color: inherit;
     text-decoration: underline;
-    text-underline-offset: 0.2em;
-    text-decoration-thickness: 0.1em;
     width: fit-content;
 }
 
 :disabled {
     cursor: not-allowed;
-}
-
-:focus-visible {
-    outline: 2px solid currentColor;
-    outline-offset: 0.2rem;
-    border-radius: 2px;
 }

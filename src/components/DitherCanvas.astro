@@ -2,12 +2,22 @@
 interface Props {
     pixelSize?: number;
     fps?: number;
+    maskSelector?: string;
 }
 
-const { pixelSize = 8, fps = 24 } = Astro.props;
+const {
+    pixelSize = 8,
+    fps = 24,
+    maskSelector = "[data-dither-mask]",
+} = Astro.props;
 ---
 
-<dither-canvas data-pixel-size={pixelSize} data-fps={fps} aria-hidden="true">
+<dither-canvas
+    data-pixel-size={pixelSize}
+    data-fps={fps}
+    data-mask-selector={maskSelector}
+    aria-hidden="true"
+>
     <canvas></canvas>
 </dither-canvas>
 
@@ -42,7 +52,9 @@ const { pixelSize = 8, fps = 24 } = Astro.props;
             if (!section || !canvas || !ctx) return;
 
             const windows = [
-                ...section.querySelectorAll<HTMLElement>("[data-dither-mask]"),
+                ...section.querySelectorAll<HTMLElement>(
+                    this.dataset.maskSelector ?? "[data-dither-mask]",
+                ),
             ];
 
             const pixelSize = Math.max(1, Number(this.dataset.pixelSize) || 8);

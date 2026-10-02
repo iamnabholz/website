@@ -76,7 +76,7 @@ function resolveImage(src: string) {
     }
 
     article {
-        background-color: lightgray;
+        background-color: var(--color-surface-card);
     }
 
     .image-wrapper {
@@ -90,14 +90,14 @@ function resolveImage(src: string) {
         width: 100%;
         display: block;
         padding: var(--card-padding);
-        color: var(--color-black);
+        color: var(--color-text-black);
         text-decoration: none;
         cursor: pointer;
         transition: none;
     }
 
     .image-wrapper:is(:hover, :active, :focus-visible) {
-        color: var(--color-black);
+        color: var(--color-text-black);
         text-decoration: none;
     }
 
@@ -109,7 +109,7 @@ function resolveImage(src: string) {
     .work-preview {
         display: grid;
         grid-template-columns: minmax(0, 1fr);
-        grid-template-rows: minmax(0, 1fr) 1rem;
+        grid-template-rows: minmax(0, 1fr) auto;
         gap: var(--spacing-md);
         width: 100%;
         height: 100%;
@@ -135,8 +135,10 @@ function resolveImage(src: string) {
     .work-title {
         align-self: center;
         justify-self: center;
+        max-inline-size: 100%;
         margin: 0;
         color: var(--color-text-black);
         text-align: center;
+        overflow-wrap: anywhere;
     }
 </style>

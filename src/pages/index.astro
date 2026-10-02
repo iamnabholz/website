@@ -50,13 +50,13 @@ function resolveIcon(path: string): ImageMetadata {
     </section>
 
     <section>
-        <h2>Selected Projects</h2>
+        <h2 class="section-heading">Selected Projects</h2>
 
         <SelectedProjects />
     </section>
 
     <section>
-        <h2>More Projects</h2>
+        <h2 class="section-heading">More Projects</h2>
 
         <dl class="projects">
             {groupedProjects.map(([label, projects]) => (
@@ -91,7 +91,9 @@ function resolveIcon(path: string): ImageMetadata {
                                         </span>
 
                                         {project.description && (
-                                            <p>{project.description}</p>
+                                            <p class="prose">
+                                                {project.description}
+                                            </p>
                                         )}
                                     </div>
                                 </Tag>
@@ -103,51 +105,53 @@ function resolveIcon(path: string): ImageMetadata {
         </dl>
     </section>
 
-    <address class="contact">
-        <h2>Contact</h2>
+    <section class="contact">
+        <h2 class="section-heading">Contact</h2>
 
-        <dl class="list">
-            <div>
-                <dt>Location</dt>
-                <dd>Santa Cruz, Bolivia</dd>
-                <dd>
-                    <CurrentTime />
-                </dd>
-            </div>
+        <address>
+            <dl class="list">
+                <div>
+                    <dt>Location</dt>
+                    <dd>Santa Cruz, Bolivia</dd>
+                    <dd>
+                        <CurrentTime />
+                    </dd>
+                </div>
 
-            <div>
-                <dt>Email</dt>
-                <dd>
-                    <a href="mailto:hi@nabholz.work">hi@nabholz.work</a>
-                </dd>
-            </div>
+                <div>
+                    <dt>Email</dt>
+                    <dd>
+                        <a href="mailto:hi@nabholz.work">hi@nabholz.work</a>
+                    </dd>
+                </div>
 
-            <div>
-                <dt>Threads</dt>
-                <dd>
-                    <a href="https://threads.com/@nabholzwork">@nabholzwork</a>
-                </dd>
-            </div>
+                <div>
+                    <dt>Threads</dt>
+                    <dd>
+                        <a href="https://threads.com/@nabholzwork">
+                            @nabholzwork
+                        </a>
+                    </dd>
+                </div>
 
-            <div>
-                <dt>Bluesky</dt>
-                <dd>
-                    <a href="https://bsky.app/profile/nabholz.work">
-                        @nabholz.work
-                    </a>
-                </dd>
-            </div>
-        </dl>
-    </address>
+                <div>
+                    <dt>Bluesky</dt>
+                    <dd>
+                        <a href="https://bsky.app/profile/nabholz.work">
+                            @nabholz.work
+                        </a>
+                    </dd>
+                </div>
+            </dl>
+        </address>
+    </section>
 </Layout>
 
 <style>
     h1.title {
         font-weight: var(--font-weight-normal);
     }
-    h2 {
-        padding-bottom: var(--spacing-xs);
-    }
+
     .projects {
         row-gap: var(--spacing-2xl);
     }
@@ -158,8 +162,10 @@ function resolveIcon(path: string): ImageMetadata {
     }
 
     .project-card {
+        --project-icon-size: 2.5rem;
+
         display: grid;
-        grid-template-columns: 2.5rem minmax(0, 1fr);
+        grid-template-columns: var(--project-icon-size) minmax(0, 1fr);
         align-items: start;
         gap: var(--spacing-md);
         width: 100%;
@@ -181,8 +187,9 @@ function resolveIcon(path: string): ImageMetadata {
     .project-icon {
         display: grid;
         place-items: center;
-        width: 2.5rem;
-        height: 2.5rem;
+        width: var(--project-icon-size);
+        height: var(--project-icon-size);
+        box-shadow: var(--box-shadow-sm);
         border-radius: var(--border-radius-md);
         overflow: hidden;
     }
@@ -200,7 +207,16 @@ function resolveIcon(path: string): ImageMetadata {
 
     .project-title {
         font-weight: var(--font-weight-semibold);
-        transition: all 150ms linear;
+        transition:
+            color var(--transition-duration-fast)
+                var(--transition-timing-standard),
+            text-decoration-color var(--transition-duration-fast)
+                var(--transition-timing-standard);
+    }
+    @media (prefers-reduced-motion: reduce) {
+        .project-title {
+            transition: none;
+        }
     }
 
     a.project-card .project-title {
@@ -215,8 +231,8 @@ function resolveIcon(path: string): ImageMetadata {
     }
 
     a.project-card:is(:hover, :active, :focus-visible) .project-title {
-        color: var(--color-accent);
-        text-decoration-color: var(--color-accent);
+        color: var(--color-link);
+        text-decoration-color: var(--color-link);
     }
 
     .project-copy p {

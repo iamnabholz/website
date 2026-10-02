@@ -1,6 +1,4 @@
-<span class="current-time">
-    <time aria-live="off">--:--</time>
-</span>
+<span class="current-time">--:--</span>
 
 <script>
     const formatter = new Intl.DateTimeFormat("default", {
@@ -18,10 +16,17 @@
 
     document.addEventListener("astro:page-load", () => {
         document
-            .querySelectorAll<HTMLTimeElement>(".current-time time")
-            .forEach((el) => {
-                updateTime(el);
-                const timerId = setInterval(() => updateTime(el), 30_000);
+            .querySelectorAll<HTMLElement>(".current-time")
+            .forEach((container) => {
+                const time = document.createElement("time");
+                time.setAttribute("aria-live", "off");
+
+                updateTime(time);
+                container.replaceChildren(time);
+                container.dataset.ready = "";
+
+                const timerId = setInterval(() => updateTime(time), 30_000);
+
                 document.addEventListener(
                     "astro:before-swap",
                     () => clearInterval(timerId),
@@ -34,11 +39,14 @@
 <style>
     .current-time {
         display: inline-block;
+    }
+
+    .current-time[data-ready] {
         position: relative;
         padding-left: 0.6em;
     }
 
-    .current-time::before {
+    .current-time[data-ready]::before {
         content: "";
         position: absolute;
         left: 0;

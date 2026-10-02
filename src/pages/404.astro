@@ -4,10 +4,61 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Page Not Found — Lukas Nabholz" hideFooter>
-    <div class="stack">
-        <h1 class="title">404</h1>
-        <span style="padding-top: 2rem;">
-            <Sticker sticker="toggle" size="3em" visualScale={2} />
-        </span>
-    </div>
+    <h1 class="error-title" aria-label="Page not found">
+        <button
+            class="error-number"
+            type="button"
+            aria-label="Shuffle the displayed number"
+            data-shuffle-number
+        >
+            <span data-number aria-live="polite" aria-atomic="true">
+                404
+            </span>
+        </button>
+    </h1>
+    <p>
+        This page does not exist. <br /> How did you get here?
+    </p>
 </Layout>
+
+<script>
+    document.addEventListener("astro:page-load", () => {
+        const button = document.querySelector<HTMLButtonElement>(
+            "[data-shuffle-number]",
+        );
+        const number = button?.querySelector<HTMLSpanElement>("[data-number]");
+
+        if (!button || !number) return;
+
+        button.addEventListener("click", () => {
+            const current = Number(number.textContent);
+            let next: number;
+
+            do {
+                next = 100 + Math.floor(Math.random() * 900);
+            } while (next === current);
+
+            number.textContent = String(next);
+        });
+    });
+</script>
+
+<style>
+    .error-title {
+        font-size: clamp(4rem, min(30vw, 55svh), 32rem);
+        line-height: var(--line-height-none);
+        text-align: center;
+        font-variant-numeric: tabular-nums lining-nums;
+    }
+
+    .error-number {
+        display: block;
+        padding: 0;
+        border: 0;
+        background: none;
+        color: inherit;
+        font: inherit;
+        cursor: pointer;
+        touch-action: manipulation;
+    }
+</style>

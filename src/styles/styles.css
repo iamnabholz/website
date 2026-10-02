@@ -20,27 +20,16 @@
         var(--color-background-dark)
     );
 
+    --color-surface-card: #d3d3d3;
+
     --color-text: light-dark(var(--color-text-black), var(--color-text-white));
-    --color-text-faint: light-dark(#84847e, #7a7a74);
+    --color-text-faint: light-dark(#6b6b65, #92928b);
     --color-border: light-dark(#dcdcda, #262624);
 
     --color-accent: #fcc010;
-    --color-accent-muted-light: color-mix(
-        in oklch,
-        var(--color-accent) 22%,
-        var(--color-background-light)
-    );
-    --color-accent-muted-dark: color-mix(
-        in oklch,
-        var(--color-accent) 30%,
-        var(--color-background-dark)
-    );
-    --color-accent-muted: light-dark(
-        var(--color-accent-muted-light),
-        var(--color-accent-muted-dark)
-    );
-
     accent-color: var(--color-accent);
+
+    --color-link: light-dark(#806000, var(--color-accent));
 
     /* Font families */
     --font-family-sans:
@@ -57,6 +46,7 @@
     --font-size-3xl: 2.75rem;
     --font-size-4xl: 4rem;
     --font-size-5xl: 6rem;
+    --font-size-title: clamp(2.8rem, 8vw, 12rem);
     --font-size-display: clamp(1.8rem, 4vw, 8rem);
 
     /* Only weights provided by the loaded fonts */
@@ -89,7 +79,6 @@
 
     /* Shared layout measurements */
     --max-width-reading: 42rem;
-    --max-width-wide: 72rem;
 
     --padding-inline-page: clamp(var(--spacing-md), 3vw, var(--spacing-lg));
 
@@ -144,9 +133,8 @@ body {
     line-height: var(--line-height-normal);
     transition:
         background-color var(--transition-duration-base)
-            var(--transition-timing-function-standard),
-        color var(--transition-duration-base)
-            var(--transition-timing-function-standard);
+            var(--transition-timing-standard),
+        color var(--transition-duration-base) var(--transition-timing-standard);
 }
 
 h1,
@@ -170,7 +158,7 @@ p {
 
 b,
 strong {
-    font-weight: bold;
+    font-weight: var(--font-weight-semibold);
 }
 
 /* Links */
@@ -186,8 +174,8 @@ a {
 }
 
 a:is(:hover, :active, :focus-visible) {
-    color: var(--color-accent);
-    text-decoration-color: var(--color-accent);
+    color: var(--color-link);
+    text-decoration-color: var(--color-link);
 }
 
 /* External links */
@@ -211,7 +199,7 @@ a[href^="http"]::after {
 }
 
 a[href^="http"]:is(:hover, :active, :focus-visible)::after {
-    background-color: var(--color-accent);
+    background-color: var(--color-link);
     transform: translate(0.125rem, -0.125rem);
 }
 
@@ -222,8 +210,8 @@ a[href^="http"]:is(:hover, :active, :focus-visible)::after {
 }
 
 ::selection {
-    background-color: var(--color-accent-muted);
-    color: var(--color-text);
+    background-color: var(--color-accent);
+    color: var(--color-text-black);
 }
 
 hr {
@@ -278,6 +266,16 @@ dl dd {
     overflow-wrap: anywhere;
 }
 
+.content {
+    inline-size: 100%;
+}
+
+.prose,
+.prose-flow > :not(figure) {
+    inline-size: 100%;
+    max-inline-size: var(--max-width-reading);
+}
+
 .stack {
     display: flex;
     flex-direction: column;
@@ -289,6 +287,25 @@ h2.title,
 h1.title {
     font-family: var(--font-family-sans);
     font-size: var(--font-size-display);
+}
+
+.section-heading {
+    margin-block-end: var(--spacing-xs);
+}
+
+@media (max-width: 600px) {
+    dl.list {
+        grid-template-columns: minmax(0, 1fr);
+        row-gap: var(--spacing-lg);
+    }
+
+    dl.list > div {
+        row-gap: var(--spacing-2xs);
+    }
+
+    dl.list > div > :is(dt, dd) {
+        grid-column: 1;
+    }
 }
 
 /* Reduce motion in the shared styles owned by this file. */

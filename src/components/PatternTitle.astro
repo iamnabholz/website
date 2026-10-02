@@ -1,0 +1,74 @@
+---
+import SlugPattern from "./SlugPattern.astro";
+
+interface Props {
+    title: string;
+    idPrefix: string;
+    trailingGap?: string;
+}
+
+const { title, idPrefix, trailingGap = "0.15em" } = Astro.props;
+
+const words = title.trim().split(/\s+/);
+---
+
+{words.map((word, index) => (
+    <span class="title-word" aria-hidden="true">
+        {word}
+        {index < words.length - 1 && (
+            <span class="word-pattern">
+                <SlugPattern
+                    id={`${idPrefix}-space-${index}`}
+                    class="word-pattern-svg"
+                />
+            </span>
+        )}
+    </span>
+))}
+
+<span
+    class="trailing-pattern"
+    style={`--title-pattern-gap: ${trailingGap};`}
+    aria-hidden="true"
+>
+    <SlugPattern id={`${idPrefix}-trailing`} class="trailing-pattern-svg" />
+</span>
+
+<style>
+    .title-word {
+        display: inline-block;
+    }
+
+    .word-pattern {
+        display: inline-block;
+        width: 1cap;
+        height: 1cap;
+        margin-inline: 0.15em;
+        vertical-align: baseline;
+    }
+
+    .word-pattern :global(.word-pattern-svg) {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+    .trailing-pattern {
+        display: inline-block;
+        position: relative;
+        width: 0;
+        height: 1cap;
+        margin-inline-start: var(--title-pattern-gap);
+        vertical-align: baseline;
+    }
+
+    .trailing-pattern :global(.trailing-pattern-svg) {
+        display: block;
+        position: absolute;
+        inset-block-start: 0;
+        inset-inline-start: 0;
+        width: 100vw;
+        max-inline-size: none;
+        height: 100%;
+    }
+</style>

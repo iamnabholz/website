@@ -6,6 +6,10 @@ import CurrentTime from "../components/CurrentTime.astro";
 
 <Layout title="About — Lukas Nabholz">
     <section class="stack prose">
+        <h1 class="title">About</h1>
+
+        <!-- Existing introductory paragraphs -->
+
         <p>
             Passionate about design, software, music, and games. Start messy and
             narrow it down until it feels obvious.
@@ -29,7 +33,7 @@ import CurrentTime from "../components/CurrentTime.astro";
     </section>
 
     <section>
-        <h2>Languages</h2>
+        <h2 class="section-heading">Languages</h2>
 
         <dl class="list">
             <div>
@@ -45,7 +49,7 @@ import CurrentTime from "../components/CurrentTime.astro";
     </section>
 
     <section>
-        <h2>Skills</h2>
+        <h2 class="section-heading">Skills</h2>
         <ul>
             <li>Product Design</li>
             <li>Front-end Dev</li>
@@ -54,42 +58,46 @@ import CurrentTime from "../components/CurrentTime.astro";
         </ul>
     </section>
 
-    <address class="contact">
-        <h2>Contact</h2>
+    <section class="contact">
+        <h2 class="section-heading">Contact</h2>
 
-        <dl class="list">
-            <div>
-                <dt>Location</dt>
-                <dd>Santa Cruz, Bolivia</dd>
-                <dd>
-                    <CurrentTime />
-                </dd>
-            </div>
+        <address>
+            <dl class="list">
+                <div>
+                    <dt>Location</dt>
+                    <dd>Santa Cruz, Bolivia</dd>
+                    <dd>
+                        <CurrentTime />
+                    </dd>
+                </div>
 
-            <div>
-                <dt>Email</dt>
-                <dd>
-                    <a href="mailto:hi@nabholz.work">hi@nabholz.work</a>
-                </dd>
-            </div>
+                <div>
+                    <dt>Email</dt>
+                    <dd>
+                        <a href="mailto:hi@nabholz.work">hi@nabholz.work</a>
+                    </dd>
+                </div>
 
-            <div>
-                <dt>Threads</dt>
-                <dd>
-                    <a href="https://threads.com/@nabholzwork">@nabholzwork</a>
-                </dd>
-            </div>
+                <div>
+                    <dt>Threads</dt>
+                    <dd>
+                        <a href="https://threads.com/@nabholzwork">
+                            @nabholzwork
+                        </a>
+                    </dd>
+                </div>
 
-            <div>
-                <dt>Bluesky</dt>
-                <dd>
-                    <a href="https://bsky.app/profile/nabholz.work">
-                        @nabholz.work
-                    </a>
-                </dd>
-            </div>
-        </dl>
-    </address>
+                <div>
+                    <dt>Bluesky</dt>
+                    <dd>
+                        <a href="https://bsky.app/profile/nabholz.work">
+                            @nabholz.work
+                        </a>
+                    </dd>
+                </div>
+            </dl>
+        </address>
+    </section>
 
     <div class="stickers-space">
         <Sticker sticker="cursor" size="4rem" visualScale={1.4} />
@@ -100,11 +108,20 @@ import CurrentTime from "../components/CurrentTime.astro";
 
 <style>
     .stickers-space {
-        padding-block: var(--spacing-4xl);
         display: flex;
+        flex-wrap: wrap;
         align-items: center;
-        gap: var(--spacing-xs);
-        color: black;
+        padding-block: var(--spacing-xl);
+    }
+
+    .stickers-space > :global(.sticker-space) {
+        flex: none;
+        width: var(--sticker-size);
+        height: var(--sticker-size);
+    }
+
+    .stickers-space :global(.sticker-wrapper) {
+        top: 50%;
     }
 
     ul {
@@ -116,9 +133,9 @@ import CurrentTime from "../components/CurrentTime.astro";
     }
 
     ul li {
-        border: 1px solid lightgray;
+        border: var(--border-width-thin) solid var(--color-border);
         padding: var(--spacing-2xs) var(--spacing-md);
-        border-radius: 999px;
+        border-radius: var(--border-radius-full);
         display: inline-block;
         width: fit-content;
     }

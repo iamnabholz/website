@@ -1,7 +1,6 @@
 ---
 import "../styles/styles.css";
 import SiteNav from "../components/SiteNav.astro";
-import Sticker from "../components/Sticker.astro";
 import { ClientRouter } from "astro:transitions";
 
 const { title, hideFooter = false } = Astro.props;
@@ -60,8 +59,8 @@ const DESCRIPTION = "Find the works and projects of Lukas Nabholz.";
 
         <ClientRouter />
     </head>
-    <body>
-        <header id="title" class="content">
+    <body id="top">
+        <header class="content">
             <SiteNav variant="header" label="Primary navigation" />
         </header>
         <div id="animation-wrapper" class="content">
@@ -73,7 +72,7 @@ const DESCRIPTION = "Find the works and projects of Lukas Nabholz.";
                 ""
             ) : (
                 <footer class="stack">
-                    <a href="#title">Scroll up</a>
+                    <a href="#top">Scroll up</a>
                     <SiteNav variant="footer" label="Footer navigation" />
                     <p>
                         Fonts by{" "}
@@ -94,11 +93,12 @@ const DESCRIPTION = "Find the works and projects of Lukas Nabholz.";
         max-width: 1920px;
         min-height: 100dvh;
         margin: 0 auto;
-        padding: var(--spacing-lg);
+        padding: var(--spacing-lg) var(--padding-inline-page);
     }
 
     #animation-wrapper {
-        animation: slide-up 600ms cubic-bezier(0.16, 1, 0.3, 1) 200ms both;
+        animation: slide-up var(--transition-duration-slow)
+            var(--transition-timing-out) var(--animation-delay-short) both;
     }
 
     main {

@@ -1,6 +1,8 @@
 ---
 import { getCollection, render } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
+import PatternTitle from "../../components/PatternTitle.astro";
+import DitherCanvas from "../../components/DitherCanvas.astro";
 
 export async function getStaticPaths() {
     const notes = await getCollection("notes");
@@ -17,9 +19,14 @@ const readingMinutes = remarkPluginFrontmatter.readingMinutes;
 ---
 
 <Layout title={entry.data.title}>
-    <article>
-        <header class="article-header stack">
-            <h1 class="title">{entry.data.title}</h1>
+    <article class="stack">
+        <header>
+            <h1 class="title" aria-label={entry.data.title}>
+                <PatternTitle
+                    title={entry.data.title}
+                    idPrefix="article-title"
+                />
+            </h1>
 
             <span>
                 <time datetime={entry.data.date.toISOString().slice(0, 10)}>
@@ -30,52 +37,78 @@ const readingMinutes = remarkPluginFrontmatter.readingMinutes;
                     })}
                 </time>
             </span>
-            <hr />
         </header>
-        <div>
+
+        <div class="prose">
             <p>{entry.data.tagline.toLowerCase()}</p>
         </div>
-        <div class="article-content stack">
-            <Content />
+
+        <div class="article-effects">
+            <DitherCanvas pixelSize={3} maskSelector="figure" />
+
+            <div class="article-content stack prose-flow">
+                <Content />
+            </div>
         </div>
     </article>
 </Layout>
 
 <style>
+    .article-effects {
+        position: relative;
+        isolation: isolate;
+    }
+
+    .prose,
+    .article-content > :global(:not(figure)) {
+        margin-inline: auto;
+    }
+
+    .article-content > :global(h2) {
+        font-size: var(--font-size-xl);
+    }
+
+    .article-content > :global(h3) {
+        font-size: var(--font-size-lg);
+    }
+
     .title {
         margin: 0;
-        font-size: inherit;
+        font-size: var(--font-size-title);
         font-weight: var(--font-weight-normal);
-        line-height: inherit;
+        line-height: var(--line-height-none);
         letter-spacing: var(--letter-spacing-tight);
         text-transform: uppercase;
         text-wrap: wrap;
         overflow-wrap: anywhere;
-    }
-    .faint {
-        color: var(--color-text-faint);
-        font-size: var(--font-size-base);
-        font-weight: var(--font-weight-semibold);
-    }
-    .article-header {
-        gap: var(--spacing-md);
-    }
-
-    .article-header h1 {
-        font-size: var(--font-size-display);
-        font-weight: var(--font-weight-normal);
+        overflow: hidden;
     }
 
     .article-content > :global(figure) {
-        grid-column: wide;
         margin: 0;
         overflow: hidden;
-        background-color: lightgrey;
+        background-color: var(--color-surface-card);
     }
 
     .article-content :global(figure img) {
+        position: relative;
+        z-index: 1;
         display: block;
         width: 100%;
         height: auto;
+        aspect-ratio: 16 / 9;
+        object-fit: contain;
+    }
+
+    article.stack {
+        gap: var(--spacing-3xl);
+    }
+
+    .article-content > :global(h2:not(:first-child)) {
+        margin-block-start: var(--spacing-lg);
+    }
+
+    .article-content > :global(h3:not(:first-child)) {
+        margin-block-start: var(--spacing-xs);
     }
 </style>
