@@ -2,11 +2,14 @@
 import Layout from "../layouts/Layout.astro";
 import Sticker from "../components/Sticker.astro";
 import CurrentTime from "../components/CurrentTime.astro";
+import PatternTitle from "../components/PatternTitle.astro";
 ---
 
-<Layout title="About — Lukas Nabholz">
+<Layout title="About">
     <Fragment slot="header">
-        <h1 class="title">About Me</h1>
+        <h1 class="title" aria-label="About Me">
+            <PatternTitle title="About Me" idPrefix="about-title" />
+        </h1>
     </Fragment>
 
     <section class="stack prose">
@@ -107,6 +110,9 @@ import CurrentTime from "../components/CurrentTime.astro";
 </Layout>
 
 <style>
+    h1.title {
+        font-size: var(--font-size-title);
+    }
     .stickers-space {
         display: flex;
         flex-wrap: wrap;

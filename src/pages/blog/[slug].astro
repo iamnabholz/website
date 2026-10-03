@@ -1,16 +1,23 @@
 ---
 import { render, getCollection } from "astro:content";
+import { colorForIndex } from "../../lib/utils";
 import Layout from "../../layouts/Layout.astro";
 import PatternTitle from "../../components/PatternTitle.astro";
 import DitherCanvas from "../../components/DitherCanvas.astro";
 
 export async function getStaticPaths() {
-    const notes = await getCollection("notes");
+    const notes = (await getCollection("notes")).sort((a, b) => {
+        const dateA = a.data.date?.valueOf() ?? 0;
+        const dateB = b.data.date?.valueOf() ?? 0;
 
-    return notes.map((entry) => ({
+        return dateB - dateA;
+    });
+
+    return notes.map((entry, index) => ({
         params: { slug: entry.id },
         props: {
             entry,
+            surfaceColor: colorForIndex(index),
             otherPosts: notes
                 .filter((post) => post.id !== entry.id)
                 .slice(0, 3),
@@ -18,12 +25,12 @@ export async function getStaticPaths() {
     }));
 }
 
-const { entry, otherPosts } = Astro.props;
+const { entry, otherPosts, surfaceColor } = Astro.props;
 const { Content, remarkPluginFrontmatter } = await render(entry);
 const readingMinutes = remarkPluginFrontmatter.readingMinutes;
 ---
 
-<Layout title={entry.data.title}>
+<Layout title={entry.data.title} surfaceColor={surfaceColor}>
     <Fragment slot="header">
         <h1 class="title" aria-label={entry.data.title}>
             <PatternTitle title={entry.data.title} idPrefix="article-title" />
@@ -86,6 +93,9 @@ const readingMinutes = remarkPluginFrontmatter.readingMinutes;
 </Layout>
 
 <style>
+    h1.title {
+        font-size: var(--font-size-title);
+    }
     .article-effects {
         position: relative;
         isolation: isolate;
@@ -104,16 +114,8 @@ const readingMinutes = remarkPluginFrontmatter.readingMinutes;
         font-size: var(--font-size-lg);
     }
 
-    .title {
-        margin: 0;
-        font-size: var(--font-size-title);
-        font-weight: var(--font-weight-normal);
-        line-height: var(--line-height-none);
-        letter-spacing: var(--letter-spacing-tight);
-        text-transform: uppercase;
-        text-wrap: wrap;
-        overflow-wrap: anywhere;
-        overflow: hidden;
+    time {
+        color: inherit;
     }
 
     .article-content > :global(figure) {

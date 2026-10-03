@@ -26,7 +26,7 @@
     --color-text-faint: light-dark(#6b6b65, #92928b);
     --color-border: light-dark(#dcdcda, #262624);
 
-    --color-accent: light-dark(#3fea00, #19d600);
+    --color-accent: #0019ff;
     accent-color: var(--color-accent);
 
     --color-link: var(--color-accent);
@@ -46,7 +46,7 @@
     --font-size-3xl: 2.75rem;
     --font-size-4xl: 4rem;
     --font-size-5xl: 6rem;
-    --font-size-title: clamp(2.8rem, 8vw, 12rem);
+    --font-size-title: clamp(3rem, 8vw, 12rem);
     --font-size-display: clamp(1.8rem, 4vw, 8rem);
 
     /* Only weights provided by the loaded fonts */
@@ -211,7 +211,7 @@ a[href^="http"]:is(:hover, :active, :focus-visible)::after {
 
 ::selection {
     background-color: var(--color-accent);
-    color: var(--color-text-black);
+    color: var(--color-text-white);
 }
 
 hr {

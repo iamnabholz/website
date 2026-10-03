@@ -1,9 +1,16 @@
 ---
+import PatternTitle from "../components/PatternTitle.astro";
 import Sticker from "../components/Sticker.astro";
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout title="Page Not Found — Lukas Nabholz" hideFooter>
+<Layout title="Page Not Found" hideFooter>
+    <Fragment slot="header">
+        <h1 class="title" aria-label="Not Found">
+            <PatternTitle title="Not Found" idPrefix="about-title" />
+        </h1>
+    </Fragment>
+
     <h1 class="error-title" aria-label="Page not found">
         <button
             class="error-number"
@@ -16,9 +23,6 @@ import Layout from "../layouts/Layout.astro";
             </span>
         </button>
     </h1>
-    <p>
-        This page does not exist. <br /> How did you get here?
-    </p>
 </Layout>
 
 <script>
@@ -44,8 +48,11 @@ import Layout from "../layouts/Layout.astro";
 </script>
 
 <style>
+    h1.title {
+        font-size: var(--font-size-title);
+    }
     .error-title {
-        font-size: clamp(4rem, min(30vw, 55svh), 32rem);
+        font-size: clamp(4rem, min(24vw, 45svh), 24rem);
         line-height: var(--line-height-none);
         text-align: center;
         font-variant-numeric: tabular-nums lining-nums;

@@ -3,12 +3,13 @@ import "../styles/styles.css";
 import SiteNav from "../components/SiteNav.astro";
 import { ClientRouter } from "astro:transitions";
 import DitherCanvas from "../components/DitherCanvas.astro";
-
-const { title, hideFooter = false } = Astro.props;
+const { title, hideFooter = false, surfaceColor } = Astro.props;
 
 const hasHeader = Astro.slots.has("header");
 const isHome = Astro.url.pathname === "/";
 const isBlog = Astro.url.pathname.startsWith("/blog/");
+
+const finalTitle = title + " — Lukas Nabholz";
 
 const DESCRIPTION = "Find the works and projects of Lukas Nabholz.";
 ---
@@ -22,7 +23,7 @@ const DESCRIPTION = "Find the works and projects of Lukas Nabholz.";
             content="width=device-width, initial-scale=1, viewport-fit=cover"
         />
 
-        <title>{title}</title>
+        <title>{finalTitle}</title>
 
         <meta name="author" content="Lukas Nabholz" />
         <meta name="description" content={DESCRIPTION} />
@@ -65,46 +66,24 @@ const DESCRIPTION = "Find the works and projects of Lukas Nabholz.";
         <ClientRouter />
     </head>
     <body id="top">
-        <header
-            class:list={["site-header", { "site-header-with-hero": hasHeader }]}
-        >
-            {hasHeader && (
-                <>
-                    <div class="header-dither-mask" data-dither-mask></div>
-                    <DitherCanvas pixelSize={4} />
-                </>
-            )}
-
-            <div class="header-content">
-                <div class="row">
+        <div class="header-content">
+            <div class="row">
+                <a href="/">
                     <b>LUKAS NABHOLZ</b>
+                </a>
 
-                    {isHome ? (
-                        <a class="back-link" href="/about">
-                            about
-                        </a>
-                    ) : (
-                        <a class="back-link" href="/">
-                            works
-                        </a>
-                    )}
-                </div>
-                <!--
-                <SiteNav variant="header" label="Primary navigation" />
+                <a class="back-link" href="/about">
+                    about
+                </a>
+            </div>
+        </div>
 
+        <header class="site-header">
+            <div class="header-dither-mask" data-dither-mask></div>
+            <DitherCanvas pixelSize={4} />
 
-                {isBlog && (
-                    <a class="back-link" href="/">
-                        Back home
-                    </a>
-                )}
-                -->
-
-                {hasHeader && (
-                    <div class="header-intro">
-                        <slot name="header" />
-                    </div>
-                )}
+            <div class="header-intro">
+                {hasHeader && <slot name="header" />}
             </div>
         </header>
 
@@ -149,12 +128,7 @@ const DESCRIPTION = "Find the works and projects of Lukas Nabholz.";
         isolation: isolate;
         color: var(--color-text-black);
         background-color: var(--color-surface-card);
-    }
-
-    .site-header-with-hero {
-        position: sticky;
-        inset-block-start: 0;
-        z-index: 0;
+        padding-block-start: 20svh;
     }
 
     .header-dither-mask {
@@ -163,7 +137,19 @@ const DESCRIPTION = "Find the works and projects of Lukas Nabholz.";
         pointer-events: none;
     }
 
+    .header-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        color: var(--color-text-black);
+
+        position: fixed;
+        inset-block-start: 0;
+        z-index: 999;
+    }
+
     /* Both layers use exactly the same content boundary and padding. */
+    .header-intro,
     .header-content,
     .page-content {
         box-sizing: border-box;
@@ -173,20 +159,11 @@ const DESCRIPTION = "Find the works and projects of Lukas Nabholz.";
         padding: var(--spacing-lg) var(--padding-inline-page);
     }
 
-    .header-content {
-        position: relative;
-        z-index: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        min-height: 24rem;
-        gap: var(--spacing-xl);
-    }
-
     .header-intro {
         display: flex;
         flex-direction: column;
         gap: var(--spacing-sm);
+        padding-block-start: var(--spacing-5xl);
     }
 
     .header-intro :global(.title) {
@@ -211,6 +188,8 @@ const DESCRIPTION = "Find the works and projects of Lukas Nabholz.";
         gap: var(--spacing-xs);
         color: var(--color-text-faint);
         font-size: var(--font-size-sm);
+
+        padding-block-start: var(--spacing-5xl);
     }
 
     .back-link {
