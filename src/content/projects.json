@@ -2,7 +2,7 @@
   {
     "title": "Wallpapers",
     "description": "Playbook full of wallpaper and similar graphics I've made over the years.",
-    "href": "/pan",
+    "href": "https://www.playbook.com/s/nabholz/wallpapers",
     "icon": "/src/content/media/icons/lucky-icon.webp",
     "date": "Ongoing"
   },
@@ -30,7 +30,7 @@
   {
     "title": "Penpot Plugins",
     "description": "Set of plugins made for a Penpot challenge",
-    "href": "/blog/timesets",
+    "href": "https://github.com/iamnabholz",
     "icon": "/src/content/media/icons/tints-and-shades.webp",
     "date": "2025"
   }
