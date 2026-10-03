@@ -293,7 +293,7 @@ h1.title {
     margin-block-end: var(--spacing-xs);
 }
 
-@media (max-width: 600px) {
+@media (max-width: 320px) {
     dl.list {
         grid-template-columns: minmax(0, 1fr);
         row-gap: var(--spacing-lg);

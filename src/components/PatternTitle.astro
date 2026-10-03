@@ -5,30 +5,79 @@ interface Props {
     title: string;
     idPrefix: string;
     trailingGap?: string;
+    arrow?: "none" | "flow" | "end";
+    fill?: boolean;
 }
 
-const { title, idPrefix, trailingGap = "0.12em" } = Astro.props;
+const {
+    title,
+    idPrefix,
+    trailingGap = "0.12em",
+    arrow = "none",
+    fill = true,
+} = Astro.props;
 
 const words = title.trim().split(/\s+/);
+
+const items = [
+    ...words.map((word) => ({ word, isArrow: false })),
+    ...(arrow !== "none" ? [{ word: "", isArrow: true }] : []),
+];
 ---
 
 <span
-    class="pattern-title"
+    class:list={["pattern-title", { "pattern-title-compact": !fill }]}
+
     style={`--title-pattern-gap: ${trailingGap};`}
     aria-hidden="true"
 >
-    {words.map((word, index) => (
-        <span class="title-segment">
-            <span class="title-word">{word}</span>
+    {items.map((item, index) => {
+        const isEndArrow = item.isArrow && arrow === "end";
 
-            <span class="title-pattern">
-                <SlugPattern
-                    id={`${idPrefix}-tile-${index}`}
-                    class="title-pattern-svg"
-                />
+        return (
+            <span
+                class:list={[
+                    "title-segment",
+                    { "title-segment-end": isEndArrow },
+                    {
+                        "title-segment-before-arrow":
+                            arrow === "end" && index === items.length - 2,
+                    },
+                ]}
+            >
+                {item.isArrow ? (
+                    <span class="title-arrow">
+                        <svg
+                            viewBox="0 0 48 32"
+                            xmlns="http://www.w3.org/2000/svg"
+                            aria-hidden="true"
+                            focusable="false"
+                        >
+                            <path
+                                d="M2 16H44M30 2L44 16L30 30"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="3"
+                                stroke-linecap="square"
+                                stroke-linejoin="miter"
+                            />
+                        </svg>
+                    </span>
+                ) : (
+                    <span class="title-word">{item.word}</span>
+                )}
+
+                {!isEndArrow && (fill || index < items.length - 1) && (
+                    <span class="title-pattern">
+                        <SlugPattern
+                            id={`${idPrefix}-tile-${index}`}
+                            class="title-pattern-svg"
+                        />
+                    </span>
+                )}
             </span>
-        </span>
-    ))}
+        );
+    })}
 </span>
 
 <style>
@@ -48,23 +97,66 @@ const words = title.trim().split(/\s+/);
         gap: var(--title-pattern-gap);
     }
 
+    .title-segment-end {
+        flex: 0 0 auto;
+        margin-inline-start: auto;
+    }
+
+    .title-segment-end .title-arrow {
+        position: relative;
+        inset-block-start: 0.22cap;
+    }
+
     .title-word {
         min-inline-size: 0;
         overflow-wrap: anywhere;
     }
 
     .title-pattern {
-        display: block;
-        flex: 1 0 0.45cap;
+        position: relative;
+        flex: 1 0 1cap;
+        inline-size: 1cap;
+        min-inline-size: 1cap;
         block-size: 1cap;
-        align-self: baseline;
         overflow: hidden;
         opacity: 0.35;
     }
 
     .title-pattern :global(.title-pattern-svg) {
+        position: absolute;
+        inset: 0;
         display: block;
         inline-size: 100%;
         block-size: 100%;
+    }
+
+    .title-arrow {
+        display: inline-block;
+        flex: 0 0 auto;
+        inline-size: 1.5cap;
+        block-size: 1cap;
+    }
+
+    .title-arrow svg {
+        display: block;
+        inline-size: 100%;
+        block-size: 100%;
+        overflow: visible;
+    }
+
+    .pattern-title-compact .title-segment {
+        flex-grow: 0;
+    }
+
+    .pattern-title-compact .title-pattern {
+        flex-grow: 0;
+    }
+
+    .pattern-title-compact .title-segment-before-arrow {
+        flex-grow: 1;
+    }
+
+    .pattern-title-compact .title-segment-before-arrow .title-pattern {
+        flex-grow: 1;
     }
 </style>
