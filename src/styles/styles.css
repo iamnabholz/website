@@ -26,10 +26,10 @@
     --color-text-faint: light-dark(#6b6b65, #92928b);
     --color-border: light-dark(#dcdcda, #262624);
 
-    --color-accent: #fcc010;
+    --color-accent: light-dark(#3fea00, #19d600);
     accent-color: var(--color-accent);
 
-    --color-link: light-dark(#806000, var(--color-accent));
+    --color-link: var(--color-accent);
 
     /* Font families */
     --font-family-sans:

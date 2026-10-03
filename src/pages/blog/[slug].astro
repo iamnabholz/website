@@ -1,44 +1,51 @@
 ---
-import { getCollection, render } from "astro:content";
+import { render } from "astro:content";
+import { getPatternedPosts } from "../../lib/postPatterns";
 import Layout from "../../layouts/Layout.astro";
 import PatternTitle from "../../components/PatternTitle.astro";
 import DitherCanvas from "../../components/DitherCanvas.astro";
 
 export async function getStaticPaths() {
-    const notes = await getCollection("notes");
+    const notes = await getPatternedPosts();
 
     return notes.map((entry) => ({
         params: { slug: entry.id },
-        props: { entry },
+        props: {
+            entry,
+            otherPosts: notes
+                .filter((post) => post.id !== entry.id)
+                .slice(0, 3),
+        },
     }));
 }
 
-const { entry } = Astro.props;
+const { entry, otherPosts } = Astro.props;
 const { Content, remarkPluginFrontmatter } = await render(entry);
 const readingMinutes = remarkPluginFrontmatter.readingMinutes;
 ---
 
 <Layout title={entry.data.title}>
+    <Fragment slot="header">
+        <h1 class="title" aria-label={entry.data.title}>
+            <PatternTitle
+                title={entry.data.title}
+                idPrefix="article-title"
+                pattern={entry.pattern}
+            />
+        </h1>
+
+        <span>
+            <time datetime={entry.data.date.toISOString().slice(0, 10)}>
+                {entry.data.date.toLocaleDateString("en-US", {
+                    day: "numeric",
+                    month: "short",
+                    year: "numeric",
+                })}
+            </time>
+        </span>
+    </Fragment>
+
     <article class="stack">
-        <header>
-            <h1 class="title" aria-label={entry.data.title}>
-                <PatternTitle
-                    title={entry.data.title}
-                    idPrefix="article-title"
-                />
-            </h1>
-
-            <span>
-                <time datetime={entry.data.date.toISOString().slice(0, 10)}>
-                    {entry.data.date.toLocaleDateString("en-US", {
-                        day: "numeric",
-                        month: "short",
-                        year: "numeric",
-                    })}
-                </time>
-            </span>
-        </header>
-
         <div class="prose">
             <p>{entry.data.tagline.toLowerCase()}</p>
         </div>
@@ -51,6 +58,35 @@ const readingMinutes = remarkPluginFrontmatter.readingMinutes;
             </div>
         </div>
     </article>
+
+    {otherPosts.length > 0 && (
+        <nav class="more-posts stack" aria-labelledby="more-posts-heading">
+            <hr />
+            <h2 id="more-posts-heading">More Notes</h2>
+
+            <ul class="other-posts">
+                {otherPosts.map((post, index) => (
+                    <li>
+                        <a class="other-post-link" href={`/blog/${post.id}`}>
+                            <h3
+                                class="other-post-title"
+                                aria-label={post.data.title}
+                            >
+                                <PatternTitle
+                                    title={post.data.title}
+                                    idPrefix={`other-post-${index}`}
+                                    pattern={post.pattern}
+                                    trailingGap="var(--spacing-sm)"
+                                    arrow="end"
+                                    fill={false}
+                                />
+                            </h3>
+                        </a>
+                    </li>
+                ))}
+            </ul>
+        </nav>
+    )}
 </Layout>
 
 <style>
@@ -110,5 +146,44 @@ const readingMinutes = remarkPluginFrontmatter.readingMinutes;
 
     .article-content > :global(h3:not(:first-child)) {
         margin-block-start: var(--spacing-xs);
+    }
+
+    .more-posts {
+        margin-block-start: var(--spacing-lg);
+    }
+
+    .other-posts {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .other-post-link {
+        display: block;
+        padding-block: var(--spacing-lg);
+        color: var(--color-text);
+        text-decoration: none;
+        transition: color var(--transition-duration-fast)
+            var(--transition-timing-standard);
+    }
+
+    .other-post-link:is(:hover, :active, :focus-visible) {
+        color: var(--color-link);
+    }
+
+    .other-post-title {
+        margin: 0;
+        font-size: var(--font-size-display);
+        font-weight: var(--font-weight-normal);
+        line-height: var(--line-height-tight);
+        letter-spacing: var(--letter-spacing-tight);
+        text-transform: uppercase;
+        overflow-wrap: anywhere;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .other-post-link {
+            transition: none;
+        }
     }
 </style>

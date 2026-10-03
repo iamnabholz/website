@@ -2,8 +2,12 @@
 import "../styles/styles.css";
 import SiteNav from "../components/SiteNav.astro";
 import { ClientRouter } from "astro:transitions";
+import DitherCanvas from "../components/DitherCanvas.astro";
 
 const { title, hideFooter = false } = Astro.props;
+
+const hasHeader = Astro.slots.has("header");
+const isHome = Astro.url.pathname === "/";
 
 const DESCRIPTION = "Find the works and projects of Lukas Nabholz.";
 ---
@@ -60,43 +64,116 @@ const DESCRIPTION = "Find the works and projects of Lukas Nabholz.";
         <ClientRouter />
     </head>
     <body id="top">
-        <header class="content">
-            <SiteNav variant="header" label="Primary navigation" />
-        </header>
-        <div id="animation-wrapper" class="content">
-            <main class="stack">
-                <slot />
-            </main>
-
-            {hideFooter ? (
-                ""
-            ) : (
-                <footer class="stack">
-                    <a href="#top">Scroll up</a>
-                    <SiteNav variant="footer" label="Footer navigation" />
-                    <p>
-                        Fonts by{" "}
-                        <a target="_blank" href="https://pangrampangram.com/">
-                            PangramPangram
-                        </a>
-                        <br />
-                        Designed and developed by Lukas Nabholz
-                    </p>
-                </footer>
+        <header
+            class:list={["site-header", { "site-header-with-hero": hasHeader }]}
+        >
+            {hasHeader && (
+                <>
+                    <div class="header-dither-mask" data-dither-mask></div>
+                    <DitherCanvas pixelSize={4} />
+                </>
             )}
+
+            <div class="header-content">
+                <!--
+                <SiteNav variant="header" label="Primary navigation" />
+-->
+                {!isHome && (
+                    <a class="back-link" href="/">
+                        Back home
+                    </a>
+                )}
+
+                {hasHeader && (
+                    <div class="header-intro">
+                        <slot name="header" />
+                    </div>
+                )}
+            </div>
+        </header>
+
+        <div id="animation-wrapper">
+            <div class="page-content">
+                <main class="stack">
+                    <slot />
+                </main>
+
+                {hideFooter ? (
+                    ""
+                ) : (
+                    <footer class="stack">
+                        <a href="#top">Scroll up</a>
+                        <SiteNav variant="footer" label="Footer navigation" />
+                        <p>Designed and developed by Lukas Nabholz</p>
+                    </footer>
+                )}
+            </div>
         </div>
     </body>
 </html>
-
 <style>
     body {
-        max-width: 1920px;
         min-height: 100dvh;
-        margin: 0 auto;
+        margin: 0;
+        padding: 0;
+        isolation: isolate;
+    }
+
+    /* Background layers span the viewport. */
+    .site-header {
+        position: relative;
+        isolation: isolate;
+        color: var(--color-text-black);
+        background-color: var(--color-surface-card);
+    }
+
+    .site-header-with-hero {
+        position: sticky;
+        inset-block-start: 0;
+        z-index: 0;
+    }
+
+    .header-dither-mask {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+    }
+
+    /* Both layers use exactly the same content boundary and padding. */
+    .header-content,
+    .page-content {
+        box-sizing: border-box;
+        inline-size: 100%;
+        max-inline-size: 1920px;
+        margin-inline: auto;
         padding: var(--spacing-lg) var(--padding-inline-page);
     }
 
+    .header-content {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        min-height: 24rem;
+        gap: var(--spacing-md);
+    }
+
+    .header-intro {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+
+    .header-intro :global(.title) {
+        margin: 0;
+    }
+
+    /* Opaque and above the header, including outside the content boundary. */
     #animation-wrapper {
+        position: relative;
+        z-index: 1;
+        background-color: var(--color-background);
         animation: slide-up var(--transition-duration-slow)
             var(--transition-timing-out) var(--animation-delay-short) both;
     }
@@ -109,6 +186,11 @@ const DESCRIPTION = "Find the works and projects of Lukas Nabholz.";
     footer {
         gap: var(--spacing-xs);
         color: var(--color-text-faint);
+        font-size: var(--font-size-sm);
+    }
+
+    .back-link {
+        text-transform: uppercase;
         font-size: var(--font-size-sm);
     }
 

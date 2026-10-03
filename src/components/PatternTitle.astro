@@ -1,5 +1,6 @@
 ---
 import SlugPattern from "./SlugPattern.astro";
+import type { PostPattern } from "../lib/postPatterns";
 
 interface Props {
     title: string;
@@ -7,11 +8,13 @@ interface Props {
     trailingGap?: string;
     arrow?: "none" | "flow" | "end";
     fill?: boolean;
+    pattern: PostPattern;
 }
 
 const {
     title,
     idPrefix,
+    pattern,
     trailingGap = "0.12em",
     arrow = "none",
     fill = true,
@@ -42,9 +45,15 @@ const items = [
                     {
                         "title-segment-before-arrow":
                             arrow === "end" && index === items.length - 2,
+                        "title-segment-flow-arrow":
+                            item.isArrow && arrow === "flow",
                     },
                 ]}
             >
+                {item.isArrow && arrow === "flow" && (
+                    <span class="title-baseline">H</span>
+                )}
+
                 {item.isArrow ? (
                     <span class="title-arrow">
                         <svg
@@ -72,6 +81,7 @@ const items = [
                         <SlugPattern
                             id={`${idPrefix}-tile-${index}`}
                             class="title-pattern-svg"
+                            pattern={pattern}
                         />
                     </span>
                 )}
@@ -158,5 +168,15 @@ const items = [
 
     .pattern-title-compact .title-segment-before-arrow .title-pattern {
         flex-grow: 1;
+    }
+    .title-baseline {
+        flex: 0 0 0;
+        inline-size: 0;
+        visibility: hidden;
+        overflow: hidden;
+    }
+
+    .title-segment-flow-arrow .title-arrow {
+        line-height: 0;
     }
 </style>

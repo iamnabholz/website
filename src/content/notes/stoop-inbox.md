@@ -1,6 +1,6 @@
 ---
-title: Stoop Inbox Mobile App Redesign
-tagline: Short tagline of the post
+title: Streamlining the experience of Stoop Inbox
+tagline: Keep you email inbox and your newsletters separated
 date: 8 Jun 2024
 tags:
   - draft

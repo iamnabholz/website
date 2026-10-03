@@ -1,62 +1,55 @@
 ---
-import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 import PatternTitle from "../../components/PatternTitle.astro";
+import { getPatternedPosts } from "../../lib/postPatterns";
 
-const ALL_POSTS = (await getCollection("notes")).sort((a, b) => {
-    const dateA = a.data.date?.valueOf() ?? 0;
-    const dateB = b.data.date?.valueOf() ?? 0;
-
-    return dateB - dateA;
-});
-
+const ALL_POSTS = await getPatternedPosts();
 const FEATURED_POST = ALL_POSTS[0];
+const OTHER_POSTS = ALL_POSTS.slice(1);
 ---
 
 <Layout title="Blog — Lukas Nabholz">
-    <section class="stack">
+    <Fragment slot="header">
         <h1 class="title">Blog</h1>
 
         <p class="prose">
             Writings I do from time to time about my projects and sometimes
             other thoughts.
         </p>
+    </Fragment>
 
+    <section class="stack">
         {FEATURED_POST && (
-            <>
-                <hr />
-                <h2>Featured Post</h2>
+            <a
+                class="post-link featured-post"
+                href={`/blog/${FEATURED_POST.id}`}
+            >
+                <div class="post-row">
+                    <h3
+                        class="post-title"
+                        aria-label={FEATURED_POST.data.title}
+                    >
+                        <PatternTitle
+                            title={FEATURED_POST.data.title}
+                            idPrefix="featured-post-pattern"
+                            pattern={FEATURED_POST.pattern}
+                            trailingGap="var(--spacing-sm)"
+                            arrow="flow"
+                        />
+                    </h3>
+                </div>
 
-                <a
-                    class="post-link featured-post"
-                    href={`/blog/${FEATURED_POST.id}`}
-                >
-                    <div class="post-row">
-                        <h3
-                            class="post-title"
-                            aria-label={FEATURED_POST.data.title}
-                        >
-                            <PatternTitle
-                                title={FEATURED_POST.data.title}
-                                idPrefix="featured-post-pattern"
-                                trailingGap="var(--spacing-sm)"
-                                arrow="flow"
-                            />
-                        </h3>
-                    </div>
-
-                    <p class="prose featured-tagline">
-                        {FEATURED_POST.data.tagline}
-                    </p>
-                </a>
-            </>
+                <p class="prose featured-tagline">
+                    {FEATURED_POST.data.tagline}
+                </p>
+            </a>
         )}
 
         <hr />
-        <h2>All Posts</h2>
+        <h2>All Notes</h2>
 
         <ul class="posts">
-            {ALL_POSTS.map((post, index) => (
+            {OTHER_POSTS.map((post, index) => (
                 <li>
                     <a class="post-link" href={`/blog/${post.id}`}>
                         <div class="post-row">
@@ -64,6 +57,7 @@ const FEATURED_POST = ALL_POSTS[0];
                                 <PatternTitle
                                     title={post.data.title}
                                     idPrefix={`post-pattern-${index}`}
+                                    pattern={post.pattern}
                                     trailingGap="var(--spacing-sm)"
                                     arrow="end"
                                     fill={false}
