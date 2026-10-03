@@ -1,12 +1,11 @@
 ---
-import { render } from "astro:content";
-import { getPatternedPosts } from "../../lib/postPatterns";
+import { render, getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 import PatternTitle from "../../components/PatternTitle.astro";
 import DitherCanvas from "../../components/DitherCanvas.astro";
 
 export async function getStaticPaths() {
-    const notes = await getPatternedPosts();
+    const notes = await getCollection("notes");
 
     return notes.map((entry) => ({
         params: { slug: entry.id },
@@ -27,11 +26,7 @@ const readingMinutes = remarkPluginFrontmatter.readingMinutes;
 <Layout title={entry.data.title}>
     <Fragment slot="header">
         <h1 class="title" aria-label={entry.data.title}>
-            <PatternTitle
-                title={entry.data.title}
-                idPrefix="article-title"
-                pattern={entry.pattern}
-            />
+            <PatternTitle title={entry.data.title} idPrefix="article-title" />
         </h1>
 
         <span>
@@ -46,9 +41,11 @@ const readingMinutes = remarkPluginFrontmatter.readingMinutes;
     </Fragment>
 
     <article class="stack">
+        <!--
         <div class="prose">
             <p>{entry.data.tagline.toLowerCase()}</p>
         </div>
+        -->
 
         <div class="article-effects">
             <DitherCanvas pixelSize={3} maskSelector="figure" />
@@ -75,7 +72,6 @@ const readingMinutes = remarkPluginFrontmatter.readingMinutes;
                                 <PatternTitle
                                     title={post.data.title}
                                     idPrefix={`other-post-${index}`}
-                                    pattern={post.pattern}
                                     trailingGap="var(--spacing-sm)"
                                     arrow="end"
                                     fill={false}

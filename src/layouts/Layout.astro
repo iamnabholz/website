@@ -8,6 +8,7 @@ const { title, hideFooter = false } = Astro.props;
 
 const hasHeader = Astro.slots.has("header");
 const isHome = Astro.url.pathname === "/";
+const isBlog = Astro.url.pathname.startsWith("/blog/");
 
 const DESCRIPTION = "Find the works and projects of Lukas Nabholz.";
 ---
@@ -75,14 +76,29 @@ const DESCRIPTION = "Find the works and projects of Lukas Nabholz.";
             )}
 
             <div class="header-content">
+                <div class="row">
+                    <b>LUKAS NABHOLZ</b>
+
+                    {isHome ? (
+                        <a class="back-link" href="/about">
+                            about
+                        </a>
+                    ) : (
+                        <a class="back-link" href="/">
+                            works
+                        </a>
+                    )}
+                </div>
                 <!--
                 <SiteNav variant="header" label="Primary navigation" />
--->
-                {!isHome && (
+
+
+                {isBlog && (
                     <a class="back-link" href="/">
                         Back home
                     </a>
                 )}
+                -->
 
                 {hasHeader && (
                     <div class="header-intro">
@@ -102,7 +118,9 @@ const DESCRIPTION = "Find the works and projects of Lukas Nabholz.";
                     ""
                 ) : (
                     <footer class="stack">
-                        <a href="#top">Scroll up</a>
+                        <a class="back-link" href="#top">
+                            Scroll up
+                        </a>
                         <SiteNav variant="footer" label="Footer navigation" />
                         <p>Designed and developed by Lukas Nabholz</p>
                     </footer>
@@ -111,7 +129,13 @@ const DESCRIPTION = "Find the works and projects of Lukas Nabholz.";
         </div>
     </body>
 </html>
+
 <style>
+    .row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
     body {
         min-height: 100dvh;
         margin: 0;
@@ -154,9 +178,9 @@ const DESCRIPTION = "Find the works and projects of Lukas Nabholz.";
         z-index: 1;
         display: flex;
         flex-direction: column;
-        justify-content: flex-end;
+        justify-content: space-between;
         min-height: 24rem;
-        gap: var(--spacing-md);
+        gap: var(--spacing-xl);
     }
 
     .header-intro {
@@ -180,7 +204,7 @@ const DESCRIPTION = "Find the works and projects of Lukas Nabholz.";
 
     main {
         gap: var(--spacing-4xl);
-        padding-block: var(--spacing-4xl);
+        padding-block: var(--spacing-lg);
     }
 
     footer {

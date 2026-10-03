@@ -1,9 +1,9 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import PatternTitle from "../../components/PatternTitle.astro";
-import { getPatternedPosts } from "../../lib/postPatterns";
+import { getCollection } from "astro:content";
 
-const ALL_POSTS = await getPatternedPosts();
+const ALL_POSTS = await getCollection("notes");
 const FEATURED_POST = ALL_POSTS[0];
 const OTHER_POSTS = ALL_POSTS.slice(1);
 ---
@@ -32,7 +32,6 @@ const OTHER_POSTS = ALL_POSTS.slice(1);
                         <PatternTitle
                             title={FEATURED_POST.data.title}
                             idPrefix="featured-post-pattern"
-                            pattern={FEATURED_POST.pattern}
                             trailingGap="var(--spacing-sm)"
                             arrow="flow"
                         />
@@ -57,7 +56,6 @@ const OTHER_POSTS = ALL_POSTS.slice(1);
                                 <PatternTitle
                                     title={post.data.title}
                                     idPrefix={`post-pattern-${index}`}
-                                    pattern={post.pattern}
                                     trailingGap="var(--spacing-sm)"
                                     arrow="end"
                                     fill={false}
