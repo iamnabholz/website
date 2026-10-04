@@ -3,13 +3,11 @@ import "../styles/styles.css";
 import SiteNav from "../components/SiteNav.astro";
 import { ClientRouter } from "astro:transitions";
 import DitherCanvas from "../components/DitherCanvas.astro";
-const { title, hideFooter = false, surfaceColor } = Astro.props;
+
+const { title, hideFooter = false } = Astro.props;
 
 const hasHeader = Astro.slots.has("header");
-const isHome = Astro.url.pathname === "/";
-const isBlog = Astro.url.pathname.startsWith("/blog/");
-
-const finalTitle = title + " — Lukas Nabholz";
+const finalTitle = `${title} — Lukas Nabholz`;
 
 const DESCRIPTION = "Find the works and projects of Lukas Nabholz.";
 ---
@@ -27,17 +25,15 @@ const DESCRIPTION = "Find the works and projects of Lukas Nabholz.";
 
         <meta name="author" content="Lukas Nabholz" />
         <meta name="description" content={DESCRIPTION} />
-        <!-- other meta tags -->
         <meta name="generator" content={Astro.generator} />
         <meta name="color-scheme" content="light dark" />
+
         <meta
             name="p:domain_verify"
             content="37e98c1a1875e0741fc3abdea1aaf180"
         />
 
-        <!-- Open Graph / Social meta tags -->
         <meta property="og:title" content={title} />
-        <!-- other social meta tags -->
         <meta property="og:description" content={DESCRIPTION} />
         <meta
             property="og:image"
@@ -47,15 +43,11 @@ const DESCRIPTION = "Find the works and projects of Lukas Nabholz.";
             property="og:image:alt"
             content="A sticker designed by Lukas Nabholz or a solid colored background."
         />
-
         <meta property="og:url" content="https://nabholz.work/" />
         <meta property="og:type" content="website" />
-
         <meta property="og:site_name" content="Lukas Nabholz" />
         <meta property="og:locale" content="en_US" />
 
-        <!-- other link tags (excluding stylesheets and resource hints) -->
-        <!-- Icons -->
         <link rel="icon" href="/favicon.ico" sizes="32x32" />
         <link rel="icon" href="/icon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -65,56 +57,103 @@ const DESCRIPTION = "Find the works and projects of Lukas Nabholz.";
 
         <ClientRouter />
     </head>
+
     <body id="top">
-        <div class="header-content">
-            <div class="row">
-                <a href="/">
-                    <b>LUKAS NABHOLZ</b>
+        <nav
+            class="site-navigation content-boundary"
+            aria-label="Primary navigation"
+        >
+            <div class="site-navigation__links">
+                <a class="site-navigation__link" href="/">
+                    work
                 </a>
 
-                <a class="back-link" href="/about">
+                <a class="site-navigation__link" href="/about">
                     about
                 </a>
+
+                <a class="site-navigation__link" href="/blog">
+                    blog
+                </a>
             </div>
-        </div>
+        </nav>
 
         <header class="site-header">
-            <div class="header-dither-mask" data-dither-mask></div>
-            <DitherCanvas pixelSize={4} />
+            <site-header-background
+                class="site-header__background"
+                aria-hidden="true"
+            >
+                <div class="site-header__dither-area" data-dither-mask></div>
 
-            <div class="header-intro">
+                <DitherCanvas pixelSize={4} color="green" opacity={0.12} />
+            </site-header-background>
+
+            <div class="site-header__intro content-boundary">
                 {hasHeader && <slot name="header" />}
             </div>
         </header>
 
         <div id="animation-wrapper">
-            <div class="page-content">
+            <div class="page-content content-boundary">
                 <main class="stack">
                     <slot />
                 </main>
 
-                {hideFooter ? (
-                    ""
-                ) : (
+                {!hideFooter && (
                     <footer class="stack">
                         <a class="back-link" href="#top">
                             Scroll up
                         </a>
+
                         <SiteNav variant="footer" label="Footer navigation" />
+
                         <p>Designed and developed by Lukas Nabholz</p>
                     </footer>
                 )}
             </div>
         </div>
+
+        <script>
+            class SiteHeaderBackground extends HTMLElement {
+                private resizeObserver?: ResizeObserver;
+
+                connectedCallback() {
+                    this.resizeObserver?.disconnect();
+
+                    const header = this.closest<HTMLElement>(".site-header");
+
+                    if (!header) return;
+
+                    const updateHeight = () => {
+                        this.style.setProperty(
+                            "--site-header-height",
+                            `${header.getBoundingClientRect().height}px`,
+                        );
+                    };
+
+                    updateHeight();
+
+                    this.resizeObserver = new ResizeObserver(updateHeight);
+                    this.resizeObserver.observe(header);
+                }
+
+                disconnectedCallback() {
+                    this.resizeObserver?.disconnect();
+                    this.resizeObserver = undefined;
+                }
+            }
+
+            if (!customElements.get("site-header-background")) {
+                customElements.define(
+                    "site-header-background",
+                    SiteHeaderBackground,
+                );
+            }
+        </script>
     </body>
 </html>
 
 <style>
-    .row {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
     body {
         min-height: 100dvh;
         margin: 0;
@@ -122,36 +161,11 @@ const DESCRIPTION = "Find the works and projects of Lukas Nabholz.";
         isolation: isolate;
     }
 
-    /* Background layers span the viewport. */
-    .site-header {
-        position: relative;
-        isolation: isolate;
-        color: var(--color-text-black);
-        background-color: var(--color-surface-card);
-        padding-block-start: 20svh;
-    }
-
-    .header-dither-mask {
-        position: absolute;
-        inset: 0;
-        pointer-events: none;
-    }
-
-    .header-content {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        color: var(--color-text-black);
-
-        position: fixed;
-        inset-block-start: 0;
-        z-index: 999;
-    }
-
-    /* Both layers use exactly the same content boundary and padding. */
-    .header-intro,
-    .header-content,
-    .page-content {
+    /*
+     * Shared width and padding for navigation, header content,
+     * and the main page content.
+     */
+    .content-boundary {
         box-sizing: border-box;
         inline-size: 100%;
         max-inline-size: 1920px;
@@ -159,18 +173,102 @@ const DESCRIPTION = "Find the works and projects of Lukas Nabholz.";
         padding: var(--spacing-lg) var(--padding-inline-page);
     }
 
-    .header-intro {
+    /*
+     * Fixed navigation
+     */
+    .site-navigation {
+        position: fixed;
+        inset-block-start: 0;
+        inset-inline: 0;
+        z-index: 10;
+    }
+
+    .site-navigation__links {
+        display: flex;
+        align-items: center;
+    }
+
+    .site-navigation__link {
+        color: var(--color-background);
+        background-color: var(--color-text);
+        padding: calc(var(--spacing-xs) + 0.08em) var(--spacing-lg)
+            var(--spacing-xs);
+        border-radius: 16px;
+        margin-inline-end: -0.15em;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-size: var(--font-size-sm);
+    }
+
+    .site-navigation__link:hover {
+        color: var(--color-text);
+        background-color: var(--color-accent);
+    }
+
+    /*
+     * Header layout
+     *
+     * The header remains in normal flow and reserves all of the space
+     * required by the intro.
+     */
+    .site-header {
+        position: relative;
+        isolation: isolate;
+        padding-block-start: 20svh;
+        border-bottom: 1px solid var(--color-border);
+    }
+
+    /*
+     * Fixed visual background.
+     *
+     * Its actual block size is synchronized with .site-header by the
+     * custom element above. DitherCanvas can therefore continue sizing
+     * itself from its parent as originally designed.
+     */
+    .site-header__background {
+        position: fixed;
+        inset-block-start: 0;
+        inset-inline: 0;
+        z-index: 0;
+
+        display: block;
+        block-size: var(--site-header-height, 100svh);
+        overflow: hidden;
+        pointer-events: none;
+    }
+
+    /*
+     * This is the region DitherCanvas uses as its drawing mask.
+     */
+    .site-header__dither-area {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+    }
+
+    /*
+     * The intro remains in normal document flow, so it scrolls normally.
+     * position: relative is necessary for z-index to place it over the
+     * dither canvas.
+     */
+    .site-header__intro {
+        position: relative;
+        z-index: 1;
+
         display: flex;
         flex-direction: column;
         gap: var(--spacing-sm);
+
         padding-block-start: var(--spacing-5xl);
     }
 
-    .header-intro :global(.title) {
+    .site-header__intro :global(.title) {
         margin: 0;
     }
 
-    /* Opaque and above the header, including outside the content boundary. */
+    /*
+     * The opaque page layer scrolls over the fixed header background.
+     */
     #animation-wrapper {
         position: relative;
         z-index: 1;
@@ -188,7 +286,6 @@ const DESCRIPTION = "Find the works and projects of Lukas Nabholz.";
         gap: var(--spacing-xs);
         color: var(--color-text-faint);
         font-size: var(--font-size-sm);
-
         padding-block-start: var(--spacing-5xl);
     }
 

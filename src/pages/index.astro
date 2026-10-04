@@ -6,6 +6,7 @@ import SelectedProjects from "../components/SelectedProjects.astro";
 import CurrentTime from "../components/CurrentTime.astro";
 
 import PROJECTS from "../content/projects.json";
+import PatternTitle from "../components/PatternTitle.astro";
 type Project = (typeof PROJECTS)[number];
 
 const projectGroups = new Map<string, Project[]>();
@@ -43,10 +44,14 @@ function resolveIcon(path: string): ImageMetadata {
 
 <Layout title="Home">
     <Fragment slot="header">
-        <h1 class="title">
+        <h1 class="title" aria-label="Lukas Nabholz">
+            <PatternTitle title="Lukas Nabholz" idPrefix="about-title" />
+        </h1>
+
+        <h2 class="subtitle">
             Product designer and developer building digital experiences that
             people actually enjoy using.
-        </h1>
+        </h2>
     </Fragment>
 
     <section>
@@ -147,8 +152,12 @@ function resolveIcon(path: string): ImageMetadata {
 </Layout>
 
 <style>
-    h1.title {
+    h2.subtitle {
+        font-size: var(--font-size-display);
         font-weight: var(--font-weight-normal);
+    }
+    h1.title {
+        font-size: var(--font-size-title);
     }
 
     .projects {

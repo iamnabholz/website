@@ -10,7 +10,9 @@ const OTHER_POSTS = ALL_POSTS.slice(1);
 
 <Layout title="Blog">
     <Fragment slot="header">
-        <h1 class="title">Blog</h1>
+        <h1 class="title" aria-label="Blog">
+            <PatternTitle title="Blog" idPrefix="article-title" />
+        </h1>
 
         <p class="prose">
             Writings I do from time to time about my projects and sometimes
@@ -19,6 +21,8 @@ const OTHER_POSTS = ALL_POSTS.slice(1);
     </Fragment>
 
     <section class="stack">
+        <h2>Latest Note</h2>
+
         {FEATURED_POST && (
             <a
                 class="post-link featured-post"
@@ -70,6 +74,9 @@ const OTHER_POSTS = ALL_POSTS.slice(1);
 </Layout>
 
 <style>
+    h1.title {
+        font-size: var(--font-size-title);
+    }
     .featured-post .post-row {
         font-size: var(--font-size-title);
         line-height: var(--line-height-none);
