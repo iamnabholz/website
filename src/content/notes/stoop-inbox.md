@@ -1,5 +1,5 @@
 ---
-title: Streamlining the experience of Stoop Inbox
+title: Streamlining The Experience of Stoop Inbox
 tagline: Keep you email inbox and your newsletters separated
 date: 8 Jun 2024
 tags:

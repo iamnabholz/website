@@ -29,7 +29,7 @@
     --color-text-faint: light-dark(#6b6b65, #92928b);
     --color-border: light-dark(#dcdcda, #262624);
 
-    --color-accent: #fcc010;
+    --color-accent: #d90000;
     accent-color: var(--color-accent);
 
     --color-link: var(--color-accent);
@@ -48,8 +48,12 @@
     --font-size-3xl: 2.75rem;
     --font-size-4xl: 4rem;
     --font-size-5xl: 6rem;
-    --font-size-title: clamp(3rem, 8vw, 12rem);
+
+    --font-size-title: clamp(3rem, 7vw, 10rem);
     --font-size-display: clamp(1.8rem, 4vw, 8rem);
+    --font-size-introduction: clamp(2rem, 1.2rem + 3.4vw, 5.75rem);
+
+    --text-indent-introduction: clamp(1rem, 4vw, 4rem);
 
     /* Only weights provided by the loaded fonts */
     --font-weight-normal: 400;
@@ -217,8 +221,12 @@ a[href^="http"]:is(:hover, :active, :focus-visible)::after {
 }
 
 ::selection {
-    background-color: var(--color-accent);
-    color: var(--color-text-white);
+    background-color: color-mix(
+        in srgb,
+        var(--color-accent) 20%,
+        transparent 100%
+    );
+    color: var(--color-accent);
 }
 
 hr {

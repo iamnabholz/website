@@ -1,5 +1,5 @@
 ---
-title: New tab extension that simply exists
+title: New Tab Extension That Simply Exists
 tagline: Short tagline of the post
 date: 16 Sep 2026
 tags:

@@ -8,12 +8,13 @@ const { variant, label } = Astro.props;
 
 const HEADER_LINKS = [
     { href: "/", label: "Works" },
-    { href: "/about", label: "About" },
+    { href: "/feed", label: "Feed" },
     { href: "/blog", label: "Blog" },
 ];
 
 const FOOTER_LINKS = [
     { href: "/", label: "works" },
+    { href: "/feed", label: "feed" },
     { href: "/blog", label: "blog" },
 ];
 
@@ -31,14 +32,22 @@ const isActive = (href: string) => {
 ---
 
 <nav aria-label={label} data-variant={variant} class="content-boundary">
-    {links.map(({ href, label: linkLabel }) => (
-        <a
-            href={href}
-            aria-current={currentPath === href ? "page" : undefined}
-            data-active={isActive(href) ? "" : undefined}
-        >
-            {linkLabel}
-        </a>
+    {links.map(({ href, label: linkLabel }, index) => (
+        <Fragment>
+            <a
+                href={href}
+                aria-current={currentPath === href ? "page" : undefined}
+                data-active={isActive(href) ? "" : undefined}
+            >
+                {linkLabel}
+            </a>
+
+            {variant === "header" && index < links.length - 1 && (
+                <span class="separator" aria-hidden="true">
+                    /
+                </span>
+            )}
+        </Fragment>
     ))}
 </nav>
 
@@ -51,30 +60,22 @@ const isActive = (href: string) => {
         gap: 0 var(--spacing-sm);
     }
 
-    nav[data-variant="header"] {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 0;
-    }
-
-    nav[data-variant="header"] :nth-child(2) {
-        text-align: center;
-    }
-
-    nav[data-variant="header"] :nth-child(3) {
-        text-align: right;
-    }
-
-    nav[data-variant="header"] a {
-        width: 100%;
-        padding: calc(var(--spacing-xs) + 0.08em) var(--spacing-lg)
-            var(--spacing-xs);
-        text-transform: uppercase;
-        font-size: var(--font-size-sm);
+    nav[data-variant="header"] a[data-active] {
+        color: var(--color-link);
+        text-decoration-color: transparent;
     }
 
     nav[data-variant="footer"] a {
         text-transform: capitalize;
         text-decoration-line: none;
+    }
+
+    @media (max-width: 720px) {
+        nav[data-variant="header"] {
+        }
+    }
+
+    .separator {
+        color: var(--color-border);
     }
 </style>

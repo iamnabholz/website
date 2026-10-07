@@ -1,5 +1,5 @@
 ---
-title: Time-tracking app Timesets now available
+title: Time-Tracking App Timesets Now Available
 tagline: Short tagline of the post
 date: 22 Apr 2025
 tags:

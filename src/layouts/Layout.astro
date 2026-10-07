@@ -2,10 +2,11 @@
 import "../styles/styles.css";
 import SiteNav from "../components/SiteNav.astro";
 import { ClientRouter } from "astro:transitions";
+import Sticker from "../components/Sticker.astro";
+import DitherCanvas from "../components/DitherCanvas.astro";
 
 const { title, hideFooter = false } = Astro.props;
 
-const hasHeader = Astro.slots.has("header");
 const finalTitle = `${title} — Lukas Nabholz`;
 
 const DESCRIPTION = "Find the works and projects of Lukas Nabholz.";
@@ -57,15 +58,20 @@ const DESCRIPTION = "Find the works and projects of Lukas Nabholz.";
         <ClientRouter />
     </head>
 
-    <body id="top">
-        <div id="animation-wrapper">
-            <div class="page-content content-boundary">
-                {hasHeader && (
-                    <header>
-                        <slot name="header" />
-                    </header>
-                )}
+    <body id="top" class="content-boundary">
+        <header>
+            <h1 class="site-title">
+                <strong class="site-title__name">Lukas Nabholz</strong>
+                <span style="margin: 0.3em;">
+                    <Sticker visualScale={1.8} />
+                </span>
+            </h1>
 
+            <SiteNav variant="header" label="Primary navigation" />
+        </header>
+
+        <div id="animation-wrapper">
+            <div class="page-content">
                 <main class="stack">
                     <slot />
                 </main>
@@ -78,7 +84,9 @@ const DESCRIPTION = "Find the works and projects of Lukas Nabholz.";
 
                         <SiteNav variant="footer" label="Footer navigation" />
 
-                        <p>Designed and developed by Lukas Nabholz</p>
+                        <p>Designed and developed by me</p>
+
+                        <DitherCanvas maskSelector="" />
                     </footer>
                 )}
             </div>
@@ -92,6 +100,26 @@ const DESCRIPTION = "Find the works and projects of Lukas Nabholz.";
         margin: 0;
         padding: 0;
         isolation: isolate;
+    }
+
+    header {
+        padding-block-end: clamp(2.5rem, 6vw, 7rem);
+        margin-inline-start: var(--text-indent-introduction);
+    }
+
+    .site-title {
+        min-inline-size: 0;
+        margin: 0;
+        padding-block-end: 0.2em;
+
+        font-size: var(--font-size-introduction);
+        font-weight: var(--font-weight-normal);
+    }
+
+    .site-title__name {
+        font-weight: var(--font-weight-semibold);
+        letter-spacing: -0.045em;
+        white-space: nowrap;
     }
 
     .page-content {

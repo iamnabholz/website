@@ -1,57 +1,86 @@
 ---
-import Layout from "../layouts/Layout.astro";
-import WorksFeed from "../components/WorksFeed.astro";
+import CurrentTime from "../components/CurrentTime.astro";
 import Sticker from "../components/Sticker.astro";
+import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Home">
-    <Fragment slot="header">
-        <div class="introduction">
-            <h1 class="introduction__statement">
-                <strong class="introduction__name">
-                    Lukas Nabholz{"    "}
-                </strong>
-                <span aria-hidden="true">
-                    <Sticker visualScale={1.6} sticker="keycap" />
-                </span>
-            </h1>
+    <div class="introduction">
+        <p class="introduction__statement">
+            Product designer and developer building digital experiences that
+            people actually enjoy using.
+        </p>
 
-            <p class="introduction__statement">
-                Product designer and developer building digital experiences that
-                people actually enjoy using.
-            </p>
+        <p class="introduction__statement">
+            Tinkering until it feels right, I have 8+ years of experience
+            working as a freelancer. I’m currently open to work and
+            collaborations—or just a chat.
+        </p>
 
-            <p class="introduction__statement">
-                Currently solving complex problems and helping new ideas achieve
-                their goals by crafting intuitive, easy-to-use interfaces that
-                are beautiful.
-            </p>
+        <address class="introduction__statement introduction__contact">
+            Reach me by email at{" "}
+            <a href="mailto:hi@nabholz.work">hi@nabholz.work</a>
+            {" or find me as "}
+            <a href="https://www.threads.com/@nabholzwork" rel="me">
+                @nabholzwork
+            </a>
+            on Threads.
+        </address>
+    </div>
 
-            <address class="introduction__statement introduction__contact">
-                Reach me by email at{" "}
-                <a href="mailto:hi@nabholz.work">hi@nabholz.work</a>
-                {" or find me as "}
-                <a
-                    href="https://threads.com/nabholzwork"
-                    target="_blank"
-                    rel="noreferrer"
-                >
-                    @nabholzwork
-                </a>
-                on Threads.
-            </address>
-        </div>
-    </Fragment>
+    <section class="contact">
+        <h2 class="section-heading">Contact</h2>
 
-    <section class="works" aria-labelledby="works-heading">
-        <h2 class="section-heading" id="works-heading">
-            Selected work
-        </h2>
-        <WorksFeed />
+        <address>
+            <dl class="list">
+                <div>
+                    <dt>Location</dt>
+                    <dd>Santa Cruz, Bolivia</dd>
+                    <dd>
+                        <CurrentTime />
+                    </dd>
+                </div>
+
+                <div>
+                    <dt>Email</dt>
+                    <dd>
+                        <a href="mailto:hi@nabholz.work">hi@nabholz.work</a>
+                    </dd>
+                </div>
+
+                <div>
+                    <dt>Threads</dt>
+                    <dd>
+                        <a href="https://threads.com/@nabholzwork">
+                            @nabholzwork
+                        </a>
+                    </dd>
+                </div>
+
+                <div>
+                    <dt>Bluesky</dt>
+                    <dd>
+                        <a href="https://bsky.app/profile/nabholz.work">
+                            @nabholz.work
+                        </a>
+                    </dd>
+                </div>
+            </dl>
+        </address>
     </section>
+
+    <div class="stickers-space">
+        <Sticker sticker="cursor" size="4rem" visualScale={1.4} />
+        <Sticker size="4rem" visualScale={1.4} />
+        <Sticker size="4rem" visualScale={1.4} />
+    </div>
 </Layout>
 
 <style>
+    h1.title {
+        font-size: var(--font-size-title);
+    }
+
     .introduction {
         display: flex;
         flex-direction: column;
@@ -60,37 +89,19 @@ import Sticker from "../components/Sticker.astro";
     }
 
     .introduction__statement {
-        font-size: clamp(2rem, 1.2rem + 3.4vw, 5.75rem);
+        max-inline-size: min(100%, 24ch);
+        margin: 0;
+
+        font-size: var(--font-size-introduction);
         font-weight: var(--font-weight-normal);
         line-height: 1.02;
         letter-spacing: -0.04em;
-        margin: 0;
 
-        text-indent: 0;
         text-wrap: pretty;
     }
 
-    /* Opening statement */
-    p.introduction__statement:first-of-type,
-    h1.introduction__statement {
-        max-inline-size: min(100%, 24ch);
-        text-indent: clamp(1rem, 4vw, 4rem);
-    }
-
-    /* Longer supporting paragraph */
-    p.introduction__statement {
-        max-inline-size: min(100%, 30ch);
-    }
-
-    /* Contact block */
-    address.introduction__statement {
-        max-inline-size: min(100%, 26ch);
-    }
-
-    .introduction__name {
-        font-weight: var(--font-weight-semibold);
-        letter-spacing: -0.045em;
-        white-space: nowrap;
+    p.introduction__statement:first-of-type {
+        text-indent: var(--text-indent-introduction);
     }
 
     .introduction__contact {
@@ -98,18 +109,16 @@ import Sticker from "../components/Sticker.astro";
     }
 
     .introduction__contact a {
-        font-weight: var(--font-weight-semibold);
         overflow-wrap: anywhere;
         text-decoration-thickness: 0.06em;
         text-underline-offset: 0.12em;
     }
 
-    .works {
-        inline-size: 100%;
-    }
-
-    .works .section-heading {
-        margin-block-end: clamp(var(--spacing-md), 2vw, var(--spacing-xl));
+    .stickers-space {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        padding-block-start: var(--spacing-4xl);
     }
 
     @media (max-width: 720px) {
@@ -122,10 +131,6 @@ import Sticker from "../components/Sticker.astro";
             line-height: 1.05;
             letter-spacing: -0.035em;
         }
-
-        .introduction__name {
-            letter-spacing: -0.04em;
-        }
     }
 
     @media (max-width: 380px) {
@@ -133,10 +138,6 @@ import Sticker from "../components/Sticker.astro";
             font-size: clamp(1.75rem, 9vw, 2rem);
             line-height: 1.08;
             letter-spacing: -0.03em;
-        }
-
-        .introduction__name {
-            letter-spacing: -0.035em;
         }
     }
 </style>

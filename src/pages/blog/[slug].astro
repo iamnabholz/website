@@ -37,10 +37,10 @@ const readingMinutes = remarkPluginFrontmatter.readingMinutes;
         </h1>
 
         <span>
-            <time datetime={entry.data.date.toISOString().slice(0, 10)}>
+            <time datetime={entry.data.date.toISOString()} data-relative-date>
                 {entry.data.date.toLocaleDateString("en-US", {
                     day: "numeric",
-                    month: "short",
+                    month: "long",
                     year: "numeric",
                 })}
             </time>
@@ -66,7 +66,7 @@ const readingMinutes = remarkPluginFrontmatter.readingMinutes;
     {otherPosts.length > 0 && (
         <nav class="more-posts stack" aria-labelledby="more-posts-heading">
             <hr />
-            <h2 id="more-posts-heading">More Notes</h2>
+            <h2 id="more-posts-heading">Read More</h2>
 
             <ul class="other-posts">
                 {otherPosts.map((post, index) => (
@@ -90,6 +90,30 @@ const readingMinutes = remarkPluginFrontmatter.readingMinutes;
         </nav>
     )}
 </Layout>
+
+<script>
+    const DAY_IN_MS = 24 * 60 * 60 * 1000;
+
+    function updateRelativeDates() {
+        const formatter = new Intl.RelativeTimeFormat("en-US", {
+            numeric: "auto",
+        });
+
+        document
+            .querySelectorAll<HTMLTimeElement>("time[data-relative-date]")
+            .forEach((element) => {
+                const publishedAt = new Date(element.dateTime);
+                const elapsed = Date.now() - publishedAt.getTime();
+                const daysAgo = Math.floor(elapsed / DAY_IN_MS);
+
+                if (daysAgo >= 0 && daysAgo < 7) {
+                    element.textContent = formatter.format(-daysAgo, "day");
+                }
+            });
+    }
+
+    document.addEventListener("astro:page-load", updateRelativeDates);
+</script>
 
 <style>
     h1.title {
@@ -115,6 +139,7 @@ const readingMinutes = remarkPluginFrontmatter.readingMinutes;
     }
 
     time {
+        text-transform: capitalize;
         color: inherit;
     }
 

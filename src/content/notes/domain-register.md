@@ -1,7 +1,7 @@
 ---
-title: Powerful domain register options on mobile
+title: Powerful Domain Register Options on Mobile
 tagline: Short tagline of the post
-date: 26 Nov 2024
+date: 6 oct 2026
 tags:
   - draft
 image: ./content/media/register/home.webp

@@ -1,108 +1,95 @@
 ---
+import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
 import PatternTitle from "../../components/PatternTitle.astro";
-import { getCollection } from "astro:content";
 
-const ALL_POSTS = await getCollection("notes");
-const FEATURED_POST = ALL_POSTS[0];
-const OTHER_POSTS = ALL_POSTS.slice(1);
+const posts = (await getCollection("notes")).sort(
+    (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
 ---
 
 <Layout title="Blog">
-    <section class="stack">
-        <h2>Latest Note</h2>
+    <ul class="posts" aria-label="Blog posts">
+        {posts.map((post, index) => {
+            const isFeatured = index === 0;
 
-        {FEATURED_POST && (
-            <a
-                class="post-link featured-post"
-                href={`/blog/${FEATURED_POST.id}`}
-            >
-                <div class="post-row">
-                    <h3
-                        class="post-title"
-                        aria-label={FEATURED_POST.data.title}
-                    >
-                        <PatternTitle
-                            title={FEATURED_POST.data.title}
-                            idPrefix="featured-post-pattern"
-                            arrow="flow"
-                        />
-                    </h3>
-                </div>
-
-                <p class="prose featured-tagline">
-                    {FEATURED_POST.data.tagline}
-                </p>
-            </a>
-        )}
-
-        <hr />
-        <h2>All Notes</h2>
-
-        <ul class="posts">
-            {OTHER_POSTS.map((post, index) => (
+            return (
                 <li>
-                    <a class="post-link" href={`/blog/${post.id}`}>
+                    <a
+                        class:list={[
+                            "post-link",
+                            { "featured-post": isFeatured },
+                        ]}
+                        href={`/blog/${post.id}`}
+                    >
                         <div class="post-row">
                             <h2 class="post-title" aria-label={post.data.title}>
                                 <PatternTitle
                                     title={post.data.title}
                                     idPrefix={`post-pattern-${index}`}
-                                    arrow="end"
-                                    fill={false}
+                                    arrow={isFeatured ? "flow" : "end"}
+                                    fill={isFeatured}
                                 />
                             </h2>
                         </div>
+
+                        {isFeatured && (
+                            <p class="prose featured-tagline">
+                                {post.data.tagline}
+                            </p>
+                        )}
                     </a>
                 </li>
-            ))}
-        </ul>
-    </section>
+            );
+        })}
+    </ul>
 </Layout>
 
 <style>
-    h1.title {
-        font-size: var(--font-size-display);
-        font-weight: 900;
-    }
-    .featured-post .post-row {
-        font-size: var(--font-size-title);
-        line-height: var(--line-height-none);
-    }
-
-    .featured-tagline {
-        font-weight: var(--font-weight-normal);
-        margin: 0;
-    }
-
     .posts {
-        list-style: none;
-        padding: 0;
-        margin: 0;
         display: flex;
         flex-direction: column;
-        gap: var(--spacing-lg);
+        gap: clamp(var(--spacing-2xl), 5vw, var(--spacing-5xl));
+
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    .posts > li {
+        min-inline-size: 0;
     }
 
     .post-link {
         display: flex;
         flex-direction: column;
-        width: 100%;
         gap: var(--spacing-xs);
-        margin-block: var(--spacing-lg);
+
+        min-inline-size: 0;
+        inline-size: 100%;
+
         color: var(--color-text);
         text-decoration: none;
+
+        transition: color var(--transition-duration-fast)
+            var(--transition-timing-standard);
     }
 
     .post-row {
         position: relative;
         overflow: hidden;
+
         font-size: var(--font-size-display);
         line-height: var(--line-height-none);
     }
 
+    .featured-post .post-row {
+        font-size: var(--font-size-title);
+    }
+
     .post-title {
         margin: 0;
+
         font-size: inherit;
         font-weight: var(--font-weight-normal);
         line-height: inherit;
@@ -112,9 +99,9 @@ const OTHER_POSTS = ALL_POSTS.slice(1);
         overflow-wrap: anywhere;
     }
 
-    .post-link {
-        transition: color var(--transition-duration-fast)
-            var(--transition-timing-standard);
+    .featured-tagline {
+        margin: 0;
+        font-weight: var(--font-weight-normal);
     }
 
     .post-link:is(:hover, :active, :focus-visible) {
