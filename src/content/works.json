@@ -1,0 +1,52 @@
+[
+  {
+    "title": "Panorama Tab",
+    "description": "New tab browser extension",
+    "href": "/blog/panorama-tab",
+    "date": "2026",
+    "cover": "/panorama/screenshots/screenshot-1.png"
+  },
+
+  {
+    "title": "Wallpaper Drop #4",
+    "description": "Playbook full of wallpaper and similar graphics I've made over the years.",
+    "href": "https://www.playbook.com/s/nabholz/wallpapers",
+    "date": "Ongoing",
+    "cover": "/icons/lucky-icon.webp"
+  },
+
+  {
+    "title": "GoodBadPassword",
+    "description": "Password and bad-word generator",
+    "href": null,
+    "date": "Ongoing"
+  },
+  {
+    "title": "Timesets",
+    "description": "Build your own pomodoro-like timers",
+    "href": "/blog/timesets",
+    "date": "2023",
+    "cover": "/icons/timesets-icon.webp"
+  },
+  {
+    "title": "Penpot Plugins",
+    "description": "Set of plugins made for a Penpot challenge",
+    "href": "https://github.com/iamnabholz",
+    "date": "2025",
+    "cover": "/icons/tints-and-shades.webp"
+  },
+  {
+    "title": "Domain Register App",
+    "description": "Playbook full of wallpaper and similar graphics I've made over the years.",
+    "href": "/blog/domain-register",
+    "date": "Ongoing",
+    "cover": "/register/home.webp"
+  },
+  {
+    "title": "Stoop Inbox",
+    "description": "Playbook full of wallpaper and similar graphics I've made over the years.",
+    "href": "/blog/stoop-inbox",
+    "date": "Ongoing",
+    "cover": "/stoop/cover.webp"
+  }
+]

@@ -1,9 +1,12 @@
 @import "./reset.css";
 
 @font-face {
-    font-family: "Overused Grotesk";
-    src: url("/fonts/OverusedGrotesk-VF.woff2") format("woff2-variations");
-    font-weight: 300 900;
+    font-family: "Mona Sans";
+    src: url("/fonts/MonaSansVF[wdth,wght,opsz,ital].ttf") format("truetype");
+    font-weight: 100 900;
+    font-display: swap;
+    font-style: normal;
+    font-feature-settings: "wdth" "wght" "opsz" "ital";
 }
 
 :root {
@@ -26,15 +29,14 @@
     --color-text-faint: light-dark(#6b6b65, #92928b);
     --color-border: light-dark(#dcdcda, #262624);
 
-    --color-accent: #0019ff;
+    --color-accent: #fcc010;
     accent-color: var(--color-accent);
 
     --color-link: var(--color-accent);
 
     /* Font families */
     --font-family-sans:
-        "Overused Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI",
-        sans-serif;
+        "Mona Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
     /* Font sizes */
     --font-size-xs: 0.75rem;
@@ -178,6 +180,11 @@ a:is(:hover, :active, :focus-visible) {
     text-decoration-color: var(--color-link);
 }
 
+/* Keep an external link and its arrow on the same line. */
+a[href^="http"] {
+    white-space: nowrap;
+}
+
 /* External links */
 a[href^="http"]::after {
     content: "";
@@ -224,6 +231,7 @@ time {
     color: var(--color-text-faint);
     font-size: var(--font-size-base);
     font-weight: var(--font-weight-semibold);
+    text-wrap: nowrap;
 }
 
 ul {

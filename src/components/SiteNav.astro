@@ -14,7 +14,7 @@ const HEADER_LINKS = [
 
 const FOOTER_LINKS = [
     { href: "/", label: "works" },
-    { href: "/about", label: "about" },
+    { href: "/blog", label: "blog" },
 ];
 
 const links = variant === "header" ? HEADER_LINKS : FOOTER_LINKS;
@@ -30,7 +30,7 @@ const isActive = (href: string) => {
 };
 ---
 
-<nav aria-label={label} data-variant={variant}>
+<nav aria-label={label} data-variant={variant} class="content-boundary">
     {links.map(({ href, label: linkLabel }) => (
         <a
             href={href}
@@ -45,13 +45,32 @@ const isActive = (href: string) => {
 <style>
     nav {
         display: flex;
-        gap: 0 var(--spacing-sm);
         flex-wrap: wrap;
+        align-items: center;
+
+        gap: 0 var(--spacing-sm);
     }
 
-    nav[data-variant="header"] a[data-active] {
-        color: var(--color-link);
-        text-decoration-line: none;
+    nav[data-variant="header"] {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0;
+    }
+
+    nav[data-variant="header"] :nth-child(2) {
+        text-align: center;
+    }
+
+    nav[data-variant="header"] :nth-child(3) {
+        text-align: right;
+    }
+
+    nav[data-variant="header"] a {
+        width: 100%;
+        padding: calc(var(--spacing-xs) + 0.08em) var(--spacing-lg)
+            var(--spacing-xs);
+        text-transform: uppercase;
+        font-size: var(--font-size-sm);
     }
 
     nav[data-variant="footer"] a {

@@ -4,18 +4,11 @@ import SlugPattern from "./SlugPattern.astro";
 interface Props {
     title: string;
     idPrefix: string;
-    trailingGap?: string;
     arrow?: "none" | "flow" | "end";
     fill?: boolean;
 }
 
-const {
-    title,
-    idPrefix,
-    trailingGap = "0.12em",
-    arrow = "none",
-    fill = true,
-} = Astro.props;
+const { title, idPrefix, arrow = "none", fill = true } = Astro.props;
 
 const words = title.trim().split(/\s+/);
 
@@ -28,7 +21,7 @@ const items = [
 <span
     class:list={["pattern-title", { "pattern-title-compact": !fill }]}
 
-    style={`--title-pattern-gap: ${trailingGap};`}
+    style="--title-pattern-gap: 0.12em;"
     aria-hidden="true"
 >
     {items.map((item, index) => {
@@ -54,19 +47,12 @@ const items = [
                 {item.isArrow ? (
                     <span class="title-arrow">
                         <svg
-                            viewBox="0 0 48 32"
                             xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24"
                             aria-hidden="true"
                             focusable="false"
                         >
-                            <path
-                                d="M2 16H44M30 2L44 16L30 30"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="3"
-                                stroke-linecap="square"
-                                stroke-linejoin="miter"
-                            />
+                            <path d="M13.025 1l-2.847 2.828 6.176 6.176h-16.354v3.992h16.354l-6.176 6.176 2.847 2.828 10.975-11z" />
                         </svg>
                     </span>
                 ) : (

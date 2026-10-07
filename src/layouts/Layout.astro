@@ -2,7 +2,6 @@
 import "../styles/styles.css";
 import SiteNav from "../components/SiteNav.astro";
 import { ClientRouter } from "astro:transitions";
-import DitherCanvas from "../components/DitherCanvas.astro";
 
 const { title, hideFooter = false } = Astro.props;
 
@@ -59,42 +58,14 @@ const DESCRIPTION = "Find the works and projects of Lukas Nabholz.";
     </head>
 
     <body id="top">
-        <nav
-            class="site-navigation content-boundary"
-            aria-label="Primary navigation"
-        >
-            <div class="site-navigation__links">
-                <a class="site-navigation__link" href="/">
-                    work
-                </a>
-
-                <a class="site-navigation__link" href="/about">
-                    about
-                </a>
-
-                <a class="site-navigation__link" href="/blog">
-                    blog
-                </a>
-            </div>
-        </nav>
-
-        <header class="site-header">
-            <site-header-background
-                class="site-header__background"
-                aria-hidden="true"
-            >
-                <div class="site-header__dither-area" data-dither-mask></div>
-
-                <DitherCanvas pixelSize={4} color="green" opacity={0.12} />
-            </site-header-background>
-
-            <div class="site-header__intro content-boundary">
-                {hasHeader && <slot name="header" />}
-            </div>
-        </header>
-
         <div id="animation-wrapper">
             <div class="page-content content-boundary">
+                {hasHeader && (
+                    <header>
+                        <slot name="header" />
+                    </header>
+                )}
+
                 <main class="stack">
                     <slot />
                 </main>
@@ -112,44 +83,6 @@ const DESCRIPTION = "Find the works and projects of Lukas Nabholz.";
                 )}
             </div>
         </div>
-
-        <script>
-            class SiteHeaderBackground extends HTMLElement {
-                private resizeObserver?: ResizeObserver;
-
-                connectedCallback() {
-                    this.resizeObserver?.disconnect();
-
-                    const header = this.closest<HTMLElement>(".site-header");
-
-                    if (!header) return;
-
-                    const updateHeight = () => {
-                        this.style.setProperty(
-                            "--site-header-height",
-                            `${header.getBoundingClientRect().height}px`,
-                        );
-                    };
-
-                    updateHeight();
-
-                    this.resizeObserver = new ResizeObserver(updateHeight);
-                    this.resizeObserver.observe(header);
-                }
-
-                disconnectedCallback() {
-                    this.resizeObserver?.disconnect();
-                    this.resizeObserver = undefined;
-                }
-            }
-
-            if (!customElements.get("site-header-background")) {
-                customElements.define(
-                    "site-header-background",
-                    SiteHeaderBackground,
-                );
-            }
-        </script>
     </body>
 </html>
 
@@ -161,10 +94,12 @@ const DESCRIPTION = "Find the works and projects of Lukas Nabholz.";
         isolation: isolate;
     }
 
-    /*
-     * Shared width and padding for navigation, header content,
-     * and the main page content.
-     */
+    .page-content {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-5xl);
+    }
+
     .content-boundary {
         box-sizing: border-box;
         inline-size: 100%;
@@ -173,113 +108,12 @@ const DESCRIPTION = "Find the works and projects of Lukas Nabholz.";
         padding: var(--spacing-lg) var(--padding-inline-page);
     }
 
-    /*
-     * Fixed navigation
-     */
-    .site-navigation {
-        position: fixed;
-        inset-block-start: 0;
-        inset-inline: 0;
-        z-index: 10;
-    }
-
-    .site-navigation__links {
-        display: flex;
-        align-items: center;
-    }
-
-    .site-navigation__link {
-        color: var(--color-background);
-        background-color: var(--color-text);
-        padding: calc(var(--spacing-xs) + 0.08em) var(--spacing-lg)
-            var(--spacing-xs);
-        border-radius: 16px;
-        margin-inline-end: -0.15em;
-        text-decoration: none;
-        text-transform: uppercase;
-        font-size: var(--font-size-sm);
-    }
-
-    .site-navigation__link:hover {
-        color: var(--color-text);
-        background-color: var(--color-accent);
-    }
-
-    /*
-     * Header layout
-     *
-     * The header remains in normal flow and reserves all of the space
-     * required by the intro.
-     */
-    .site-header {
-        position: relative;
-        isolation: isolate;
-        padding-block-start: 20svh;
-        border-bottom: 1px solid var(--color-border);
-    }
-
-    /*
-     * Fixed visual background.
-     *
-     * Its actual block size is synchronized with .site-header by the
-     * custom element above. DitherCanvas can therefore continue sizing
-     * itself from its parent as originally designed.
-     */
-    .site-header__background {
-        position: fixed;
-        inset-block-start: 0;
-        inset-inline: 0;
-        z-index: 0;
-
-        display: block;
-        block-size: var(--site-header-height, 100svh);
-        overflow: hidden;
-        pointer-events: none;
-    }
-
-    /*
-     * This is the region DitherCanvas uses as its drawing mask.
-     */
-    .site-header__dither-area {
-        position: absolute;
-        inset: 0;
-        pointer-events: none;
-    }
-
-    /*
-     * The intro remains in normal document flow, so it scrolls normally.
-     * position: relative is necessary for z-index to place it over the
-     * dither canvas.
-     */
-    .site-header__intro {
-        position: relative;
-        z-index: 1;
-
-        display: flex;
-        flex-direction: column;
-        gap: var(--spacing-sm);
-
-        padding-block-start: var(--spacing-5xl);
-    }
-
-    .site-header__intro :global(.title) {
-        margin: 0;
-    }
-
-    /*
-     * The opaque page layer scrolls over the fixed header background.
-     */
     #animation-wrapper {
         position: relative;
         z-index: 1;
         background-color: var(--color-background);
         animation: slide-up var(--transition-duration-slow)
             var(--transition-timing-out) var(--animation-delay-short) both;
-    }
-
-    main {
-        gap: var(--spacing-4xl);
-        padding-block: var(--spacing-lg);
     }
 
     footer {

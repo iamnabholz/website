@@ -31,7 +31,7 @@ const readingMinutes = remarkPluginFrontmatter.readingMinutes;
 ---
 
 <Layout title={entry.data.title} surfaceColor={surfaceColor}>
-    <Fragment slot="header">
+    <header>
         <h1 class="title" aria-label={entry.data.title}>
             <PatternTitle title={entry.data.title} idPrefix="article-title" />
         </h1>
@@ -45,8 +45,8 @@ const readingMinutes = remarkPluginFrontmatter.readingMinutes;
                 })}
             </time>
         </span>
-    </Fragment>
-
+    </header>
+    <br />
     <article class="stack">
         <!--
         <div class="prose">
@@ -79,7 +79,6 @@ const readingMinutes = remarkPluginFrontmatter.readingMinutes;
                                 <PatternTitle
                                     title={post.data.title}
                                     idPrefix={`other-post-${index}`}
-                                    trailingGap="var(--spacing-sm)"
                                     arrow="end"
                                     fill={false}
                                 />
@@ -95,6 +94,7 @@ const readingMinutes = remarkPluginFrontmatter.readingMinutes;
 <style>
     h1.title {
         font-size: var(--font-size-title);
+        font-weight: 900;
     }
     .article-effects {
         position: relative;

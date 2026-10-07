@@ -1,268 +1,142 @@
 ---
-import { Image } from "astro:assets";
-import type { ImageMetadata } from "astro";
 import Layout from "../layouts/Layout.astro";
-import SelectedProjects from "../components/SelectedProjects.astro";
-import CurrentTime from "../components/CurrentTime.astro";
-
-import PROJECTS from "../content/projects.json";
-import PatternTitle from "../components/PatternTitle.astro";
-type Project = (typeof PROJECTS)[number];
-
-const projectGroups = new Map<string, Project[]>();
-
-for (const project of PROJECTS) {
-    const label = project.date ?? "Old";
-    const group = projectGroups.get(label) ?? [];
-    group.push(project);
-    projectGroups.set(label, group);
-}
-
-const groupedProjects = [...projectGroups].sort(([a], [b]) => {
-    if (a === "Ongoing") return -1;
-    if (b === "Ongoing") return 1;
-    if (a === "Old") return 1;
-    if (b === "Old") return -1;
-    return Number(b) - Number(a);
-});
-
-const icons = import.meta.glob<{ default: ImageMetadata }>(
-    "/src/content/media/icons/*",
-    { eager: true },
-);
-
-function resolveIcon(path: string): ImageMetadata {
-    const icon = icons[path];
-
-    if (!icon) {
-        throw new Error(`Project icon not found: ${path}`);
-    }
-
-    return icon.default;
-}
+import WorksFeed from "../components/WorksFeed.astro";
+import Sticker from "../components/Sticker.astro";
 ---
 
 <Layout title="Home">
     <Fragment slot="header">
-        <h1 class="title" aria-label="Lukas Nabholz">
-            <PatternTitle title="Lukas Nabholz" idPrefix="about-title" />
-        </h1>
+        <div class="introduction">
+            <h1 class="introduction__statement">
+                <strong class="introduction__name">
+                    Lukas Nabholz{"    "}
+                </strong>
+                <span aria-hidden="true">
+                    <Sticker visualScale={1.6} sticker="keycap" />
+                </span>
+            </h1>
 
-        <h2 class="subtitle">
-            Product designer and developer building digital experiences that
-            people actually enjoy using.
-        </h2>
+            <p class="introduction__statement">
+                Product designer and developer building digital experiences that
+                people actually enjoy using.
+            </p>
+
+            <p class="introduction__statement">
+                Currently solving complex problems and helping new ideas achieve
+                their goals by crafting intuitive, easy-to-use interfaces that
+                are beautiful.
+            </p>
+
+            <address class="introduction__statement introduction__contact">
+                Reach me by email at{" "}
+                <a href="mailto:hi@nabholz.work">hi@nabholz.work</a>
+                {" or find me as "}
+                <a
+                    href="https://threads.com/nabholzwork"
+                    target="_blank"
+                    rel="noreferrer"
+                >
+                    @nabholzwork
+                </a>
+                on Threads.
+            </address>
+        </div>
     </Fragment>
 
-    <section>
-        <h2 class="section-heading">Selected Projects</h2>
-        <SelectedProjects />
-    </section>
-
-    <section>
-        <h2 class="section-heading">More Projects</h2>
-
-        <dl class="projects">
-            {groupedProjects.map(([label, projects]) => (
-                <div>
-                    <dt>{label}</dt>
-
-                    {projects.map((project) => {
-                        const Tag = project.href ? "a" : "div";
-
-                        return (
-                            <dd>
-                                <Tag
-                                    class="project-card"
-                                    href={project.href ?? undefined}
-                                >
-                                    <span
-                                        class="project-icon"
-                                        aria-hidden="true"
-                                    >
-                                        <Image
-                                            src={resolveIcon(project.icon)}
-                                            alt=""
-                                            width={80}
-                                            height={80}
-                                            loading="lazy"
-                                        />
-                                    </span>
-
-                                    <div class="project-copy">
-                                        <span class="project-title">
-                                            {project.title}
-                                        </span>
-
-                                        {project.description && (
-                                            <p class="prose">
-                                                {project.description}
-                                            </p>
-                                        )}
-                                    </div>
-                                </Tag>
-                            </dd>
-                        );
-                    })}
-                </div>
-            ))}
-        </dl>
-    </section>
-
-    <section class="contact">
-        <h2 class="section-heading">Contact</h2>
-
-        <address>
-            <dl class="list">
-                <div>
-                    <dt>Location</dt>
-                    <dd>Santa Cruz, Bolivia</dd>
-                    <dd>
-                        <CurrentTime />
-                    </dd>
-                </div>
-
-                <div>
-                    <dt>Email</dt>
-                    <dd>
-                        <a href="mailto:hi@nabholz.work">hi@nabholz.work</a>
-                    </dd>
-                </div>
-
-                <div>
-                    <dt>Threads</dt>
-                    <dd>
-                        <a href="https://threads.com/@nabholzwork">
-                            @nabholzwork
-                        </a>
-                    </dd>
-                </div>
-
-                <div>
-                    <dt>Bluesky</dt>
-                    <dd>
-                        <a href="https://bsky.app/profile/nabholz.work">
-                            @nabholz.work
-                        </a>
-                    </dd>
-                </div>
-            </dl>
-        </address>
+    <section class="works" aria-labelledby="works-heading">
+        <h2 class="section-heading" id="works-heading">
+            Selected work
+        </h2>
+        <WorksFeed />
     </section>
 </Layout>
 
 <style>
-    h2.subtitle {
-        font-size: var(--font-size-display);
+    .introduction {
+        display: flex;
+        flex-direction: column;
+        gap: clamp(2.5rem, 6vw, 7rem);
+        inline-size: 100%;
+    }
+
+    .introduction__statement {
+        font-size: clamp(2rem, 1.2rem + 3.4vw, 5.75rem);
         font-weight: var(--font-weight-normal);
-    }
-    h1.title {
-        font-size: var(--font-size-title);
-    }
+        line-height: 1.02;
+        letter-spacing: -0.04em;
+        margin: 0;
 
-    .projects {
-        row-gap: var(--spacing-2xl);
-    }
-
-    .projects > div {
-        align-items: start;
-        row-gap: var(--spacing-md);
+        text-indent: 0;
+        text-wrap: pretty;
     }
 
-    .project-card {
-        --project-icon-size: 2.5rem;
-
-        display: grid;
-        grid-template-columns: var(--project-icon-size) minmax(0, 1fr);
-        align-items: start;
-        gap: var(--spacing-md);
-        width: 100%;
-
-        color: var(--color-text);
-        font-weight: var(--font-weight-normal);
-        text-decoration: none;
+    /* Opening statement */
+    p.introduction__statement:first-of-type,
+    h1.introduction__statement {
+        max-inline-size: min(100%, 24ch);
+        text-indent: clamp(1rem, 4vw, 4rem);
     }
 
-    a.project-card:is(:hover, :active, :focus-visible) {
-        color: var(--color-text);
+    /* Longer supporting paragraph */
+    p.introduction__statement {
+        max-inline-size: min(100%, 30ch);
     }
 
-    /* Prevent external-link arrows becoming an extra grid item. */
-    a.project-card[href^="http"]::after {
-        content: none;
+    /* Contact block */
+    address.introduction__statement {
+        max-inline-size: min(100%, 26ch);
     }
 
-    .project-icon {
-        display: grid;
-        place-items: center;
-        width: var(--project-icon-size);
-        height: var(--project-icon-size);
-        box-shadow: var(--box-shadow-sm);
-        border-radius: var(--border-radius-md);
-        overflow: hidden;
-    }
-
-    .project-icon > :global(img),
-    .project-icon > :global(svg) {
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-    }
-
-    .project-copy {
-        min-width: 0;
-    }
-
-    .project-title {
+    .introduction__name {
         font-weight: var(--font-weight-semibold);
-        transition:
-            color var(--transition-duration-fast)
-                var(--transition-timing-standard),
-            text-decoration-color var(--transition-duration-fast)
-                var(--transition-timing-standard);
+        letter-spacing: -0.045em;
+        white-space: nowrap;
     }
-    @media (prefers-reduced-motion: reduce) {
-        .project-title {
-            transition: none;
+
+    .introduction__contact {
+        font-style: normal;
+    }
+
+    .introduction__contact a {
+        font-weight: var(--font-weight-semibold);
+        overflow-wrap: anywhere;
+        text-decoration-thickness: 0.06em;
+        text-underline-offset: 0.12em;
+    }
+
+    .works {
+        inline-size: 100%;
+    }
+
+    .works .section-heading {
+        margin-block-end: clamp(var(--spacing-md), 2vw, var(--spacing-xl));
+    }
+
+    @media (max-width: 720px) {
+        .introduction {
+            gap: clamp(2.5rem, 12vw, 4rem);
+        }
+
+        .introduction__statement {
+            max-inline-size: none;
+            line-height: 1.05;
+            letter-spacing: -0.035em;
+        }
+
+        .introduction__name {
+            letter-spacing: -0.04em;
         }
     }
 
-    a.project-card .project-title {
-        text-decoration-line: underline;
-        text-decoration-thickness: var(--text-decoration-thickness-link);
-        text-underline-offset: var(--text-underline-offset-link);
-        text-decoration-color: color-mix(
-            in srgb,
-            currentColor 40%,
-            transparent
-        );
-    }
-
-    a.project-card:is(:hover, :active, :focus-visible) .project-title {
-        color: var(--color-link);
-        text-decoration-color: var(--color-link);
-    }
-
-    .project-copy p {
-        margin: var(--spacing-2xs) 0 0;
-        color: var(--color-text-faint);
-        font-size: var(--font-size-base);
-        font-weight: var(--font-weight-normal);
-        line-height: var(--line-height-snug);
-    }
-
-    @media (max-width: 600px) {
-        .projects {
-            grid-template-columns: minmax(0, 1fr);
+    @media (max-width: 380px) {
+        .introduction__statement {
+            font-size: clamp(1.75rem, 9vw, 2rem);
+            line-height: 1.08;
+            letter-spacing: -0.03em;
         }
 
-        .projects > div > dt,
-        .projects > div > dd {
-            grid-column: 1;
-        }
-
-        .projects > div > dt {
-            padding-top: 0;
+        .introduction__name {
+            letter-spacing: -0.035em;
         }
     }
 </style>
