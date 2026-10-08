@@ -129,27 +129,31 @@ const { size = "1em", visualScale = 1, sticker } = Astro.props;
     }
 
     .sticker-wrapper:focus-visible {
-        outline: 2px solid currentColor;
-        outline-offset: 3px;
-        border-radius: 0.2em;
+        border-radius: var(--border-radius-xs);
+        outline: var(--outline-width-focus) solid currentColor;
+        outline-offset: var(--outline-offset-focus);
     }
 
     .sticker {
         display: block;
+
         width: 100%;
         height: 100%;
-        pointer-events: none;
+
         color: black;
         filter: drop-shadow(var(--box-shadow-md));
-    }
+        pointer-events: none;
 
-    .sticker-wrapper:active .sticker {
-        transform: scale(1.12, 0.85);
+        transition: transform var(--transition-duration-fast)
+            var(--transition-timing-out);
     }
 
     .sticker-wrapper:hover .sticker {
         transform: scale(1.16);
-        transition: transform 100ms linear;
+    }
+
+    .sticker-wrapper:active .sticker {
+        transform: scale(1.12, 0.85);
     }
 
     .sticker :global(svg) {
@@ -177,11 +181,20 @@ const { size = "1em", visualScale = 1, sticker } = Astro.props;
     }
 
     @media (prefers-reduced-motion: reduce) {
+        .sticker-wrapper {
+            transform: translate(-50%, -50%);
+        }
+
+        .sticker-wrapper:is(:hover, :active) .sticker {
+            transform: none;
+        }
+
+        .sticker {
+            transition: none;
+        }
+
         .sticker :global(svg) {
             animation: none;
-        }
-        .sticker-wrapper:active .sticker {
-            transform: none;
         }
     }
 </style>

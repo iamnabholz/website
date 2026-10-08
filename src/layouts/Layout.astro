@@ -3,13 +3,21 @@ import "../styles/styles.css";
 import SiteNav from "../components/SiteNav.astro";
 import { ClientRouter } from "astro:transitions";
 import Sticker from "../components/Sticker.astro";
-import DitherCanvas from "../components/DitherCanvas.astro";
 
-const { title, hideFooter = false } = Astro.props;
+const DEFAULT_DESCRIPTION = "Find the works and projects of Lukas Nabholz.";
+
+const {
+    title,
+    description = DEFAULT_DESCRIPTION,
+    hideFooter = false,
+} = Astro.props;
 
 const finalTitle = `${title} — Lukas Nabholz`;
 
-const DESCRIPTION = "Find the works and projects of Lukas Nabholz.";
+const canonicalURL = new URL(
+    Astro.url.pathname,
+    Astro.site ?? Astro.url.origin,
+);
 ---
 
 <!doctype html>
@@ -22,9 +30,11 @@ const DESCRIPTION = "Find the works and projects of Lukas Nabholz.";
         />
 
         <title>{finalTitle}</title>
+        <link rel="canonical" href={canonicalURL.href} />
 
         <meta name="author" content="Lukas Nabholz" />
-        <meta name="description" content={DESCRIPTION} />
+        <meta name="description" content={description} />
+
         <meta name="generator" content={Astro.generator} />
         <meta name="color-scheme" content="light dark" />
 
@@ -33,8 +43,9 @@ const DESCRIPTION = "Find the works and projects of Lukas Nabholz.";
             content="37e98c1a1875e0741fc3abdea1aaf180"
         />
 
-        <meta property="og:title" content={title} />
-        <meta property="og:description" content={DESCRIPTION} />
+        <meta property="og:title" content={finalTitle} />
+        <meta property="og:description" content={description} />
+
         <meta
             property="og:image"
             content="https://nabholz.work/website_cover.png"
@@ -43,7 +54,7 @@ const DESCRIPTION = "Find the works and projects of Lukas Nabholz.";
             property="og:image:alt"
             content="A sticker designed by Lukas Nabholz or a solid colored background."
         />
-        <meta property="og:url" content="https://nabholz.work/" />
+        <meta property="og:url" content={canonicalURL.href} />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="Lukas Nabholz" />
         <meta property="og:locale" content="en_US" />
@@ -52,88 +63,91 @@ const DESCRIPTION = "Find the works and projects of Lukas Nabholz.";
         <link rel="icon" href="/icon.svg" type="image/svg+xml" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
-        <link rel="preconnect" href="https://nabholz.work/" />
-        <link rel="dns-prefetch" href="https://nabholz.work/" />
-
         <ClientRouter />
     </head>
 
-    <body id="top" class="content-boundary">
-        <header>
-            <h1 class="site-title">
+    <body id="top" class="site-shell">
+        <header class="site-header">
+            <div class="site-title">
                 <strong class="site-title__name">Lukas Nabholz</strong>
-                <span style="margin: 0.3em;">
-                    <Sticker visualScale={1.8} />
+
+                <span class="site-title__sticker">
+                    <Sticker visualScale={1.6} />
                 </span>
-            </h1>
+            </div>
 
             <SiteNav variant="header" label="Primary navigation" />
         </header>
 
         <div id="animation-wrapper">
-            <div class="page-content">
-                <main class="stack">
-                    <slot />
-                </main>
+            <main class="stack">
+                <slot />
+            </main>
 
-                {!hideFooter && (
-                    <footer class="stack">
-                        <a class="back-link" href="#top">
-                            Scroll up
-                        </a>
+            {!hideFooter && (
+                <footer class="stack">
+                    <a class="back-link" href="#top">
+                        Scroll up
+                    </a>
 
-                        <SiteNav variant="footer" label="Footer navigation" />
+                    <SiteNav variant="footer" label="Footer navigation" />
 
-                        <p>Designed and developed by me</p>
-
-                        <DitherCanvas maskSelector="" />
-                    </footer>
-                )}
-            </div>
+                    <p>Designed and developed by me</p>
+                </footer>
+            )}
         </div>
     </body>
 </html>
 
 <style>
     body {
-        min-height: 100dvh;
+        min-block-size: 100dvh;
         margin: 0;
         padding: 0;
         isolation: isolate;
     }
 
-    header {
-        padding-block-end: clamp(2.5rem, 6vw, 7rem);
-        margin-inline-start: var(--text-indent-introduction);
+    .site-shell {
+        inline-size: 100%;
+        max-inline-size: var(--max-width-page);
+        margin-inline: auto;
+        padding-block: var(--spacing-lg);
+        padding-inline: var(--padding-inline-page);
+    }
+
+    .site-header {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-md);
+
+        min-inline-size: 0;
+        margin-inline: var(--text-indent-introduction);
     }
 
     .site-title {
-        min-inline-size: 0;
-        margin: 0;
-        padding-block-end: 0.2em;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
 
-        font-size: var(--font-size-introduction);
-        font-weight: var(--font-weight-normal);
+        min-inline-size: 0;
+
+        font-size: var(--font-size-site-title);
+        line-height: var(--line-height-tight);
     }
 
     .site-title__name {
+        min-inline-size: 0;
+
+        color: inherit;
         font-weight: var(--font-weight-semibold);
         letter-spacing: -0.045em;
+        text-decoration: none;
         white-space: nowrap;
     }
 
-    .page-content {
-        display: flex;
-        flex-direction: column;
-        gap: var(--spacing-5xl);
-    }
-
-    .content-boundary {
-        box-sizing: border-box;
-        inline-size: 100%;
-        max-inline-size: 1920px;
-        margin-inline: auto;
-        padding: var(--spacing-lg) var(--padding-inline-page);
+    .site-title__sticker {
+        flex: 0 0 auto;
+        margin-inline: 0.3em;
     }
 
     #animation-wrapper {
@@ -144,11 +158,15 @@ const DESCRIPTION = "Find the works and projects of Lukas Nabholz.";
             var(--transition-timing-out) var(--animation-delay-short) both;
     }
 
+    main {
+        margin-block: var(--spacing-section);
+        gap: var(--spacing-section);
+    }
+
     footer {
         gap: var(--spacing-xs);
         color: var(--color-text-faint);
         font-size: var(--font-size-sm);
-        padding-block-start: var(--spacing-5xl);
     }
 
     .back-link {

@@ -7,13 +7,13 @@ interface Props {
 const { variant, label } = Astro.props;
 
 const HEADER_LINKS = [
-    { href: "/", label: "Works" },
+    { href: "/", label: "Work" },
     { href: "/feed", label: "Feed" },
     { href: "/blog", label: "Blog" },
 ];
 
 const FOOTER_LINKS = [
-    { href: "/", label: "works" },
+    { href: "/", label: "work" },
     { href: "/feed", label: "feed" },
     { href: "/blog", label: "blog" },
 ];
@@ -31,7 +31,7 @@ const isActive = (href: string) => {
 };
 ---
 
-<nav aria-label={label} data-variant={variant} class="content-boundary">
+<nav aria-label={label} data-variant={variant}>
     {links.map(({ href, label: linkLabel }, index) => (
         <Fragment>
             <a
@@ -68,11 +68,6 @@ const isActive = (href: string) => {
     nav[data-variant="footer"] a {
         text-transform: capitalize;
         text-decoration-line: none;
-    }
-
-    @media (max-width: 720px) {
-        nav[data-variant="header"] {
-        }
     }
 
     .separator {

@@ -1,15 +1,19 @@
 ---
 import CurrentTime from "../components/CurrentTime.astro";
+import Selected from "../components/SelectedWork.astro";
 import Sticker from "../components/Sticker.astro";
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout title="Home">
+<Layout
+    title="Home"
+    description="Portfolio of Lukas Nabholz, a product designer and developer building digital experiences people enjoy using."
+>
     <div class="introduction">
-        <p class="introduction__statement">
+        <h1 class="introduction__statement introduction__headline">
             Product designer and developer building digital experiences that
             people actually enjoy using.
-        </p>
+        </h1>
 
         <p class="introduction__statement">
             Tinkering until it feels right, I have 8+ years of experience
@@ -28,7 +32,13 @@ import Layout from "../layouts/Layout.astro";
         </address>
     </div>
 
-    <section class="contact">
+    <section class="home-section">
+        <h2 class="section-heading">Selected Work</h2>
+
+        <Selected />
+    </section>
+
+    <section class="home-section">
         <h2 class="section-heading">Contact</h2>
 
         <address>
@@ -36,6 +46,10 @@ import Layout from "../layouts/Layout.astro";
                 <div>
                     <dt>Location</dt>
                     <dd>Santa Cruz, Bolivia</dd>
+                </div>
+
+                <div>
+                    <dt>Local time</dt>
                     <dd>
                         <CurrentTime />
                     </dd>
@@ -51,7 +65,7 @@ import Layout from "../layouts/Layout.astro";
                 <div>
                     <dt>Threads</dt>
                     <dd>
-                        <a href="https://threads.com/@nabholzwork">
+                        <a href="https://www.threads.com/@nabholzwork" rel="me">
                             @nabholzwork
                         </a>
                     </dd>
@@ -60,7 +74,10 @@ import Layout from "../layouts/Layout.astro";
                 <div>
                     <dt>Bluesky</dt>
                     <dd>
-                        <a href="https://bsky.app/profile/nabholz.work">
+                        <a
+                            href="https://bsky.app/profile/nabholz.work"
+                            rel="me"
+                        >
                             @nabholz.work
                         </a>
                     </dd>
@@ -77,14 +94,11 @@ import Layout from "../layouts/Layout.astro";
 </Layout>
 
 <style>
-    h1.title {
-        font-size: var(--font-size-title);
-    }
-
     .introduction {
         display: flex;
         flex-direction: column;
-        gap: clamp(2.5rem, 6vw, 7rem);
+        gap: clamp(var(--spacing-2xl), 6vw, var(--spacing-5xl));
+
         inline-size: 100%;
     }
 
@@ -94,17 +108,18 @@ import Layout from "../layouts/Layout.astro";
 
         font-size: var(--font-size-introduction);
         font-weight: var(--font-weight-normal);
-        line-height: 1.02;
-        letter-spacing: -0.04em;
+        line-height: var(--line-height-display);
+        letter-spacing: var(--letter-spacing-display);
 
         text-wrap: pretty;
     }
 
-    p.introduction__statement:first-of-type {
+    .introduction__headline {
         text-indent: var(--text-indent-introduction);
     }
 
     .introduction__contact {
+        text-indent: var(--text-indent-introduction);
         font-style: normal;
     }
 
@@ -114,30 +129,26 @@ import Layout from "../layouts/Layout.astro";
         text-underline-offset: 0.12em;
     }
 
+    .home-section {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-lg);
+    }
+
+    .home-section .section-heading {
+        margin: 0;
+    }
+
     .stickers-space {
         display: flex;
         flex-wrap: wrap;
         align-items: center;
-        padding-block-start: var(--spacing-4xl);
+        gap: var(--spacing-sm);
     }
 
     @media (max-width: 720px) {
-        .introduction {
-            gap: clamp(2.5rem, 12vw, 4rem);
-        }
-
         .introduction__statement {
             max-inline-size: none;
-            line-height: 1.05;
-            letter-spacing: -0.035em;
-        }
-    }
-
-    @media (max-width: 380px) {
-        .introduction__statement {
-            font-size: clamp(1.75rem, 9vw, 2rem);
-            line-height: 1.08;
-            letter-spacing: -0.03em;
         }
     }
 </style>

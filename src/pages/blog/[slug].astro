@@ -1,6 +1,5 @@
 ---
 import { render, getCollection } from "astro:content";
-import { colorForIndex } from "../../lib/utils";
 import Layout from "../../layouts/Layout.astro";
 import PatternTitle from "../../components/PatternTitle.astro";
 import DitherCanvas from "../../components/DitherCanvas.astro";
@@ -17,7 +16,6 @@ export async function getStaticPaths() {
         params: { slug: entry.id },
         props: {
             entry,
-            surfaceColor: colorForIndex(index),
             otherPosts: notes
                 .filter((post) => post.id !== entry.id)
                 .slice(0, 3),
@@ -25,18 +23,24 @@ export async function getStaticPaths() {
     }));
 }
 
-const { entry, otherPosts, surfaceColor } = Astro.props;
-const { Content, remarkPluginFrontmatter } = await render(entry);
-const readingMinutes = remarkPluginFrontmatter.readingMinutes;
+const { entry, otherPosts } = Astro.props;
+const { Content } = await render(entry);
 ---
 
-<Layout title={entry.data.title} surfaceColor={surfaceColor}>
-    <header>
-        <h1 class="title" aria-label={entry.data.title}>
-            <PatternTitle title={entry.data.title} idPrefix="article-title" />
-        </h1>
+<Layout title={entry.data.title} description={entry.data.tagline}>
+    <article class="article stack" aria-labelledby="article-heading">
+        <header class="article-header stack">
+            <h1
+                id="article-heading"
+                class="title"
+                aria-label={entry.data.title}
+            >
+                <PatternTitle
+                    title={entry.data.title}
+                    idPrefix="article-title"
+                />
+            </h1>
 
-        <span>
             <time datetime={entry.data.date.toISOString()} data-relative-date>
                 {entry.data.date.toLocaleDateString("en-US", {
                     day: "numeric",
@@ -44,15 +48,7 @@ const readingMinutes = remarkPluginFrontmatter.readingMinutes;
                     year: "numeric",
                 })}
             </time>
-        </span>
-    </header>
-    <br />
-    <article class="stack">
-        <!--
-        <div class="prose">
-            <p>{entry.data.tagline.toLowerCase()}</p>
-        </div>
-        -->
+        </header>
 
         <div class="article-effects">
             <DitherCanvas pixelSize={3} maskSelector="figure" />
@@ -65,10 +61,9 @@ const readingMinutes = remarkPluginFrontmatter.readingMinutes;
 
     {otherPosts.length > 0 && (
         <nav class="more-posts stack" aria-labelledby="more-posts-heading">
-            <hr />
             <h2 id="more-posts-heading">Read More</h2>
 
-            <ul class="other-posts">
+            <ul class="other-posts" role="list">
                 {otherPosts.map((post, index) => (
                     <li>
                         <a class="other-post-link" href={`/blog/${post.id}`}>
@@ -118,14 +113,17 @@ const readingMinutes = remarkPluginFrontmatter.readingMinutes;
 <style>
     h1.title {
         font-size: var(--font-size-title);
-        font-weight: 900;
     }
+
+    .article-header {
+        gap: var(--spacing-sm);
+    }
+
     .article-effects {
         position: relative;
         isolation: isolate;
     }
 
-    .prose,
     .article-content > :global(:not(figure)) {
         margin-inline: auto;
     }
@@ -159,7 +157,7 @@ const readingMinutes = remarkPluginFrontmatter.readingMinutes;
         object-fit: contain;
     }
 
-    article.stack {
+    .article {
         gap: var(--spacing-3xl);
     }
 
@@ -172,7 +170,8 @@ const readingMinutes = remarkPluginFrontmatter.readingMinutes;
     }
 
     .more-posts {
-        margin-block-start: var(--spacing-lg);
+        padding-block-start: var(--spacing-lg);
+        border-block-start: var(--border-width-thin) solid var(--color-border);
     }
 
     .other-posts {

@@ -6,7 +6,6 @@
     font-weight: 100 900;
     font-display: swap;
     font-style: normal;
-    font-feature-settings: "wdth" "wght" "opsz" "ital";
 }
 
 :root {
@@ -29,7 +28,7 @@
     --color-text-faint: light-dark(#6b6b65, #92928b);
     --color-border: light-dark(#dcdcda, #262624);
 
-    --color-accent: #d90000;
+    --color-accent: light-dark(#d90000, #ff6b66);
     accent-color: var(--color-accent);
 
     --color-link: var(--color-accent);
@@ -51,6 +50,7 @@
 
     --font-size-title: clamp(3rem, 7vw, 10rem);
     --font-size-display: clamp(1.8rem, 4vw, 8rem);
+    --font-size-site-title: clamp(2rem, 1.2rem + 3.4vw, 5.75rem);
     --font-size-introduction: clamp(2rem, 1.2rem + 3.4vw, 5.75rem);
 
     --text-indent-introduction: clamp(1rem, 4vw, 4rem);
@@ -61,12 +61,14 @@
 
     /* Line heights */
     --line-height-none: 1;
+    --line-height-display: 1.05;
     --line-height-tight: 1.2;
     --line-height-snug: 1.4;
     --line-height-normal: 1.6;
     --line-height-relaxed: 1.8;
 
     /* Letter spacing */
+    --letter-spacing-display: -0.04em;
     --letter-spacing-tight: -0.03em;
     --letter-spacing-normal: 0;
     --letter-spacing-wide: 0.04em;
@@ -84,9 +86,14 @@
     --spacing-5xl: 6rem;
 
     /* Shared layout measurements */
+    --max-width-page: 120rem;
     --max-width-reading: 42rem;
 
     --padding-inline-page: clamp(var(--spacing-md), 3vw, var(--spacing-lg));
+
+    --inset-site-header: clamp(0rem, 2vw, var(--spacing-xl));
+
+    --spacing-section: clamp(var(--spacing-4xl), 8vw, var(--spacing-5xl));
 
     /* Borders */
     --border-width-thin: 1px;
@@ -136,7 +143,9 @@ body {
     font-family: var(--font-family-sans);
     font-size: var(--font-size-lg);
     font-weight: var(--font-weight-normal);
+    font-optical-sizing: auto;
     line-height: var(--line-height-normal);
+
     transition:
         background-color var(--transition-duration-base)
             var(--transition-timing-standard),
@@ -170,6 +179,7 @@ strong {
 /* Links */
 a {
     font-weight: var(--font-weight-semibold);
+    overflow-wrap: anywhere;
     text-decoration-thickness: var(--text-decoration-thickness-link);
     text-underline-offset: var(--text-underline-offset-link);
     text-decoration-color: color-mix(in srgb, currentColor 40%, transparent);
@@ -184,34 +194,26 @@ a:is(:hover, :active, :focus-visible) {
     text-decoration-color: var(--color-link);
 }
 
-/* Keep an external link and its arrow on the same line. */
-a[href^="http"] {
-    white-space: nowrap;
-}
-
 /* External links */
 a[href^="http"]::after {
     content: "";
     display: inline-block;
     position: relative;
-    top: 0.2em;
-    width: 1em;
-    height: 1em;
-    margin-left: 0.05em;
+    left: -0.06em;
+    bottom: -0.15em;
+    width: 0.6em;
+    height: 0.6em;
 
     background-color: var(--color-text-faint);
     mask: url("/icons/arrow-up-right.svg") center / contain no-repeat;
     -webkit-mask: url("/icons/arrow-up-right.svg") center / contain no-repeat;
 
-    transition:
-        background-color var(--transition-duration-base)
-            var(--transition-timing-out),
-        transform var(--transition-duration-base) var(--transition-timing-out);
+    transition: background-color var(--transition-duration-base)
+        var(--transition-timing-out);
 }
 
 a[href^="http"]:is(:hover, :active, :focus-visible)::after {
     background-color: var(--color-link);
-    transform: translate(0.125rem, -0.125rem);
 }
 
 :focus-visible {
@@ -242,43 +244,56 @@ time {
     text-wrap: nowrap;
 }
 
-ul {
+/* Lists generated from article content */
+.prose-flow :is(ul, ol) {
+    padding-inline-start: var(--spacing-lg);
+    list-style-position: outside;
+}
+
+.prose-flow ul {
     list-style-type: "—\00a0";
-    list-style-position: inside;
 }
 
-ul li::marker {
-    font-weight: var(--font-weight-semibold);
+.prose-flow :is(ul, ol) > li + li {
+    margin-block-start: var(--spacing-xs);
+}
+
+.prose-flow :is(ul, ol) li::marker {
     color: var(--color-text-faint);
+    font-weight: var(--font-weight-semibold);
 }
-
-dl {
-    font-style: normal;
+/* Structured definition lists */
+dl.list {
     display: grid;
     grid-template-columns: 4.6rem minmax(0, 1fr);
     column-gap: var(--spacing-3xl);
     row-gap: var(--spacing-xs);
+
+    font-style: normal;
 }
 
-dl > div {
+dl.list > div {
     display: grid;
     grid-column: 1 / -1;
     grid-template-columns: subgrid;
     align-items: baseline;
 }
 
-dl dt {
-    min-width: 0;
-    overflow-wrap: anywhere;
+dl.list dt {
+    min-inline-size: 0;
+
     color: var(--color-text-faint);
-    font-weight: var(--font-weight-semibold);
     font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    overflow-wrap: anywhere;
 }
 
-dl dd {
+dl.list dd {
     grid-column: 2;
-    min-width: 0;
+
+    min-inline-size: 0;
     margin: 0;
+
     overflow-wrap: anywhere;
 }
 
@@ -296,6 +311,21 @@ dl dd {
     display: flex;
     flex-direction: column;
     gap: var(--spacing-lg);
+}
+
+.visually-hidden {
+    position: absolute;
+
+    inline-size: 1px;
+    block-size: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+
+    border: 0;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
 }
 
 h3.title,
@@ -334,9 +364,5 @@ h1.title {
     a,
     a[href^="http"]::after {
         transition: none;
-    }
-
-    a[href^="http"]:is(:hover, :active, :focus-visible)::after {
-        transform: none;
     }
 }

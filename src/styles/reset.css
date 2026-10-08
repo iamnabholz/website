@@ -121,7 +121,6 @@ sub {
 a {
     color: inherit;
     text-decoration: underline;
-    width: fit-content;
 }
 
 :disabled {

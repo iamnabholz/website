@@ -20,8 +20,6 @@ const items = [
 
 <span
     class:list={["pattern-title", { "pattern-title-compact": !fill }]}
-
-    style="--title-pattern-gap: 0.12em;"
     aria-hidden="true"
 >
     {items.map((item, index) => {
@@ -74,9 +72,11 @@ const items = [
 
 <style>
     .pattern-title {
+        --title-pattern-gap: 0.12em;
+
         display: flex;
         flex-wrap: wrap;
-        column-gap: 0.12em;
+        column-gap: var(--title-pattern-gap);
         row-gap: 0;
         margin: 0;
         font-size: inherit;

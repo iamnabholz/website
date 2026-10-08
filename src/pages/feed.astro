@@ -1,16 +1,280 @@
 ---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
 import Layout from "../layouts/Layout.astro";
-import Feed from "../components/ProjectsFeed.astro";
+import feedData from "../content/feed.json";
+
+interface Entry {
+    title: string;
+    description: string;
+    href: string | null;
+    date: string;
+    cover?: string;
+}
+
+interface FeedData {
+    works: Entry[];
+    lastUpdated: string;
+}
+
+const feed: FeedData = feedData;
+const { works: entries, lastUpdated } = feed;
+
+const lastUpdatedLabel = new Intl.DateTimeFormat("en-US", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+    timeZone: "UTC",
+}).format(new Date(`${lastUpdated}T00:00:00Z`));
+
+const coverImages = import.meta.glob<{ default: ImageMetadata }>(
+    "/src/content/media/**/*.{png,jpg,jpeg,webp,avif}",
+    {
+        eager: true,
+    },
+);
+
+function resolveCover(path: string): ImageMetadata {
+    const sourcePath = `/src/content/media${path}`;
+    const image = coverImages[sourcePath];
+
+    if (!image) {
+        throw new Error(
+            `Project cover not found: ${path} (expected ${sourcePath})`,
+        );
+    }
+
+    return image.default;
+}
 ---
 
-<Layout title="Project Feed">
-    <section class="feed">
-        <Feed />
+<Layout
+    title="Project Feed"
+    description="A feed of project updates, graphics, and experiments by Lukas Nabholz."
+>
+    <section class="works-feed stack" aria-labelledby="project-feed-heading">
+        <h1 id="project-feed-heading" class="visually-hidden">
+            Project Feed
+        </h1>
+
+        <div class="feed-introduction stack">
+            <p class="prose">
+                Browse project updates, graphics, and experiments in one place.
+                Linked entries open additional information.
+            </p>
+
+            <p class="feed-updated">
+                Last updated:{" "}
+                <time datetime={lastUpdated}>{lastUpdatedLabel}</time>
+            </p>
+        </div>
+
+        <ul class="works-grid" role="list">
+            {entries.map((work, index) => {
+                const Tag = work.href ? "a" : "div";
+                const cover = work.cover ? resolveCover(work.cover) : null;
+
+                return (
+                    <li class="work-item">
+                        <Tag class="work-card" href={work.href ?? undefined}>
+                            <figure class="work-figure">
+                                <div class="work-media">
+                                    {cover ? (
+                                        <Image
+                                            class="work-image"
+                                            src={cover}
+                                            alt=""
+                                            widths={[176, 352, 528]}
+                                            sizes="
+                                                    (max-width: 520px) 42vw,
+                                                    (max-width: 800px) 28vw,
+                                                    176px
+                                                "
+                                            loading="lazy"
+                                            decoding="async"
+                                        />
+                                    ) : (
+                                        <span
+                                            class="work-placeholder"
+                                            aria-hidden="true"
+                                        />
+                                    )}
+                                </div>
+
+                                <figcaption class="work-title">
+                                    <span
+                                        class="work-number"
+                                        aria-hidden="true"
+                                    >
+                                        (
+                                        {(entries.length - index)
+                                            .toString()
+                                            .padStart(2, "0")}
+                                        )
+                                    </span>
+
+                                    <span>{work.title}</span>
+                                </figcaption>
+                            </figure>
+                        </Tag>
+                    </li>
+                );
+            })}
+        </ul>
     </section>
 </Layout>
 
 <style>
-    .feed {
+    .works-feed {
+        width: 100%;
+        gap: var(--spacing-5xl);
+    }
+
+    .feed-introduction {
+        gap: var(--spacing-md);
+    }
+
+    .feed-introduction .prose {
+        text-indent: var(--text-indent-introduction);
+    }
+
+    .feed-updated {
+        max-inline-size: var(--max-width-reading);
+        margin: 0;
+
+        color: var(--color-text-faint);
+        font-size: var(--font-size-base);
+    }
+
+    .feed-updated time {
+        color: inherit;
+        font-size: inherit;
+    }
+
+    .works-grid {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        align-items: start;
+        column-gap: clamp(var(--spacing-md), 2.5vw, var(--spacing-3xl));
+        row-gap: clamp(var(--spacing-3xl), 7vw, 7rem);
+
         inline-size: 100%;
+        margin: 0;
+        padding: 0;
+
+        list-style: none;
+    }
+
+    .work-item {
+        min-inline-size: 0;
+    }
+
+    .work-card {
+        display: block;
+        inline-size: 100%;
+        min-inline-size: 0;
+
+        color: inherit;
+        text-decoration: none;
+        white-space: normal;
+    }
+
+    a.work-card:is(:hover, :active, :focus-visible) {
+        color: inherit;
+    }
+
+    /* Remove the global external-link arrow from work cards. */
+    a.work-card[href^="http"]::after {
+        content: none;
+    }
+
+    .work-card:focus-visible {
+        border-radius: var(--border-radius-xs);
+        outline-offset: var(--spacing-xs);
+    }
+
+    .work-figure {
+        display: block;
+        inline-size: 100%;
+        min-inline-size: 0;
+
+        margin: 0;
+    }
+
+    .work-media {
+        display: grid;
+        place-items: center;
+        width: 100%;
+        height: 10rem;
+        overflow: hidden;
+    }
+
+    .work-media > :global(.work-image) {
+        display: block;
+        width: min(82%, 12rem);
+        height: 10rem;
+        max-width: none;
+        object-fit: contain;
+        object-position: center;
+    }
+
+    .work-placeholder {
+        display: block;
+        width: 5rem;
+        max-width: 45%;
+        aspect-ratio: 1;
+        border: var(--border-width-thin) solid var(--color-border);
+    }
+
+    .work-title {
+        min-inline-size: 0;
+        min-height: 1.2em;
+        margin: var(--spacing-sm) 0 0;
+        color: var(--color-text-faint);
+        font-size: var(--font-size-xs);
+        font-weight: var(--font-weight-normal);
+        line-height: var(--line-height-tight);
+        text-align: center;
+        text-wrap: pretty;
+    }
+
+    .work-number {
+        display: block;
+    }
+
+    @media (max-width: 800px) {
+        .works-grid {
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            column-gap: var(--spacing-md);
+            row-gap: var(--spacing-3xl);
+        }
+
+        .work-media > :global(.work-image) {
+            width: min(84%, 9rem);
+            height: 7rem;
+        }
+    }
+
+    @media (max-width: 520px) {
+        .works-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            column-gap: var(--spacing-sm);
+        }
+
+        .work-media {
+            height: 8rem;
+        }
+
+        .work-media > :global(.work-image) {
+            width: min(86%, 8rem);
+            height: 6.5rem;
+        }
+    }
+
+    @media (max-width: 300px) {
+        .works-grid {
+            grid-template-columns: minmax(0, 1fr);
+        }
     }
 </style>

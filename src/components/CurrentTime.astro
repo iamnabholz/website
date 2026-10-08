@@ -1,4 +1,6 @@
-<span class="current-time">--:--</span>
+<time class="current-time" aria-live="off">
+    --:--
+</time>
 
 <script>
     const formatter = new Intl.DateTimeFormat("default", {
@@ -8,28 +10,28 @@
         hour12: true,
     });
 
-    function updateTime(el: HTMLTimeElement) {
+    function updateTime(element: HTMLTimeElement) {
         const now = new Date();
-        el.dateTime = now.toISOString();
-        el.textContent = formatter.format(now);
+
+        element.dateTime = now.toISOString();
+        element.textContent = formatter.format(now);
     }
 
     document.addEventListener("astro:page-load", () => {
         document
-            .querySelectorAll<HTMLElement>(".current-time")
-            .forEach((container) => {
-                const time = document.createElement("time");
-                time.setAttribute("aria-live", "off");
-
+            .querySelectorAll<HTMLTimeElement>("time.current-time")
+            .forEach((time) => {
                 updateTime(time);
-                container.replaceChildren(time);
-                container.dataset.ready = "";
+                time.dataset.ready = "";
 
-                const timerId = setInterval(() => updateTime(time), 30_000);
+                const timerId = window.setInterval(
+                    () => updateTime(time),
+                    30_000,
+                );
 
                 document.addEventListener(
                     "astro:before-swap",
-                    () => clearInterval(timerId),
+                    () => window.clearInterval(timerId),
                     { once: true },
                 );
             });
@@ -43,24 +45,34 @@
 
     .current-time[data-ready] {
         position: relative;
-        padding-left: 0.6em;
+        padding-inline-start: 0.6em;
     }
 
     .current-time[data-ready]::before {
         content: "";
         position: absolute;
-        left: 0;
-        bottom: calc(50% - 0.2em);
-        width: 0.36em;
-        height: 0.36em;
-        border-radius: 50%;
-        background: var(--color-text-faint);
+        inset-inline-start: 0;
+        inset-block-end: calc(50% - 0.2em);
+
+        inline-size: 0.36em;
+        block-size: 0.36em;
+
+        border-radius: var(--border-radius-full);
+        background-color: var(--color-text-faint);
         opacity: 0;
+
         animation: blink 2s step-end infinite;
     }
 
     @keyframes blink {
         50% {
+            opacity: 1;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .current-time[data-ready]::before {
+            animation: none;
             opacity: 1;
         }
     }

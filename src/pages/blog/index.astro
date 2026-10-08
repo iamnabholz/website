@@ -8,44 +8,65 @@ const posts = (await getCollection("notes")).sort(
 );
 ---
 
-<Layout title="Blog">
-    <ul class="posts" aria-label="Blog posts">
-        {posts.map((post, index) => {
-            const isFeatured = index === 0;
+<Layout
+    title="Blog"
+    description="Project notes and occasional writing by product designer and developer Lukas Nabholz."
+>
+    <section class="stack" aria-labelledby="blog-heading">
+        <h1 id="blog-heading" class="visually-hidden">
+            Blog
+        </h1>
 
-            return (
-                <li>
-                    <a
-                        class:list={[
-                            "post-link",
-                            { "featured-post": isFeatured },
-                        ]}
-                        href={`/blog/${post.id}`}
-                    >
-                        <div class="post-row">
-                            <h2 class="post-title" aria-label={post.data.title}>
-                                <PatternTitle
-                                    title={post.data.title}
-                                    idPrefix={`post-pattern-${index}`}
-                                    arrow={isFeatured ? "flow" : "end"}
-                                    fill={isFeatured}
-                                />
-                            </h2>
-                        </div>
+        <p class="prose">Writing I do from time to time.</p>
 
-                        {isFeatured && (
-                            <p class="prose featured-tagline">
-                                {post.data.tagline}
-                            </p>
-                        )}
-                    </a>
-                </li>
-            );
-        })}
-    </ul>
+        <ul class="posts" aria-label="Blog posts">
+            {posts.map((post, index) => {
+                const isFeatured = index === 0;
+
+                return (
+                    <li>
+                        <a
+                            class:list={[
+                                "post-link",
+                                { "featured-post": isFeatured },
+                            ]}
+                            href={`/blog/${post.id}`}
+                        >
+                            <div class="post-row">
+                                <h2
+                                    class="post-title"
+                                    aria-label={post.data.title}
+                                >
+                                    <PatternTitle
+                                        title={post.data.title}
+                                        idPrefix={`post-pattern-${index}`}
+                                        arrow={isFeatured ? "flow" : "end"}
+                                        fill={isFeatured}
+                                    />
+                                </h2>
+                            </div>
+
+                            {isFeatured && (
+                                <p class="prose featured-tagline">
+                                    {post.data.tagline}
+                                </p>
+                            )}
+                        </a>
+                    </li>
+                );
+            })}
+        </ul>
+    </section>
 </Layout>
 
 <style>
+    section {
+        gap: var(--spacing-5xl);
+    }
+    section > .prose {
+        text-indent: var(--text-indent-introduction);
+    }
+
     .posts {
         display: flex;
         flex-direction: column;

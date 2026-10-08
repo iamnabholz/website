@@ -1,0 +1,97 @@
+---
+import selectedWorkData from "../content/work.json";
+
+interface Work {
+    title: string;
+    description: string;
+    href: string | null;
+}
+
+const works: Work[] = selectedWorkData;
+---
+
+<div class="selected-works">
+    {works.map((work, index) => {
+        const Tag = work.href ? "a" : "div";
+
+        return (
+            <article class="selected-work">
+                <Tag
+                    class:list={[
+                        "selected-work__content",
+                        { "selected-work__link": Boolean(work.href) },
+                    ]}
+                    href={work.href ?? undefined}
+                >
+                    <h3 class="selected-work__title">
+                        <span class="selected-work__index" aria-hidden="true">
+                            ({String(index + 1).padStart(2, "0")})
+                        </span>
+
+                        <span class="selected-work__name">{work.title}</span>
+                    </h3>
+
+                    <p>{work.description}</p>
+                </Tag>
+            </article>
+        );
+    })}
+</div>
+
+<style>
+    .selected-works {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-lg);
+    }
+
+    .selected-work {
+        min-inline-size: 0;
+        border-block-start: var(--border-width-thin) solid var(--color-border);
+    }
+
+    .selected-work__content {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-xs);
+
+        min-inline-size: 0;
+        inline-size: 100%;
+        padding-block-start: var(--spacing-sm);
+
+        text-decoration: none;
+        white-space: normal;
+    }
+
+    .selected-work__title {
+        display: flex;
+        gap: var(--spacing-sm);
+
+        min-inline-size: 0;
+        margin: 0;
+
+        font-size: var(--font-size-display);
+    }
+
+    .selected-work__index {
+        position: relative;
+        inset-block-start: 0.8em;
+        flex: 0 0 auto;
+
+        color: var(--color-text-faint);
+        font-size: var(--font-size-sm);
+    }
+
+    .selected-work__name {
+        min-inline-size: 0;
+        overflow-wrap: anywhere;
+    }
+
+    .selected-work p {
+        margin: 0;
+    }
+
+    .selected-work__link[href^="http"]::after {
+        content: none;
+    }
+</style>
