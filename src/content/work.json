@@ -10,6 +10,11 @@
     "href": null
   },
   {
+    "title": "Stoop Inbox",
+    "description": "Keep up with your newsletters while having a clean inbox.",
+    "href": "/blog/stoop-inbox"
+  },
+  {
     "title": "Timesets",
     "description": "Pomodoro-like timers that you can customize.",
     "href": "https://timesets.netlify.app/"

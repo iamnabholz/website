@@ -27,7 +27,12 @@ const { entry, otherPosts } = Astro.props;
 const { Content } = await render(entry);
 ---
 
-<Layout title={entry.data.title} description={entry.data.tagline}>
+<Layout
+    title={entry.data.title}
+    description={entry.data.tagline}
+    type="article"
+    publishedTime={entry.data.date}
+>
     <article class="article stack" aria-labelledby="article-heading">
         <header class="article-header stack">
             <h1

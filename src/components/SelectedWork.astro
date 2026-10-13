@@ -65,6 +65,7 @@ const works: Work[] = selectedWorkData;
 
     .selected-work__title {
         display: flex;
+        align-items: first baseline;
         gap: var(--spacing-sm);
 
         min-inline-size: 0;
@@ -75,7 +76,6 @@ const works: Work[] = selectedWorkData;
 
     .selected-work__index {
         position: relative;
-        inset-block-start: 0.8em;
         flex: 0 0 auto;
 
         color: var(--color-text-faint);
@@ -88,6 +88,7 @@ const works: Work[] = selectedWorkData;
     }
 
     .selected-work p {
+        font-weight: var(--font-weight-normal);
         margin: 0;
     }
 

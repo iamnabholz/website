@@ -11,4 +11,4 @@ project: Panorama Tab
 
 Basic draft for all posts
 
-[panorama](/panorama)
+[panorama](https://panorama.nabholz.work/)
