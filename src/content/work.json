@@ -1,22 +1,40 @@
 [
   {
+    "title": "Passwords.",
+    "description": "Funny password generator with questionable vocabulary.",
+    "links": [
+      { "title": "Open app", "href": "https://passwords.nabholz.work/" }
+    ],
+    "media": ["/works/bp.mp4", "/works/sc.png"]
+  },
+  {
     "title": "Panorama Tab",
     "description": "New tab browser extension with a unique design and simple features.",
-    "href": "/blog/panorama-tab"
+    "links": [
+      { "title": "Get extension", "href": "https://panorama.nabholz.work/" }
+    ],
+    "media": [
+      "/panorama/screenshot-1.png",
+      "/panorama/screenshot-2.webp",
+      "/panorama/screenshot-3.webp"
+    ]
   },
   {
     "title": "Domain Register",
     "description": "Design of a domain register service for iOS.",
-    "href": null
+    "links": [{ "title": null, "href": "/blog/domain-register" }],
+    "media": ["/register/home.webp", "/register/add-to-cart.webp"]
   },
   {
     "title": "Stoop Inbox",
     "description": "Keep up with your newsletters while having a clean inbox.",
-    "href": "/blog/stoop-inbox"
+    "links": [{ "title": null, "href": "/blog/stoop-inbox" }],
+    "media": ["/stoop/cover.webp", "/stoop/showcase.webp"]
   },
   {
     "title": "Timesets",
     "description": "Pomodoro-like timers that you can customize.",
-    "href": "https://timesets.netlify.app/"
+    "links": [{ "title": "Open app", "href": "https://timesets.netlify.app/" }],
+    "media": ["/panorama/screenshot-1.png"]
   }
 ]

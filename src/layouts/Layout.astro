@@ -162,7 +162,7 @@ const structuredDataJSON = structuredData
                 </span>
             </div>
 
-            <SiteNav variant="header" label="Primary navigation" />
+            <!--<SiteNav variant="header" label="Primary navigation" />-->
         </header>
 
         <div id="animation-wrapper">
@@ -176,7 +176,7 @@ const structuredDataJSON = structuredData
                         Scroll up
                     </a>
 
-                    <SiteNav variant="footer" label="Footer navigation" />
+                    <!-- <SiteNav variant="footer" label="Footer navigation" /> -->
 
                     <p>Designed and developed by me</p>
                 </footer>
@@ -205,6 +205,7 @@ const structuredDataJSON = structuredData
         display: flex;
         flex-direction: column;
         gap: var(--spacing-md);
+        padding-block-start: var(--spacing-md);
 
         min-inline-size: 0;
         margin-inline: var(--text-indent-introduction);
@@ -256,6 +257,7 @@ const structuredDataJSON = structuredData
     }
 
     .back-link {
+        width: max-content;
         text-transform: uppercase;
         font-size: var(--font-size-sm);
     }

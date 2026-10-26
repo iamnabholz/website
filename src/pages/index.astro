@@ -23,9 +23,16 @@ import Layout from "../layouts/Layout.astro";
 
         <address class="introduction__statement introduction__contact">
             Reach me by email at{" "}
-            <a href="mailto:hi@nabholz.work">hi@nabholz.work</a>
+            <a target="_blank" href="mailto:hi@nabholz.work">
+                hi@nabholz.work
+            </a>
             {" or find me as "}
-            <a href="https://www.threads.com/@nabholzwork" rel="me">
+            <a
+                target="_blank"
+                href="https://www.threads.com/@nabholzwork"
+                rel="me"
+                style="text-wrap: nowrap;"
+            >
                 @nabholzwork
             </a>
             on Threads.
@@ -33,7 +40,7 @@ import Layout from "../layouts/Layout.astro";
     </div>
 
     <section class="home-section">
-        <h2 class="section-heading">Selected Work</h2>
+        <h2 class="section-heading">Selected Projects</h2>
 
         <Selected />
     </section>
@@ -49,7 +56,7 @@ import Layout from "../layouts/Layout.astro";
                 </div>
 
                 <div>
-                    <dt>Local time</dt>
+                    <dt>Local Time</dt>
                     <dd>
                         <CurrentTime />
                     </dd>
@@ -119,7 +126,6 @@ import Layout from "../layouts/Layout.astro";
     }
 
     .introduction__contact {
-        text-indent: var(--text-indent-introduction);
         font-style: normal;
     }
 

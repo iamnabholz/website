@@ -6,6 +6,7 @@ import Layout from "../layouts/Layout.astro";
 import feedData from "../content/feed.json";
 
 interface Entry {
+    type: string;
     title: string;
     description: string;
     href: string | null;
@@ -112,7 +113,7 @@ function resolveCover(path: string): ImageMetadata {
                                         {(entries.length - index)
                                             .toString()
                                             .padStart(2, "0")}
-                                        )
+                                        ){" " + work.type}
                                     </span>
 
                                     <span>{work.title}</span>

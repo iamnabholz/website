@@ -8,17 +8,17 @@ const { variant, label } = Astro.props;
 
 const HEADER_LINKS = [
     { href: "/", label: "Work" },
-    { href: "/feed", label: "Feed" },
+    // { href: "/feed", label: "Feed" },
     { href: "/blog", label: "Blog" },
 ];
 
 const FOOTER_LINKS = [
     { href: "/", label: "work" },
-    { href: "/feed", label: "feed" },
+    // { href: "/feed", label: "feed" },
     { href: "/blog", label: "blog" },
 ];
 
-const links = variant === "header" ? HEADER_LINKS : FOOTER_LINKS;
+const links = variant === "header" ? HEADER_LINKS : HEADER_LINKS;
 
 const currentPath = Astro.url.pathname.replace(/\/+$/, "") || "/";
 

@@ -1,48 +1,160 @@
 ---
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+
 import selectedWorkData from "../content/work.json";
 
 interface Work {
     title: string;
     description: string;
-    href: string | null;
+    links: {
+        title: string | null;
+        href: string;
+    }[];
+    media: string[];
 }
 
 const works: Work[] = selectedWorkData;
+
+const coverImages = import.meta.glob<{ default: ImageMetadata }>(
+    "/src/content/media/**/*.{png,jpg,jpeg,webp,avif}",
+    {
+        eager: true,
+    },
+);
+
+function resolveCover(path: string): ImageMetadata {
+    const sourcePath = `/src/content/media${path}`;
+    const image = coverImages[sourcePath];
+
+    if (!image) {
+        throw new Error(
+            `Project cover not found: ${path} (expected ${sourcePath})`,
+        );
+    }
+
+    return image.default;
+}
+const videoFiles = import.meta.glob<string>(
+    "/src/content/media/**/*.{mp4,webm,ogg,mov}",
+    {
+        eager: true,
+        query: "?url",
+        import: "default",
+    },
+);
+
+function isVideo(path: string): boolean {
+    return /\.(mp4|webm|ogg|mov)$/i.test(path);
+}
+
+function resolveVideo(path: string): string {
+    const sourcePath = `/src/content/media${path}`;
+    const video = videoFiles[sourcePath];
+
+    if (!video) {
+        throw new Error(`Project video not found: ${path}`);
+    }
+
+    return video;
+}
 ---
 
 <div class="selected-works">
     {works.map((work, index) => {
-        const Tag = work.href ? "a" : "div";
-
         return (
             <article class="selected-work">
-                <Tag
-                    class:list={[
-                        "selected-work__content",
-                        { "selected-work__link": Boolean(work.href) },
-                    ]}
-                    href={work.href ?? undefined}
-                >
-                    <h3 class="selected-work__title">
-                        <span class="selected-work__index" aria-hidden="true">
-                            ({String(index + 1).padStart(2, "0")})
-                        </span>
-
-                        <span class="selected-work__name">{work.title}</span>
-                    </h3>
+                <div class="selected-work__content">
+                    <h3 class="selected-work__title">{work.title}</h3>
 
                     <p>{work.description}</p>
-                </Tag>
+
+                    {work.links.map((link) => (
+                        <a
+                            target={
+                                link.href.startsWith("http")
+                                    ? "_blank"
+                                    : "_self"
+                            }
+                            class="selected-work__link"
+                            href={link.href}
+                        >
+                            {link.title ?? "read more"}
+                        </a>
+                    ))}
+
+                    {work.media.length > 0 && (
+                        <div
+                            class="work-gallery"
+                            role="region"
+                            aria-label={`${work.title} media`}
+                            tabindex="0"
+                        >
+                            <ul class="work-gallery__track" role="list">
+                                {work.media.map((path, index) => (
+                                    <li class="work-gallery__item">
+                                        {isVideo(path) ? (
+                                            <video
+                                                class="work-gallery__asset"
+                                                src={resolveVideo(path)}
+                                                aria-label={`${work.title} video ${index + 1}`}
+                                                autoplay
+                                                muted
+                                                loop
+                                                playsinline
+                                                controls
+                                                preload="metadata"
+                                            />
+                                        ) : (
+                                            <Image
+                                                class="work-gallery__asset"
+                                                src={resolveCover(path)}
+                                                alt={`${work.title} screenshot ${index + 1}`}
+                                                loading="lazy"
+                                            />
+                                        )}
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    )}
+                </div>
             </article>
         );
     })}
 </div>
 
+<script>
+    const motionPreference = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+    );
+
+    function updateLoopPreviews() {
+        document
+            .querySelectorAll<HTMLVideoElement>("video[data-loop-preview]")
+            .forEach((video) => {
+                if (motionPreference.matches) {
+                    video.pause();
+                    return;
+                }
+
+                void video.play().catch(() => {
+                    // Native controls remain available if autoplay is blocked.
+                });
+            });
+    }
+
+    document.addEventListener("astro:page-load", updateLoopPreviews);
+    motionPreference.addEventListener("change", updateLoopPreviews);
+
+    updateLoopPreviews();
+</script>
+
 <style>
     .selected-works {
         display: flex;
         flex-direction: column;
-        gap: var(--spacing-lg);
+        gap: var(--spacing-xl);
     }
 
     .selected-work {
@@ -57,7 +169,7 @@ const works: Work[] = selectedWorkData;
 
         min-inline-size: 0;
         inline-size: 100%;
-        padding-block-start: var(--spacing-sm);
+        padding-block-start: var(--spacing-xl);
 
         text-decoration: none;
         white-space: normal;
@@ -69,22 +181,11 @@ const works: Work[] = selectedWorkData;
         gap: var(--spacing-sm);
 
         min-inline-size: 0;
+        overflow-wrap: anywhere;
         margin: 0;
 
         font-size: var(--font-size-display);
-    }
-
-    .selected-work__index {
-        position: relative;
-        flex: 0 0 auto;
-
-        color: var(--color-text-faint);
-        font-size: var(--font-size-sm);
-    }
-
-    .selected-work__name {
-        min-inline-size: 0;
-        overflow-wrap: anywhere;
+        letter-spacing: var(--letter-spacing-display);
     }
 
     .selected-work p {
@@ -92,7 +193,77 @@ const works: Work[] = selectedWorkData;
         margin: 0;
     }
 
-    .selected-work__link[href^="http"]::after {
-        content: none;
+    .selected-work__link {
+        text-transform: capitalize;
+        width: fit-content;
+    }
+
+    .work-gallery {
+        --gallery-height: clamp(15rem, 27vw, 22rem);
+
+        inline-size: 100%;
+        min-inline-size: 0;
+        block-size: var(--gallery-height);
+        overflow-x: auto;
+        overflow-y: hidden;
+        overscroll-behavior-inline: contain;
+        margin-block-start: var(--spacing-sm);
+    }
+
+    .work-gallery:focus-visible {
+        outline: 2px solid currentColor;
+        outline-offset: 4px;
+    }
+
+    .work-gallery__track {
+        display: flex;
+        align-items: center;
+        gap: clamp(0.75rem, 2vw, 1.5rem);
+        inline-size: max-content;
+        block-size: 100%;
+        margin: 0;
+        box-sizing: border-box;
+        list-style: none;
+    }
+
+    .work-gallery__item {
+        display: grid;
+        place-items: center;
+        flex: 0 0 auto;
+        block-size: 100%;
+    }
+
+    /* The layout varies automatically; JSON only contains media paths. */
+    .work-gallery__item:nth-child(3n + 1) {
+        inline-size: clamp(12rem, 23vw, 19rem);
+    }
+
+    .work-gallery__item:nth-child(3n + 2) {
+        inline-size: clamp(9rem, 17vw, 14rem);
+    }
+
+    .work-gallery__item:nth-child(3n) {
+        inline-size: clamp(15rem, 29vw, 24rem);
+    }
+
+    .work-gallery__item:nth-child(odd) {
+        translate: 0 -0.5rem;
+    }
+
+    .work-gallery__item:nth-child(even) {
+        translate: 0 1.5rem;
+    }
+
+    .work-gallery__asset {
+        display: block;
+        inline-size: 100%;
+        block-size: auto;
+        max-block-size: calc(var(--gallery-height) - 2rem);
+        object-fit: contain;
+        object-position: center;
+    }
+
+    .work-gallery video.work-gallery__asset {
+        max-inline-size: 100%;
     }
 </style>
