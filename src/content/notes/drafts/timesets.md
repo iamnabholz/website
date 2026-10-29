@@ -4,7 +4,7 @@ tagline: Short tagline of the post
 date: 22 Apr 2025
 tags:
   - draft
-image: ./content/media/register/home.webp
+image: ./content/media/timesets/cover.webp
 selected: true
 project: Timesets
 ---
