@@ -7,6 +7,10 @@ import selectedWorkData from "../content/work.json";
 interface Work {
     title: string;
     description: string;
+    sections: {
+        title: string;
+        text: string[];
+    }[];
     links: {
         title: string | null;
         href: string;
@@ -67,7 +71,19 @@ function resolveVideo(path: string): string {
                 <div class="selected-work__content">
                     <h3 class="selected-work__title">{work.title}</h3>
 
-                    <p>{work.description}</p>
+                    <p class="prose">{work.description}</p>
+
+                    {work.sections.map((section) => (
+                        <>
+                            <h4 class="selected-work__section-title">
+                                {section.title}
+                            </h4>
+
+                            {section.text.map((text) => (
+                                <p class="prose">{text}</p>
+                            ))}
+                        </>
+                    ))}
 
                     {work.links.map((link) => (
                         <a
@@ -193,20 +209,23 @@ function resolveVideo(path: string): string {
         margin: 0;
     }
 
+    .selected-work__section-title {
+        text-transform: capitalize;
+        margin-block-start: var(--spacing-md);
+    }
+
     .selected-work__link {
         text-transform: capitalize;
         width: fit-content;
     }
 
-    .work-gallery {
-        --gallery-height: clamp(15rem, 27vw, 22rem);
+    .selected-work__link:first-of-type {
+        margin-block-start: var(--spacing-md);
+    }
 
+    .work-gallery {
         inline-size: 100%;
         min-inline-size: 0;
-        block-size: var(--gallery-height);
-        overflow-x: auto;
-        overflow-y: hidden;
-        overscroll-behavior-inline: contain;
         margin-block-start: var(--spacing-sm);
     }
 
@@ -216,54 +235,32 @@ function resolveVideo(path: string): string {
     }
 
     .work-gallery__track {
-        display: flex;
-        align-items: center;
-        gap: clamp(0.75rem, 2vw, 1.5rem);
-        inline-size: max-content;
-        block-size: 100%;
+        columns: 2;
+        column-gap: clamp(0.75rem, 2vw, 1.5rem);
         margin: 0;
-        box-sizing: border-box;
+        padding: 0;
         list-style: none;
     }
 
     .work-gallery__item {
-        display: grid;
-        place-items: center;
-        flex: 0 0 auto;
-        block-size: 100%;
+        display: inline-block;
+        inline-size: 100%;
+        margin-block-end: clamp(0.75rem, 2vw, 1.5rem);
+        break-inside: avoid;
     }
 
-    /* The layout varies automatically; JSON only contains media paths. */
-    .work-gallery__item:nth-child(3n + 1) {
-        inline-size: clamp(12rem, 23vw, 19rem);
-    }
-
-    .work-gallery__item:nth-child(3n + 2) {
-        inline-size: clamp(9rem, 17vw, 14rem);
-    }
-
-    .work-gallery__item:nth-child(3n) {
-        inline-size: clamp(15rem, 29vw, 24rem);
-    }
-
-    .work-gallery__item:nth-child(odd) {
-        translate: 0 -0.5rem;
-    }
-
-    .work-gallery__item:nth-child(even) {
-        translate: 0 1.5rem;
+    .work-gallery__item:only-child {
+        column-span: all;
     }
 
     .work-gallery__asset {
         display: block;
-        inline-size: 100%;
+        inline-size: auto;
+        max-inline-size: 100%;
         block-size: auto;
-        max-block-size: calc(var(--gallery-height) - 2rem);
+        max-block-size: min(70vh, 42rem);
         object-fit: contain;
         object-position: center;
-    }
-
-    .work-gallery video.work-gallery__asset {
-        max-inline-size: 100%;
+        margin-inline: auto;
     }
 </style>

@@ -78,6 +78,8 @@ const structuredData =
 const structuredDataJSON = structuredData
     ? JSON.stringify(structuredData).replace(/</g, "\\u003c")
     : undefined;
+
+const isHome = Astro.url.pathname === "/";
 ---
 
 <!doctype html>
@@ -162,6 +164,12 @@ const structuredDataJSON = structuredData
                 </span>
             </div>
 
+            {!isHome && (
+                <nav aria-label="Primary navigation">
+                    <a href="/">Back Home</a>
+                </nav>
+            )}
+
             <!--<SiteNav variant="header" label="Primary navigation" />-->
         </header>
 
@@ -176,7 +184,9 @@ const structuredDataJSON = structuredData
                         Scroll up
                     </a>
 
-                    <!-- <SiteNav variant="footer" label="Footer navigation" /> -->
+                    {!isHome && (
+                        <SiteNav variant="footer" label="Footer navigation" />
+                    )}
 
                     <p>Designed and developed by me</p>
                 </footer>
@@ -204,7 +214,7 @@ const structuredDataJSON = structuredData
     .site-header {
         display: flex;
         flex-direction: column;
-        gap: var(--spacing-md);
+        gap: var(--spacing-xs);
         padding-block-start: var(--spacing-md);
 
         min-inline-size: 0;

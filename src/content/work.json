@@ -1,40 +1,172 @@
 [
   {
     "title": "Passwords.",
-    "description": "Funny password generator with questionable vocabulary.",
-    "links": [
-      { "title": "Open app", "href": "https://passwords.nabholz.work/" }
+    "description": "A deliberately silly password generator that turns a functional utility into a small, characterful experience.",
+    "sections": [
+      {
+        "title": "What it is",
+        "text": [
+          "An installable web app that generates 'passwords' made with bad words, insults, and more. Including sound effects, small interactions, and irreverent commentary.",
+          "It is designed as an entertaining experiment, not as a secure source of passwords for important accounts or services."
+        ]
+      },
+      {
+        "title": "What it demonstrates",
+        "text": [
+          "The project explores how interaction, tone, and feedback can make a familiar utility feel distinctive. It can be installed and used offline."
+        ]
+      },
+      {
+        "title": "Built with",
+        "text": ["SvelteKit, the Web Audio API, and Cloudflare."]
+      }
     ],
-    "media": ["/works/bp.mp4", "/works/sc.png"]
+    "links": [
+      {
+        "title": "Try Passwords",
+        "href": "https://passwords.nabholz.work/"
+      },
+      {
+        "title": "View Source Code",
+        "href": "https://github.com/iamnabholz/bad-password"
+      }
+    ],
+    "media": ["/passwords/sp.png", "/passwords/bp.mp4", "/passwords/sc.png"]
   },
   {
     "title": "Panorama Tab",
-    "description": "New tab browser extension with a unique design and simple features.",
+    "description": "A customizable browser new-tab page designed to not get in the way, with a basic summary of the day for your current location and customizable backgrounds.",
+    "sections": [
+      {
+        "title": "Project background",
+        "text": [
+          "I have developed this long-running browser-extension project over time as both a product and a space to explore design and development.",
+          "It replaces the default new-tab page with a daily overview, including the date, local time, weather, and a personal greeting."
+        ]
+      },
+      {
+        "title": "Design approach",
+        "text": [
+          "People can personalize the background with photography, colors, or gradients. The experience is designed to stay simple and private: settings remain on the device, and there is no account or premium tier."
+        ]
+      },
+      {
+        "title": "The result",
+        "text": [
+          "Panorama Tab brings product thinking, visual design, and front-end development together in a product that continues to evolve."
+        ]
+      }
+    ],
     "links": [
-      { "title": "Get extension", "href": "https://panorama.nabholz.work/" }
+      {
+        "title": "Explore Panorama Tab",
+        "href": "https://panorama.nabholz.work/"
+      },
+      {
+        "title": "View source code",
+        "href": "https://github.com/iamnabholz/panorama-extension"
+      }
     ],
     "media": [
-      "/panorama/screenshot-1.png",
+      "/panorama/cover.png",
+      "/panorama/screenshot-1.webp",
       "/panorama/screenshot-2.webp",
       "/panorama/screenshot-3.webp"
     ]
   },
   {
     "title": "Domain Register",
-    "description": "Design of a domain register service for iOS.",
-    "links": [{ "title": null, "href": "/blog/domain-register" }],
-    "media": ["/register/home.webp", "/register/add-to-cart.webp"]
+    "description": "A mobile domain-management experience designed to make common registrar tasks easier to handle away from a desktop.",
+    "sections": [
+      {
+        "title": "The challenge",
+        "text": [
+          "Managing domains on a phone can mean switching to a desktop for tasks such as searching for domains, managing DNS, renewing registrations, or exploring add-on services."
+        ]
+      },
+      {
+        "title": "What I designed",
+        "text": [
+          "I designed a native mobile app concept that brings key domain tasks into one place, including domain search, transfers, renewals, DNS management, and an overview of registered domains.",
+          "The design also considers practical mobile details such as quick access to common actions, biometric authentication, notifications, and access to domain information offline."
+        ]
+      },
+      {
+        "title": "What it demonstrates",
+        "text": [
+          "This project explores how to organize a broad set of account and domain-management tasks into a clear mobile experience."
+        ]
+      }
+    ],
+    "links": [
+      {
+        "title": "Read the case study",
+        "href": "/blog/domain-register"
+      }
+    ],
+    "media": [
+      "/register/cover.png",
+      "/register/home.webp",
+      "/register/add-to-cart.webp"
+    ]
   },
   {
     "title": "Stoop Inbox",
-    "description": "Keep up with your newsletters while having a clean inbox.",
-    "links": [{ "title": null, "href": "/blog/stoop-inbox" }],
+    "description": "A redesign concept for a newsletter app, focused on making subscriptions easier to organize and articles more enjoyable to read.",
+    "sections": [
+      {
+        "title": "The challenge",
+        "text": [
+          "The existing experience made some useful actions difficult to find and presented repeated controls across the app. Organizing subscriptions and adjusting notifications also needed more attention."
+        ]
+      },
+      {
+        "title": "What I redesigned",
+        "text": [
+          "I reorganized the experience around the inbox, a library for saved and unfinished reading, newsletter discovery, and a focused reading view.",
+          "The concept also includes controls for reading appearance, organization, and notification preferences."
+        ]
+      },
+      {
+        "title": "What it demonstrates",
+        "text": [
+          "This project shows how research into an existing product and its user feedback can inform a clearer information architecture and a more cohesive reading experience."
+        ]
+      }
+    ],
+    "links": [
+      {
+        "title": "Read the case study",
+        "href": "/blog/stoop-inbox"
+      }
+    ],
     "media": ["/stoop/cover.webp", "/stoop/showcase.webp"]
   },
   {
     "title": "Timesets",
-    "description": "Pomodoro-like timers that you can customize.",
-    "links": [{ "title": "Open app", "href": "https://timesets.netlify.app/" }],
-    "media": ["/panorama/screenshot-1.png"]
+    "description": "A simple app to create your own Pomodoro-like timers to keep track of your tasks.",
+    "sections": [
+      {
+        "title": "Project background",
+        "text": [
+          "Customizable focus timers inspired by the Pomodoro technique."
+        ]
+      }
+    ],
+    "links": [
+      {
+        "title": "Open Timesets",
+        "href": "https://timesets.netlify.app/"
+      },
+      {
+        "title": "View Source Code",
+        "href": "https://github.com/iamnabholz/timesets-app"
+      }
+    ],
+    "media": [
+      "/timesets/timesets.png",
+      "/timesets/tmsc.png",
+      "/timesets/tmsc2.png"
+    ]
   }
 ]
