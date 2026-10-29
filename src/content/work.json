@@ -28,10 +28,14 @@
       },
       {
         "title": "View Source Code",
-        "href": "https://github.com/iamnabholz/bad-password"
+        "href": "https://github.com/iamnabholz/passwords"
       }
     ],
-    "media": ["/passwords/sp.png", "/passwords/bp.mp4", "/passwords/sc.png"]
+    "media": [
+      "/passwords/cover.webp",
+      "/passwords/showcase.mp4",
+      "/passwords/sc01.webp"
+    ]
   },
   {
     "title": "Panorama Tab",
@@ -68,10 +72,9 @@
       }
     ],
     "media": [
-      "/panorama/cover.png",
-      "/panorama/screenshot-1.webp",
-      "/panorama/screenshot-2.webp",
-      "/panorama/screenshot-3.webp"
+      "/panorama/cover.webp",
+      "/panorama/sc03.webp",
+      "/panorama/showcase.mp4"
     ]
   },
   {
@@ -105,7 +108,7 @@
       }
     ],
     "media": [
-      "/register/cover.png",
+      "/register/cover.webp",
       "/register/home.webp",
       "/register/add-to-cart.webp"
     ]
@@ -164,7 +167,7 @@
       }
     ],
     "media": [
-      "/timesets/timesets.png",
+      "/timesets/cover.webp",
       "/timesets/tmsc.png",
       "/timesets/tmsc2.png"
     ]
