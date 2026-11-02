@@ -22,7 +22,12 @@ const {
     publishedTime,
 } = Astro.props;
 
-const finalTitle = `${title} — Lukas Nabholz`;
+const finalTitle = `${
+    title
+        .split(" ") // split on white space, so you have an array of words
+        .map((word) => word[0].toUpperCase() + word.slice(1)) // map each word, capitalizing the first letter
+        .join(" ") // join it all back together with a space
+} — Lukas Nabholz`;
 
 const canonicalPath = Astro.url.pathname.replace(/\/+$/, "") || "/";
 

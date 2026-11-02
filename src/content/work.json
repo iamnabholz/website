@@ -11,14 +11,10 @@
         ]
       },
       {
-        "title": "What it demonstrates",
+        "title": "result",
         "text": [
           "The project explores how interaction, tone, and feedback can make a familiar utility feel distinctive. It can be installed and used offline."
         ]
-      },
-      {
-        "title": "Built with",
-        "text": ["SvelteKit, the Web Audio API, and Cloudflare."]
       }
     ],
     "links": [
@@ -107,11 +103,7 @@
         "href": "/blog/domain-register"
       }
     ],
-    "media": [
-      "/register/cover.webp",
-      "/register/home.webp",
-      "/register/add-to-cart.webp"
-    ]
+    "media": ["/register/cover.webp", "/register/home.webp"]
   },
   {
     "title": "Stoop Inbox",
@@ -145,14 +137,15 @@
     ],
     "media": ["/stoop/cover.webp", "/stoop/showcase.webp"]
   },
+
   {
     "title": "Timesets",
-    "description": "A simple app to create your own Pomodoro-like timers to keep track of your tasks.",
+    "description": "A customizable focus timer for planning work sessions and tracking time spent on tasks.",
     "sections": [
       {
         "title": "Project background",
         "text": [
-          "Customizable focus timers inspired by the Pomodoro technique."
+          "I built Timesets to support a Pomodoro-style workflow I wanted: simple, flexible timers I could tailor to the way I wanted to work, and the task I wanted to complete. It grew to include sounds, notifications, and other useful features, perfect for anyone looking for a more personal approach to focused work."
         ]
       }
     ],
@@ -162,14 +155,39 @@
         "href": "https://timesets.netlify.app/"
       },
       {
-        "title": "View Source Code",
+        "title": "View source code",
         "href": "https://github.com/iamnabholz/timesets-app"
       }
     ],
+    "media": ["/timesets/cover.webp", "/timesets/timesets.mp4"]
+  },
+  {
+    "title": "+ Extra Projects",
+    "description": "A selection of websites and apps I’ve designed for clients over the past few years.",
+    "sections": [
+      {
+        "title": "The projects",
+        "text": [
+          "The work ranges from product landing pages and marketing websites to end-to-end web app design and native iOS and Android apps."
+        ]
+      },
+      {
+        "title": "My clients",
+        "text": [
+          "I’ve worked with clients across fields including finance, security, marketing, and fitness. Ranging from independent founders and small teams to international companies—helping them shape and design their ideas."
+        ]
+      }
+    ],
+    "links": [
+      {
+        "title": "view projects",
+        "href": "/blog/more-projects"
+      }
+    ],
     "media": [
-      "/timesets/cover.webp",
-      "/timesets/tmsc.png",
-      "/timesets/tmsc2.png"
+      "/more/whisperloop_app.webp",
+      "/more/fc_web.webp",
+      "/more/podcast_app.webp"
     ]
   }
 ]

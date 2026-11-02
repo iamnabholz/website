@@ -76,7 +76,7 @@ function resolveVideo(path: string): string {
                     {work.sections.map((section) => (
                         <>
                             <h4 class="selected-work__section-title">
-                                {section.title}
+                                {section.title.trim()}
                             </h4>
 
                             {section.text.map((text) => (

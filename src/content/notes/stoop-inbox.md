@@ -1,6 +1,6 @@
 ---
-title: Streamlining The Experience of Stoop Inbox
-tagline: Keep you email inbox and your newsletters separated
+title: Streamlining the mobile experience of Stoop Inbox
+tagline: Read and manage your favorite newsletters while keeping your personal email inbox clean
 date: 8 Jun 2024
 tags:
   - draft

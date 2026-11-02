@@ -1,6 +1,6 @@
 ---
-title: Powerful Domain Register Options on Mobile
-tagline: Short tagline of the post
+title: Powerful Domain Register management on Mobile
+tagline: Manage everything about your domains directly from the comfort of your phone
 date: 6 oct 2026
 tags:
   - draft
